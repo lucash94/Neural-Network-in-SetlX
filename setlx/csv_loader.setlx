@@ -1,0 +1,70 @@
+// Load test and training data
+load_data := procedure() {
+	// training_data: 60,000 sets, a 784 pixels
+	// test_data: 10,000 sets, a 784 pixels
+	// return [ [[img1] [img2] .. [img n]], [lbl1 .. lbln] ] for each set
+
+	test_data := parse_csv("mnist_test.csv", 10000);
+	training_data := parse_csv("mnist_train.csv", 60000);
+	return [training_data, test_data];
+};
+// Parse csv into lists
+// len = #images in set; row count possible statt len?
+parse_csv := procedure(file, len) {
+	// create empty lists for images and according labels
+	images := [];
+	labels := [];
+	
+	// csv[image,pixels/label] --> csv[3][1]: Label of image 3
+	print("Reading file:\t$file$");
+	csv := readFile(file);
+
+	// Convert every line into lists	
+	for(i in {1..len}) {
+		labels += [int(csv[i][1])];	
+		// starting at 3, because 1 and 2 are label and ","	
+		images += [parse_line(csv[i][3..])];	
+		// e.g. images[1] = all pixels of image1; images[1][1] = 1st pixel of image1
+
+		if(i%1000 == 0) {
+			print("Image $i$ of $len$ imported");
+		}
+	}
+
+	//print("End reading:\t$file$");	
+	return [images, labels];
+};
+// Read csv-string-line and parse into list
+parse_line := procedure(s) {
+	match (s) {
+		case []			: return [];
+		case [a,"," | r]	: return [int(a)]+ 		parse_line(r);	//   1,r
+		case [a, b, "," | r]	: return [int(a+b)]+ 	parse_line(r);	//  12,r
+		case [a, b, c, "," | r]	: return [int(a+b+c)]+ 	parse_line(r) ;	// 123,r	
+
+		case [a]		: return [int(a)];				// end of line
+		case [a, b]		: return [int(a+b)];
+		case [a, b, c]		: return [int(a+b+c)];
+
+		default			: abort("Error while parsing csv-file: $s$");
+	}
+};
+
+
+// create 10-dimensional vector with 1 in the jth position and zeros elsewhere
+// desired Result from the neural network / label (0 to 9)
+vectorized_result := procedure(j) {
+	e := la_vector([0]*10);
+	e[j] := 1;
+	return e;
+};
+
+// data_wrapper
+load_data_wrapper := procedure() {
+	[tr_d, te_d] := load_data();
+	// toDO
+};
+
+
+// Start of program
+// load_data_wrapper();
