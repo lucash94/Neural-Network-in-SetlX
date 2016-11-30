@@ -1,0 +1,89 @@
+// s(izes): number of neurons in respective layers --> [3,2], two layer network with first layer 3 neurons & second layer 2 neurons
+class network (s) {
+	num_layers := #s;
+	sizes := s;
+	biases := null;
+	weights := null;
+
+	init := procedure() {
+		computeRndBiases();
+		computeRndWeights();
+	};
+
+	feedforward := procedure() {
+
+	};
+
+	sgd := procedure() {
+
+	};
+
+	update_mini_batch := procedure() {
+
+	};
+
+	backprop := procedure() {
+
+	};
+
+	evaluate := procedure() {
+
+	};
+
+	cost_derivative := procedure() {
+
+	};
+
+	// Sigmoid function
+	sigmoid := procedure(z) {
+		return 1.0/(1.0 + exp(-z));
+	};
+
+	// Derivative of the sigmoid function
+	sigmoid_prime := procedure(z) {
+		return sigmoid(z) * (1-sigmoid(z));
+	};
+
+	// biases: [[b_layer1_neu1, b_layer1_neu2, ...], [b_layer2_neu1, ...], ...]
+	computeRndBiases := procedure() {
+		result := [];
+		layer := [];
+		// Calculate Biases for each layer (except of the input layer)
+		for(i in {2..this.num_layers}) {
+			// Calculate Biases for layer i		
+			for(j in {1..this.sizes[i]}) {
+				layer += [ random() ];
+			}
+			result += [layer];
+			layer := [];
+		}
+		this.biases := result;
+	};
+
+	// weights: [ [[w1_layer1_neu1, w1_layer1_neu2, ...], [w2_layer1_neu1, ...], ...], [[w1_layer2_neu1, w1_layer2_neu2, ...], [w2_layer2_neu1, ...], ...] ]
+	computeRndWeights := procedure() {
+		result := [];
+		layer := [];
+		output := [];
+		// Calculate weights for each layer (except input layer)
+		for(i in {1..this.num_layers-1}) {
+			// Calculate weights for each output of one layer
+			for(j in {1..this.sizes[i+1]}) {
+				// Calculate n'st-output of each neuron
+				for(k in {1..sizes[i]}) {
+					output += [ random() ];
+				}
+				layer += [output];
+				output := [];
+			}
+			result += [layer];
+			layer := [];
+		}
+		this.weights := result;
+	};
+}
+
+// Test
+n := network([2,3,1]);
+n.init();
+print(n.sigmoid_prime(3));
