@@ -10,8 +10,23 @@ class network (s) {
 		computeRndWeights();
 	};
 
-	feedforward := procedure() {
-
+	// Return output of network for a as input
+	feedforward := procedure(a) {
+		for (i in {1..num_layers-1}) {
+			w := this.weights[i];
+			b := this.biases[i];
+			dot := w * a; 
+			
+			// To add a smaller matrix to a larger one --> duplicate colums
+			l := [];
+			for(j in {1..#b}) {
+				l += [[b[j][1], b[j][1]]];
+			}
+			b := la_matrix(l);
+		
+			a := sigmoid_matrix(dot + b);
+		}
+		return a;
 	};
 
 	sgd := procedure() {
@@ -30,17 +45,38 @@ class network (s) {
 
 	};
 
-	cost_derivative := procedure() {
-
+	// Return vector of partial derivates
+	cost_derivative := procedure(output_activations, y) {
+		return (output_activations - y);
 	};
 
-	// Sigmoid function
+	// Sigmoid function for matrices
+	sigmoid_matrix := procedure(z) {
+
+		result := [];
+		result_r := [];
+		// z is a matrix, so the function has to be used on every part of it
+		// Columns		
+		for(i in {1..#z}) {
+			// Rows
+			for(j in {1..#z[1]}) {
+				result_r += [ 1.0/(1.0 + exp(- z[i][j] )) ];
+			}
+			result += [result_r];
+			result_r := [];
+		}
+
+		return la_matrix(result);
+	};
+	// Sigmoid function for numbers
 	sigmoid := procedure(z) {
 		return 1.0/(1.0 + exp(-z));
 	};
 
 	// Derivative of the sigmoid function
+	// ToDo: Evtl. Matrix Implementierung
 	sigmoid_prime := procedure(z) {
+		// sig := sigmoid(z);
 		return sigmoid(z) * (1-sigmoid(z));
 	};
 
@@ -52,12 +88,19 @@ class network (s) {
 		for(i in {2..this.num_layers}) {
 			// Calculate Biases for layer i		
 			for(j in {1..this.sizes[i]}) {
-				layer += [ random() ];
+				layer += [[ random() ]];
 			}
 			result += [layer];
 			layer := [];
 		}
-		this.biases := result;
+		
+		// Use matrix format for further calculations
+		m_result := [];
+		for(i in {1..#result}) {
+			m_result += [la_matrix(result[i])];
+		}
+
+		this.biases := m_result;
 	};
 
 	// weights: [ [[w1_layer1_neu1, w1_layer1_neu2, ...], [w2_layer1_neu1, ...], ...], [[w1_layer2_neu1, w1_layer2_neu2, ...], [w2_layer2_neu1, ...], ...] ]
@@ -79,11 +122,20 @@ class network (s) {
 			result += [layer];
 			layer := [];
 		}
-		this.weights := result;
+		
+		// Use matrix format for further calculations
+		m_result := [];
+		for(i in {1..#result}) {
+			m_result += [la_matrix(result[i])];
+		}
+
+		this.weights := m_result;
 	};
 }
 
 // Test
 n := network([2,3,1]);
 n.init();
-print(n.sigmoid_prime(3));
+
+//print(n.feedforward(la_matrix([[1,2],[2,3]])));
+//print(n.weights[2]);
