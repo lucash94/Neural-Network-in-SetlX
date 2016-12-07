@@ -29,20 +29,151 @@ class network (s) {
 		return a;
 	};
 
-	sgd := procedure() {
-
+	sgd := procedure(training_data, epochs, mini_batch_size, eta, test_data) {
+		if(test_data != null) {
+			n_test := #test_data; 		
+		}
+		n := #training_data;
+		
+		for(j in {0..epochs}) {
+			training_data := shuffle(training_data);
+			
+			mini_batches := [];
+			for(k in {1,mini_batch_size+1..n+1}) {
+				mini_batches += training_data[k..k+mini_batch_size-1];
+			}
+			
+			for(mini_batch in mini_batches) {
+				update_mini_batch(mini_batch, eta);
+			}
+			
+			// Visual output
+			if(test_data != null) {
+				ev := evaluate(test_data);
+				print("Epoch $j$: $ev$ / $n_test$");
+			}
+			else {
+				print("Epoch $j$ complete");
+			}
+		}	
 	};
 
-	update_mini_batch := procedure() {
+	update_mini_batch := procedure(mini_batch, eta) {
+		[nabla_b, nabla_w] := getNabla_b_and_w();
+		
+		for([x,y] in mini_batch) {
+			[delta_nabla_b, delta_nabla_w] := backprop(x,y);
+			
+			temp := [];
+			for([nb,dnb] in zip(nabla_b, delta_nabla_b)) {
+				temp += [nb+dnb];
+			}
+			nabla_b := temp;
+			
+			temp := [];
+			for([nw,dnw] in zip(nabla_w, delta_nabla_w)) {
+				temp += [nw+dnw];
+			}
+			nabla_w := temp;
+		}
 
+		// Adjust weights
+		temp := [];
+		for( [w,nw] in zip(this.weights, nabla_w) ) {
+			temp += [ w-(eta/#mini_batch)*nw ];
+		}
+		this.weights := temp;
+		
+		// Adjust biases
+		temp := [];
+		for( [b,nb] in zip(this.biases, nabla_b) ) {
+			temp += [ b-(eta/#mini_batch)*nb ];
+		}
+		this.biases := temp;
+	};
+	
+	zip := procedure(l1, l2) {
+		result := [];
+		for(i in {1..#l1}) {
+			result += [ [l1[i], l2[i]] ];
+		}
+		return result;
 	};
 
-	backprop := procedure() {
-
+	backprop := procedure(x,y) {
+		[nabla_b, nabla_w] := getNabla_b_and_w();
+		
+		activation := x;
+		// List of all activations (layer by layer)
+		activations := [x];
+		// List of z-vectors (layer by layer)
+		zs := [];
+		
+		for([b,w] in zip(this.biases, this.weights)) {
+			dot := w * activation;
+			z := dot + b;
+			zs += [z];
+			activation := sigmoid(z);
+			activations += [activation];
+		}
+		
+		// backwards pass
+		delta := cost_derivative(activation[-1], y) * sigmoid_prime(zs[-1]);	// backslash im Original?
+		nabla_b[-1] := delta;
+		nabla_w[-1] := delta * activations[-2]!;	// ! = transpose
+		
+		for( l in {3..num_layers} ) {
+			z := zs[-l];
+			sp := sigmoid_prime(z);
+			delta := delta * this.weights[-l+1]!;
+			nabla_b[-l] := delta;
+			nabla_w[-l] := delta * activations[-l-1]!;
+		}
+		return [nabla_b, nabla_w];
+	};
+	
+	getNabla_b_and_w := procedure() {
+		nabla_b := [];
+		nabla_w := [];
+		for(b in this.biases) {
+			z := la_matrix( [[0]*#b] * #b[1] ); 
+			nabla_b += [z];
+		}
+		for(w in this.weights) {
+			z := la_matrix( [[0]*#w] * #w[1] ); 
+			nabla_w += [z];
+		}
+		
+		return [nabla_b, nabla_w];
 	};
 
-	evaluate := procedure() {
-
+	evaluate := procedure(test_data) {
+		test_results := [];
+		
+		// x: calculated number; y: real number
+		for( [x,y] in test_data ) {
+			// Calculate index of max. output
+			out := feedforward(x);
+			max := out[1][1];
+			index := 1;
+			for(i in {2..#out[1]}) {
+				if( out[1][i] > max ) {
+					max := out[1][i];
+					index := i;
+				}
+			}
+			// Index-1 is output number
+			test_results += [ [index-1,y] ];
+		}
+		
+		// Calculate sum of correct guesses
+		sum_correct := 0;
+		for([x,y] in test_results) {
+			if(x == y) {
+				sum_correct += 1;
+			}
+		}
+		return sum_correct;
 	};
 
 	// Return vector of partial derivates
@@ -134,8 +265,14 @@ class network (s) {
 }
 
 // Test
-n := network([2,3,1]);
-n.init();
+//n := network([2,3,1]);
+//n.init();
+
+//n.sgd([1,2,3],30,10,100, [1,2,3]);
 
 //print(n.feedforward(la_matrix([[1,2],[2,3]])));
-//print(n.weights[2]);
+//print(n.biases);
+// zip test 
+//a := [[1,1],[2,2],[3,3]];
+//b := [[4,4],[4,4],[4,4]];
+//print(n.zip(a,b));

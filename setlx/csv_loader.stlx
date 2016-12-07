@@ -1,6 +1,6 @@
 // "Global variables"
-test_length := procedure() { return 10000; };
-training_length := procedure() { return 50000; };
+test_length := procedure() { return 1000; };
+training_length := procedure() { return 1000; };
 
 // Load test and training data
 load_data := procedure() {
@@ -42,11 +42,11 @@ parse_csv := procedure(file, len) {
 parse_line := procedure(s) {
 	match (s) {
 		case []					: return [];
-		case [a,"," | r]		: return [int(a)]+ 		parse_line(r);	//   1,r
+		case [a,"," | r]		: return [int(a)]+ 		parse_line(r);		//   1,r
 		case [a, b, "," | r]	: return [int(a+b)]+ 	parse_line(r);		//  12,r
 		case [a, b, c, "," | r]	: return [int(a+b+c)]+ 	parse_line(r) ;		// 123,r	
 
-		case [a]				: return [int(a)];				// end of line
+		case [a]				: return [int(a)];							// end of line
 		case [a, b]				: return [int(a+b)];
 		case [a, b, c]			: return [int(a+b+c)];
 
@@ -93,4 +93,4 @@ format_with_unit_vectors := procedure(pixels, labels, length) {
 
 
 // Start of program
-load_data_wrapper();
+[training_data, test_data] := load_data_wrapper();
