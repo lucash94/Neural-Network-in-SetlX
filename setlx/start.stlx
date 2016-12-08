@@ -1,5 +1,5 @@
 load("csv_loader.stlx");
-load("network.stlx");
+load("network_debug.stlx");
 
 print("Create Network");
 net := network([784, 30, 10]);
