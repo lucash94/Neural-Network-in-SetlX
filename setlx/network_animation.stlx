@@ -1,0 +1,15 @@
+drawNeuron := procedure(){
+    gfx_setPenColor("BLACK");
+    gfx_filledCircle(100, 100, 50);
+};
+
+animate := procedure(){
+	gfx_clear();
+	drawNeuron();
+	gfx_show( 50000 );
+    animate( readInput() );
+};
+
+
+gfx_setCanvasSize( 1000, 800 );
+animate();
