@@ -4,6 +4,8 @@ class network (s) {
 	sizes := s;
 	biases := null;
 	weights := null;
+	nabla_b := null;
+	nabla_w := null;
 
 	init := procedure() {
 		computeRndBiases();
@@ -12,19 +14,15 @@ class network (s) {
 
 	// Return output of network for a as input
 	feedforward := procedure(a) {
+		// Eventuell Vereinfachung durch zip()
+		a := la_matrix([a]);
 		for (i in {1..num_layers-1}) {
 			w := this.weights[i];
 			b := this.biases[i];
-			dot := w * a; 
-			
-			// To add a smaller matrix to a larger one --> duplicate colums
-			l := [];
-			for(j in {1..#b}) {
-				l += [[b[j][1], b[j][1]]];
-			}
-			b := la_matrix(l);
-		
-			a := sigmoid_matrix(dot + b);
+			dot := w * a!; 
+			add := dot + b;
+			stop("dot");	// --> add[x][y] is om, add[x] is <<NaN>>
+			a := sigmoid_matrix(add);
 		}
 		return a;
 	};
@@ -40,12 +38,12 @@ class network (s) {
 			
 			mini_batches := [];
 			for(k in {1,mini_batch_size+1..n+1}) {
-				mini_batches += training_data[k..k+mini_batch_size-1];
+				mini_batches += [ training_data[k..k+mini_batch_size-1] ];
 			}
 			
 			for(mini_batch in mini_batches) {
 				update_mini_batch(mini_batch, eta);
-			}
+			} 
 			
 			// Visual output
 			if(test_data != null) {
@@ -59,24 +57,25 @@ class network (s) {
 	};
 
 	update_mini_batch := procedure(mini_batch, eta) {
-		[nabla_b, nabla_w] := getNabla_b_and_w();
+		getNabla_b_and_w();
 		
 		for([x,y] in mini_batch) {
 			[delta_nabla_b, delta_nabla_w] := backprop(x,y);
 			
 			temp := [];
-			for([nb,dnb] in zip(nabla_b, delta_nabla_b)) {
-				temp += [nb+dnb];
+			for([nb,dnb] in zip(nabla_b, delta_nabla_b)) { 
+				temp += [ nb+dnb ];
 			}
-			nabla_b := temp;
+			this.nabla_b := temp;
 			
 			temp := [];
 			for([nw,dnw] in zip(nabla_w, delta_nabla_w)) {
+				// Add matrices value by value
 				temp += [nw+dnw];
 			}
 			nabla_w := temp;
 		}
-
+		
 		// Adjust weights
 		temp := [];
 		for( [w,nw] in zip(this.weights, nabla_w) ) {
@@ -101,8 +100,9 @@ class network (s) {
 	};
 
 	backprop := procedure(x,y) {
-		[nabla_b, nabla_w] := getNabla_b_and_w();
+		getNabla_b_and_w();
 		
+		// Feedforward
 		activation := x;
 		// List of all activations (layer by layer)
 		activations := [x];
@@ -113,38 +113,60 @@ class network (s) {
 			dot := w * activation;
 			z := dot + b;
 			zs += [z];
-			activation := sigmoid(z);
+			activation := sigmoid_matrix(z);
 			activations += [activation];
 		}
 		
 		// backwards pass
-		delta := cost_derivative(activation[-1], y) * sigmoid_prime(zs[-1]);	// backslash im Original?
-		nabla_b[-1] := delta;
-		nabla_w[-1] := delta * activations[-2]!;	// ! = transpose
+		delta := matrix_multiplication( cost_derivative(activations[-1], y), sigmoid_prime(zs[-1]));	// backslash im Original?
 		
-		for( l in {3..num_layers} ) {
+		// no writing of x[-1] possible -> create member variables and get length
+		m_nabla_b := nabla_b;
+		m_nabla_w := nabla_w;
+		lb := #m_nabla_b;
+		lw := #m_nabla_w;
+		
+		m_nabla_b[lb] := delta;
+		
+		m_nabla_w[lw] := delta * activations[-2]!;	// ! = transpose
+		
+		for( l in {2..num_layers-1} ) {
 			z := zs[-l];
 			sp := sigmoid_prime(z);
-			delta := delta * this.weights[-l+1]!;
-			nabla_b[-l] := delta;
-			nabla_w[-l] := delta * activations[-l-1]!;
+			delta := matrix_multiplication( delta, this.weights[-l+1]! );
+			m_nabla_b[(lb+2)-l] := delta;
+			m_nabla_w[(lw+2)-l] := delta * activations[-l]!;
 		}
-		return [nabla_b, nabla_w];
+		return [m_nabla_b, m_nabla_w];
+	};
+	
+	matrix_multiplication := procedure(a,b) {
+		result := [];
+		result_r := [];
+		for(i in {1..#a}) {
+			for(j in {1..#a[1]}) {
+				result_r += [ a[i][j] * b[i][j] ];
+			}
+			result += [result_r];
+			result_r := [];
+		}
+		return la_matrix(result);
 	};
 	
 	getNabla_b_and_w := procedure() {
-		nabla_b := [];
-		nabla_w := [];
+		m_nabla_b := [];
+		m_nabla_w := [];
 		for(b in this.biases) {
-			z := la_matrix( [[0]*#b] * #b[1] ); 
-			nabla_b += [z];
+			z := la_matrix( [[0]*#b[1]] * #b ); 
+			m_nabla_b += [z];
 		}
 		for(w in this.weights) {
-			z := la_matrix( [[0]*#w] * #w[1] ); 
-			nabla_w += [z];
+			z := la_matrix( [[0]*#w[1]] * #w ); 
+			m_nabla_w += [z];
 		}
 		
-		return [nabla_b, nabla_w];
+		this.nabla_b := m_nabla_b;
+		this.nabla_w := m_nabla_w;
 	};
 
 	evaluate := procedure(test_data) {
@@ -183,7 +205,7 @@ class network (s) {
 
 	// Sigmoid function for matrices
 	sigmoid_matrix := procedure(z) {
-
+		
 		result := [];
 		result_r := [];
 		// z is a matrix, so the function has to be used on every part of it
@@ -199,16 +221,23 @@ class network (s) {
 
 		return la_matrix(result);
 	};
-	// Sigmoid function for numbers
-	sigmoid := procedure(z) {
-		return 1.0/(1.0 + exp(-z));
-	};
 
 	// Derivative of the sigmoid function
-	// ToDo: Evtl. Matrix Implementierung
 	sigmoid_prime := procedure(z) {
-		// sig := sigmoid(z);
-		return sigmoid(z) * (1-sigmoid(z));
+		s := sigmoid_matrix(z);
+		
+		result := [];
+		result_r := [];
+		for(i in {1..#s}) {
+			for(j in {1..#s[1]}) {
+				val := s[i][j];
+				result_r += [ val * (1 - val) ];
+			}
+			result += [result_r];
+			result_r := [];
+		}
+		
+		return la_matrix(result);
 	};
 
 	// biases: [[b_layer1_neu1, b_layer1_neu2, ...], [b_layer2_neu1, ...], ...]
@@ -219,7 +248,7 @@ class network (s) {
 		for(i in {2..this.num_layers}) {
 			// Calculate Biases for layer i		
 			for(j in {1..this.sizes[i]}) {
-				layer += [[ random() ]];
+				layer += [[ ((random()-0.5)*2)/28 ]];
 			}
 			result += [layer];
 			layer := [];
@@ -245,7 +274,7 @@ class network (s) {
 			for(j in {1..this.sizes[i+1]}) {
 				// Calculate n'st-output of each neuron
 				for(k in {1..sizes[i]}) {
-					output += [ random() ];
+					output += [ ((random()-0.5)*2)/28 ];
 				}
 				layer += [output];
 				output := [];
