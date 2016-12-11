@@ -4,12 +4,13 @@ drawNeuron := procedure(){
 };
 
 animate := procedure(){
+	gfx_setXscale( 0, 900 );
+    gfx_setYscale( 0, 900 );
 	gfx_clear();
 	drawNeuron();
 	gfx_show( 50000 );
-    animate( readInput() );
 };
 
 
-gfx_setCanvasSize( 1000, 800 );
+gfx_setCanvasSize( 900, 900 );
 animate();
