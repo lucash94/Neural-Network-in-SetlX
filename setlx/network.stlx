@@ -14,16 +14,16 @@ class network (s) {
 
 	// Return output of network for a as input
 	feedforward := procedure(a) {
-		// Eventuell Vereinfachung durch zip()
 		a := la_matrix([a]);
-		for (i in {1..num_layers-1}) {
-			w := this.weights[i];
-			b := this.biases[i];
-			dot := w * a!; 
+		a := a!;
+		
+		for( [b,w] in zip(biases, weights) ) { 
+			dot := w * a;
 			add := dot + b;
-			stop("dot");	// --> add[x][y] is om, add[x] is <<NaN>>
+			
 			a := sigmoid_matrix(add);
 		}
+				
 		return a;
 	};
 
@@ -40,9 +40,13 @@ class network (s) {
 			for(k in {1,mini_batch_size+1..n+1}) {
 				mini_batches += [ training_data[k..k+mini_batch_size-1] ];
 			}
-			
+			stop();
+			c := 1;
 			for(mini_batch in mini_batches) {
 				update_mini_batch(mini_batch, eta);
+				// ToDo: NaN without the last break
+				c:=c+1;
+				if(c==#mini_batches){break;}
 			} 
 			
 			// Visual output
@@ -53,7 +57,7 @@ class network (s) {
 			else {
 				print("Epoch $j$ complete");
 			}
-		}	
+		}
 	};
 
 	update_mini_batch := procedure(mini_batch, eta) {
@@ -178,9 +182,9 @@ class network (s) {
 			out := feedforward(x);
 			max := out[1][1];
 			index := 1;
-			for(i in {2..#out[1]}) {
-				if( out[1][i] > max ) {
-					max := out[1][i];
+			for(i in {2..#out}) {
+				if( out[i][1] > max ) {
+					max := out[i][1];
 					index := i;
 				}
 			}
