@@ -4,8 +4,6 @@ class network (s) {
 	sizes := s;
 	biases := null;
 	weights := null;
-	nabla_b := null;
-	nabla_w := null;
 
 	init := procedure() {
 		computeRndBiases();
@@ -40,7 +38,7 @@ class network (s) {
 			for(k in {1,mini_batch_size+1..n+1}) {
 				mini_batches += [ training_data[k..k+mini_batch_size-1] ];
 			}
-			stop();
+			
 			c := 1;
 			for(mini_batch in mini_batches) {
 				update_mini_batch(mini_batch, eta);
@@ -61,20 +59,19 @@ class network (s) {
 	};
 
 	update_mini_batch := procedure(mini_batch, eta) {
-		getNabla_b_and_w();
+		[nabla_b, nabla_w] := getNabla_b_and_w();
 		
 		for([x,y] in mini_batch) {
 			[delta_nabla_b, delta_nabla_w] := backprop(x,y);
 			
 			temp := [];
-			for([nb,dnb] in zip(nabla_b, delta_nabla_b)) { 
-				temp += [ nb+dnb ];
+			for([nb,dnb] in zip(nabla_b, delta_nabla_b)) {
+				temp += [nb+dnb];
 			}
-			this.nabla_b := temp;
+			nabla_b := temp;
 			
 			temp := [];
 			for([nw,dnw] in zip(nabla_w, delta_nabla_w)) {
-				// Add matrices value by value
 				temp += [nw+dnw];
 			}
 			nabla_w := temp;
@@ -104,12 +101,12 @@ class network (s) {
 	};
 
 	backprop := procedure(x,y) {
-		getNabla_b_and_w();
+		[nabla_b, nabla_w] := getNabla_b_and_w();
 		
 		// Feedforward
 		activation := x;
 		// List of all activations (layer by layer)
-		activations := [x];
+		activations := [ la_matrix([x]) ];
 		// List of z-vectors (layer by layer)
 		zs := [];
 		
@@ -122,26 +119,23 @@ class network (s) {
 		}
 		
 		// backwards pass
-		delta := matrix_multiplication( cost_derivative(activations[-1], y), sigmoid_prime(zs[-1]));	// backslash im Original?
+		delta := matrix_multiplication( cost_derivative(activations[-1], y), sigmoid_prime(zs[-1]));
 		
-		// no writing of x[-1] possible -> create member variables and get length
-		m_nabla_b := nabla_b;
-		m_nabla_w := nabla_w;
-		lb := #m_nabla_b;
-		lw := #m_nabla_w;
+		// No writing of nabla_b[-1] possible -> use length
+		lb := #nabla_b;
+		lw := #nabla_w;
 		
-		m_nabla_b[lb] := delta;
-		
-		m_nabla_w[lw] := delta * activations[-2]!;	// ! = transpose
+		nabla_b[lb] := delta;
+		nabla_w[lw] := delta * activations[-2]!;	// ! = transpose
 		
 		for( l in {2..num_layers-1} ) {
 			z := zs[-l];
-			sp := sigmoid_prime(z);
-			delta := matrix_multiplication( delta, this.weights[-l+1]! );
-			m_nabla_b[(lb+2)-l] := delta;
-			m_nabla_w[(lw+2)-l] := delta * activations[-l]!;
+			sp := sigmoid_prime(z);	
+			delta := matrix_multiplication( (weights[-l+1]! * delta), sp );
+			nabla_b[lb-l+1] := delta;
+			nabla_w[lw-l+1] := delta * activations[-l-1];
 		}
-		return [m_nabla_b, m_nabla_w];
+		return [nabla_b, nabla_w];
 	};
 	
 	matrix_multiplication := procedure(a,b) {
@@ -169,8 +163,7 @@ class network (s) {
 			m_nabla_w += [z];
 		}
 		
-		this.nabla_b := m_nabla_b;
-		this.nabla_w := m_nabla_w;
+		return [m_nabla_b, m_nabla_w];
 	};
 
 	evaluate := procedure(test_data) {
