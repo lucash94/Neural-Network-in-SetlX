@@ -1,16 +1,41 @@
-drawNeuron := procedure(){
+drawNetwork := procedure() {	
     gfx_setPenColor("BLACK");
-    gfx_filledCircle(100, 100, 50);
+	// network := [784, 30, 10];
+	network := [30, 10];
+	// height for network 2r*n+r*(n-1)=900
+	r := 900/(3*max(network)-1);
+	for(i in {1 .. #network}) {	
+		for(j in {0 .. network[i]-1}) {
+			// gfx_filledCircle((28*12+300*i), (900-r*(3*network[i]-1)/2), r);
+			gfx_filledCircle((28*12+300*i), ((900-r*(3*network[i]-1))/2)+3*r*j, r);
+			if(i == #network) {			
+				gfx_textRight((28*12+300*i)+30, ((900-r*(3*network[i]-1))/2)+3*r*j, j);
+			}
+		}		
+	}    
 };
 
-animate := procedure(){
-	gfx_setXscale( 0, 900 );
-    gfx_setYscale( 0, 900 );
+drawPixel := procedure() {
+	gfx_setPenColor("BLACK");
+	x := 0;
+	y := (900-(28*12))/2;
+	for(i in {1 .. 28}) {
+		for(j in {1 .. 28}) {
+			gfx_rectangle( x+12*j, y+12*i, 4, 4);
+		}
+	}
+	
+};
+
+animate := procedure() {
+	gfx_setXscale(0, 1600);
+    gfx_setYscale(0, 900);
 	gfx_clear();
-	drawNeuron();
-	gfx_show( 50000 );
+	drawPixel();
+	drawNetwork();
+	gfx_show(50000);
 };
 
 
-gfx_setCanvasSize( 900, 900 );
+gfx_setCanvasSize(1600, 900);
 animate();
