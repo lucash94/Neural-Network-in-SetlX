@@ -1,33 +1,18 @@
 drawNetwork := procedure() {	
     gfx_setPenColor("BLACK");
-	network := [20, 30, 10];
+	// network := [784, 30, 10];
+	network := [30, 10];
 	// height for network 2r*n+r*(n-1)=900
 	r := 900/(3*max(network)-1);
 	for(i in {1 .. #network}) {	
 		for(j in {0 .. network[i]-1}) {
 			// gfx_filledCircle((28*12+300*i), (900-r*(3*network[i]-1)/2), r);
 			gfx_filledCircle((28*12+300*i), ((900-r*(3*network[i]-1))/2)+3*r*j, r);
-			// if(i<#network) {
-			// 	gfx_line((28*12+300*i+r), ((900-r*(3*network[i]-1))/2)+3*r*j, (28*12+300*(i+1)-r), ((900-r*(3*network[i+1]-1))/2)+3*r*j);
-			//}		
-
 			if(i == #network) {			
 				gfx_textRight((28*12+300*i)+30, ((900-r*(3*network[i]-1))/2)+3*r*j, j);
 			}
 		}		
-	}    	
-	
-	for(i in {1 .. #network-1}) {	
-		for(j in {0 .. network[i]-1}) {
-			for(k in {0 .. network[i+1]-1}) {
-				// gfx_filledCircle((28*12+300*i), (900-r*(3*network[i]-1)/2), r);
-				gfx_filledCircle((28*12+300*i), ((900-r*(3*network[i]-1))/2)+3*r*j, r);
-				if(i<#network) {
-					gfx_line((28*12+300*i+r), ((900-r*(3*network[i]-1))/2)+3*r*j, (28*12+300*(i+1)-r), ((900-r*(3*network[i+1]-1))/2)+3*r*k);
-				}	
-			}
-		}		
-	} 
+	}    
 };
 
 drawPixel := procedure() {
@@ -36,8 +21,7 @@ drawPixel := procedure() {
 	y := (900-(28*12))/2;
 	for(i in {1 .. 28}) {
 		for(j in {1 .. 28}) {
-			// gfx_rectangle( x+12*j, y+12*i, 4, 4);
-			gfx_filledRectangle( x+12*j, y+12*i, 4, 4 ); 
+			gfx_rectangle( x+12*j, y+12*i, 4, 4);
 		}
 	}
 	
