@@ -10,18 +10,14 @@ class network (s) {
 		computeRndWeights();
 	};
 
-	// Return output of network for a as input
+	// Return output of network for "a" as input
 	feedforward := procedure(a) {
 		a := la_matrix([a]);
 		a := a!;
 		
 		for( [b,w] in zip(biases, weights) ) { 
-			dot := w * a;
-			add := dot + b;
-			
-			a := sigmoid_matrix(add);
+			a := sigmoid_matrix( (w*a) + b );
 		}
-				
 		return a;
 	};
 
@@ -92,12 +88,13 @@ class network (s) {
 		this.biases := temp;
 	};
 	
+	/* Computes the Cartesian product of two matrices or vectors */
 	zip := procedure(l1, l2) {
-		result := [];
-		for(i in {1..#l1}) {
-			result += [ [l1[i], l2[i]] ];
-		}
-		return result;
+		return toList(l1) >< toList(l2);
+	};
+	/* casts vector to list */
+	toList := procedure(v) {
+		return [v[i] : i in [1..#v]];
 	};
 
 	backprop := procedure(x,y) {
@@ -119,7 +116,7 @@ class network (s) {
 		}
 		
 		// backwards pass
-		delta := matrix_multiplication( cost_derivative(activations[-1], y), sigmoid_prime(zs[-1]));
+		delta := hadamard_product( cost_derivative(activations[-1], y), sigmoid_prime(zs[-1]));
 		
 		// No writing of nabla_b[-1] possible -> use length
 		lb := #nabla_b;
@@ -131,24 +128,17 @@ class network (s) {
 		for( l in {2..num_layers-1} ) {
 			z := zs[-l];
 			sp := sigmoid_prime(z);	
-			delta := matrix_multiplication( (weights[-l+1]! * delta), sp );
+			delta := hadamard_product( (weights[-l+1]! * delta), sp );
 			nabla_b[lb-l+1] := delta;
 			nabla_w[lw-l+1] := delta * activations[-l-1];
 		}
 		return [nabla_b, nabla_w];
 	};
 	
-	matrix_multiplication := procedure(a,b) {
-		result := [];
-		result_r := [];
-		for(i in {1..#a}) {
-			for(j in {1..#a[1]}) {
-				result_r += [ a[i][j] * b[i][j] ];
-			}
-			result += [result_r];
-			result_r := [];
-		}
-		return la_matrix(result);
+	hadamard_product := procedure(a,b) {
+		n := #a;
+		m := #a[1];
+		return la_matrix( [ [a[i][j] * b[i][j] : j in [1..m]]  : i in [1..n] ] );
 	};
 	
 	getNabla_b_and_w := procedure() {
@@ -239,66 +229,23 @@ class network (s) {
 
 	// biases: [[b_layer1_neu1, b_layer1_neu2, ...], [b_layer2_neu1, ...], ...]
 	computeRndBiases := procedure() {
-		result := [];
-		layer := [];
-		// Calculate Biases for each layer (except of the input layer)
-		for(i in {2..this.num_layers}) {
-			// Calculate Biases for layer i		
-			for(j in {1..this.sizes[i]}) {
-				layer += [[ ((random()-0.5)*2)/28 ]];
-			}
-			result += [layer];
-			layer := [];
-		}
-		
-		// Use matrix format for further calculations
-		m_result := [];
-		for(i in {1..#result}) {
-			m_result += [la_matrix(result[i])];
-		}
-
-		this.biases := m_result;
+		// Compute random biases in a shape fitting the network
+		this.biases := [ 
+			la_matrix([
+				[((random()-0.5)*2)/28] : j in [1..sizes[i]]
+			]) : i in [2..num_layers] 
+		];
 	};
 
 	// weights: [ [[w1_layer1_neu1, w1_layer1_neu2, ...], [w2_layer1_neu1, ...], ...], [[w1_layer2_neu1, w1_layer2_neu2, ...], [w2_layer2_neu1, ...], ...] ]
 	computeRndWeights := procedure() {
-		result := [];
-		layer := [];
-		output := [];
-		// Calculate weights for each layer (except input layer)
-		for(i in {1..this.num_layers-1}) {
-			// Calculate weights for each output of one layer
-			for(j in {1..this.sizes[i+1]}) {
-				// Calculate n'st-output of each neuron
-				for(k in {1..sizes[i]}) {
-					output += [ ((random()-0.5)*2)/28 ];
-				}
-				layer += [output];
-				output := [];
-			}
-			result += [layer];
-			layer := [];
-		}
-		
-		// Use matrix format for further calculations
-		m_result := [];
-		for(i in {1..#result}) {
-			m_result += [la_matrix(result[i])];
-		}
-
-		this.weights := m_result;
+		// Compute random weights in a shape fitting the network
+		this.weights := [ 
+			la_matrix([
+				[
+					((random()-0.5)*2)/28 : k in [1..sizes[i]] 		// k'st-output of each neuron
+				] : j in [1..sizes[i+1]] 							// each output of one layer
+			]) : i in [1..num_layers-1]								// each layer (except output layer)
+		];
 	};
 }
-
-// Test
-//n := network([2,3,1]);
-//n.init();
-
-//n.sgd([1,2,3],30,10,100, [1,2,3]);
-
-//print(n.feedforward(la_matrix([[1,2],[2,3]])));
-//print(n.biases);
-// zip test 
-//a := [[1,1],[2,2],[3,3]];
-//b := [[4,4],[4,4],[4,4]];
-//print(n.zip(a,b));
