@@ -29,11 +29,8 @@ class network (s) {
 		
 		for(j in {0..epochs}) {
 			training_data := shuffle(training_data);
-			
-			mini_batches := [];
-			for(k in {1,mini_batch_size+1..n+1}) {
-				mini_batches += [ training_data[k..k+mini_batch_size-1] ];
-			}
+			// Get mini-bacthes from the training data to train the network
+			mini_batches := [ training_data[k..k+mini_batch_size-1] : k in [1,mini_batch_size+1..n+1] ];
 			
 			c := 1;
 			for(mini_batch in mini_batches) {
@@ -60,32 +57,13 @@ class network (s) {
 		for([x,y] in mini_batch) {
 			[delta_nabla_b, delta_nabla_w] := backprop(x,y);
 			
-			temp := [];
-			for([nb,dnb] in zip(nabla_b, delta_nabla_b)) {
-				temp += [nb+dnb];
-			}
-			nabla_b := temp;
-			
-			temp := [];
-			for([nw,dnw] in zip(nabla_w, delta_nabla_w)) {
-				temp += [nw+dnw];
-			}
-			nabla_w := temp;
+			nabla_b := [ nb+dnb : [nb,dnb] in zip(nabla_b, delta_nabla_b) ];
+			nabla_w := [ nw+dnw : [nw,dnw] in zip(nabla_w, delta_nabla_w) ];
 		}
 		
-		// Adjust weights
-		temp := [];
-		for( [w,nw] in zip(this.weights, nabla_w) ) {
-			temp += [ w-(eta/#mini_batch)*nw ];
-		}
-		this.weights := temp;
-		
-		// Adjust biases
-		temp := [];
-		for( [b,nb] in zip(this.biases, nabla_b) ) {
-			temp += [ b-(eta/#mini_batch)*nb ];
-		}
-		this.biases := temp;
+		// Adjust weights and biases
+		this.weights := [ (w-(eta/#mini_batch)*nw) : [w,nw] in zip(this.weights, nabla_w) ];
+		this.biases := [ (b-(eta/#mini_batch)*nb) : [b,nb] in zip(this.biases, nabla_b) ];
 	};
 	
 	/* Computes the Cartesian product of two matrices or vectors */
@@ -142,20 +120,13 @@ class network (s) {
 	};
 	
 	getNabla_b_and_w := procedure() {
-		m_nabla_b := [];
-		m_nabla_w := [];
-		for(b in this.biases) {
-			z := la_matrix( [[0]*#b[1]] * #b ); 
-			m_nabla_b += [z];
-		}
-		for(w in this.weights) {
-			z := la_matrix( [[0]*#w[1]] * #w ); 
-			m_nabla_w += [z];
-		}
+		m_nabla_b := [ la_matrix( [[0]*#b[1]] * #b ) : b in this.biases ];
+		m_nabla_w := [ la_matrix( [[0]*#w[1]] * #w ) : w in this.weights ];
 		
 		return [m_nabla_b, m_nabla_w];
 	};
 
+	// Returns sum of correct guesses after feedforwarding
 	evaluate := procedure(test_data) {
 		test_results := [];
 		
@@ -175,14 +146,8 @@ class network (s) {
 			test_results += [ [index-1,y] ];
 		}
 		
-		// Calculate sum of correct guesses
-		sum_correct := 0;
-		for([x,y] in test_results) {
-			if(x == y) {
-				sum_correct += 1;
-			}
-		}
-		return sum_correct;
+		// Return sum of correct guesses
+		return #[1 : [x,y] in test_results | x == y];
 	};
 
 	// Return vector of partial derivates
@@ -192,39 +157,14 @@ class network (s) {
 
 	// Sigmoid function for matrices
 	sigmoid_matrix := procedure(z) {
-		
-		result := [];
-		result_r := [];
 		// z is a matrix, so the function has to be used on every part of it
-		// Columns		
-		for(i in {1..#z}) {
-			// Rows
-			for(j in {1..#z[1]}) {
-				result_r += [ 1.0/(1.0 + exp(- z[i][j] )) ];
-			}
-			result += [result_r];
-			result_r := [];
-		}
-
-		return la_matrix(result);
+		return la_matrix([ [ 1.0/(1.0 + exp(- z[i][j] )) : j in [1..#z[1]] ] : i in [1..#z] ]);
 	};
 
 	// Derivative of the sigmoid function
 	sigmoid_prime := procedure(z) {
 		s := sigmoid_matrix(z);
-		
-		result := [];
-		result_r := [];
-		for(i in {1..#s}) {
-			for(j in {1..#s[1]}) {
-				val := s[i][j];
-				result_r += [ val * (1 - val) ];
-			}
-			result += [result_r];
-			result_r := [];
-		}
-		
-		return la_matrix(result);
+		return la_matrix([ [ s[i][j] * (1 - s[i][j]) : j in [1..#s[1]] ] : i in [1..#s] ]);
 	};
 
 	// biases: [[b_layer1_neu1, b_layer1_neu2, ...], [b_layer2_neu1, ...], ...]
