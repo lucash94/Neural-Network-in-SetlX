@@ -1,7 +1,7 @@
-drawNetwork := procedure() {	
-    gfx_setPenColor("BLACK");
-	network := [20, 30, 10];
+drawNetwork := procedure(networks) {	
+    gfx_setPenColor("RED");
 	// height for network 2r*n+r*(n-1)=900
+	network := networks[2..];
 	r := 900/(3*max(network)-1);
 	for(i in {1 .. #network}) {	
 		for(j in {0 .. network[i]-1}) {
@@ -30,28 +30,71 @@ drawNetwork := procedure() {
 	} 
 };
 
-drawPixel := procedure() {
-	gfx_setPenColor("BLACK");
-	x := 0;
-	y := (900-(28*12))/2;
-	for(i in {1 .. 28}) {
-		for(j in {1 .. 28}) {
-			// gfx_rectangle( x+12*j, y+12*i, 4, 4);
-			gfx_filledRectangle( x+12*j, y+12*i, 4, 4 ); 
+drawPixel := procedure(neuron, weights) {
+	if (neuron == 0) {
+		gfx_setPenColor("BLACK");
+		x := 0;
+		y := (900-(28*12))/2;
+		for(i in {1 .. 28}) {
+			for(j in {1 .. 28}) {
+				// gfx_rectangle( x+12*j, y+12*i, 4, 4);
+				gfx_filledRectangle( x+12*j, y+12*i, 4, 4 ); 
+			}
+		}
+	} else {
+		x := 0;
+		y := (900-(28*12))/2;
+		for(i in {1 .. 28}) {
+			for(j in {1 .. 28}) {
+				a := #weights;
+				b := #weights[1];
+				c := #weights[1][1];
+				color := (weights[1][neuron][(784-(28*i)+j)] + 3.5)/4.0;
+				gfx_setPenColorRGB( color, color, color ); 
+				// gfx_rectangle( x+12*j, y+12*i, 4, 4);
+				gfx_filledRectangle( x+12*j, y+12*i, 4, 4 ); 
+			}
 		}
 	}
-	
 };
 
-animate := procedure() {
+animate := procedure( neuron, weights ) {
+	drawPixel(neuron, weights);
+	animate( readInput(), weights );
+};
+
+waitForStart := procedure(){
+    while( gfx_isPaused() ){
+        sleep(1000);
+    }
+};
+
+readInput := procedure() {
+	gfx_setPaused(true);
+	waitForStart();
+	input := rational( gfx_getInput() );
+	while( input == om ){
+		gfx_setMessage("Bla");
+        gfx_setPaused(true);
+        waitForStart();
+        input := rational( gfx_getInput() );
+	}
+	return input;
+};
+
+start := procedure(weights) {
 	gfx_setXscale(0, 1600);
     gfx_setYscale(0, 900);
-	gfx_clear();
-	drawPixel();
-	drawNetwork();
-	gfx_show(50000);
+	gfx_clear();	
+	gfx_setPaused(true);
+	gfx_addInputField( "Neuron" );
+	gfx_addPlayPauseButton(true);
+	drawPixel(0, weights);
+	drawNetwork([784, 30, 10]);
+	animate( readInput(), weights );
 };
 
+load("test_network.stlx");
 
 gfx_setCanvasSize(1600, 900);
-animate();
+start(weights);
