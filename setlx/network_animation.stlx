@@ -1,29 +1,29 @@
 drawNetwork := procedure(networks) {	
     gfx_setPenColor("RED");
-	// height for network 2r*n+r*(n-1)=900
-	network := networks[2..];
-	r := 900/(3*max(network)-1);
-	for(i in {1 .. #network}) {	
-		for(j in {0 .. network[i]-1}) {
-			// gfx_filledCircle((28*12+300*i), (900-r*(3*network[i]-1)/2), r);
-			gfx_filledCircle((28*12+300*i), ((900-r*(3*network[i]-1))/2)+3*r*j, r);
-			// if(i<#network) {
-			// 	gfx_line((28*12+300*i+r), ((900-r*(3*network[i]-1))/2)+3*r*j, (28*12+300*(i+1)-r), ((900-r*(3*network[i+1]-1))/2)+3*r*j);
+	// height for mNetwork 2r*n+r*(n-1)=900
+	mNetwork := networks[2..];
+	r := 900/(3*max(mNetwork)-1);
+	for(i in {1 .. #mNetwork}) {	
+		for(j in {0 .. mNetwork[i]-1}) {
+			// gfx_filledCircle((28*12+300*i), (900-r*(3*mNetwork[i]-1)/2), r);
+			gfx_filledCircle((28*12+300*i), ((900-r*(3*mNetwork[i]-1))/2)+3*r*j, r);
+			// if(i<#mNetwork) {
+			// 	gfx_line((28*12+300*i+r), ((900-r*(3*mNetwork[i]-1))/2)+3*r*j, (28*12+300*(i+1)-r), ((900-r*(3*mNetwork[i+1]-1))/2)+3*r*j);
 			//}		
 
-			if(i == #network) {			
-				gfx_textRight((28*12+300*i)+30, ((900-r*(3*network[i]-1))/2)+3*r*j, j);
+			if(i == #mNetwork) {			
+				gfx_textRight((28*12+300*i)+30, ((900-r*(3*mNetwork[i]-1))/2)+3*r*j, j);
 			}
 		}		
 	}    	
 	
-	for(i in {1 .. #network-1}) {	
-		for(j in {0 .. network[i]-1}) {
-			for(k in {0 .. network[i+1]-1}) {
-				// gfx_filledCircle((28*12+300*i), (900-r*(3*network[i]-1)/2), r);
-				gfx_filledCircle((28*12+300*i), ((900-r*(3*network[i]-1))/2)+3*r*j, r);
-				if(i<#network) {
-					gfx_line((28*12+300*i+r), ((900-r*(3*network[i]-1))/2)+3*r*j, (28*12+300*(i+1)-r), ((900-r*(3*network[i+1]-1))/2)+3*r*k);
+	for(i in {1 .. #mNetwork-1}) {	
+		for(j in {0 .. mNetwork[i]-1}) {
+			for(k in {0 .. mNetwork[i+1]-1}) {
+				// gfx_filledCircle((28*12+300*i), (900-r*(3*mNetwork[i]-1)/2), r);
+				gfx_filledCircle((28*12+300*i), ((900-r*(3*mNetwork[i]-1))/2)+3*r*j, r);
+				if(i<#mNetwork) {
+					gfx_line((28*12+300*i+r), ((900-r*(3*mNetwork[i]-1))/2)+3*r*j, (28*12+300*(i+1)-r), ((900-r*(3*mNetwork[i+1]-1))/2)+3*r*k);
 				}	
 			}
 		}		
@@ -82,7 +82,8 @@ readInput := procedure() {
 	return input;
 };
 
-start := procedure(weights) {
+start_animation := procedure(weights) {
+	gfx_setCanvasSize(1600, 900);
 	gfx_setXscale(0, 1600);
     gfx_setYscale(0, 900);
 	gfx_clear();	
@@ -93,8 +94,3 @@ start := procedure(weights) {
 	drawNetwork([784, 30, 10]);
 	animate( readInput(), weights );
 };
-
-load("test_network.stlx");
-
-gfx_setCanvasSize(1600, 900);
-start(weights);
