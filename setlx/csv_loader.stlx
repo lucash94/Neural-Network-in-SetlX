@@ -1,4 +1,4 @@
-// "Global variables"
+// "Global variables", to adjust the amount of loaded images
 test_length := procedure() { return 10000; };
 training_length := procedure() { return 10000; };
 
@@ -13,7 +13,6 @@ load_data := procedure() {
 	return [training_data, test_data];
 };
 // Parse csv into lists
-// ToDo: len = #images in set; row count possible statt len?
 parse_csv := procedure(file, len) {
 	// create empty lists for images and according labels
 	images := [];
@@ -42,9 +41,9 @@ parse_csv := procedure(file, len) {
 parse_line := procedure(s) {
 	match (s) {
 		case []					: return [];
-		case [a,"," | r]		: return [int(a) / 256]+ 		parse_line(r);		//   1,r
-		case [a, b, "," | r]	: return [int(a+b) / 256]+ 	parse_line(r);			//  12,r
-		case [a, b, c, "," | r]	: return [int(a+b+c) / 256]+ 	parse_line(r) ;		// 123,r	
+		case [a,"," | r]		: return [int(a) / 256] + 		parse_line(r);		//   1,r
+		case [a, b, "," | r]	: return [int(a+b) / 256] + 	parse_line(r);		//  12,r
+		case [a, b, c, "," | r]	: return [int(a+b+c) / 256] + 	parse_line(r) ;		// 123,r	
 
 		case [a]				: return [int(a) / 256];							// end of line
 		case [a, b]				: return [int(a+b) / 256];
@@ -77,20 +76,12 @@ load_data_wrapper := procedure() {
 	return [training_data, test_data];   
 };
 format_pixels_label_pairs := procedure(pixels, labels, length) {
-	result := [];		
-	for(i in {1..length}) {
-		result += [[pixels[i], labels[i]]]; 
-	}
-	return result;
+	return [ [pixels[i], labels[i]] : i in [1..length] ];
 };
 format_with_unit_vectors := procedure(pixels, labels, length) {
-	result := [];		
-	for(i in {1..length}) {
-		result += [[la_vector(pixels[i]), vectorized_result(labels[i])]]; 
-	}
-	return result;
+	return [ [la_vector(pixels[i]), vectorized_result(labels[i])] : i in [1..length] ];
 };
 
 
-// Start of program
+// Start of program --> data is saved to variables
 [training_data, test_data] := load_data_wrapper();
