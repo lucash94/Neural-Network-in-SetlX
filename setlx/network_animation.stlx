@@ -1,22 +1,27 @@
-drawNetwork := procedure(networks) {	
-    gfx_setPenColor("RED");
-	// height for mNetwork 2r*n+r*(n-1)=900
-	mNetwork := networks[2..];
-	r := 900/(3*max(mNetwork)-1);
+drawHiddenLayer := procedure(mNetwork, r, activeNeuron) {
 	for(i in {1 .. #mNetwork}) {	
 		for(j in {0 .. mNetwork[i]-1}) {
-			// gfx_filledCircle((28*12+300*i), (900-r*(3*mNetwork[i]-1)/2), r);
-			gfx_filledCircle((28*12+300*i), ((900-r*(3*mNetwork[i]-1))/2)+3*r*j, r);
-			// if(i<#mNetwork) {
-			// 	gfx_line((28*12+300*i+r), ((900-r*(3*mNetwork[i]-1))/2)+3*r*j, (28*12+300*(i+1)-r), ((900-r*(3*mNetwork[i+1]-1))/2)+3*r*j);
-			//}		
-
-			if(i == #mNetwork) {			
+			if(activeNeuron == j && i ==1) {
+				gfx_setPenColorRGB( 1.0, 0.0, 0.0 );				
+				gfx_filledCircle((28*12+300*i), ((900-r*(3*mNetwork[i]-1))/2)+3*r*j, r);
+			} else {
+				gfx_setPenColorRGB( 0.0, 0.0, 0.0 );
+				gfx_filledCircle((28*12+300*i), ((900-r*(3*mNetwork[i]-1))/2)+3*r*j, r);
+				
+				if(i == #mNetwork) {			
 				gfx_textRight((28*12+300*i)+30, ((900-r*(3*mNetwork[i]-1))/2)+3*r*j, j);
 			}
+			}
+			//r:=radius, i:=layer, j:=neuron
+			
+			//if(i == #mNetwork) {			
+			//	gfx_textRight((28*12+300*i)+30, ((900-r*(3*mNetwork[i]-1))/2)+3*r*j, j);
+			//}
 		}		
-	}    	
-	
+	}
+};	
+
+drawResultLayer := procedure(mNetwork, r) {
 	for(i in {1 .. #mNetwork-1}) {	
 		for(j in {0 .. mNetwork[i]-1}) {
 			for(k in {0 .. mNetwork[i+1]-1}) {
@@ -27,14 +32,23 @@ drawNetwork := procedure(networks) {
 				}	
 			}
 		}		
-	} 
+	}
+};
+
+drawNetwork := procedure(networks) {	
+	// height for mNetwork 2r*n+r*(n-1)=900
+	mNetwork := networks[2..];
+	r := 900/(3*max(mNetwork)-1);
+	
+	drawHiddenLayer(mNetwork, r, -1);	    	
+	drawResultLayer(mNetwork, r);	 
 };
 
 drawPixel := procedure(neuron, weights) {
 	if (neuron == 0) {
 		gfx_setPenColor("BLACK");
 		x := 0;
-		y := (900-(28*12))/2;
+		y := (900-(28*12))/2; 
 		for(i in {1 .. 28}) {
 			for(j in {1 .. 28}) {
 				// gfx_rectangle( x+12*j, y+12*i, 4, 4);
@@ -58,9 +72,11 @@ drawPixel := procedure(neuron, weights) {
 	}
 };
 
-animate := procedure( neuron, weights ) {
-	drawPixel(neuron, weights);
-	animate( readInput(), weights );
+animate := procedure( mNetwork, activeNeuron, weights ) {	
+	r := 900/(3*max(mNetwork)-1);
+	drawHiddenLayer(mNetwork, r, activeNeuron-1);
+	drawPixel(activeNeuron, weights);
+	animate( mNetwork, readInput(), weights );
 };
 
 waitForStart := procedure(){
@@ -90,7 +106,9 @@ start_animation := procedure(weights) {
 	gfx_setPaused(true);
 	gfx_addInputField( "Neuron" );
 	gfx_addPlayPauseButton(true);
-	drawPixel(0, weights);
-	drawNetwork([784, 30, 10]);
-	animate( readInput(), weights );
+	drawPixel(0, weights);	
+	network := [784, 30, 10];
+	mNetwork := network[2..];
+	drawNetwork(network);
+	animate( mNetwork, readInput(), weights );
 };
