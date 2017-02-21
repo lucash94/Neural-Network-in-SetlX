@@ -1,4 +1,4 @@
-drawHiddenLayer := procedure(mNetwork, r, activeNeuron) {
+drawLayer := procedure(mNetwork, r, activeNeuron) {
 	for(i in {1 .. #mNetwork}) {	
 		for(j in {0 .. mNetwork[i]-1}) {
 			if(activeNeuron == j && i ==1) {
@@ -21,7 +21,7 @@ drawHiddenLayer := procedure(mNetwork, r, activeNeuron) {
 	}
 };	
 
-drawResultLayer := procedure(mNetwork, r) {
+drawConnection := procedure(mNetwork, r) {
 	for(i in {1 .. #mNetwork-1}) {	
 		for(j in {0 .. mNetwork[i]-1}) {
 			for(k in {0 .. mNetwork[i+1]-1}) {
@@ -40,7 +40,7 @@ drawNetwork := procedure(networks) {
 	mNetwork := networks[2..];
 	r := 900/(3*max(mNetwork)-1);
 	
-	drawHiddenLayer(mNetwork, r, -1);	    	
+	drawLayer(mNetwork, r, -1);	    	
 	drawResultLayer(mNetwork, r);	 
 };
 
@@ -74,7 +74,7 @@ drawPixel := procedure(neuron, weights) {
 
 animate := procedure( mNetwork, activeNeuron, weights ) {	
 	r := 900/(3*max(mNetwork)-1);
-	drawHiddenLayer(mNetwork, r, activeNeuron-1);
+	drawLayer(mNetwork, r, activeNeuron-1);
 	drawPixel(activeNeuron, weights);
 	animate( mNetwork, readInput(), weights );
 };
