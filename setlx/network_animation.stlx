@@ -41,7 +41,7 @@ drawNetwork := procedure(networks) {
 	r := 900/(3*max(mNetwork)-1);
 	
 	drawLayer(mNetwork, r, -1);	    	
-	drawResultLayer(mNetwork, r);	 
+	drawConnection(mNetwork, r);	 
 };
 
 drawPixel := procedure(neuron, weights) {
@@ -73,10 +73,15 @@ drawPixel := procedure(neuron, weights) {
 };
 
 animate := procedure( mNetwork, activeNeuron, weights ) {	
-	r := 900/(3*max(mNetwork)-1);
-	drawLayer(mNetwork, r, activeNeuron-1);
-	drawPixel(activeNeuron, weights);
-	animate( mNetwork, readInput(), weights );
+	if(mNetwork[1] < activeNeuron || 1 > activeNeuron) {
+		gfx_setMessage( "Error: Neuron is not in Layer!" );
+	} else {
+		gfx_setMessage( "Success: Printing neuron!" );
+		r := 900/(3*max(mNetwork)-1);
+		drawLayer(mNetwork, r, activeNeuron-1);
+		drawPixel(activeNeuron, weights);
+	}
+	animate( mNetwork, readInput(), weights );	
 };
 
 waitForStart := procedure(){
@@ -104,6 +109,7 @@ start_animation := procedure(weights) {
     gfx_setYscale(0, 900);
 	gfx_clear();	
 	gfx_setPaused(true);
+	gfx_setMessage( "Please enter the number of the neuron!" );
 	gfx_addInputField( "Neuron" );
 	gfx_addPlayPauseButton(true);
 	drawPixel(0, weights);	
