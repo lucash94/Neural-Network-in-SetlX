@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.11.3)  28 NOV 2016 21:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.11.3)  7 MAR 2017 10:39
 entering extended mode
 **./titelseite.tex
 (titelseite.tex
@@ -24,18 +24,18 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.6 \begin{flushright}
-                      
+l.5 \begin{center}
+                  
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 6--6
+Overfull \hbox (20.0pt too wide) in paragraph at lines 5--5
 [] 
  []
 
 ! Undefined control sequence.
-l.7 \epsfig
+l.6 \epsfig
            {file=dhbw-logo.eps, scale=1.5}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -71,14 +71,9 @@ Missing character: There is no = in font nullfont!
 Missing character: There is no 1 in font nullfont!
 Missing character: There is no . in font nullfont!
 Missing character: There is no 5 in font nullfont!
-
-Overfull \hbox (20.0pt too wide) in paragraph at lines 10--10
-[] 
- []
-
 ! Undefined control sequence.
-l.12 \huge
-          {\textsc{\textbf{\titel}}}\\[1.5ex]
+l.8 \huge
+         {\textsc{\textbf{\titel}}}\\[1.5ex]
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -87,13 +82,13 @@ and I'll forget about whatever was undefined.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/bx/sc' undefined
-(Font)              using `OT1/cmr/bx/n' instead on input line 12.
+(Font)              using `OT1/cmr/bx/n' instead on input line 8.
 
 ! Undefined control sequence.
 <recently read> \titel 
                        
-l.12 \huge{\textsc{\textbf{\titel}}
-                                   }\\[1.5ex]
+l.8 \huge{\textsc{\textbf{\titel}}
+                                  }\\[1.5ex]
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -101,8 +96,8 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.13 \Large
-           {\textbf{\untertitel}}\\[5ex]
+l.9 \Large
+          {\textbf{\untertitel}}\\[5ex]
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -112,8 +107,8 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 <recently read> \untertitel 
                             
-l.13 \Large{\textbf{\untertitel}
-                                }\\[5ex]
+l.9 \Large{\textbf{\untertitel}
+                               }\\[5ex]
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -121,7 +116,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.14 \LARGE
+l.10 \LARGE
            {\textbf{\arbeit}}\\[2ex]
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -132,7 +127,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 <recently read> \arbeit 
                         
-l.14 \LARGE{\textbf{\arbeit}
+l.10 \LARGE{\textbf{\arbeit}
                             }\\[2ex]
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -141,7 +136,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.15 \Large
+l.11 \Large
            {Studiengang \studiengang}\\[1ex]
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -161,7 +156,7 @@ Missing character: There is no a in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no g in font nullfont!
 ! Undefined control sequence.
-l.15 \Large{Studiengang \studiengang
+l.11 \Large{Studiengang \studiengang
                                     }\\[1ex]
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -177,7 +172,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.16 \normalsize
+l.12 \normalsize
                 {Duale Hochschule Baden-Württemberg Mannheim}\\[5ex]
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -228,7 +223,7 @@ Missing character: There is no v in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no n in font nullfont!
 ! Undefined control sequence.
-l.17 von\\[1ex] \autor
+l.13 von\\[1ex] \autor
                        \\[15ex]
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -243,16 +238,16 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.17 von\\[1ex] \autor \\
+l.13 von\\[1ex] \autor \\
                          [15ex]
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 22.
+(Font)              <7> on input line 18.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 22.
+(Font)              <5> on input line 18.
 Missing character: There is no B in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no a in font nullfont!
@@ -275,7 +270,7 @@ Missing character: There is no u in font nullfont!
 Missing character: There is no m in font nullfont!
 Missing character: There is no : in font nullfont!
 ! Undefined control sequence.
-l.24 ...szeitraum:			& \quad \bearbeitungszeitraum
+l.20 ...szeitraum:			& \quad \bearbeitungszeitraum
                                                      \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -304,17 +299,58 @@ Missing character: There is no r in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no : in font nullfont!
 ! Undefined control sequence.
-l.25 Matrikelnummer, Kurs: 			& \quad \matrikelnr
-                                                  , \kurs \\
+l.21 Matrikelnummer, Kurs: 			& \quad \matrikelnr
+                                                 1 , \kurs \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
+Missing character: There is no 1 in font nullfont!
 Missing character: There is no , in font nullfont!
 ! Undefined control sequence.
-l.25 ...mmer, Kurs: 			& \quad \matrikelnr , \kurs
+l.21 ...mer, Kurs: 			& \quad \matrikelnr1 , \kurs
+                                                   \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no M in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no k in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no K in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no : in font nullfont!
+! Undefined control sequence.
+l.22 Matrikelnummer, Kurs: 			& \quad \matrikelnr
+                                                 2 , \kurs \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no 2 in font nullfont!
+Missing character: There is no , in font nullfont!
+! Undefined control sequence.
+l.22 ...mer, Kurs: 			& \quad \matrikelnr2 , \kurs
                                                    \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -340,7 +376,7 @@ Missing character: There is no m in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no : in font nullfont!
 ! Undefined control sequence.
-l.26 Ausbildungsfirma:	 			& \quad \firma
+l.23 Ausbildungsfirma:	 			& \quad \firma
                                           \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -359,7 +395,7 @@ Missing character: There is no n in font nullfont!
 Missing character: There is no g in font nullfont!
 Missing character: There is no : in font nullfont!
 ! Undefined control sequence.
-l.27 Abteilung:						& \quad \abteilung
+l.24 Abteilung:						& \quad \abteilung
                                         \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -393,7 +429,7 @@ Missing character: There is no i in font nullfont!
 Missing character: There is no m in font nullfont!
 Missing character: There is no : in font nullfont!
 ! Undefined control sequence.
-l.28 ...der DHBW-Mannheim:  & \quad \betreuerfirma
+l.25 ...der DHBW-Mannheim:  & \quad \betreuerfirma
                                                    \\ [10ex]
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -402,7 +438,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-Overfull \hbox (184.94293pt too wide) in paragraph at lines 22--35
+Overfull \hbox (184.94293pt too wide) in paragraph at lines 18--32
 []  
  []
 
@@ -413,7 +449,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.36 \end{titlepage}
+l.33 \end{titlepage}
                     
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.11.3)  28 NOV 2016 23:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.11.3)  7 MAR 2017 10:42
 entering extended mode
 **./studienarbeit.tex
 (studienarbeit.tex
@@ -858,28 +858,28 @@ Package: babelbib 2012/01/03 v1.31 babelbib: multilingual bibliographies (HH)
 (Inhalt/abstract.aux) (einleitung.aux))
 \openout1 = `studienarbeit.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 160.
-LaTeX Font Info:    ... okay on input line 160.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 160.
-LaTeX Font Info:    ... okay on input line 160.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 160.
-LaTeX Font Info:    ... okay on input line 160.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 160.
-LaTeX Font Info:    ... okay on input line 160.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 160.
-LaTeX Font Info:    ... okay on input line 160.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 160.
-LaTeX Font Info:    ... okay on input line 160.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 160.
-LaTeX Font Info:    ... okay on input line 160.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 160.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 160.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 161.
+LaTeX Font Info:    ... okay on input line 161.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 161.
+LaTeX Font Info:    ... okay on input line 161.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 161.
+LaTeX Font Info:    ... okay on input line 161.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 161.
+LaTeX Font Info:    ... okay on input line 161.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 161.
+LaTeX Font Info:    ... okay on input line 161.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 161.
+LaTeX Font Info:    ... okay on input line 161.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 161.
+LaTeX Font Info:    ... okay on input line 161.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 161.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 161.
 
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\ts1cmr.fd"
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 160.
+LaTeX Font Info:    ... okay on input line 161.
 
 ("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -908,7 +908,7 @@ G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
 )
 \AtBeginShipoutBox=\box31
-Package hyperref Info: Link coloring ON on input line 160.
+Package hyperref Info: Link coloring ON on input line 161.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -918,9 +918,9 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count133
 )
-LaTeX Info: Redefining \ref on input line 160.
-LaTeX Info: Redefining \pageref on input line 160.
-LaTeX Info: Redefining \nameref on input line 160.
+LaTeX Info: Redefining \ref on input line 161.
+LaTeX Info: Redefining \pageref on input line 161.
+LaTeX Info: Redefining \nameref on input line 161.
 
 (studienarbeit.out) (studienarbeit.out)
 \@outlinefile=\write4
@@ -933,7 +933,7 @@ tim
 )
 Package lastpage Info: Please have a look at the pageslts package at
 (lastpage)             https://www.ctan.org/pkg/pageslts
-(lastpage)             ! on input line 160.
+(lastpage)             ! on input line 161.
 
 babelbib: Use citation-dependent languages in bibliography
 babelbib: Set bibliography fall-back language to german
@@ -961,43 +961,43 @@ babelbib extension \btxifchangecaseoff added to \extrasfrench
 
  (Inhalt/titelseite.tex
 Package epstopdf Info: Source file: <dhbw-logo.eps>
-(epstopdf)                    date: 2016-11-03 11:23:54
+(epstopdf)                    date: 2017-01-09 21:01:03
 (epstopdf)                    size: 1664862 bytes
 (epstopdf)             Output file: <dhbw-logo-eps-converted-to.pdf>
-(epstopdf)                    date: 2016-11-03 11:29:17
+(epstopdf)                    date: 2017-01-09 21:01:03
 (epstopdf)                    size: 18230 bytes
 (epstopdf)             Command: <epstopdf --outfile=dhbw-logo-eps-converted-to.
 pdf dhbw-logo.eps>
-(epstopdf)             \includegraphics on input line 7.
+(epstopdf)             \includegraphics on input line 6.
 Package epstopdf Info: Output file is already uptodate.
 
 <dhbw-logo-eps-converted-to.pdf, id=23, 173.64874pt x 88.33pt>
 File: dhbw-logo-eps-converted-to.pdf Graphic file (type pdf)
 
 <use dhbw-logo-eps-converted-to.pdf>
-Package pdftex.def Info: dhbw-logo-eps-converted-to.pdf used on input line 7.
+Package pdftex.def Info: dhbw-logo-eps-converted-to.pdf used on input line 6.
 (pdftex.def)             Requested size: 260.47247pt x 132.49466pt.
 
 
 LaTeX Font Warning: Font shape `OT1/cmss/m/sc' in size <20.74> not available
-(Font)              Font shape `OT1/cmr/m/sc' tried instead on input line 12.
+(Font)              Font shape `OT1/cmr/m/sc' tried instead on input line 8.
 
 
 LaTeX Font Warning: Font shape `OT1/cmss/bx/sc' undefined
-(Font)              using `OT1/cmss/bx/n' instead on input line 12.
+(Font)              using `OT1/cmss/bx/n' instead on input line 8.
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 22.
+LaTeX Font Info:    Try loading font information for U+msa on input line 18.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 22.
+LaTeX Font Info:    Try loading font information for U+msb on input line 18.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 
 LaTeX Font Warning: Font shape `OT1/cmss/m/sc' in size <10> not available
-(Font)              Font shape `OT1/cmr/m/sc' tried instead on input line 30.
+(Font)              Font shape `OT1/cmr/m/sc' tried instead on input line 27.
 
 [1
 
@@ -1087,12 +1087,12 @@ l.65 \item D
 No file studienarbeit.bbl.
 
 AED: lastpage setting LastPage
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 202.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 202.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 203.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 203.
 (studienarbeit.aux (Inhalt/titelseite.aux) (Inhalt/erklaerung.aux)
 (Inhalt/abstract.aux) (einleitung.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 202.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 202.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 203.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 203.
 Package rerunfilecheck Info: File `studienarbeit.out' has not changed.
 (rerunfilecheck)             Checksum: E74DC2E835C91DC839AB78FF2429F675;304.
 
@@ -1102,13 +1102,13 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 202.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 203.
  ) 
 Here is how much of TeX's memory you used:
- 8600 strings out of 493334
- 121232 string characters out of 3139252
- 228781 words of memory out of 3000000
- 11903 multiletter control sequences out of 15000+200000
+ 8601 strings out of 493334
+ 121246 string characters out of 3139252
+ 229784 words of memory out of 3000000
+ 11904 multiletter control sequences out of 15000+200000
  9499 words of font info for 36 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  34i,11n,44p,272b,495s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1126,7 +1126,7 @@ c/amsfonts/cm/cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts
 ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Fi
 les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKTe
 X 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on studienarbeit.pdf (7 pages, 188243 bytes).
+Output written on studienarbeit.pdf (7 pages, 188248 bytes).
 PDF statistics:
  165 PDF objects out of 1000 (max. 8388607)
  27 named destinations out of 1000 (max. 500000)
