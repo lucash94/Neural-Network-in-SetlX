@@ -39,18 +39,8 @@ parse_csv := procedure(file, len) {
 };
 // Read csv-string-line and parse into list
 parse_line := procedure(s) {
-	match (s) {
-		case []					: return [];
-		case [a,"," | r]		: return [int(a) / 256] + 		parse_line(r);		//   1,r
-		case [a, b, "," | r]	: return [int(a+b) / 256] + 	parse_line(r);		//  12,r
-		case [a, b, c, "," | r]	: return [int(a+b+c) / 256] + 	parse_line(r) ;		// 123,r	
-
-		case [a]				: return [int(a) / 256];							// end of line
-		case [a, b]				: return [int(a+b) / 256];
-		case [a, b, c]			: return [int(a+b+c) / 256];
-
-		default					: abort("Error while parsing csv-file: $s$");
-	}
+    L := split(s, ",");
+    return [int(x)/256 : x in L];
 };
 
 
