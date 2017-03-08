@@ -1,6 +1,6 @@
 // "Global variables", to adjust the amount of loaded images
-test_length := procedure() { return 1000; };
-training_length := procedure() { return 2000; };
+test_length := procedure() { return 10000; };
+training_length := procedure() { return 60000; };
 
 // Load test and training data
 load_data := procedure() {
@@ -12,35 +12,37 @@ load_data := procedure() {
 	training_data := parse_csv("mnist_train.csv", training_length());
 	return [training_data, test_data];
 };
+
 // Parse csv into lists
 parse_csv := procedure(file, len) {
-	// create empty lists for images and according labels
-	images := [];
-	labels := [];
-	
-	// csv[image,pixels/label] --> csv[3][1]: Label of image 3
-	print("Reading file:\t$file$");
-	csv := readFile(file);
+    // create empty lists for images and according labels
+    images := [0 : i in [1..len]];
+    labels := [0 : i in [1..len]];
+    
+    // csv[image,pixels/label] --> csv[3][1]: Label of image 3
+    print("Reading file:\t$file$");
+    csv := readFile(file);
 
-	// Convert every line into lists	
-	for(i in {1..len}) {
-		labels += [int(csv[i][1])];	
-		// starting at 3, because 1 and 2 are label and ","	
-		images += [parse_line(csv[i][3..])];	
-		// e.g. images[1] = all pixels of image1; images[1][1] = 1st pixel of image1
+    // Convert every line into lists    
+    for(i in {1..len}) {
+        labels[i] := int(csv[i][1]);    
+        // starting at 3, because 1 and 2 are label and ","    
+        images[i] := parse_line(csv[i][3..]);    
+        // e.g. images[1] = all pixels of image1; images[1][1] = 1st pixel of image1
 
-		if(i%1000 == 0) {
-			print("Image $i$ of $len$ imported");
-		}
-	}
+        if(i%10000 == 0) {
+            print("Image $i$ of $len$ imported");
+        }
+    }
 
-	print("End reading:\t$file$");	
-	return [images, labels];
+    print("End reading:\t$file$");    
+    return [images, labels];
 };
+
 // Read csv-string-line and parse into list
 parse_line := procedure(s) {
     L := split(s, ",");
-    return [int(x)/256 : x in L];
+    return [double(x)/256 : x in L];
 };
 
 
