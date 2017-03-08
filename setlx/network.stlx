@@ -89,8 +89,9 @@ class network (s) {
 			dot := w * activation;
 			z := dot + b;
 			zs += [z];
-			activation := sigmoid_matrix(z);
-			activations += [activation];
+			
+			activation := sigmoid_vector(z);
+			activations += [ la_matrix( [ [activation[i]] : i in [1..#activation] ] ) ];
 		}
 		
 		// backwards pass
@@ -156,14 +157,22 @@ class network (s) {
 	};
 
 	// Sigmoid function for matrices
+	// 1.0/(1.0+np.exp(-z))
 	sigmoid_matrix := procedure(z) {
 		// z is a matrix, so the function has to be used on every part of it
 		return la_matrix([ [ 1.0/(1.0 + exp(- z[i][j] )) : j in [1..#z[1]] ] : i in [1..#z] ]);
 	};
+	
+	sigmoid_vector := procedure(z) {
+		return la_vector([ 1.0/(1.0 + exp(- z[i] )) : i in [1..#z] ]);
+	};
 
 	// Derivative of the sigmoid function
+	// sigmoid(z)*(1-sigmoid(z))
 	sigmoid_prime := procedure(z) {
+		z := la_matrix( [ [z[i]] : i in [1..#z] ] );
 		s := sigmoid_matrix(z);
+
 		return la_matrix([ [ s[i][j] * (1 - s[i][j]) : j in [1..#s[1]] ] : i in [1..#s] ]);
 	};
 
