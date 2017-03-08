@@ -103,7 +103,8 @@ readInput := procedure() {
 	return input;
 };
 
-start_animation := procedure(weights) {
+// structure is a list of nodes per layer, e.g. [784, 30, 10]
+start_animation := procedure(weights, structure) {
 	gfx_setCanvasSize(1600, 900);
 	gfx_setXscale(0, 1600);
     gfx_setYscale(0, 900);
@@ -113,8 +114,8 @@ start_animation := procedure(weights) {
 	gfx_addInputField( "Neuron" );
 	gfx_addPlayPauseButton(true);
 	drawPixel(0, weights);	
-	network := [784, 30, 10];
-	mNetwork := network[2..];
-	drawNetwork(network);
+
+	mNetwork := structure[2..];
+	drawNetwork(structure);
 	animate( mNetwork, readInput(), weights );
 };

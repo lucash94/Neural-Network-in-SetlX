@@ -1,4 +1,4 @@
-// s(izes): number of neurons in respective layers --> [3,2], two layer network with first layer 3 neurons & second layer 2 neurons
+// s(izes): number of nodes in respective layers --> [3,2], two layer network with first layer 3 inputs & second layer 2 neurons
 class network (s) {
 	num_layers := #s;
 	sizes := s;
@@ -11,12 +11,13 @@ class network (s) {
 	};
 
 	// Return output of network for "a" as input
+	// a is list calculated outputs
 	feedforward := procedure(a) {
-		a := la_matrix([a]);
-		a := a!;
+		// Vectorize a for multiplikation
+		a := la_vector(a);
 		
 		for( [b,w] in zip(biases, weights) ) { 
-			a := sigmoid_matrix( (w*a) + b );
+			a := sigmoid_vector( (w*a) + b );
 		}
 		return a;
 	};
@@ -29,15 +30,11 @@ class network (s) {
 		
 		for(j in {0..epochs}) {
 			training_data := shuffle(training_data);
-			// Get mini-bacthes from the training data to train the network
-			mini_batches := [ training_data[k..k+mini_batch_size-1] : k in [1,mini_batch_size+1..n+1] ];
+			// Get mini-batches from the training data to train the network
+			mini_batches := [ training_data[k..k+mini_batch_size-1] : k in [1,mini_batch_size..n] ];
 			
-			c := 1;
 			for(mini_batch in mini_batches) {
 				update_mini_batch(mini_batch, eta);
-				// ToDo: NaN without the last break
-				c:=c+1;
-				if(c==#mini_batches){break;}
 			} 
 			
 			// Visual output
@@ -86,38 +83,36 @@ class network (s) {
 		zs := [];
 		
 		for([b,w] in zip(this.biases, this.weights)) {
-			dot := w * activation;
-			z := dot + b;
+			z := w * activation + b;
 			zs += [z];
 			
 			activation := sigmoid_vector(z);
-			activations += [ la_matrix( [ [activation[i]] : i in [1..#activation] ] ) ];
+			activations += [ activation ];
 		}
-		
-		// backwards pass
-		delta := hadamard_product( cost_derivative(activations[-1], y), sigmoid_prime(zs[-1]));
-		
+
+		// Backwards pass
+		// la_hadamard() needs a matrix -> cdm is cost derivate in matrix form
+		cdm := to_matrix( cost_derivative(activations[-1], y) );
+		delta := la_hadamard( cdm, sigmoid_prime(zs[-1]));
+
 		// No writing of nabla_b[-1] possible -> use length
 		lb := #nabla_b;
 		lw := #nabla_w;
-		
-		nabla_b[lb] := delta;
-		nabla_w[lw] := delta * activations[-2]!;	// ! = transpose
+	
+		// Transposition is only defined for matrices in SetlX -> am is activation in matrix form
+		// ! = transpose
+		am := to_matrix(activations[-2]);
+		nabla_w[lw] := delta * am!;
+		nabla_b[lb] := delta;				
 		
 		for( l in {2..num_layers-1} ) {
 			z := zs[-l];
 			sp := sigmoid_prime(z);	
-			delta := hadamard_product( (weights[-l+1]! * delta), sp );
+			delta := la_hadamard( (weights[-l+1]! * delta), sp );
 			nabla_b[lb-l+1] := delta;
 			nabla_w[lw-l+1] := delta * activations[-l-1];
 		}
 		return [nabla_b, nabla_w];
-	};
-	
-	hadamard_product := procedure(a,b) {
-		n := #a;
-		m := #a[1];
-		return la_matrix( [ [a[i][j] * b[i][j] : j in [1..m]]  : i in [1..n] ] );
 	};
 	
 	getNabla_b_and_w := procedure() {
@@ -135,11 +130,11 @@ class network (s) {
 		for( [x,y] in test_data ) {
 			// Calculate index of max. output
 			out := feedforward(x);
-			max := out[1][1];
+			max := out[1];
 			index := 1;
 			for(i in {2..#out}) {
-				if( out[i][1] > max ) {
-					max := out[i][1];
+				if( out[i] > max ) {
+					max := out[i];
 					index := i;
 				}
 			}
@@ -156,24 +151,24 @@ class network (s) {
 		return (output_activations - y);
 	};
 
-	// Sigmoid function for matrices
+	// Sigmoid function for vectors
 	// 1.0/(1.0+np.exp(-z))
-	sigmoid_matrix := procedure(z) {
-		// z is a matrix, so the function has to be used on every part of it
-		return la_matrix([ [ 1.0/(1.0 + exp(- z[i][j] )) : j in [1..#z[1]] ] : i in [1..#z] ]);
-	};
-	
 	sigmoid_vector := procedure(z) {
+		// z is a vector, so the function has to be used on every part of it
 		return la_vector([ 1.0/(1.0 + exp(- z[i] )) : i in [1..#z] ]);
 	};
 
-	// Derivative of the sigmoid function
+	// Derivative of the sigmoid function, when z is a vector
 	// sigmoid(z)*(1-sigmoid(z))
 	sigmoid_prime := procedure(z) {
-		z := la_matrix( [ [z[i]] : i in [1..#z] ] );
-		s := sigmoid_matrix(z);
-
-		return la_matrix([ [ s[i][j] * (1 - s[i][j]) : j in [1..#s[1]] ] : i in [1..#s] ]);
+		s := sigmoid_vector(z); 
+		return la_matrix([ [ s[i] * (1 - s[i]) ] : i in [1..#s] ]);
+	};
+	
+	// Takes vector and transforms it to a matrix of the following form:
+	// << a b c >> --> << <<a>> <<b>> <<c>> >>
+	to_matrix := procedure(v) {
+		return la_matrix([ [v[i]] : i in [1..#v] ]);
 	};
 
 	// biases: [[b_layer1_neu1, b_layer1_neu2, ...], [b_layer2_neu1, ...], ...]

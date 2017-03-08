@@ -1,4 +1,4 @@
 load("network_animation.stlx");
 load("test_network.stlx");
 print("Starting animation");
-start_animation( weights );
+start_animation( weights, [784, 30, 10] );

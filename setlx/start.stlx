@@ -1,8 +1,15 @@
+// set network structure
+// number of nodes in respective layers --> [3,2], two layer network with first layer 3 inputs & second layer 2 neurons
+structure := [784, 30, 10];
+
+// Reset the random() function to get constant outputs
+resetRandom();
+
 load("csv_loader.stlx");
 load("network.stlx");
 
 print("Create Network");
-net := network([784, 30, 10]);
+net := network(structure);
 
 print("Init Network");
 net.init();
@@ -12,4 +19,4 @@ net.sgd(training_data, 30, 10, 3.0, test_data);
 
 load("network_animation.stlx");
 print("Starting animation");
-start_animation( net.weights );
+start_animation(net.weights, structure);
