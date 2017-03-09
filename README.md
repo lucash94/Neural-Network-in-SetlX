@@ -1,5 +1,5 @@
 # Neuronal Network in SetlX 
-This program recognize handwritten digits based on neural networks and deep learning mechanism. This site was build using [SetlX](https://randoom.org/Software/SetlX).
+This program recognize handwritten digits based on neural networks and deep learning mechanism. This program was build using [SetlX](https://randoom.org/Software/SetlX).
 
 ## Usage
 ```
