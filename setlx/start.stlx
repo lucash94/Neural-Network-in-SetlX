@@ -2,6 +2,10 @@
 // number of nodes in respective layers --> [3,2], two layer network with first layer 3 inputs & second layer 2 neurons
 structure := [784, 30, 10];
 
+// screen resolution
+x := 1600;
+y := 900;	
+
 // Reset the random() function to get constant outputs
 resetRandom();
 
