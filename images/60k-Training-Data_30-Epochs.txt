@@ -1,0 +1,47 @@
+D:\DHBW\Neural-Network-in-SetlX\setlx>setlx start.stlx
+Reading file:   mnist_test.csv
+Image 10000 of 10000 imported
+End reading:    mnist_test.csv
+Reading file:   mnist_train.csv
+Image 10000 of 60000 imported
+Image 20000 of 60000 imported
+Image 30000 of 60000 imported
+Image 40000 of 60000 imported
+Image 50000 of 60000 imported
+Image 60000 of 60000 imported
+End reading:    mnist_train.csv
+Create Network
+Init Network
+Start SGD
+Epoch 0: 9427 / 10000
+Epoch 1: 9446 / 10000
+Epoch 2: 9534 / 10000
+Epoch 3: 9489 / 10000
+Epoch 4: 9581 / 10000
+Epoch 5: 9548 / 10000
+Epoch 6: 9559 / 10000
+Epoch 7: 9602 / 10000
+Epoch 8: 9543 / 10000
+Epoch 9: 9605 / 10000
+Epoch 10: 9571 / 10000
+Epoch 11: 9566 / 10000
+Epoch 12: 9603 / 10000
+Epoch 13: 9603 / 10000
+Epoch 14: 9598 / 10000
+Epoch 15: 9609 / 10000
+Epoch 16: 9587 / 10000
+Epoch 17: 9604 / 10000
+Epoch 18: 9609 / 10000
+Epoch 19: 9616 / 10000
+Epoch 20: 9591 / 10000
+Epoch 21: 9597 / 10000
+Epoch 22: 9605 / 10000
+Epoch 23: 9612 / 10000
+Epoch 24: 9588 / 10000
+Epoch 25: 9600 / 10000
+Epoch 26: 9598 / 10000
+Epoch 27: 9605 / 10000
+Epoch 28: 9582 / 10000
+Epoch 29: 9629 / 10000
+Epoch 30: 9598 / 10000
+Starting animation
