@@ -68,11 +68,6 @@ drawLayer := procedure(mNetwork, r, activeNeuron) {
 				gfx_textRight((28*12+300*i)+30, ((900-r*(3*mNetwork[i]-1))/2)+3*r*j, j);
 			}
 			}
-			//r:=radius, i:=layer, j:=neuron
-			
-			//if(i == #mNetwork) {			
-			//	gfx_textRight((28*12+300*i)+30, ((900-r*(3*mNetwork[i]-1))/2)+3*r*j, j);
-			//}
 		}		
 	}
 };	
@@ -96,7 +91,10 @@ drawNetwork := procedure(networks) {
 	r := 900/(3*max(mNetwork)-1);
 	
 	drawLayer(mNetwork, r, -1);	    	
-	drawConnection(mNetwork, r);	 
+	drawConnection(mNetwork, r
+	);	 
+	drawPixel(0, weights);	
+	modus := true;
 };
 
 animate := procedure( mNetwork, input, weights ) {	
@@ -113,8 +111,7 @@ animate := procedure( mNetwork, input, weights ) {
 		drawLayer(mNetwork, r, input-1);
 		drawConnection(mNetwork, r);
 		drawPixel(input, weights);
-	}
-	
+	}	
 	
 	animate( mNetwork, readInput(), weights );	
 };
@@ -149,7 +146,7 @@ start_animation := procedure(weights, structure) {
 	gfx_addInputField( "Neuron" );
 	gfx_addPlayPauseButton(true);
 	
-	drawPixel(0, weights);	
+	
 	mNetwork := structure[2..];
 	drawNetwork(structure);
 	animate( mNetwork, readInput(), weights );
