@@ -16,7 +16,11 @@ net.init();
 
 print("Start SGD");
 net.sgd(training_data, 30, 10, 3.0, test_data);
-
+/*
 load("network_animation.stlx");
 print("Starting animation");
+<<<<<<< HEAD
 start_animation(net.weights, structure, test_data);
+=======
+start_animation(net.weights, structure);*/
+>>>>>>> 756780f5642bb0f222db0cd318fd55e64c7d148b
