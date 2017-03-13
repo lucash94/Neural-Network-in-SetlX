@@ -1,0 +1,213 @@
+// s(izes): number of nodes in respective layers --> [3,2], two layer network with first layer 3 inputs & second layer 2 neurons
+class network (s) {
+	num_layers := #s;
+	sizes := s;
+	biases := null;
+	weights := null;
+	zip_time := 0;
+
+	init := procedure() {
+		computeRndBiases();
+		computeRndWeights();
+	};
+
+	// Return output of network for "a" as input
+	// a is list calculated outputs
+	feedforward := procedure(a) {
+		// Vectorize a for multiplikation
+		a := la_vector(a);
+		
+		for( [b,w] in zip(biases, weights) ) { 
+			a := sigmoid_vector( (w*a) + b );
+		}
+		return a;
+	};
+
+	sgd := procedure(training_data, epochs, mini_batch_size, eta, test_data) {
+		if(test_data != null) {
+			n_test := #test_data; 		
+		}
+		n := #training_data;
+		
+		for(j in {0..epochs}) {
+			s1 := now();
+			training_data := shuffle(training_data);
+			// Get mini-batches from the training data to train the network
+			mini_batches := [ training_data[k..k+mini_batch_size-1] : k in [1,mini_batch_size..n] ];
+			
+			for(mini_batch in mini_batches) {
+				update_mini_batch(mini_batch, eta);
+			} 
+			epoche_time := now() - s1;
+			// Visual output
+			if(test_data != null) {
+				ev := evaluate(test_data);
+				//print("Epoch $j$: $ev$ / $n_test$");
+				print("Zipping-time:\t" + zip_time);
+				print("Epoche-time:\t" + epoche_time);
+				print("--> " + 100.0 * zip_time/epoche_time + "%");
+				this.zip_time := 0;
+			}
+			else {
+				print("Epoch $j$ complete");
+			}
+		}
+	};
+
+	update_mini_batch := procedure(mini_batch, eta) {
+		[nabla_b, nabla_w] := getNabla_b_and_w();
+		
+		for([x,y] in mini_batch) {
+			[delta_nabla_b, delta_nabla_w] := backprop(x,y);
+			
+			nabla_b := [ nb+dnb : [nb,dnb] in zip(nabla_b, delta_nabla_b) ];
+			nabla_w := [ nw+dnw : [nw,dnw] in zip(nabla_w, delta_nabla_w) ];
+		}
+		
+		// Adjust weights and biases
+		this.weights := [ (w-(eta/#mini_batch)*nw) : [w,nw] in zip(this.weights, nabla_w) ];
+		this.biases := [ (b-(eta/#mini_batch)*nb) : [b,nb] in zip(this.biases, nabla_b) ];
+	};
+	
+	/* Computes the Cartesian product of two matrices or vectors */
+	zip := procedure(l1, l2) {
+		s1 := now();
+		res := toList(l1) >< toList(l2);
+		this.zip_time += (now() - s1);
+		
+		return res;
+	};
+	/* casts vector to list */
+	toList := procedure(v) {
+		return [v[i] : i in [1..#v]];
+	};
+
+	backprop := procedure(x,y) {
+		[nabla_b, nabla_w] := getNabla_b_and_w();
+		zip_bw := zip(this.biases, this.weights);
+		
+		// Feedforward
+		activation := x;
+		// List of all activations (layer by layer)
+		activations := [ la_matrix([x]) ];
+		len_act := #activations;
+		activations += [0 : i in [1..#zip_bw]];
+		
+		// List of z-vectors (layer by layer)
+		zs := [0 : i in [1..#zip_bw]];
+		
+		i := 1;
+		for([b,w] in zip_bw) {
+			z := w * activation + b;
+			zs[i] := z;
+			
+			activation := sigmoid_vector(z);
+			activations[i + len_act] := activation;
+			i += 1;
+		}
+
+		// Backwards pass
+		// la_hadamard() needs a matrix -> cdm is cost derivate in matrix form
+		cdm := to_matrix( cost_derivative(activations[-1], y) );
+		delta := la_hadamard( cdm, sigmoid_prime(zs[-1]));
+
+		// No writing of nabla_b[-1] possible -> use length
+		lb := #nabla_b;
+		lw := #nabla_w;
+	
+		// Transposition is only defined for matrices in SetlX -> am is activation in matrix form
+		// ! = transpose
+		am := to_matrix(activations[-2]);
+		nabla_w[lw] := delta * am!;
+		nabla_b[lb] := delta;				
+		
+		for( l in {2..num_layers-1} ) {
+			z := zs[-l];
+			sp := sigmoid_prime(z);	
+			delta := la_hadamard( (weights[-l+1]! * delta), sp );
+			nabla_b[lb-l+1] := delta;
+			nabla_w[lw-l+1] := delta * activations[-l-1];
+		}
+		return [nabla_b, nabla_w];
+	};
+	
+	getNabla_b_and_w := procedure() {
+		m_nabla_b := [ la_matrix( [[0]*#b[1]] * #b ) : b in this.biases ];
+		m_nabla_w := [ la_matrix( [[0]*#w[1]] * #w ) : w in this.weights ];
+		
+		return [m_nabla_b, m_nabla_w];
+	};
+
+	// Returns sum of correct guesses after feedforwarding
+	evaluate := procedure(test_data) {
+		test_results := [0 : i in [1..#test_data]];
+		
+		// x: calculated number; y: real number
+		i := 1;
+		for( [x,y] in test_data ) {
+			// Calculate index of max. output
+			out := feedforward(x);
+			max := out[1];
+			index := 1;
+			for(i in {2..#out}) {
+				if( out[i] > max ) {
+					max := out[i];
+					index := i;
+				}
+			}
+			// Index-1 is output number
+			test_results[i] := [index-1,y];
+			i += 1;
+		}
+		
+		// Return sum of correct guesses
+		return #[1 : [x,y] in test_results | x == y];
+	};
+
+	// Return vector of partial derivates
+	cost_derivative := procedure(output_activations, y) {
+		return (output_activations - y);
+	};
+
+	// Sigmoid function for vectors
+	// 1.0/(1.0+np.exp(-z))
+	sigmoid_vector := procedure(z) {
+		// z is a vector, so the function has to be used on every part of it
+		return la_vector([ 1.0/(1.0 + exp(- z[i] )) : i in [1..#z] ]);
+	};
+
+	// Derivative of the sigmoid function, when z is a vector
+	// sigmoid(z)*(1-sigmoid(z))
+	sigmoid_prime := procedure(z) {
+		s := sigmoid_vector(z); 
+		return la_matrix([ [ s[i] * (1 - s[i]) ] : i in [1..#s] ]);
+	};
+	
+	// Takes vector and transforms it to a matrix of the following form:
+	// << a b c >> --> << <<a>> <<b>> <<c>> >>
+	to_matrix := procedure(v) {
+		return la_matrix([ [v[i]] : i in [1..#v] ]);
+	};
+
+	// biases: [[b_layer1_neu1, b_layer1_neu2, ...], [b_layer2_neu1, ...], ...]
+	computeRndBiases := procedure() {
+		// Compute random biases in a shape fitting the network
+		this.biases := [ 
+			la_matrix([
+				[((random()-0.5)*2)/28] : j in [1..sizes[i]]
+			]) : i in [2..num_layers] 
+		];
+	};
+
+	// weights: [ [[w1_layer1_neu1, w1_layer1_neu2, ...], [w2_layer1_neu1, ...], ...], [[w1_layer2_neu1, w1_layer2_neu2, ...], [w2_layer2_neu1, ...], ...] ]
+	computeRndWeights := procedure() {
+		// Compute random weights in a shape fitting the network
+		this.weights := [ 
+			la_matrix([
+				[
+					((random()-0.5)*2)/28 : k in [1..sizes[i]] 		// k'st-output of each neuron
+				] : j in [1..sizes[i+1]] 							// each output of one layer
+			]) : i in [1..num_layers-1]								// each layer (except output layer)
+		];
+	};
+}
