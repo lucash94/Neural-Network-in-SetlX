@@ -1,3 +1,21 @@
+drawImage := procedure (test_data) {	
+	x := 0;
+	y := 0;
+	disX := 0;
+	disY := 0;
+	for(k in {1 .. 3}) {
+		for(i in {1 .. 28}) {
+			for(j in {1 .. 28}) {
+				color := 1.0-test_data[k][1][(784-(28*i)+j)];
+				gfx_setPenColorRGB( color, color, color );
+				// gfx_rectangle( x+12*j, y+12*i, 4, 4);
+				gfx_filledRectangle( x+6*j, y+6*i+(k-1)*28*6+disY, 2, 2 ); 
+			}
+		}
+		disY += 10;
+	}
+};
+
 drawPixel := procedure(neuron, weights) {
 	if (neuron == 0) {
 		gfx_setPenColor("BLACK");
@@ -27,7 +45,7 @@ drawPixel := procedure(neuron, weights) {
 };
 
 drawNeuron := procedure(mNetwork, weights) {
-	x := 0;
+	x := 100;
 	y := 0;
 	disX := 0;
 	disY := 0;
@@ -97,11 +115,15 @@ drawNetwork := procedure(networks) {
 	modus := true;
 };
 
-animate := procedure( mNetwork, input, weights ) {	
+animate := procedure( mNetwork, input, weights, test_data ) {	
 	
 	if(input == 0) {
 		gfx_clear();
+		drawImage(test_data);
 		drawNeuron(mNetwork, weights);
+	} else if(input == 123) {
+		gfx_clear();
+		drawImage(test_data);
 	} else if(mNetwork[1] < input || 1 > input) {
 		gfx_setMessage( "Error: Neuron is not in Layer!" ); 
 	} else {
@@ -136,7 +158,7 @@ readInput := procedure() {
 };
 
 // structure is a list of nodes per layer, e.g. [784, 30, 10]
-start_animation := procedure(weights, structure) {
+start_animation := procedure(weights, structure, test_data) {
 	gfx_setCanvasSize(1600, 900);
 	gfx_setXscale(0, 1600);
     gfx_setYscale(0, 900);
@@ -146,8 +168,7 @@ start_animation := procedure(weights, structure) {
 	gfx_addInputField( "Neuron" );
 	gfx_addPlayPauseButton(true);
 	
-	
 	mNetwork := structure[2..];
 	drawNetwork(structure);
-	animate( mNetwork, readInput(), weights );
+	animate( mNetwork, readInput(), weights, test_data );
 };
