@@ -59,7 +59,7 @@ drawNeuron := procedure(mNetwork, weights) {
 					a := #weights;
 					b := #weights[1];
 					c := #weights[1][1];
-					color := (weights[1][30-(k*6)+l][(784-(28*i)+j)] + 3.5)/4.0;
+					color := 1-(weights[1][30-(k*6)+l][(784-(28*i)+j)] + 1.0)/2.0;
 					gfx_setPenColorRGB( color, color, color ); 
 					// gfx_rectangle( x+12*j, y+12*i, 4, 4);
 					gfx_filledRectangle( x+6*j+l*28*6+disX, y+6*i+(k-1)*28*6+disY, 2, 2 ); 
