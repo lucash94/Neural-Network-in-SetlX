@@ -4,6 +4,7 @@ class network (s) {
 	sizes := s;
 	biases := null;
 	weights := null;
+	mTime := 0;
 
 	init := procedure() {
 		computeRndBiases();
@@ -11,13 +12,13 @@ class network (s) {
 	};
 
 	// Return output of network for "a" as input
-	// a is list calculated outputs
+	// a is list of calculated outputs
 	feedforward := procedure(a) {
 		// Vectorize a for multiplikation
 		a := la_vector(a);
 		
-		for( [b,w] in zip(biases, weights) ) { 
-			a := sigmoid_vector( (w*a) + b );
+		for( i in {1..#biases} ) { 
+			a := sigmoid( (weights[i]*a) + biases[i] );
 		}
 		return a;
 	};
@@ -29,6 +30,7 @@ class network (s) {
 		n := #training_data;
 		
 		for(j in {0..epochs}) {
+			s1 := now();
 			training_data := shuffle(training_data);
 			// Get mini-batches from the training data to train the network
 			mini_batches := [ training_data[k..k+mini_batch_size-1] : k in [1,mini_batch_size..n] ];
@@ -40,7 +42,12 @@ class network (s) {
 			// Visual output
 			if(test_data != null) {
 				ev := evaluate(test_data);
-				print("Epoch $j$: $ev$ / $n_test$");
+				s2 := now() - s1;
+				//print("Epoch $j$: $ev$ / $n_test$");
+				print("Epoch-Time: " + s2 + "ms");
+				print("Backprop-Time: " + mTime + "ms" );
+				print("--> " + 100.0 * mTime/s2 +"%");
+				this.mTime := 0;
 			}
 			else {
 				print("Epoch $j$ complete");
@@ -53,47 +60,35 @@ class network (s) {
 		
 		for([x,y] in mini_batch) {
 			[delta_nabla_b, delta_nabla_w] := backprop(x,y);
-			
-			nabla_b := [ nb+dnb : [nb,dnb] in zip(nabla_b, delta_nabla_b) ];
-			nabla_w := [ nw+dnw : [nw,dnw] in zip(nabla_w, delta_nabla_w) ];
+
+			nabla_b := [ nabla_b[i] + delta_nabla_b[i] : i in {1..#nabla_b} ];
+			nabla_w := [ nabla_w[i] + delta_nabla_w[i] : i in {1..#nabla_w} ];
 		}
 		
 		// Adjust weights and biases
-		this.weights := [ (w-(eta/#mini_batch)*nw) : [w,nw] in zip(this.weights, nabla_w) ];
-		this.biases := [ (b-(eta/#mini_batch)*nb) : [b,nb] in zip(this.biases, nabla_b) ];
-	};
-	
-	/* Computes the Cartesian product of two matrices or vectors */
-	zip := procedure(l1, l2) {
-		return toList(l1) >< toList(l2);
-	};
-	/* casts vector to list */
-	toList := procedure(v) {
-		return [v[i] : i in [1..#v]];
+		this.weights := [ weights[i]-(eta/#mini_batch)*nabla_w[i] : i in {1..#weights} ];
+		this.biases := [ biases[i]-(eta/#mini_batch)*nabla_b[i] : i in {1..#biases} ];
 	};
 
 	backprop := procedure(x,y) {
 		[nabla_b, nabla_w] := getNabla_b_and_w();
-		zip_bw := zip(this.biases, this.weights);
-		
+
 		// Feedforward
 		activation := x;
 		// List of all activations (layer by layer)
 		activations := [ la_matrix([x]) ];
 		len_act := #activations;
-		activations += [0 : i in [1..#zip_bw]];
+		activations += [0 : i in [1..#biases]];
 		
 		// List of z-vectors (layer by layer)
-		zs := [0 : i in [1..#zip_bw]];
+		zs := [0 : i in [1..#biases]];
 		
-		i := 1;
-		for([b,w] in zip_bw) {
-			z := w * activation + b;
+		for(i in {1..#biases}) {
+			z := weights[i] * activation + biases[i];
 			zs[i] := z;
 			
-			activation := sigmoid_vector(z);
+			activation := sigmoid(z);
 			activations[i + len_act] := activation;
-			i += 1;
 		}
 
 		// Backwards pass
@@ -121,10 +116,10 @@ class network (s) {
 		return [nabla_b, nabla_w];
 	};
 	
-	getNabla_b_and_w := procedure() {
+	getNabla_b_and_w := procedure() {s1 := now();
 		m_nabla_b := [ la_matrix( [[0]*#b[1]] * #b ) : b in this.biases ];
 		m_nabla_w := [ la_matrix( [[0]*#w[1]] * #w ) : w in this.weights ];
-		
+		this.mTime += (now() - s1);
 		return [m_nabla_b, m_nabla_w];
 	};
 
@@ -132,8 +127,8 @@ class network (s) {
 	evaluate := procedure(test_data) {
 		test_results := [0 : i in [1..#test_data]];
 		
-		// x: calculated number; y: real number
 		i := 1;
+		// x: calculated number; y: real number
 		for( [x,y] in test_data ) {
 			// Calculate index of max. output
 			out := feedforward(x);
@@ -160,8 +155,8 @@ class network (s) {
 	};
 
 	// Sigmoid function for vectors
-	// 1.0/(1.0+np.exp(-z))
-	sigmoid_vector := procedure(z) {
+	// 1.0/(1.0+exp(-z))
+	sigmoid := procedure(z) {
 		// z is a vector, so the function has to be used on every part of it
 		return la_vector([ 1.0/(1.0 + exp(- z[i] )) : i in [1..#z] ]);
 	};
@@ -169,7 +164,7 @@ class network (s) {
 	// Derivative of the sigmoid function, when z is a vector
 	// sigmoid(z)*(1-sigmoid(z))
 	sigmoid_prime := procedure(z) {
-		s := sigmoid_vector(z); 
+		s := sigmoid(z); 
 		return la_matrix([ [ s[i] * (1 - s[i]) ] : i in [1..#s] ]);
 	};
 	
