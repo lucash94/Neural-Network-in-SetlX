@@ -19,5 +19,5 @@ net.sgd(training_data, 30, 10, 3.0, test_data);
 
 load("network_animation.stlx");
 print("Starting animation");
-stop(min(net.weights[1][1]));
+
 start_animation(net.weights, structure, test_data);

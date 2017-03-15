@@ -1,4 +1,6 @@
 load("network_animation.stlx");
 load("test_network.stlx");
 print("Starting animation");
+
+//stop(la_hadamard( la_matrix(weights[1][1])!, la_matrix([test_data[1][1]]) ));
 start_animation( weights, [784, 30, 10], test_data );
