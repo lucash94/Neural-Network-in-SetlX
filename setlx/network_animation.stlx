@@ -6,13 +6,34 @@ drawNeuron := procedure(data, dataFlag, init, x, y, disX, disY, a, b, pixelSize)
 			if(init) {
 				color := 0.0;
 			} else if(dataFlag) {
-				color := 1.0 - data[a][b][(784-(28*i)+j)];
+				color := data[a][b][(784-(28*i)+j)];
 			} else if(b in {1 .. 30}) {
-				color := 1.0 - (data[1][b][(784-(28*i)+j)] + 1.0)/2.0;
+				color := data[1][b][(784-(28*i)+j)];
 			} else {
-				color := 1.0 - (data[1][30-(a*6)+b][(784-(28*i)+j)] + 1.0)/2.0;
+				color := data[1][30-(a*6)+b][(784-(28*i)+j)];
 			}
-			gfx_setPenColorRGB( color, color, color );
+			
+			if(color == 0.0) {
+				gfx_setPenColorRGB( 1.0, 1.0, 1.0 );
+			} else if(color < 0.0) {
+				color *= -1.0;
+				if(color+0.5 > 1) {
+					color := 1.0;
+				} else {
+					color += 0.5;
+				}
+				//color += 0.3;
+				gfx_setPenColorRGB( 0.0, 0.0, color );
+			} else {
+				if(color+0.5 > 1) {
+					color := 1.0;
+				} else {
+					color += 0.5;
+				} 			
+				//color += 0.3;
+				gfx_setPenColorRGB( color, 0.0, 0.0 );
+			}
+			
 			//stop();
 			gfx_filledRectangle( x+pixelSize*j+disX, y+pixelSize*i+(a-1)*28*pixelSize+disY, pixelSize/3, pixelSize/3 ); 
 		}
