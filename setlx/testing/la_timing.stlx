@@ -1,0 +1,34 @@
+m := la_matrix( [ [random() : j in {1..1000}] : i in {1..1000} ] );
+
+print("Hadamard:");
+sum := 0;
+for(i in [1..10]) {
+	startTime := now();
+	la_hadamard(m,m);
+	endTime := now() - startTime;
+	print("$i$. Runde:\t" + endTime + "ms");
+	sum += endTime;
+}
+print("Durchschnitt:\t" + sum/10 * 1.0 + "ms");
+
+print("\nMatrizen:");
+sum := 0;
+for(i in [1..10]) {
+	startTime := now();
+	la_matrix( m );
+	endTime := now() - startTime;
+	print("$i$. Runde:\t" + endTime + "ms");
+	sum += endTime;
+}
+print("Durchschnitt:\t" + sum/10 * 1.0 + "ms");
+
+print("\nMatrizen-Multiplikation:");
+sum := 0;
+for(i in [1..10]) {
+	startTime := now();
+	res := m*m;
+	endTime := now() - startTime;
+	print("$i$. Runde:\t" + endTime + "ms");
+	sum += endTime;
+}
+print("Durchschnitt:\t" + sum/10 * 1.0 + "ms");
