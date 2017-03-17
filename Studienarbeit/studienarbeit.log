@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.11.3)  10 MAR 2017 15:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.11.3)  17 MAR 2017 19:01
 entering extended mode
 **./studienarbeit.tex
 (studienarbeit.tex
@@ -1072,8 +1072,12 @@ Kapitel 2.
 File: Bilder/perceptron.png Graphic file (type png)
 
 <use Bilder/perceptron.png>
-Package pdftex.def Info: Bilder/perceptron.png used on input line 12.
+Package pdftex.def Info: Bilder/perceptron.png used on input line 11.
 (pdftex.def)             Requested size: 127.19617pt x 62.51402pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 24--25
+
+ []
 
 <Bilder/perceptron_models.png, id=107, 405.31425pt x 162.6075pt>
 File: Bilder/perceptron_models.png Graphic file (type png)
@@ -1081,11 +1085,16 @@ File: Bilder/perceptron_models.png Graphic file (type png)
 <use Bilder/perceptron_models.png>
 Package pdftex.def Info: Bilder/perceptron_models.png used on input line 30.
 (pdftex.def)             Requested size: 303.98494pt x 121.95532pt.
-) [2
+
+Underfull \hbox (badness 10000) in paragraph at lines 26--35
+
+ []
+
+[2
 
 
 
- <./Bilder/perceptron.png>] [3 <./Bilder/perceptron_models.png>]
+ <./Bilder/perceptron.png>]) [3 <./Bilder/perceptron_models.png>]
 No file studienarbeit.bbl.
 
 AED: lastpage setting LastPage
@@ -1104,13 +1113,13 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 204.
  ) 
 Here is how much of TeX's memory you used:
- 8603 strings out of 493334
- 121458 string characters out of 3139252
- 227381 words of memory out of 3000000
- 11901 multiletter control sequences out of 15000+200000
- 9297 words of font info for 35 fonts, out of 3000000 for 9000
+ 8609 strings out of 493334
+ 121526 string characters out of 3139252
+ 228381 words of memory out of 3000000
+ 11904 multiletter control sequences out of 15000+200000
+ 9801 words of font info for 38 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 34i,11n,43p,526b,493s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 34i,11n,43p,689b,499s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/P
 rogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program F
 iles/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiK
@@ -1120,10 +1129,11 @@ onts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type
 msfonts/cm/cmss10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/
 cm/cmss12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmssb
 x10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmssi10.pfb
-><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on studienarbeit.pdf (7 pages, 209090 bytes).
+><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Pro
+gram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on studienarbeit.pdf (7 pages, 221190 bytes).
 PDF statistics:
- 168 PDF objects out of 1000 (max. 8388607)
- 25 named destinations out of 1000 (max. 500000)
+ 173 PDF objects out of 1000 (max. 8388607)
+ 26 named destinations out of 1000 (max. 500000)
  112 words of extra memory for PDF output out of 10000 (max. 10000000)
 
