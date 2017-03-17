@@ -5,12 +5,13 @@ class network (s) {
 	mBiases := null;
 	mWeights := null;
 
+	// Random initialisation of weights and biases
 	init := procedure() {
 		computeRndBiases();
 		computeRndWeights();
 	};
 
-	// Return output of network for "a" as input
+	// Return output of network for 'a' as input
 	// a is list of calculated outputs
 	feedforward := procedure(a) {
 		// Vectorize a for multiplikation
@@ -166,25 +167,26 @@ class network (s) {
 		return la_matrix([ [v[i]] : i in [1..#v] ]);
 	};
 
-	// mBiases: [[b_layer1_neu1, b_layer1_neu2, ...], [b_layer2_neu1, ...], ...]
+	// Compute random biases and weights in a shape fitting the declared network structure
+	// mBiases: 	[ << <<b_layer1_neu1>> <<b_layer1_neu2>> ... >>, << <<b_layer2_neu1>> ... >>, ...] 
+	// 				--> mBiases[layer][neuron][bias]	(bias is always one, because there is only one bias per neuron)
 	computeRndBiases := procedure() {
-		// Compute random mBiases in a shape fitting the network
-		this.mBiases := [ 
-			la_matrix([
-				[((random()-0.5)*2)/28] : j in [1..mSizes[i]]
-			]) : i in [2..mNumLayers] 
-		];
+		// i is each layer of the network (except the input layer)
+		this.mBiases := [ computeRndMatrix([1, mSizes[i]]) : i in [2..mNumLayers] ];
+	};
+	// mWeights: 	[ << <<w1_layer2_neu1 w1_layer2_neu2 ... >> << w2_layer2_neu1 ... >> ... >>, << <<w1_layer3_neu1 w1_layer3_neu2 ... >> << w2_layer3_neu1 ... >> ... >>, ...]
+	//				--> mWeights[layer+1][neuron][weight for input neuron]
+	computeRndWeights := procedure() {
+		this.mWeights := [ computeRndMatrix([mSizes[i], mSizes[i+1]]) : i in [1..mNumLayers-1] ];
 	};
 
-	// mWeights: [ [[w1_layer1_neu1, w1_layer1_neu2, ...], [w2_layer1_neu1, ...], ...], [[w1_layer2_neu1, w1_layer2_neu2, ...], [w2_layer2_neu1, ...], ...] ]
-	computeRndWeights := procedure() {
-		// Compute random mWeights in a shape fitting the network
-		this.mWeights := [ 
-			la_matrix([
-				[
-					((random()-0.5)*2)/28 : k in [1..mSizes[i]] 	// k'st-output of each neuron
-				] : j in [1..mSizes[i+1]] 							// each output of one layer
-			]) : i in [1..mNumLayers-1]								// each layer (except output layer)
-		];
+	// Computes matrix with random values based on a shape s
+	// e.g. 	s := [1,2] --> << <<x>> <<y>> >>
+	//			s := [2,1] --> << <<x y>> >>
+	computeRndMatrix := procedure(s) {
+		[i,j] := s;
+		return la_matrix([
+			[ ((random()-0.5)*2)/28 : p in [1..i] ] : q in [1..j]
+		]);
 	};
 }
