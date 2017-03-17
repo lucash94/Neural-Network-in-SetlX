@@ -1,10 +1,9 @@
 // s(izes): number of nodes in respective layers --> [3,2], two layer network with first layer 3 inputs & second layer 2 neurons
 class network (s) {
-	num_layers := #s;
-	sizes := s;
-	biases := null;
-	weights := null;
-	mTime := 0;
+	mNumLayers := #s;
+	mSizes := s;
+	mBiases := null;
+	mWeights := null;
 
 	init := procedure() {
 		computeRndBiases();
@@ -17,8 +16,8 @@ class network (s) {
 		// Vectorize a for multiplikation
 		a := la_vector(a);
 		
-		for( i in {1..#biases} ) { 
-			a := sigmoid( (weights[i]*a) + biases[i] );
+		for( i in {1..#mBiases} ) { 
+			a := sigmoid( (mWeights[i]*a) + mBiases[i] );
 		}
 		return a;
 	};
@@ -30,7 +29,6 @@ class network (s) {
 		n := #training_data;
 		
 		for(j in {0..epochs}) {
-			s1 := now();
 			training_data := shuffle(training_data);
 			// Get mini-batches from the training data to train the network
 			mini_batches := [ training_data[k..k+mini_batch_size-1] : k in [1,mini_batch_size..n] ];
@@ -42,12 +40,7 @@ class network (s) {
 			// Visual output
 			if(test_data != null) {
 				ev := evaluate(test_data);
-				s2 := now() - s1;
-				//print("Epoch $j$: $ev$ / $n_test$");
-				print("Epoch-Time: " + s2 + "ms");
-				print("Backprop-Time: " + mTime + "ms" );
-				print("--> " + 100.0 * mTime/s2 +"%");
-				this.mTime := 0;
+				print("Epoch $j$: $ev$ / $n_test$");
 			}
 			else {
 				print("Epoch $j$ complete");
@@ -65,9 +58,9 @@ class network (s) {
 			nabla_w := [ nabla_w[i] + delta_nabla_w[i] : i in {1..#nabla_w} ];
 		}
 		
-		// Adjust weights and biases
-		this.weights := [ weights[i]-(eta/#mini_batch)*nabla_w[i] : i in {1..#weights} ];
-		this.biases := [ biases[i]-(eta/#mini_batch)*nabla_b[i] : i in {1..#biases} ];
+		// Adjust mWeights and mBiases
+		this.mWeights := [ mWeights[i]-(eta/#mini_batch)*nabla_w[i] : i in {1..#mWeights} ];
+		this.mBiases := [ mBiases[i]-(eta/#mini_batch)*nabla_b[i] : i in {1..#mBiases} ];
 	};
 
 	backprop := procedure(x,y) {
@@ -78,13 +71,13 @@ class network (s) {
 		// List of all activations (layer by layer)
 		activations := [ la_matrix([x]) ];
 		len_act := #activations;
-		activations += [0 : i in [1..#biases]];
+		activations += [0 : i in [1..#mBiases]];
 		
 		// List of z-vectors (layer by layer)
-		zs := [0 : i in [1..#biases]];
+		zs := [0 : i in [1..#mBiases]];
 		
-		for(i in {1..#biases}) {
-			z := weights[i] * activation + biases[i];
+		for(i in {1..#mBiases}) {
+			z := mWeights[i] * activation + mBiases[i];
 			zs[i] := z;
 			
 			activation := sigmoid(z);
@@ -106,20 +99,19 @@ class network (s) {
 		nabla_w[lw] := delta * am!;
 		nabla_b[lb] := delta;				
 		
-		for( l in {2..num_layers-1} ) {
+		for( l in {2..mNumLayers-1} ) {
 			z := zs[-l];
 			sp := sigmoid_prime(z);	
-			delta := la_hadamard( (weights[-l+1]! * delta), sp );
+			delta := la_hadamard( (mWeights[-l+1]! * delta), sp );
 			nabla_b[lb-l+1] := delta;
 			nabla_w[lw-l+1] := delta * activations[-l-1];
 		}
 		return [nabla_b, nabla_w];
 	};
 	
-	getNabla_b_and_w := procedure() {s1 := now();
-		m_nabla_b := [ la_matrix( [[0]*#b[1]] * #b ) : b in this.biases ];
-		m_nabla_w := [ la_matrix( [[0]*#w[1]] * #w ) : w in this.weights ];
-		this.mTime += (now() - s1);
+	getNabla_b_and_w := procedure() {
+		m_nabla_b := [ la_matrix( [[0]*#b[1]] * #b ) : b in this.mBiases ];
+		m_nabla_w := [ la_matrix( [[0]*#w[1]] * #w ) : w in this.mWeights ];
 		return [m_nabla_b, m_nabla_w];
 	};
 
@@ -174,25 +166,25 @@ class network (s) {
 		return la_matrix([ [v[i]] : i in [1..#v] ]);
 	};
 
-	// biases: [[b_layer1_neu1, b_layer1_neu2, ...], [b_layer2_neu1, ...], ...]
+	// mBiases: [[b_layer1_neu1, b_layer1_neu2, ...], [b_layer2_neu1, ...], ...]
 	computeRndBiases := procedure() {
-		// Compute random biases in a shape fitting the network
-		this.biases := [ 
+		// Compute random mBiases in a shape fitting the network
+		this.mBiases := [ 
 			la_matrix([
-				[((random()-0.5)*2)/28] : j in [1..sizes[i]]
-			]) : i in [2..num_layers] 
+				[((random()-0.5)*2)/28] : j in [1..mSizes[i]]
+			]) : i in [2..mNumLayers] 
 		];
 	};
 
-	// weights: [ [[w1_layer1_neu1, w1_layer1_neu2, ...], [w2_layer1_neu1, ...], ...], [[w1_layer2_neu1, w1_layer2_neu2, ...], [w2_layer2_neu1, ...], ...] ]
+	// mWeights: [ [[w1_layer1_neu1, w1_layer1_neu2, ...], [w2_layer1_neu1, ...], ...], [[w1_layer2_neu1, w1_layer2_neu2, ...], [w2_layer2_neu1, ...], ...] ]
 	computeRndWeights := procedure() {
-		// Compute random weights in a shape fitting the network
-		this.weights := [ 
+		// Compute random mWeights in a shape fitting the network
+		this.mWeights := [ 
 			la_matrix([
 				[
-					((random()-0.5)*2)/28 : k in [1..sizes[i]] 		// k'st-output of each neuron
-				] : j in [1..sizes[i+1]] 							// each output of one layer
-			]) : i in [1..num_layers-1]								// each layer (except output layer)
+					((random()-0.5)*2)/28 : k in [1..mSizes[i]] 	// k'st-output of each neuron
+				] : j in [1..mSizes[i+1]] 							// each output of one layer
+			]) : i in [1..mNumLayers-1]								// each layer (except output layer)
 		];
 	};
 }
