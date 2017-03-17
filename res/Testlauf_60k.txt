@@ -44,4 +44,4 @@ Epoch 27: 9605 / 10000
 Epoch 28: 9582 / 10000
 Epoch 29: 9629 / 10000
 Epoch 30: 9598 / 10000
-Starting animation
+Time needed:    3095883ms

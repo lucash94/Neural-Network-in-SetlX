@@ -7,7 +7,7 @@ setlx start.stlx
 ```
 
 ## Testing
-Animation with test set with 10000 entries:
+Animation with saved network data (training set with 60000 entries):
 ```
 start_test_animation.stlx
 ```

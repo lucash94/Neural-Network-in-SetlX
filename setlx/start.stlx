@@ -15,9 +15,13 @@ print("Init Network");
 net.init();
 
 print("Start SGD");
+s1 := now();
 net.sgd(training_data, 30, 10, 3.0, test_data);
+s2 := now() - s1;
+print("Time needed:\t" + s2);
 
-load("network_animation.stlx");
+writeFile("my_n.stlx", "biases := " + net.mBiases + ";\n\n" + "weights := "+ net.mWeights + ";");
+/*load("network_animation.stlx");
 print("Starting animation");
 
-start_animation(net.mWeights, structure, test_data);
+start_animation(net.mWeights, structure, test_data);*/
