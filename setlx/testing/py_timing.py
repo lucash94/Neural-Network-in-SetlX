@@ -7,7 +7,7 @@ print "Hadamard:"
 mSum = 0
 for i in range(10):
     startTime = time()
-    np.dot(m,m)
+    res = m*m
     endTime = time() - startTime
     print str(i+1) + ". Runde:\t" + str(endTime * 1000) + "ms"
     mSum += endTime * 1000
@@ -27,7 +27,7 @@ print "\nMatrizen-Multiplikation:"
 mSum = 0
 for i in range(10):
     startTime = time()
-    res = m*m
+    np.dot(m,m)
     endTime = time() - startTime
     print str(i+1) + ". Runde:\t" + str(endTime * 1000) + "ms"
     mSum += endTime * 1000

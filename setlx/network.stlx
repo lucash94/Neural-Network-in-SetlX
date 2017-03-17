@@ -5,14 +5,14 @@ class network (s) {
 	mBiases := null;
 	mWeights := null;
 
-	// Random initialisation of weights and biases
+	// Random initialisation of weights and biases according to the network structure
 	init := procedure() {
 		computeRndBiases();
 		computeRndWeights();
 	};
 
 	// Return output of network for 'a' as input
-	// a is list of calculated outputs
+	// a is then list of calculated outputs
 	feedforward := procedure(a) {
 		// Vectorize a for multiplikation
 		a := la_vector(a);
@@ -23,6 +23,9 @@ class network (s) {
 		return a;
 	};
 
+	// Stochastic gradient descent learning algorithm
+	// training_data is list of tuples [x,y] representing the inputs x and the correct digit y
+	// eta is learning rate
 	sgd := procedure(training_data, epochs, mini_batch_size, eta, test_data) {
 		if(test_data != null) {
 			n_test := #test_data; 		
@@ -49,6 +52,8 @@ class network (s) {
 		}
 	};
 
+	// Update of weights and biases by using backpropagation on single mini_batches
+	// mini_batch is list of tuples [x,y] of the training data
 	update_mini_batch := procedure(mini_batch, eta) {
 		[nabla_b, nabla_w] := getNabla_b_and_w();
 		
@@ -64,6 +69,9 @@ class network (s) {
 		this.mBiases := [ mBiases[i]-(eta/#mini_batch)*nabla_b[i] : i in {1..#mBiases} ];
 	};
 
+	// Backpropagation to calculate the gradient for the cost function
+	// x: training inputs
+	// y: correct result for inputs x
 	backprop := procedure(x,y) {
 		[nabla_b, nabla_w] := getNabla_b_and_w();
 
@@ -175,7 +183,7 @@ class network (s) {
 		this.mBiases := [ computeRndMatrix([1, mSizes[i]]) : i in [2..mNumLayers] ];
 	};
 	// mWeights: 	[ << <<w1_layer2_neu1 w1_layer2_neu2 ... >> << w2_layer2_neu1 ... >> ... >>, << <<w1_layer3_neu1 w1_layer3_neu2 ... >> << w2_layer3_neu1 ... >> ... >>, ...]
-	//				--> mWeights[layer+1][neuron][weight for input neuron]
+	//				--> mWeights[layer-1][neuron][weight for input neuron]
 	computeRndWeights := procedure() {
 		this.mWeights := [ computeRndMatrix([mSizes[i], mSizes[i+1]]) : i in [1..mNumLayers-1] ];
 	};

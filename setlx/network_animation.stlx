@@ -4,7 +4,7 @@ drawNeuron := procedure(data, weights, dataFlag, weightsFlag, x, y, disX, disY, 
 	hadamardFlag := false;
 	for(i in {1 .. 28}) {
 		for(j in {1 .. 28}) {
-			if(!dataFlag && !weightsFlag) {						// dataFlag == false && weightFlag == false; print init
+			if(!dataFlag && !weightsFlag) {							// dataFlag == false && weightFlag == false; print init
 				color := 0.0;
 			} else if(dataFlag && !weightsFlag) {					// dataFlag == true && weightFlag == false; print values
 				color := 1.0 - data[a][b][(784-(28*i)+j)];
@@ -92,7 +92,7 @@ drawNetwork := procedure(mNetwork, weights) {
 	drawNeuron([], weights, false, false, 0, (940-(28*12))/2, 0, 0, 1, 0, 12);
 };
 
-animate := procedure( mNetwork, input, weights, test_data ) {	
+animate := procedure( mNetwork, input, weights, biases, test_data ) {	
 	if(input == 0) {
 		gfx_clear();		
 		drawNetwork(mNetwork, weights);
@@ -133,15 +133,18 @@ animate := procedure( mNetwork, input, weights, test_data ) {
 		
 		disX := 0;
 		disY := 0;
+		captions := getCaptionForNeurons(test_data[input-100][1], weights, biases, test_data[input-100][2]);
+		neuronNumber := 1;
 		for(a in {1 .. 5}) {
 			disX := 0;
 			for(b in {1 .. 6}) {
 				gfx_setPenColor("BLACK");
-				gfx_textLeft(100+disX+b*28*6, disY, "testhere");
+				gfx_textLeft(100+disX+b*28*6, disY, captions[neuronNumber]);
 				disY += 10;
 				drawNeuron([data], weights, true, true, 100, 0, disX+b*28*6, disY, 1, 30-(a*6)+b, 6);
 				disX += 10;
 				disY -= 10;
+				neuronNumber += 1;
 			}
 			disY += 30+28*6;
 		}
@@ -179,8 +182,43 @@ readInput := procedure() {
 	return input;
 };
 
+// i: input values (pixels)
+// w: weights, b: biases
+// o: output neuron (int in {0..9})
+getCaptionForNeurons := procedure(i, w, b, o) {
+	// Calculate output of each sigmoid neuron in second layer
+	i := la_vector(i);
+	a := sigmoid( (w[1]*i) + b[1] );
+
+	// Get weights of 'selected' neuron of last layer
+	ow := w[2][o];
+
+	// Concat strings
+	captions := [ shortenDecimalNumber(a[k]) +  "*" + shortenDecimalNumber(ow[k]) + "=" + shortenDecimalNumber(a[k]*ow[k]) : k in [1..30] ];
+	return captions;
+};
+// Sigmoid function for vectors
+// 1.0/(1.0+exp(-z))
+sigmoid := procedure(z) {
+	// z is a vector, so the function has to be used on every part of it
+	return la_vector([ 1.0/(1.0 + exp(- z[i] )) : i in [1..#z] ]);
+};
+shortenDecimalNumber := procedure(d) {
+	s := "";
+	s += d;
+
+	// For extrem small numbers
+	e_values := split(s, "E");
+	if(#e_values > 1) {
+		return e_values[1][1..3] + "e" + e_values[2];
+	}
+	else {
+		return s[1..5];
+	}
+};
+
 // structure is a list of nodes per layer, e.g. [784, 30, 10]
-start_animation := procedure(weights, structure, test_data) {
+start_animation := procedure(weights, biases, structure, test_data) {
 	gfx_setCanvasSize(1600, 940);
 	gfx_setXscale(0, 1600);
     gfx_setYscale(0, 940);
@@ -192,5 +230,5 @@ start_animation := procedure(weights, structure, test_data) {
 	
 	mNetwork := structure[2..];
 	drawNetwork(mNetwork, weights);
-	animate( mNetwork, readInput(), weights, test_data );
+	animate( mNetwork, readInput(), weights, biases, test_data );
 };

@@ -8,4 +8,4 @@ print("Starting animation");
 // min(weights) = -2.6011421999526156
 // max(test_data) = 0.99609375
 // min(test_data) = 0.0
-start_animation( weights, [784, 30, 10], test_data );
+start_animation(weights, biases, [784, 30, 10], test_data);
