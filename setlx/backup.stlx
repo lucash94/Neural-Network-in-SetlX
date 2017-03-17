@@ -88,3 +88,187 @@ for(a in {1 .. 5}) {
 	}
 	disY += 10;
 }
+
+//drawNeuron
+//data = test_data || weights, dataFlag = true|test_data || false|weights, init = true || false, x-axis, y-axis, a, b, pixelSize
+drawNeuron := procedure(data, dataFlag, init, x, y, disX, disY, a, b, pixelSize) {	
+	for(i in {1 .. 28}) {
+		for(j in {1 .. 28}) {
+			if(init) {
+				color := 0.0;
+			} else if(dataFlag) {
+				color := 1.0 - data[a][b][(784-(28*i)+j)];
+			} else {
+				color := data[1][b][(784-(28*i)+j)];
+			} 
+			
+			if(color == 0.0 || color == -0.0) {
+				gfx_setPenColorRGB( 1.0, 1.0, 1.0 );
+			} else if(color < 0.0) {
+				// negativ values
+				// color * RGB(0,0,255) + RGB(255,255,255)
+				color *= -1.0;
+				gfx_setPenColorRGB( color, color, color+(1.0-color) );
+			} else {	
+				// positiv values
+				// color * RGB(255,0,0) + RGB(255,255,255)
+				gfx_setPenColorRGB( color+(1.0-color), color, color );
+			}
+			
+			gfx_filledRectangle( x+pixelSize*j+disX, y+pixelSize*i+(a-1)*28*pixelSize+disY, pixelSize/3, pixelSize/3 ); 
+		}
+	}
+};
+
+drawLayer := procedure(mNetwork, r, activeNeuron) {
+	gfx_setPenColor("BLACK");
+	for(i in {1 .. #mNetwork}) {	
+		for(j in {0 .. mNetwork[i]-1}) {
+			if(activeNeuron == j && i ==1) {
+				gfx_setPenColorRGB( 1.0, 0.0, 0.0 );				
+				gfx_filledCircle((28*12+300*i), ((900-r*(3*mNetwork[i]-1))/2)+3*r*j, r);
+			} else {
+				gfx_setPenColorRGB( 0.0, 0.0, 0.0 );
+				gfx_filledCircle((28*12+300*i), ((900-r*(3*mNetwork[i]-1))/2)+3*r*j, r);
+				
+				if(i == #mNetwork) {			
+				gfx_textRight((28*12+300*i)+30, ((900-r*(3*mNetwork[i]-1))/2)+3*r*j, j);
+			}
+			}
+		}		
+	}
+};	
+
+drawConnection := procedure(mNetwork, r) {
+	gfx_setPenColor("BLACK");
+	for(i in {1 .. #mNetwork-1}) {	
+		for(j in {0 .. mNetwork[i]-1}) {
+			for(k in {0 .. mNetwork[i+1]-1}) {
+				if(i<#mNetwork) {
+					gfx_line((28*12+300*i+r), ((900-r*(3*mNetwork[i]-1))/2)+3*r*j, (28*12+300*(i+1)-r), ((900-r*(3*mNetwork[i+1]-1))/2)+3*r*k);
+				}	
+			}
+		}		
+	}
+};
+
+drawNetwork := procedure(mNetwork, weights) {	
+	// height for mNetwork 2r*n+r*(n-1)=900
+	r := 900/(3*max(mNetwork)-1);
+	
+	drawLayer(mNetwork, r, -1);	    	
+	drawConnection(mNetwork, r);	 
+	drawNeuron(weights, false, true, 0, (900-(28*12))/2, 0, 0, 1, 0, 12);
+};
+
+animate := procedure( mNetwork, input, weights, test_data ) {	
+	if(input == 0) {
+		gfx_clear();		
+		drawNetwork(mNetwork, weights);
+	} else if(input == 123) {
+		gfx_clear();
+		
+		disX := 0;
+		disY := 0;
+		for(a in {1 .. 3}) {
+			drawNeuron(test_data, true, false, 0, 0, 0, 0, a, 1, 6);
+			disY += 10;
+		}
+		
+		disX := 0;
+		disY := 0;
+		for(a in {1 .. 5}) {
+			disX := 0;
+			for(b in {1 .. 6}) { 
+				drawNeuron(weights, false, false, 100, 0, disX+b*28*6, disY, 1, 30-(a*6)+b, 6);
+				disX += 10;
+			}
+			disY += 10+28*6;
+		}
+	} else if(input == 101 || input == 102 || input == 103) {
+		gfx_clear();
+		
+		data := [];
+		for(a in {1 .. 30}) {
+			data +=  la_hadamard( la_matrix(weights[1][a])!, la_matrix([test_data[input-100][1]]) ) ;	
+		}
+		
+		disX := 0;
+		disY := 0;
+		for(a in {1 .. 3}) {
+			drawNeuron(test_data, true, false, 0, 0, 0, disY, a, 1, 6);
+			disY += 10;
+		}
+		
+		disX := 0;
+		disY := 0;
+		for(a in {1 .. 5}) {
+			disX := 0;
+			for(b in {1 .. 6}) {
+				drawNeuron([data], false, false, 100, 0, disX+b*28*6, disY, 1, 30-(a*6)+b, 6);
+				disX += 10;
+			}
+			disY += 10+28*6;
+		}
+	} else if(mNetwork[1] < input || 1 > input) {
+		gfx_setMessage( "Error: Neuron is not in Layer!" ); 
+	} else {
+		gfx_clear();
+		gfx_setMessage( "Success: Printing neuron!" );
+		r := 900/(3*max(mNetwork)-1);
+		drawLayer(mNetwork, r, input-1);
+		drawConnection(mNetwork, r);
+		
+		drawNeuron(weights, false, false, 0, (900-(28*12))/2, 0, 0, 1, input, 12);
+	}	
+	
+	animate( mNetwork, readInput(), weights, test_data );	
+};
+
+waitForStart := procedure(){
+    while( gfx_isPaused() ){
+        sleep(1000);
+    }
+};
+
+readInput := procedure() {
+	gfx_setPaused(true);
+	waitForStart();
+	input := rational( gfx_getInput() );
+	while( input == om ){
+		gfx_setMessage("Wrong input!");
+        gfx_setPaused(true);
+        waitForStart();
+        input := rational( gfx_getInput() );
+	}
+	return input;
+};
+
+// structure is a list of nodes per layer, e.g. [784, 30, 10]
+start_animation := procedure(weights, structure, test_data) {
+	gfx_setCanvasSize(1600, 900);
+	gfx_setXscale(0, 1600);
+    gfx_setYscale(0, 900);
+	gfx_clear();	
+	gfx_setPaused(true);
+	gfx_setMessage( "Please enter the number of the neuron!" );
+	gfx_addInputField( "Neuron" );
+	gfx_addPlayPauseButton(true);
+	
+	mNetwork := structure[2..];
+	drawNetwork(mNetwork, weights);
+	animate( mNetwork, readInput(), weights, test_data );
+};
+
+if( (color == 0.0 || color == -0.0) && dataFlag && weightFlag) {
+				if( color < 0.0 ) {
+					// negativ values
+					// color * RGB(0,0,255) + RGB(255,255,255)
+					color *= -1.0;
+					gfx_setPenColorRGB( wcolor, wcolor, wcolor+(1.0-wcolor) );
+				} else {	
+					// positiv values
+					// color * RGB(255,0,0) + RGB(255,255,255)
+					gfx_setPenColorRGB( wcolor+(1.0-wcolor), wcolor, wcolor );
+				}
+			} else

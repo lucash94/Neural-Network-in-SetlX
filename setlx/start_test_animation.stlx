@@ -3,4 +3,9 @@ load("test_network.stlx");
 print("Starting animation");
 
 //stop(la_hadamard( la_matrix(weights[1][1])!, la_matrix([test_data[1][1]]) ));
+
+// max(weights) = 1.5879154438385488
+// min(weights) = -2.6011421999526156
+// max(test_data) = 0.99609375
+// min(test_data) = 0.0
 start_animation( weights, [784, 30, 10], test_data );
