@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.11.3)  17 MAR 2017 19:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.11.3)  18 MAR 2017 16:56
 entering extended mode
 **./studienarbeit.tex
 (studienarbeit.tex
@@ -1068,7 +1068,7 @@ l.197 \include{Inhalt/einleitung}
 
  (Inhalt/theorie.tex
 Kapitel 2.
-<Bilder/perceptron.png, id=104, 211.992pt x 104.18925pt>
+<Bilder/perceptron.png, id=113, 211.992pt x 104.18925pt>
 File: Bilder/perceptron.png Graphic file (type png)
 
 <use Bilder/perceptron.png>
@@ -1079,7 +1079,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 24--25
 
  []
 
-<Bilder/perceptron_models.png, id=107, 405.31425pt x 162.6075pt>
+<Bilder/perceptron_models.png, id=116, 405.31425pt x 162.6075pt>
 File: Bilder/perceptron_models.png Graphic file (type png)
 
 <use Bilder/perceptron_models.png>
@@ -1094,7 +1094,42 @@ Underfull \hbox (badness 10000) in paragraph at lines 26--35
 
 
 
- <./Bilder/perceptron.png>]) [3 <./Bilder/perceptron_models.png>]
+ <./Bilder/perceptron.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 45--46
+
+ []
+
+<Bilder/perceptron_example.png, id=129, 184.89075pt x 86.12175pt>
+File: Bilder/perceptron_example.png Graphic file (type png)
+
+<use Bilder/perceptron_example.png>
+Package pdftex.def Info: Bilder/perceptron_example.png used on input line 51.
+(pdftex.def)             Requested size: 110.93529pt x 51.67345pt.
+
+<Bilder/nand_gatter.png, id=130, 373.395pt x 122.25674pt>
+File: Bilder/nand_gatter.png Graphic file (type png)
+
+<use Bilder/nand_gatter.png>
+Package pdftex.def Info: Bilder/nand_gatter.png used on input line 70.
+(pdftex.def)             Requested size: 224.03873pt x 73.3546pt.
+
+<Bilder/nand_gatter_perceptron.png, id=131, 349.90726pt x 159.59625pt>
+File: Bilder/nand_gatter_perceptron.png Graphic file (type png)
+
+<use Bilder/nand_gatter_perceptron.png>
+Package pdftex.def Info: Bilder/nand_gatter_perceptron.png used on input line 7
+9.
+(pdftex.def)             Requested size: 209.94595pt x 95.75847pt.
+ [3 <./Bilder/perceptron_models.png> <./Bilder/perceptron_example.png>]
+<Bilder/nand_gatter_perceptron_simplified.png, id=141, 361.95226pt x 157.7895pt
+>
+File: Bilder/nand_gatter_perceptron_simplified.png Graphic file (type png)
+ <use Bilder/nand_gatter_perceptron_simplified.png>
+Package pdftex.def Info: Bilder/nand_gatter_perceptron_simplified.png used on i
+nput line 88.
+(pdftex.def)             Requested size: 217.17302pt x 94.67442pt.
+) [4 <./Bilder/nand_gatter.png> <./Bilder/nand_gatter_perceptron.png> <./Bilder
+/nand_gatter_perceptron_simplified.png>] [5]
 No file studienarbeit.bbl.
 
 AED: lastpage setting LastPage
@@ -1110,13 +1145,16 @@ Package rerunfilecheck Info: File `studienarbeit.out' has not changed.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 204.
  ) 
 Here is how much of TeX's memory you used:
- 8609 strings out of 493334
- 121526 string characters out of 3139252
- 228381 words of memory out of 3000000
- 11904 multiletter control sequences out of 15000+200000
+ 8639 strings out of 493334
+ 122374 string characters out of 3139252
+ 229677 words of memory out of 3000000
+ 11924 multiletter control sequences out of 15000+200000
  9801 words of font info for 38 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  34i,11n,43p,689b,499s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1131,9 +1169,9 @@ cm/cmss12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmssb
 x10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmssi10.pfb
 ><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Pro
 gram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on studienarbeit.pdf (7 pages, 221190 bytes).
+Output written on studienarbeit.pdf (9 pages, 311131 bytes).
 PDF statistics:
- 173 PDF objects out of 1000 (max. 8388607)
- 26 named destinations out of 1000 (max. 500000)
- 112 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 201 PDF objects out of 1000 (max. 8388607)
+ 32 named destinations out of 1000 (max. 500000)
+ 132 words of extra memory for PDF output out of 10000 (max. 10000000)
 

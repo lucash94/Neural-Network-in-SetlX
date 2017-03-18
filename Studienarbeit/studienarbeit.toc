@@ -9,4 +9,4 @@
 \contentsline {section}{\numberline {2.1}SetlX}{2}{section.2.1}
 \contentsline {section}{\numberline {2.2}MNIST}{2}{section.2.2}
 \contentsline {section}{\numberline {2.3}Perceptrons}{2}{section.2.3}
-\contentsline {section}{\numberline {2.4}Sigmoid Neurons}{3}{section.2.4}
+\contentsline {section}{\numberline {2.4}Sigmoid Neurons}{4}{section.2.4}
