@@ -176,7 +176,7 @@ animate := procedure( mNetwork, input, weights, biases, test_data ) {
 		drawNeuron(test_data, weights, false, true, 0, (940-(28*12))/2, 0, 0, 1, input, 12);
 	}	
 	
-	animate( mNetwork, readInput(), weights, test_data );	
+	animate( mNetwork, readInput(), weights, biases, test_data );	
 };
 
 waitForStart := procedure(){
