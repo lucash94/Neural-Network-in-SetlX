@@ -13,7 +13,7 @@ drawNeuron := procedure(data, weights, dataFlag, weightsFlag, x, y, disX, disY, 
 	hadamardFlag := false;
 	for(i in {1 .. 28}) {
 		for(j in {1 .. 28}) {
-			if(!dataFlag && !weightsFlag) {							// dataFlag == false && weightFlag == false; print init
+			if(!dataFlag && !weightsFlag) {						// dataFlag == false && weightFlag == false; print init
 				color := 0.0;
 			} else if(dataFlag && !weightsFlag) {					// dataFlag == true && weightFlag == false; print values
 				color := 1.0 - data[a][b][(784-(28*i)+j)];
