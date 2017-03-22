@@ -1,0 +1,133 @@
+\chapter{Implementierung}
+
+\section{Laden und Aufbereitung der MNIST Daten}
+
+\section{Implementierung des neuronalen Netzes}
+Dieser Abschnitt beschreibt die eigentliche Implementierung des neuronalen Netzwerkes zur Erkennung von handgeschriebenen Ziffern.
+Bei der Umsetzung des Netzwerkes in SetlX wird der SGD-Algorithmus als Lernmethode des Netzwerkes benutzt. Die im vorherigen Kapitel importierten Daten des MNIST-Datensatzes dienen als Grundlage der Ziffernerkennung.
+Das Netzwerk wird als Klasse in SetlX angelegt und enthält die folgenden Membervariablen:
+
+\begin{enumerate}
+\item $\mathtt{mNumLayers}$: Anzahl der Layer des aufzubauenden Netzwerkes 
+\item $\mathtt{mSizes}$: Aufbau des Layers in Listenform. Bsp.: $[784, 30, 10]$ beschreibt ein Netzwerk mit 784 Inputfeldern, 30 Neuronen im zweiten (hidden) Layer und 10 Output-Neuronen
+\item $\mathtt{mBiases}$: Alle Biases des Netzwerkes (genauer Aufbau wird im Folgenden erläutert)
+\item $\mathtt{mWeights}$: Alle Weights des Netzwerkes (genauer Aufbau wird im Folgenden erläutert)
+\end{enumerate}
+
+\noindent
+Die Initialisierung des Netzwerkes zur Ziffernerkennung erfolgt durch folgende Befehle:
+\begin{Verbatim}[ frame         = lines, 
+                  framesep      = 0.3cm, 
+                  firstnumber   = 1,
+                  labelposition = bottomline,
+                  numbers       = left,
+                  numbersep     = -0.2cm,
+                  xleftmargin   = 0.8cm,
+                  xrightmargin  = 0.8cm,
+                ]
+    net := network([784, 30, 10]);
+    net.init();
+\end{Verbatim}
+Als Übergabeparameter bei der Erstellung eines Netzwerk-Objektes wird die Struktur des Netzwerkes in Form einer Liste übergeben. Diese wird dann lediglich $\mathtt{mSizes}$ zugeordnet und basierend hierrauf wird $\mathtt{mNumLayers}$ ermittelt.
+Die $\mathtt{init()}$-Funktion der $\mathtt{network}$-Klasse wird verwendet um die Weights und Biases des Netzwerkes initial zufällig zu belegen. Hiermit werden Ausgangswerte gesetzt, welche später durch das Lernen des Netzwerkes angepasst werden.
+Im Folgenden sind die verwendeten Funktionen, welche während der Weights- und Bias-Initialisierung verwendet werden, zu sehen.
+\begin{Verbatim}[ frame         = lines, 
+                  framesep      = 0.3cm, 
+                  firstnumber   = 1,
+                  labelposition = bottomline,
+                  numbers       = left,
+                  numbersep     = -0.2cm,
+                  xleftmargin   = 0.8cm,
+                  xrightmargin  = 0.8cm,
+                ]
+	init := procedure() {
+		computeRndBiases();
+		computeRndWeights();
+	};
+
+	computeRndBiases := procedure() {
+		this.mBiases := [ 
+			computeRndMatrix([1, mSizes[i]]) : i in [2..mNumLayers] 
+		];
+	};
+
+	computeRndWeights := procedure() {
+		this.mWeights := [ 
+			computeRndMatrix([mSizes[i], mSizes[i+1]]) 
+			: i in [1..mNumLayers-1] 
+		];
+	};
+
+	computeRndMatrix := procedure(s) {
+		[i,j] := s;
+		return la_matrix([
+			[ ((random()-0.5)*2)/28 : p in [1..i] ] : q in [1..j]
+		]);
+	};
+\end{Verbatim}
+
+\begin{enumerate}
+\item $\mathtt{init()}$: in der init-Funktion werden die Funktionen computeRndBiases() und $\mathtt{computeRndWeights()}$ aufgerufen
+\item $\mathtt{computeRndBiases()}$: Die Funktion befüllt die Variable mBiases mit zufälligen Werten. Der für das Netzwerk benötigte Aufbau der Biases entspricht folgender Form: \\
+$[\ <<\ <<\mathtt{b\_layer1\_neu1}>>\ <<\mathtt{b\_layer1\_neu2}>>\ ...\ >>,\ <<\ <<\mathtt{b\_layer2\_neu1}>>\ ...\ >>,\ ...\ ]$ \\
+Das heißt es kann auf die Biases mit folgendem Schema in SetlX zugegriffen werden: \\
+\begin{center}
+	$\mathtt{mBiases[layer][neuron][bias]}$
+\end{center}
+Hierbei ist zu beachten, dass der Wert $\mathtt{bias}$ immer 1 ist, da jedes Neuron nur einen einzigen Bias besitzt. Da es sich beim Input-Layer des Netzwerkes nicht um Sigmoid-Neuronen handelt, sondern lediglich um Eingabewerte, werden hierfür keine Biases benötigt. Deshalb wird bei der Erstellung der zufälligen Biases nur $[2..\mathtt{mNumLayers}]$ (also alle Layer außer dem Ersten) betrachtet.
+\item $\mathtt{computeRndWeights()}$: Diese Funktion ist equivalent zu der Bias-Funktion, lediglich wird folgende Struktur der Weights angelegt: \\
+$[\ <<\ <<\mathtt{w1\_layer2\_neu1}\ \mathtt{w1\_layer2\_neu2}\ ...\ >>\ << \mathtt{w2\_layer2\_neu1}\ ...\ >>\ ...\ >>,\ <<\ <<\mathtt{w1\_layer3\_neu1}\  \mathtt{w1\_layer3\_neu2}\ ...\ >>\ <<\mathtt{w2\_layer3\_neu1}\ ...\ >>\ ...\ >>,\ ...\ ]$ \\
+Dies entspricht folgenden Zugriffsmöglichkeiten: \\ 
+\begin{center}
+	$\mathtt{mWeights[layer-1][neuron][weight\ for\ input\ neuron]}$
+\end{center}
+Der Zugriff auf die Layer mittels $\mathtt{[layer-1]}$ resultiert aus den fehlenden Weights des Input-Layers.
+\item $\mathtt{computeRndMatrix()}$: Diese Hilfsfunktion dient zur Erstellung der Struktur der Weights und Biases in den zuvor vorgestellten Funktionen. Die Funktion enthält als Parameter eine Matrix-Struktur in Listenform und liefert die zugehörige Matrix mit zufälligen Werten zwischen $-1/28$ und $1/28$ zurück. Die übergebende Struktur hat die Form $\mathtt{[x,y]}$, wobei $\mathtt{x}$ die Anzahl der Spalten und $\mathtt{y}$ die Anzahl der Reihen angibt. \\
+Bsp.: $s := [1,2]\ \rightarrow\ <<\ <<x>>\ <<y>>\ >>$ und $s := [2,1]\ \rightarrow\ <<\ <<x\ y>>\ >>$
+\end{enumerate}
+
+\noindent
+Sei nun $w$ die Matrix der Weights und $b$ die Matrix aller Biases und $a$ bezeichnet den Aktivierungsvektor des vorherigen Layers, also deren Output (zu Beginn also die Input-Pixel der Eingabe). Nach Gleichung xyz zur Berechnung eines Sigmoid-Outputs lässt sich nun folgende Formel aufstellen: 
+\begin{equation}\label{eq:feedforwarding}
+	a' = \sigma(wa + b)
+\end{equation}
+\noindent
+Hierbei bezeichnet $a'$ den Output-Vektor des aktuellen Layers, welcher dann dem nächsten Layer weitergeleitet wird (feedforwarding). Nachfolgend sind die Implementierungen der Sigmoid-Funktionen sowie dem Feedforwarding zu sehen.
+\begin{Verbatim}[ frame         = lines, 
+                  framesep      = 0.3cm, 
+                  firstnumber   = 1,
+                  labelposition = bottomline,
+                  numbers       = left,
+                  numbersep     = -0.2cm,
+                  xleftmargin   = 0.8cm,
+                  xrightmargin  = 0.8cm,
+                ]
+	feedforward := procedure(a) {
+		a := la_vector(a);	
+		for( i in {1..#mBiases} ) { 
+			a := sigmoid( (mWeights[i]*a) + mBiases[i] );
+		}
+		return a;
+	};                
+                
+	sigmoid := procedure(z) {
+		return la_vector([ 1.0/(1.0 + exp(- z[i] )) : i in [1..#z] ]);
+	};
+
+	sigmoid_prime := procedure(z) {
+		s := sigmoid(z); 
+		return la_matrix([ [ s[i] * (1 - s[i]) ] : i in [1..#s] ]);
+	};
+\end{Verbatim}
+\begin{enumerate}
+\item $\mathtt{feedforward(a)}$: Zunächst werden die als Liste übergebenen Eingabewerte $\mathtt{a}$ (784 Pixel in Listenform) mit Hilfe von $\mathtt{la\_vektor()}$ in einen Vektor umgewandelt und anschließend wird die Gleichung \eqref{eq:feedforwarding} auf alle Layer des Netzwerkes angewandt. Zurückgegeben wird der resultierende Output jedes Neurons des letztes Layers in vektorisierter Form.
+\item $\mathtt{sigmoid(z)}$: Diese Funktionen nimmt einen Vektor $\mathtt{z}$ und berechnet mit Hilfe der Sigmoid-Formel (siehe Formel xyz) den Output der Neuronen in vektorisierter Form.
+\item $\mathtt{sigmoid\_prime(z)}$: Für einen gegebenen Vektor $\mathtt{z}$ wird die Ableitung der Sigmoid-Funktion (nach Formel xyz) berechnet und in vektorisierter Form zurückgegeben.
+\end{enumerate}
+
+ToDo: Rest des Codes \\
+
+\noindent
+Eine vorgefertigte Prozedur zur Initialisierung des benötigten Netzwerkes mit Beispielparametern befindet sich in der Datei $\mathtt{start.stlx}$, welche mit dem Befehl $\mathtt{setlx\ start.stlx}$ über die Konsole gestartet werden kann.
+
+\section{Animation}
