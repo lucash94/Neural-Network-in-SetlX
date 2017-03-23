@@ -3,8 +3,8 @@
 \section{Laden und Aufbereitung der MNIST Daten}
 
 \section{Implementierung des neuronalen Netzes}
-Dieser Abschnitt beschreibt die eigentliche Implementierung des neuronalen Netzwerkes zur Erkennung von handgeschriebenen Ziffern.
-Bei der Umsetzung des Netzwerkes in SetlX wird der SGD-Algorithmus als Lernmethode des Netzwerkes benutzt. Die im vorherigen Kapitel importierten Daten des MNIST-Datensatzes dienen als Grundlage der Ziffernerkennung.
+Dieser Abschnitt beschreibt die eigentliche Implementierung des neuronalen Netzwerkes zur Erkennung von handgeschriebenen Ziffern in SetlX. Um den Code möglichst kompakt zu halten, wurden die in den Originaldateien enthaltenen Kommentarzeilen in dieser Seminararbeit zum größten Teil entfernt.
+Bei der Umsetzung des Netzwerkes in SetlX wird der SGD-Algorithmus als Lernmethode des Netzwerkes benutzt. Die im vorherigen Kapitel importierten Daten des MNIST-Datensatzes dienen als Grundlage der Ziffernerkennung. 
 Das Netzwerk wird als Klasse in SetlX angelegt und enthält die folgenden Membervariablen:
 
 \begin{enumerate}
@@ -124,8 +124,57 @@ Hierbei bezeichnet $a'$ den Output-Vektor des aktuellen Layers, welcher dann dem
 \item $\mathtt{sigmoid(z)}$: Diese Funktionen nimmt einen Vektor $\mathtt{z}$ und berechnet mit Hilfe der Sigmoid-Formel (siehe Formel xyz) den Output der Neuronen in vektorisierter Form.
 \item $\mathtt{sigmoid\_prime(z)}$: Für einen gegebenen Vektor $\mathtt{z}$ wird die Ableitung der Sigmoid-Funktion (nach Formel xyz) berechnet und in vektorisierter Form zurückgegeben.
 \end{enumerate}
+\noindent
+Die Feedforward-Funktion dient also dazu, die Eingabewerte durch das gesamte Netzwerk durchzureichen und den daraus resultierenden Output zu ermitteln. Als nächstes wird der Algorithmus diskutiert, durch welchem es dem Netzwerk ermöglicht wird zu \glqq lernen\grqq. Hierfür wird der Stochastic Gradient Descent (SGD) Algorithmus verwendet. Die Implementierung des SGDs in SetlX ist nachfolgend aufgezeigt und wird nun im Detail erläutert.
 
-ToDo: Rest des Codes \\
+\begin{Verbatim}[ frame         = lines, 
+                  framesep      = 0.3cm, 
+                  firstnumber   = 1,
+                  labelposition = bottomline,
+                  numbers       = left,
+                  numbersep     = -0.2cm,
+                  xleftmargin   = 0.8cm,
+                  xrightmargin  = 0.8cm,
+                ]
+	sgd := procedure(training_data, epochs, mini_batch_size, eta, test_data) {
+		if(test_data != null) {
+			n_test := #test_data; 		
+		}
+		n := #training_data;
+		
+		for(j in {0..epochs}) {
+			training_data := shuffle(training_data);
+			mini_batches := [ 
+				training_data[k..k+mini_batch_size-1] 
+				: k in [1,mini_batch_size..n] 
+			];
+			
+			for(mini_batch in mini_batches) {
+				update_mini_batch(mini_batch, eta);
+			} 
+			
+			// Visual output
+			if(test_data != null) {
+				ev := evaluate(test_data);
+				print("Epoch $j$: $ev$ / $n_test$");
+			}
+			else {
+				print("Epoch $j$ complete");
+			}
+		}
+	};
+\end{Verbatim}
+\begin{enumerate}
+\item Zeile 1: Übergabeparameter der Funktion sind die Trainingsdatensätze (Liste von Tupeln $\mathtt{[x,y]}$ mit $\mathtt{x}$ als Eingabewerten und $\mathtt{y}$ als gewünschtem Ergebnis), die Anzahl der Epochen (Integer-Wert), die Größe der Mini-Batches (Integer-Wert), die gewünschte Lernrate (Fließkomma-Wert) und den optionalen Testdatensätzen (äquivalenter Aufbau zu Trainingsdaten).
+\item Zeile 2-5: Falls Testdaten vorhanden sind, so wird deren Anzahl (Anzahl Datensätze) in der Variablen $\mathtt{n\_test}$ gespeichert. Ebenso wird die Anzahl der Trainings-Datensätze in $\mathtt{n}$ gesichert.
+\item Zeile 7: Nun wird der nachfolgende Programmcode entsprechend der übergebenen Epochenanzahl mehrfach ausgeführt.
+\item Zeile 8-12: Zuerst werden alle Trainingsdaten zufällig vermischt und anschließend Mini-Batches (also Ausschnitte aus dem Gesamtdatensatz) der vorher festgelegten Größe aus den Trainingsdaten extrahiert. Somit wird eine zufällige Belegung von Mini-Batches garantiert. Alle Mini-Batches werden in Listenform in der Variablen $\mathtt{mini\_batches}$ gespeichert.
+\item Zeile 14-16: Anschließend wird für jeden Mini-Batch aus $\mathtt{mini\_batches}$ ein Schritt des SGD angewendet. Dies geschieht mit Hilfe der Funktion $\mathtt{update\_mini\_batches}$, welche anschließend genauer erläutert wird. Zweck der Funktion ist es die Weights und Biases des Netzwerkes mit Hilfe einer Iteration des SGD-Algorithmus anzupassen. Die Basis für diese Anpassung liefert der übergebene Mini-Batch und die Lernrate.
+\item Zeile 19-25: Dieser Programmcode dient Ausgabe auf der Konsole und teilt dem Benutzer die aktuelle Anzahl an korrekt ermittelten Datensätzen der Trainingsdaten nach jeder Epoche mit. Hierfür wird die Hilfsfunktion $\mathtt{evaluate}$ verwendet, welche unter Berücksichtigung des aktuellen Netzwerkzustandes die Outputs ermittelt, welcher bei Eingabe der Testdaten durch das Netzwerk errechnet wurden (genaue Implementierung folgt). Sollten der $\mathtt{sgd}$-Funktion keine Testdaten übergeben worden sein, so entfällt diese Ausgabe.
+\end{enumerate}
+
+\noindent
+ToDo: evaluate und update-mini-batch \\
 
 \noindent
 Eine vorgefertigte Prozedur zur Initialisierung des benötigten Netzwerkes mit Beispielparametern befindet sich in der Datei $\mathtt{start.stlx}$, welche mit dem Befehl $\mathtt{setlx\ start.stlx}$ über die Konsole gestartet werden kann.
