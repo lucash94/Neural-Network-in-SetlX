@@ -7,4 +7,6 @@
 \contentsline {figure}{\numberline {2.5}{\ignorespaces $\mathtt {NAND}$ Gatter Aufbau mit Perceptrons.}}{4}{figure.2.5}
 \contentsline {figure}{\numberline {2.6}{\ignorespaces Vereinfachter $\mathtt {NAND}$ Gatter Aufbau mit Perceptrons.}}{4}{figure.2.6}
 \contentsline {figure}{\numberline {2.7}{\ignorespaces Modifizieren von Weights und Biases schaffen lernendes Netzwerk.}}{5}{figure.2.7}
+\contentsline {figure}{\numberline {2.8}{\ignorespaces Sigmoid Funktion $\sigma (z)$.}}{6}{figure.2.8}
+\contentsline {figure}{\numberline {2.9}{\ignorespaces Sigmoid Funktion $\sigma (z)$.}}{6}{figure.2.9}
 \addvspace {10\p@ }

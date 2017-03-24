@@ -98,7 +98,7 @@ Für die Entwicklung lernender Algorithmen in einem Netzwerk mit Perceptrons, f�
 Das Modifizieren der \textit{Weights} und \textit{Biases} kann das Verhalten des Netzwerkes und deren Entscheidungsfindung zu Problemen beeinflussen. Angenommen die Erkennung und Klassifizierung einer Zahl wurde durch das Netzwerk falsch vorgenommen, so können durch kleine Veränderungen an den \textit{Weights} und \textit{Biases} eine Korrektur durchgeführt werden. Dieses stetige Modifizieren der Werte über einen definierten Zeitraum ermöglicht ein lernendes Netzwerk (siehe Abb. \ref{fig:sigmoid_learning}). 
 \begin{figure}[hbt]
 	\centering
-	\includegraphics[scale=0.6]{Bilder/sigmoid_learning}
+	\includegraphics[scale=0.7]{Bilder/sigmoid_learning}
 	\caption{Modifizieren von Weights und Biases schaffen lernendes Netzwerk.} 
 	\label{fig:sigmoid_learning} 
 \end{figure}
@@ -107,4 +107,42 @@ Das Modifizieren der \textit{Weights} und \textit{Biases} kann das Verhalten des
 Dieses wünschenswerte Verhalten eines lernenden Netzwerks kann durch Perceptrons nicht gewährleistet werden, da eine Veränderung der Weights und Biases den Ausgabewerte $\mathtt{output}$ eines Neurons umkehren kann. Dadurch kann das komplette Verhalten zur Klassifizierung von Zahlen beeinflusst werden, wobei zuvor falsch erkannte Zahlen nun richtig klassifiziert werden und umgekehrt. Mit Hilfe der Einführung des Sigmoid Neurons soll dieser Fehler behoben werden. Eine Änderung der Weights und Biases bei diesem künstlichen Neuron soll nur marginale Änderungen an dem Ausgabewert $\mathtt{output}$ vornehmen. Diese Erweiterung des Neurons begünstigt ein Netzwerk selbständig die Klassifizierung von Zahlen zu optimieren. \\
 
 \noindent
-Der Aufbau des Sigmoid Neurons ähnelt dem Perceptron, wobei das Neuron eine Anzahl von Eingabewerten $x_n$ mit $n \in {1, .. n}$ entgegennimmt und ausgehend von diesen Informationen den $\mathtt{output}$ ermittelt. Der wesentliche Unterschied zwischen diesen zwei Typen von Neuronen liegt in dem Wertebereich des $\mathtt{output}$.
+Der Aufbau des Sigmoid Neurons ähnelt dem Perceptron, wobei das Neuron eine Anzahl von Eingabewerten $x_n$ mit $n \in \{1 .. n\}$ entgegennimmt und ausgehend von diesen Informationen den $\mathtt{output}$ ermittelt. Der wesentliche Unterschied zwischen diesen zwei Typen von Neuronen liegt in dem Wertebereich des $\mathtt{output}$. Bei dem Sigmoid Neuron kann dieser alle Werte zwischen 0 und 1 annehmen, sprich $\mathtt{output} \in [0 .. 1]$. Weiterhin weist auch diese Art von Neuronen für jeden Eingabewert eine Gewichtung $w_n$ mit $n \in \{1 .. n\}$ sowie einen Bias auf. \\
+Für die Berechnung des $\mathtt{output}$ wird in diesem Kontext die \textit{Sigmoid Funktion} $\sigma(z)$ angewendet.
+\begin{equation}
+	\sigma(z) \equiv \frac{1}{1+e^{-z}} \quad\mbox{mit}\quad z = w \cdot x + b
+\end{equation}
+Unter Berücksichtigung der Eingabewerte $x_n$ mit $n \in \{1 .. n\}$ und der Weights  $w_n$ mit $n \in \{1 .. n\}$ ergibt sich die folgende Formel:
+\begin{equation}
+	\sigma(z) \equiv \frac{1}{1+\exp(-\sum_j w_j x_j - b)}
+\end{equation}
+Dabei weist das Sigmoid Neuron weiterhin das gleiche Verhalten wie ein Perceptron auf, wenn eine Grenzwertbetrachtung durchführt wird. \\[0.2cm]
+\hspace*{1.3cm}
+$
+\begin{array}[t]{lcll}
+	\lim\limits_{z \to \infty}{\sigma(z)} \approx 1 \quad\quad bzw. \\[0.2cm]
+	\lim\limits_{z \to -\infty}{ \sigma(z)} \approx 0
+\end{array}
+$
+\\[0.2cm]
+Dieses Verhalten wird weiterhin verdeutlicht, wenn die Betrachtung auf den folgenden Funktionsgraph fällt (siehe Abb. \ref{fig:sigmoid_plot}). Für große $z$ nimmt die Funktion den Wert 1 an und für kleine $z$ nimmt die Funktion den Wert 0 an.
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[scale=0.6]{Bilder/sigmoid_plot}
+	\caption{Sigmoid Funktion $\sigma(z)$.} 
+	\label{fig:sigmoid_plot} 
+\end{figure}
+
+\noindent
+Im Vergleich hierzu die Stufenfunktion, die das Verhalten eines Perceptrons abbildet (siehe Abb. \ref{fig:perceptron_plot}).
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[scale=0.6]{Bilder/perceptron_plot}
+	\caption{Sigmoid Funktion $\sigma(z)$.} 
+	\label{fig:perceptron_plot} 
+\end{figure}
+Die Vorteile der Sigmoid Funktion liegen in den marginalen Änderungen $\delta w_j$ bei den Gewichtungen und $\delta b$ im Bias, welche eine marginale Änderung am $\delta\mathtt{output}$ vornehmen. Damit stellt $\delta\mathtt{output}$ die lineare Funktion bezüglich der Änderungen  $\delta w_j$ und $\delta b$ in den Weights und Bias.
+\begin{equation}
+	\Delta\mathtt{output} \equiv \sum_{j}{\frac{\partial\mathtt{output}}{\partial w_j}\Delta w_j+\frac{\partial\mathtt{output}}{\partial b}\Delta b_j}
+\end{equation}
+Diese Linearität begünstigt die Wahl von kleinen Änderungen in den Weights und Biases, um das Verhalten für ein lernendes Netzwerk abzuleiten.   
