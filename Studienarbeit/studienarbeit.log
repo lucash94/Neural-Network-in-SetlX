@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.11.3)  24 MAR 2017 20:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.11.3)  27 MAR 2017 17:15
 entering extended mode
 **./studienarbeit.tex
 (studienarbeit.tex
@@ -972,7 +972,7 @@ pdf dhbw-logo.eps>
 (epstopdf)             \includegraphics on input line 6.
 Package epstopdf Info: Output file is already uptodate.
 
-<dhbw-logo-eps-converted-to.pdf, id=67, 173.64874pt x 88.33pt>
+<dhbw-logo-eps-converted-to.pdf, id=75, 173.64874pt x 88.33pt>
 File: dhbw-logo-eps-converted-to.pdf Graphic file (type pdf)
 
 <use dhbw-logo-eps-converted-to.pdf>
@@ -1069,7 +1069,7 @@ l.197 \include{Inhalt/einleitung}
 
  (Inhalt/theorie.tex
 Kapitel 2.
-<Bilder/perceptron.png, id=140, 211.992pt x 104.18925pt>
+<Bilder/perceptron.png, id=154, 211.992pt x 104.18925pt>
 File: Bilder/perceptron.png Graphic file (type png)
 
 <use Bilder/perceptron.png>
@@ -1080,7 +1080,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 24--25
 
  []
 
-<Bilder/perceptron_models.png, id=143, 405.31425pt x 162.6075pt>
+<Bilder/perceptron_models.png, id=157, 405.31425pt x 162.6075pt>
 File: Bilder/perceptron_models.png Graphic file (type png)
 
 <use Bilder/perceptron_models.png>
@@ -1100,21 +1100,21 @@ Underfull \hbox (badness 10000) in paragraph at lines 45--46
 
  []
 
-<Bilder/perceptron_example.png, id=155, 184.89075pt x 86.12175pt>
+<Bilder/perceptron_example.png, id=169, 184.89075pt x 86.12175pt>
 File: Bilder/perceptron_example.png Graphic file (type png)
 
 <use Bilder/perceptron_example.png>
 Package pdftex.def Info: Bilder/perceptron_example.png used on input line 51.
 (pdftex.def)             Requested size: 110.93529pt x 51.67345pt.
 
-<Bilder/nand_gatter.png, id=156, 373.395pt x 122.25674pt>
+<Bilder/nand_gatter.png, id=170, 373.395pt x 122.25674pt>
 File: Bilder/nand_gatter.png Graphic file (type png)
 
 <use Bilder/nand_gatter.png>
 Package pdftex.def Info: Bilder/nand_gatter.png used on input line 70.
 (pdftex.def)             Requested size: 224.03873pt x 73.3546pt.
 
-<Bilder/nand_gatter_perceptron.png, id=157, 349.90726pt x 159.59625pt>
+<Bilder/nand_gatter_perceptron.png, id=171, 349.90726pt x 159.59625pt>
 File: Bilder/nand_gatter_perceptron.png Graphic file (type png)
 
 <use Bilder/nand_gatter_perceptron.png>
@@ -1122,7 +1122,7 @@ Package pdftex.def Info: Bilder/nand_gatter_perceptron.png used on input line 7
 9.
 (pdftex.def)             Requested size: 209.94595pt x 95.75847pt.
  [3 <./Bilder/perceptron_models.png> <./Bilder/perceptron_example.png>]
-<Bilder/nand_gatter_perceptron_simplified.png, id=167, 361.95226pt x 157.7895pt
+<Bilder/nand_gatter_perceptron_simplified.png, id=181, 361.95226pt x 157.7895pt
 >
 File: Bilder/nand_gatter_perceptron_simplified.png Graphic file (type png)
  <use Bilder/nand_gatter_perceptron_simplified.png>
@@ -1130,7 +1130,7 @@ Package pdftex.def Info: Bilder/nand_gatter_perceptron_simplified.png used on i
 nput line 88.
 (pdftex.def)             Requested size: 217.17302pt x 94.67442pt.
 
-<Bilder/sigmoid_learning.png, id=169, 375.20175pt x 207.174pt>
+<Bilder/sigmoid_learning.png, id=183, 375.20175pt x 207.174pt>
 File: Bilder/sigmoid_learning.png Graphic file (type png)
 
 <use Bilder/sigmoid_learning.png>
@@ -1142,30 +1142,49 @@ Underfull \hbox (badness 10000) in paragraph at lines 106--108
 
  []
 
-<Bilder/sigmoid_plot.png, id=179, 382.42876pt x 262.73157pt>
+<Bilder/sigmoid_plot.png, id=193, 382.42876pt x 262.73157pt>
 File: Bilder/sigmoid_plot.png Graphic file (type png)
 
 <use Bilder/sigmoid_plot.png>
 Package pdftex.def Info: Bilder/sigmoid_plot.png used on input line 131.
 (pdftex.def)             Requested size: 229.45901pt x 157.64014pt.
 
-<Bilder/perceptron_plot.png, id=181, 385.44pt x 261.22594pt>
+<Bilder/perceptron_plot.png, id=195, 385.44pt x 261.22594pt>
 File: Bilder/perceptron_plot.png Graphic file (type png)
 
 <use Bilder/perceptron_plot.png>
 Package pdftex.def Info: Bilder/perceptron_plot.png used on input line 140.
 (pdftex.def)             Requested size: 231.26578pt x 156.73676pt.
- [5 <./Bilder/sigmoid_learning.png>]) [6 <./Bilder/sigmoid_plot.png> <./Bilder/
-perceptron_plot.png>]
+ [5 <./Bilder/sigmoid_learning.png>]
+<Bilder/neural_network.png, id=206, 377.15906pt x 207.02344pt>
+File: Bilder/neural_network.png Graphic file (type png)
+
+<use Bilder/neural_network.png>
+Package pdftex.def Info: Bilder/neural_network.png used on input line 154.
+(pdftex.def)             Requested size: 226.29718pt x 124.21501pt.
+
+<Bilder/neural_network_extended.png, id=208, 555.57562pt x 313.9228pt>
+File: Bilder/neural_network_extended.png Graphic file (type png)
+
+<use Bilder/neural_network_extended.png>
+Package pdftex.def Info: Bilder/neural_network_extended.png used on input line 
+163.
+(pdftex.def)             Requested size: 388.90027pt x 219.74446pt.
+ [6 <./Bilder/sigmoid_plot.png> <./Bilder/perceptron_plot.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 168--179
+
+ []
+
+[7 <./Bilder/neural_network.png> <./Bilder/neural_network_extended.png>])
+[8]
 \openout2 = `Inhalt/implementierung.aux'.
 
-
-(Inhalt/implementierung.tex
+ (Inhalt/implementierung.tex
 Kapitel 3.
 LaTeX Font Info:    Try loading font information for OT1+zi4 on input line 27.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\inconsolata\ot1zi4.fd"
 File: ot1zi4.fd 2014/06/22 OT1/zi4 (Inconsolata)
-) [7
+) [9
 
 
 
@@ -1185,12 +1204,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 78--81
 
  []
 
-[8] [9]
+[10] [11]
 Underfull \hbox (badness 10000) in paragraph at lines 176--178
 
  []
 
-) [10]
+) [12]
 No file studienarbeit.bbl.
 
 AED: lastpage setting LastPage
@@ -1201,22 +1220,28 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 205.
 (Inhalt/implementierung.aux))
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 205.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 205.
-Package rerunfilecheck Info: File `studienarbeit.out' has not changed.
-(rerunfilecheck)             Checksum: EBFF282DF078015504A1554F6D2495FA;1022.
 
+
+Package rerunfilecheck Warning: File `studienarbeit.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `studienarbeit.out':
+(rerunfilecheck)             Before: C4F57888BFBC966BF06E9B3BBDBF1A3B;1204
+(rerunfilecheck)             After:  BAD9B1BD43357261EF8F1A2C2EDF7F16;1205.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 205.
  ) 
 Here is how much of TeX's memory you used:
- 8726 strings out of 493334
- 123766 string characters out of 3139252
- 231362 words of memory out of 3000000
- 11963 multiletter control sequences out of 15000+200000
+ 8746 strings out of 493334
+ 124218 string characters out of 3139252
+ 231522 words of memory out of 3000000
+ 11975 multiletter control sequences out of 15000+200000
  10603 words of font info for 41 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 34i,11n,44p,791b,652s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 34i,11n,44p,943b,652s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/inconsolata/i4-ot1-0.enc}<C:/Pro
 gram Files/MiKTeX 2.9/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb><C:/P
 rogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Program 
@@ -1232,9 +1257,9 @@ am Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmssi10.pfb><C:/Program File
 s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX
  2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/font
 s/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on studienarbeit.pdf (14 pages, 454906 bytes).
+Output written on studienarbeit.pdf (16 pages, 570101 bytes).
 PDF statistics:
- 304 PDF objects out of 1000 (max. 8388607)
- 65 named destinations out of 1000 (max. 500000)
- 179 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 335 PDF objects out of 1000 (max. 8388607)
+ 71 named destinations out of 1000 (max. 500000)
+ 205 words of extra memory for PDF output out of 10000 (max. 10000000)
 

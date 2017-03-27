@@ -141,8 +141,45 @@ Im Vergleich hierzu die Stufenfunktion, die das Verhalten eines Perceptrons abbi
 	\caption{Sigmoid Funktion $\sigma(z)$.} 
 	\label{fig:perceptron_plot} 
 \end{figure}
-Die Vorteile der Sigmoid Funktion liegen in den marginalen Änderungen $\delta w_j$ bei den Gewichtungen und $\delta b$ im Bias, welche eine marginale Änderung am $\delta\mathtt{output}$ vornehmen. Damit stellt $\delta\mathtt{output}$ die lineare Funktion bezüglich der Änderungen  $\delta w_j$ und $\delta b$ in den Weights und Bias.
+Die Vorteile der Sigmoid Funktion liegen in den marginalen Änderungen $\delta w_j$ bei den Gewichtungen und $\delta b$ im Bias, welche eine marginale Änderung am $\delta\mathtt{output}$ vornehmen. Damit stellt $\delta\mathtt{output}$ die lineare Funktion bezüglich der Änderungen  $\delta w_j$ und $\delta b$ in den Weights und Bias dar.
 \begin{equation}
 	\Delta\mathtt{output} \equiv \sum_{j}{\frac{\partial\mathtt{output}}{\partial w_j}\Delta w_j+\frac{\partial\mathtt{output}}{\partial b}\Delta b_j}
 \end{equation}
 Diese Linearität begünstigt die Wahl von kleinen Änderungen in den Weights und Biases, um das Verhalten für ein lernendes Netzwerk abzuleiten.   
+
+\section{Architektur Neuronaler Netzwerke}
+In diesem Abschnitt der Arbeit wird der Aufbau eines neuronalen Netzwerks näher betrachtet und entsprechend auf die Terminologie in diesem Bereich eingegangen (siehe Abb. \ref{fig:neural_network}). \\
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[scale=0.6]{Bilder/neural_network}
+	\caption{Architektur eines neuronalen Netzwerks.} 
+	\label{fig:neural_network} 
+\end{figure}
+
+\noindent
+Ein Netzwerk setzt sich aus mehreren Layern zusammen. So ist wird der erste Layer auf der Linken Seite auch als \textit{Input Layer} und alle korrespondierenden Neuronen als \textit{Input Neuronen} bezeichnet. Der letzte Layer oder auch \textit{Output Layer} beinhaltet dagegen alle \textit{Output Neuronen}. Die mittleren Layer tragen die Bezeichnung des \textit{Hidden Layers}, da die Neuronen weder zu dem Layer der Inputs, noch zu denen der Outputs gehören. Hierbei kann ein Netzwerk mehrere so genannte \textit{Hidden Layer} aufweisen (siehe Abb. \ref{fig:neural_network_extended}). In der folgenden Grafik ist ein 4-Layer-Netzwerk abgebildet, das zwei \textit{Hidden Layer} besitzt. Diese mehrschichtigen Netzwerke werden ebenfalls als \textit{Multilayer Perceptrons} oder \textit{MLPs} bezeichnet, obwohl das Netzwerk sich aus Sigmoid-Neuronen zusammensetzt.
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[scale=0.7]{Bilder/neural_network_extended}
+	\caption{Aufbau des neuronalen Netzwerks hinsichtlich der einzelnen Layer.} 
+	\label{fig:neural_network_extended} 
+\end{figure}
+
+\noindent
+Die Zusammensetzung der Input- und Output-Layer in einem Netzwerk sind vergleichsweise einfach. Fällt unsere Betrachtung auf die Erkennung einer handgeschriebenen "9", so können die Intensitäten der Bildpixel als Eingabewerte für den Input-Layer dienen. Liegt ein Graustufenbild der Größe von 64x64 Pixeln vor, leiten sich daraus 4096 Input-Neuronen  mit skalierten Intensitätswerten zwischen 0 und 1 ab. Der Output-Layer hingegen weißt nur ein Neuron auf, um eine neun entsprechend klassifizieren zu können. \\[0.2cm]
+\hspace*{1.3cm}
+$ 
+\begin{array}[t]{lcll}
+	\mathtt{output} < 0.5 \quad\rightarrow\quad \mbox{"Eingabebild ist keine 9"} \\[0.2cm]
+	\mathtt{output} \geq 0.5 \quad\rightarrow\quad \mbox{"Eingabebild ist eine 9"}
+\end{array}
+$
+\\[0.2cm]
+Im Vergleich hierzu ist der Aufbau der Hidden-Layer nicht durch irgendwelche Regeln ableitbar. Zum Einsatz kommen Heuristiken, die das Verhalten eines Netzwerkes bestimmen, welches ausgehend vom Experiment erwartet und gewünscht wird. Zum Beispiel kann Untersucht werden, wie die Lernrate des Netzwerks sich im Verhältnis zu der Anzahl an Hidden-Layer verhält. \\
+
+\noindent
+Bisher viel die Betrachtung in dieser Arbeit auf neuronale Netze, bei denen die Ausgabe einer Schicht die Eingabe in der nächsten Schicht darstellte. Solche Netzwerke werden auch \textit{Feedforward Neural Networks} bezeichnet. Hierunter ist das das nicht Auftreten von Schleifen zu verstehen - sprich, Informationen werden im Netzwerk immer von Layer $n$ zu Layer $n+1$ übergeben. Somit kann verhindert werden, dass das Netzwerk in gewissen Fällen bei der Eingabe der Sigmoid-Funktion $\sigma$ von dessen Ausgabe abhängig ist. \\
+Ebenfalls gibt es Netzwerke bei denen sogenannte \textit{Feedback Loops} möglich sind. In diesem Fall handelt es sich um sogenannte \textit{Recurrent Neural Networks}. Die Idee hinter diesem Modell ist, dass bestimmte Neuronen über einen definierten Zeitraum aktiv sind bevor sie inaktiv werden. Dies kann andere Neuronen anregen, ebenfalls über einen gewissen Zeitraum aktiv zu sein und eine entsprechende Kettenreaktion auslösen (Kaskade). Schleifen stellen in diesem Modell kein Problem dar, da die Ausgabe eines Neurons erst zu einem späteren Zeitpunkt die Eingabe beeinflusst. \\
+Stellt man diese Arten von neuronalen Netzwerken gegenüber, so lässt sie zum heutigen Zeitpunkt die Aussage treffen, dass Feedback Neural Networks weniger Verbreitung finden. Dies ist begründet in der Leistungsfähigkeit der Lernalgorithmen. Jedoch sollte an dieser Stelle berücksichtigt werden, dass mittels Feedback Neural Networks bestimmte Probleme mit einem geringeren architektonischen Aufwand gelöst werden können. Darüber hinaus bildet der komplexere logische Aufbau eines solchen Netzwerks, das menschliche Verhalten besser ab.
+
+\section{Netzwerk zur Klassifizierung von handgeschrieben Zahlen}
