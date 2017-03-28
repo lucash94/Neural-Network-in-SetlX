@@ -1,5 +1,4 @@
 setlx/mnist_train.csv
-Studienarbeit/studienarbeit.log
-Studienarbeit/Inhalt/erklaerung.log
-Studienarbeit/Inhalt/theorie.log
-Studienarbeit/Inhalt/titelseite.log
+
+# ignore all logs
+*.log
