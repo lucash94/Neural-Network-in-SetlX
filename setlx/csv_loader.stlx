@@ -69,7 +69,7 @@ load_data_wrapper := procedure() {
 	return [training_data, test_data];   
 };
 format_pixels_label_pairs := procedure(pixels, labels, length) {
-	return [ [pixels[i], labels[i]] : i in [1..length] ];
+	return [ [la_vector(pixels[i]), labels[i]] : i in [1..length] ];
 };
 format_with_unit_vectors := procedure(pixels, labels, length) {
 	return [ [la_vector(pixels[i]), vectorized_result(labels[i])] : i in [1..length] ];

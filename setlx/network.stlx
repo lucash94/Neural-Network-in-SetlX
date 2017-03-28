@@ -15,7 +15,6 @@ class network (s) {
 	// a is then list of calculated outputs
 	feedforward := procedure(a) {
 		// Vectorize a for multiplikation
-		a := la_vector(a);
 		
 		for( i in {1..#mBiases} ) { 
 			a := sigmoid( (mWeights[i]*a) + mBiases[i] );
@@ -95,7 +94,7 @@ class network (s) {
 
 		// Backwards pass
 		// la_hadamard() needs a matrix -> cdm is cost derivate in matrix form
-		cdm := to_matrix( cost_derivative(activations[-1], y) );
+		cdm := la_matrix( cost_derivative(activations[-1], y) );
 		delta := la_hadamard( cdm, sigmoid_prime(zs[-1]));
 
 		// No writing of nabla_b[-1] possible -> use length
@@ -104,7 +103,7 @@ class network (s) {
 	
 		// Transposition is only defined for matrices in SetlX -> am is activation in matrix form
 		// ! = transpose
-		am := to_matrix(activations[-2]);
+		am := la_matrix(activations[-2]);
 		nabla_w[lw] := delta * am!;
 		nabla_b[lb] := delta;				
 		
@@ -167,12 +166,6 @@ class network (s) {
 	sigmoid_prime := procedure(z) {
 		s := sigmoid(z); 
 		return la_matrix([ [ s[i] * (1 - s[i]) ] : i in [1..#s] ]);
-	};
-	
-	// Takes vector and transforms it to a matrix of the following form:
-	// << a b c >> --> << <<a>> <<b>> <<c>> >>
-	to_matrix := procedure(v) {
-		return la_matrix([ [v[i]] : i in [1..#v] ]);
 	};
 
 	// Compute random biases and weights in a shape fitting the declared network structure
