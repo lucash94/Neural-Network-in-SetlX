@@ -2,10 +2,11 @@ load("network_animation.stlx");
 load("test_network.stlx");
 print("Starting animation");
 
-//stop(la_hadamard( la_matrix(weights[1][1])!, la_matrix([test_data[1][1]]) ));
-
-// max(weights) = 1.5879154438385488
-// min(weights) = -2.6011421999526156
-// max(test_data) = 0.99609375
-// min(test_data) = 0.0
-start_animation(weights, biases, [784, 30, 10], test_data);
+// 60.000 data sets
+//stop(max(weights[1])); //4.559200829704485
+//stop(min(weights[1])); //-8.23151257098942
+//stop(max(test_data[1][1])); //0.99609375
+//stop(min(test_data[1][1])); //0.0
+structure := [784, 30, 10];
+netAnimation := animation(weights, biases, structure, test_data);
+netAnimation.start_animation();
