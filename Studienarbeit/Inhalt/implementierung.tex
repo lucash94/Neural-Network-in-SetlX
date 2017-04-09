@@ -10,8 +10,8 @@ Das Netzwerk wird als Klasse in SetlX angelegt und enthält die folgenden Member
 \begin{enumerate}
 \item $\mathtt{mNumLayers}$: Anzahl der Layer des aufzubauenden Netzwerkes 
 \item $\mathtt{mSizes}$: Aufbau des Layers in Listenform. Bsp.: $[784, 30, 10]$ beschreibt ein Netzwerk mit 784 Inputfeldern, 30 Neuronen im zweiten (hidden) Layer und 10 Output-Neuronen
-\item $\mathtt{mBiases}$: Alle Biases des Netzwerkes (genauer Aufbau wird im Folgenden erläutert)
-\item $\mathtt{mWeights}$: Alle Weights des Netzwerkes (genauer Aufbau wird im Folgenden erläutert)
+\item $\mathtt{mBiases}$: Alle Vorbelastungen des Netzwerkes (genauer Aufbau wird im Folgenden erläutert)
+\item $\mathtt{mWeights}$: Alle Gewichte des Netzwerkes (genauer Aufbau wird im Folgenden erläutert)
 \end{enumerate}
 
 \noindent
@@ -29,8 +29,8 @@ Die Initialisierung des Netzwerkes zur Ziffernerkennung erfolgt durch folgende B
     net.init();
 \end{Verbatim}
 Als Übergabeparameter bei der Erstellung eines Netzwerk-Objektes wird die Struktur des Netzwerkes in Form einer Liste übergeben. Diese wird dann lediglich $\mathtt{mSizes}$ zugeordnet und basierend hierrauf wird $\mathtt{mNumLayers}$ ermittelt.
-Die $\mathtt{init()}$-Funktion der $\mathtt{network}$-Klasse wird verwendet um die Weights und Biases des Netzwerkes initial zufällig zu belegen. Hiermit werden Ausgangswerte gesetzt, welche später durch das Lernen des Netzwerkes angepasst werden.
-Im Folgenden sind die verwendeten Funktionen, welche während der Weights- und Bias-Initialisierung verwendet werden, zu sehen.
+Die $\mathtt{init()}$-Funktion der $\mathtt{network}$-Klasse wird verwendet um die Gewichte und Vorbelastungen des Netzwerkes initial zufällig zu belegen. Hiermit werden Ausgangswerte gesetzt, welche später durch das Lernen des Netzwerkes angepasst werden.
+Im Folgenden sind die verwendeten Funktionen, welche während der Gewichts- und Vorbelastungs-Initialisierung verwendet werden, zu sehen.
 \begin{Verbatim}[ frame         = lines, 
                   framesep      = 0.3cm, 
                   firstnumber   = 1,
@@ -40,59 +40,61 @@ Im Folgenden sind die verwendeten Funktionen, welche während der Weights- und B
                   xleftmargin   = 0.8cm,
                   xrightmargin  = 0.8cm,
                 ]
-	init := procedure() {
-		computeRndBiases();
-		computeRndWeights();
-	};
-
-	computeRndBiases := procedure() {
-		this.mBiases := [ 
-			computeRndMatrix([1, mSizes[i]]) : i in [2..mNumLayers] 
-		];
-	};
-
-	computeRndWeights := procedure() {
-		this.mWeights := [ 
-			computeRndMatrix([mSizes[i], mSizes[i+1]]) 
-			: i in [1..mNumLayers-1] 
-		];
-	};
-
-	computeRndMatrix := procedure(s) {
-		[i,j] := s;
-		return la_matrix([
-			[ ((random()-0.5)*2)/28 : p in [1..i] ] : q in [1..j]
-		]);
-	};
+    init := procedure() {
+        computeRndBiases();
+        computeRndWeights();
+    };
+    computeRndBiases := procedure() {
+        this.mBiases := [ 
+            computeRndMatrix([1, mSizes[i]]) : i in [2..mNumLayers] 
+        ];
+    };
+    computeRndWeights := procedure() {
+        this.mWeights := [ 
+            computeRndMatrix([mSizes[i], mSizes[i+1]]) : i in [1..mNumLayers-1] 
+        ];
+    };
+    computeRndMatrix := procedure(s) {
+        [i,j] := s;
+        return la_matrix([
+            [ ((random()-0.5)*2)/28 : p in [1..i] ] : q in [1..j]
+        ]);
+    };
 \end{Verbatim}
 
 \begin{enumerate}
 \item $\mathtt{init()}$: in der init-Funktion werden die Funktionen computeRndBiases() und $\mathtt{computeRndWeights()}$ aufgerufen
-\item $\mathtt{computeRndBiases()}$: Die Funktion befüllt die Variable mBiases mit zufälligen Werten. Der für das Netzwerk benötigte Aufbau der Biases entspricht folgender Form: \\
-$[\ <<\ <<\mathtt{b\_layer1\_neu1}>>\ <<\mathtt{b\_layer1\_neu2}>>\ ...\ >>,\ <<\ <<\mathtt{b\_layer2\_neu1}>>\ ...\ >>,\ ...\ ]$ \\
-Das heißt es kann auf die Biases mit folgendem Schema in SetlX zugegriffen werden: \\
+\item $\mathtt{computeRndBiases()}$: Die Funktion befüllt die Variable mBiases mit zufälligen Werten. Der für das Netzwerk benötigte Aufbau der Vorbelastungen entspricht folgender Form: \\
+$[ \\ 
+<<\ <<\mathtt{b\_layer1\_neu1}>>\ <<\mathtt{b\_layer1\_neu2}>>\ ...\ >>, \\
+<<\ <<\mathtt{b\_layer2\_neu1}>>\ ...\ >>, \\
+ ...\ ]$ \\
+Das heißt es kann auf die Vorbelastungen mit folgendem Schema in SetlX zugegriffen werden: \\
 \begin{center}
 	$\mathtt{mBiases[layer][neuron][bias]}$
 \end{center}
-Hierbei ist zu beachten, dass der Wert $\mathtt{bias}$ immer 1 ist, da jedes Neuron nur einen einzigen Bias besitzt. Da es sich beim Input-Layer des Netzwerkes nicht um Sigmoid-Neuronen handelt, sondern lediglich um Eingabewerte, werden hierfür keine Biases benötigt. Deshalb wird bei der Erstellung der zufälligen Biases nur $[2..\mathtt{mNumLayers}]$ (also alle Layer außer dem Ersten) betrachtet.
-\item $\mathtt{computeRndWeights()}$: Diese Funktion ist equivalent zu der Bias-Funktion, lediglich wird folgende Struktur der Weights angelegt: \\
-$[\ <<\ <<\mathtt{w1\_layer2\_neu1}\ \mathtt{w1\_layer2\_neu2}\ ...\ >>\ << \mathtt{w2\_layer2\_neu1}\ ...\ >>\ ...\ >>,\ <<\ <<\mathtt{w1\_layer3\_neu1}\  \mathtt{w1\_layer3\_neu2}\ ...\ >>\ <<\mathtt{w2\_layer3\_neu1}\ ...\ >>\ ...\ >>,\ ...\ ]$ \\
+Hierbei ist zu beachten, dass der Wert für $\mathtt{bias}$ immer 1 ist, da jedes Neuron nur eine einzige Vorbelastung besitzt. Da es sich bei der Eingabe-Schicht des Netzwerkes nicht um Sigmoid-Neuronen handelt, sondern lediglich um Eingabewerte, werden hierfür keine Vorbelastungen benötigt. Deshalb wird bei der Erstellung der zufälligen Vorbelastungen nur $[2..\mathtt{mNumLayers}]$ (also alle Schichten außer dem Ersten) betrachtet.
+\item $\mathtt{computeRndWeights()}$: Diese Funktion ist equivalent zu der Vorbelastungs-Funktion, lediglich wird folgende Struktur der Gewichte angelegt: \\
+$[ \\ 
+<<\ <<\mathtt{w1\_layer2\_neu1}\ \mathtt{w1\_layer2\_neu2}\ ...\ >>\ << \mathtt{w2\_layer2\_neu1}\ ...\ >>\ ...\ >>, \\
+<<\ <<\mathtt{w1\_layer3\_neu1}\  \mathtt{w1\_layer3\_neu2}\ ...\ >>\ <<\mathtt{w2\_layer3\_neu1}\ ...\ >>\ ...\ >>, \\
+...\ ]$ \\
 Dies entspricht folgenden Zugriffsmöglichkeiten: \\ 
 \begin{center}
 	$\mathtt{mWeights[layer-1][neuron][weight\ for\ input\ neuron]}$
 \end{center}
-Der Zugriff auf die Layer mittels $\mathtt{[layer-1]}$ resultiert aus den fehlenden Weights des Input-Layers.
-\item $\mathtt{computeRndMatrix()}$: Diese Hilfsfunktion dient zur Erstellung der Struktur der Weights und Biases in den zuvor vorgestellten Funktionen. Die Funktion enthält als Parameter eine Matrix-Struktur in Listenform und liefert die zugehörige Matrix mit zufälligen Werten zwischen $-1/28$ und $1/28$ zurück. Die übergebende Struktur hat die Form $\mathtt{[x,y]}$, wobei $\mathtt{x}$ die Anzahl der Spalten und $\mathtt{y}$ die Anzahl der Reihen angibt. \\
+Der Zugriff auf die Schichten mittels $\mathtt{[layer-1]}$ resultiert aus den fehlenden Gewichten der Eingabe-Schicht.
+\item $\mathtt{computeRndMatrix()}$: Diese Hilfsfunktion dient zur Erstellung der Struktur der Gewichte und Vorbelastungen in den zuvor vorgestellten Funktionen. Die Funktion enthält als Parameter eine Matrix-Struktur in Listenform und liefert die zugehörige Matrix mit zufälligen Werten zwischen $-1/28$ und $1/28$ zurück. Der Wert 28 ergibt sich aus der Größe des Eingabevektors (28x28 Pixel).  Die übergebende Struktur hat die Form $\mathtt{[x,y]}$, wobei $\mathtt{x}$ die Anzahl der Spalten und $\mathtt{y}$ die Anzahl der Reihen angibt. \\
 Bsp.: $s := [1,2]\ \rightarrow\ <<\ <<x>>\ <<y>>\ >>$ und $s := [2,1]\ \rightarrow\ <<\ <<x\ y>>\ >>$
 \end{enumerate}
 
 \noindent
-Sei nun $w$ die Matrix der Weights und $b$ die Matrix aller Biases und $a$ bezeichnet den Aktivierungsvektor des vorherigen Layers, also deren Output (zu Beginn also die Input-Pixel der Eingabe). Nach Gleichung xyz zur Berechnung eines Sigmoid-Outputs lässt sich nun folgende Formel aufstellen: 
+Sei nun $w$ die Matrix der Gewichte und $b$ die Matrix aller Vorbelastungen und $a$ bezeichnet den Aktivierungsvektor der vorherigen Schicht, also deren Ausgabe (zu Beginn also die Pixel der Eingabe). Nach Gleichung xyz zur Berechnung einer Sigmoid-Ausgabe lässt sich nun folgende Formel aufstellen: 
 \begin{equation}\label{eq:feedforwarding}
 	a' = \sigma(wa + b)
 \end{equation}
 \noindent
-Hierbei bezeichnet $a'$ den Output-Vektor des aktuellen Layers, welcher dann dem nächsten Layer weitergeleitet wird (feedforwarding). Nachfolgend sind die Implementierungen der Sigmoid-Funktionen sowie dem Feedforwarding zu sehen.
+Hierbei bezeichnet $a'$ den Ausgabe-Vektor der aktuellen Schicht, welcher dann der nächsten Schicht weitergeleitet wird (feedforwarding). Nachfolgend sind die Implementierungen der Sigmoid-Funktionen sowie dem Feedforwarding zu sehen.
 \begin{Verbatim}[ frame         = lines, 
                   framesep      = 0.3cm, 
                   firstnumber   = 1,
@@ -102,30 +104,28 @@ Hierbei bezeichnet $a'$ den Output-Vektor des aktuellen Layers, welcher dann dem
                   xleftmargin   = 0.8cm,
                   xrightmargin  = 0.8cm,
                 ]
-	feedforward := procedure(a) {
-		a := la_vector(a);	
-		for( i in {1..#mBiases} ) { 
-			a := sigmoid( (mWeights[i]*a) + mBiases[i] );
-		}
-		return a;
-	};                
-                
-	sigmoid := procedure(z) {
-		return la_vector([ 1.0/(1.0 + exp(- z[i] )) : i in [1..#z] ]);
-	};
-
-	sigmoid_prime := procedure(z) {
-		s := sigmoid(z); 
-		return la_matrix([ [ s[i] * (1 - s[i]) ] : i in [1..#s] ]);
-	};
+    feedforward := procedure(a) {
+        a := la_vector(a);	
+        for( i in {1..#mBiases} ) { 
+            a := sigmoid( (mWeights[i]*a) + mBiases[i] );
+        }
+        return a;
+    };                            
+    sigmoid := procedure(z) {
+        return la_vector([ 1.0/(1.0 + exp(- z[i] )) : i in [1..#z] ]);
+    };
+    sigmoid_prime := procedure(z) {
+        s := sigmoid(z); 
+        return la_matrix([ [ s[i] * (1 - s[i]) ] : i in [1..#s] ]);
+    };
 \end{Verbatim}
 \begin{enumerate}
-\item $\mathtt{feedforward(a)}$: Zunächst werden die als Liste übergebenen Eingabewerte $\mathtt{a}$ (784 Pixel in Listenform) mit Hilfe von $\mathtt{la\_vektor()}$ in einen Vektor umgewandelt und anschließend wird die Gleichung \eqref{eq:feedforwarding} auf alle Layer des Netzwerkes angewandt. Zurückgegeben wird der resultierende Output jedes Neurons des letztes Layers in vektorisierter Form.
-\item $\mathtt{sigmoid(z)}$: Diese Funktionen nimmt einen Vektor $\mathtt{z}$ und berechnet mit Hilfe der Sigmoid-Formel (siehe Formel xyz) den Output der Neuronen in vektorisierter Form.
+\item $\mathtt{feedforward(a)}$: Zunächst werden die als Liste übergebenen Eingabewerte $\mathtt{a}$ (784 Pixel in Listenform) mit Hilfe von $\mathtt{la\_vektor()}$ in einen Vektor umgewandelt und anschließend wird die Gleichung \eqref{eq:feedforwarding} auf alle Schichten des Netzwerkes angewandt. Zurückgegeben wird die resultierende Ausgabe jedes Neurons der letzten Schicht in vektorisierter Form.
+\item $\mathtt{sigmoid(z)}$: Diese Funktionen nimmt einen Vektor $\mathtt{z}$ und berechnet mit Hilfe der Sigmoid-Formel (siehe Formel xyz) die Ausgabe der Neuronen in vektorisierter Form.
 \item $\mathtt{sigmoid\_prime(z)}$: Für einen gegebenen Vektor $\mathtt{z}$ wird die Ableitung der Sigmoid-Funktion (nach Formel xyz) berechnet und in vektorisierter Form zurückgegeben.
 \end{enumerate}
 \noindent
-Die Feedforward-Funktion dient also dazu, die Eingabewerte durch das gesamte Netzwerk durchzureichen und den daraus resultierenden Output zu ermitteln. Als nächstes wird der Algorithmus diskutiert, durch welchem es dem Netzwerk ermöglicht wird zu \glqq lernen\grqq. Hierfür wird der Stochastic Gradient Descent (SGD) Algorithmus verwendet. Die Implementierung des SGDs in SetlX ist nachfolgend aufgezeigt und wird nun im Detail erläutert.
+Die Feedforward-Funktion dient also dazu, die Eingabewerte durch das gesamte Netzwerk durchzureichen und die daraus resultierende Ausgabe zu ermitteln. Als nächstes wird der Algorithmus diskutiert, durch welchem es dem Netzwerk ermöglicht wird zu \glqq lernen\grqq. Hierfür wird der Stochastic Gradient Descent (SGD) Algorithmus verwendet. Die Implementierung des SGDs in SetlX ist nachfolgend aufgezeigt und wird nun im Detail erläutert.
 
 \begin{Verbatim}[ frame         = lines, 
                   framesep      = 0.3cm, 
@@ -136,41 +136,39 @@ Die Feedforward-Funktion dient also dazu, die Eingabewerte durch das gesamte Net
                   xleftmargin   = 0.8cm,
                   xrightmargin  = 0.8cm,
                 ]
-	sgd := procedure(training_data, epochs, mini_batch_size, eta, test_data) {
-		if(test_data != null) {
-			n_test := #test_data; 		
-		}
-		n := #training_data;
+    sgd := procedure(training_data, epochs, mini_batch_size, eta, test_data) {
+        if(test_data != null) {
+            n_test := #test_data; 		
+        }
+        n := #training_data;
 		
-		for(j in {0..epochs}) {
-			training_data := shuffle(training_data);
-			mini_batches := [ 
-				training_data[k..k+mini_batch_size-1] 
-				: k in [1,mini_batch_size..n] 
-			];
+        for(j in {0..epochs}) {
+            training_data := shuffle(training_data);
+            mini_batches := [ 
+                training_data[k..k+mini_batch_size-1] : k in [1,mini_batch_size..n] 
+            ];
 			
-			for(mini_batch in mini_batches) {
-				update_mini_batch(mini_batch, eta);
-			} 
+            for(mini_batch in mini_batches) {
+                update_mini_batch(mini_batch, eta);
+            } 
 			
-			// Visual output
-			if(test_data != null) {
-				ev := evaluate(test_data);
-				print("Epoch $j$: $ev$ / $n_test$");
-			}
-			else {
-				print("Epoch $j$ complete");
-			}
-		}
-	};
+            if(test_data != null) {
+                ev := evaluate(test_data);
+                print("Epoch $j$: $ev$ / $n_test$");
+            }
+            else {
+                print("Epoch $j$ complete");
+            }
+        }
+    };
 \end{Verbatim}
 \begin{enumerate}
 \item Zeile 1: Übergabeparameter der Funktion sind die Trainingsdatensätze (Liste von Tupeln $\mathtt{[x,y]}$ mit $\mathtt{x}$ als Eingabewerten und $\mathtt{y}$ als gewünschtem Ergebnis), die Anzahl der Epochen (Integer-Wert), die Größe der Mini-Batches (Integer-Wert), die gewünschte Lernrate (Fließkomma-Wert) und den optionalen Testdatensätzen (äquivalenter Aufbau zu Trainingsdaten).
 \item Zeile 2-5: Falls Testdaten vorhanden sind, so wird deren Anzahl (Anzahl Datensätze) in der Variablen $\mathtt{n\_test}$ gespeichert. Ebenso wird die Anzahl der Trainings-Datensätze in $\mathtt{n}$ gesichert.
 \item Zeile 7: Nun wird der nachfolgende Programmcode entsprechend der übergebenen Epochenanzahl mehrfach ausgeführt.
 \item Zeile 8-12: Zuerst werden alle Trainingsdaten zufällig vermischt und anschließend Mini-Batches (also Ausschnitte aus dem Gesamtdatensatz) der vorher festgelegten Größe aus den Trainingsdaten extrahiert. Somit wird eine zufällige Belegung von Mini-Batches garantiert. Alle Mini-Batches werden in Listenform in der Variablen $\mathtt{mini\_batches}$ gespeichert.
-\item Zeile 14-16: Anschließend wird für jeden Mini-Batch aus $\mathtt{mini\_batches}$ ein Schritt des SGD angewendet. Dies geschieht mit Hilfe der Funktion $\mathtt{update\_mini\_batches}$, welche anschließend genauer erläutert wird. Zweck der Funktion ist es die Weights und Biases des Netzwerkes mit Hilfe einer Iteration des SGD-Algorithmus anzupassen. Die Basis für diese Anpassung liefert der übergebene Mini-Batch und die Lernrate.
-\item Zeile 19-25: Dieser Programmcode dient Ausgabe auf der Konsole und teilt dem Benutzer die aktuelle Anzahl an korrekt ermittelten Datensätzen der Trainingsdaten nach jeder Epoche mit. Hierfür wird die Hilfsfunktion $\mathtt{evaluate}$ verwendet, welche unter Berücksichtigung des aktuellen Netzwerkzustandes die Outputs ermittelt, welcher bei Eingabe der Testdaten durch das Netzwerk errechnet wurden (genaue Implementierung folgt). Sollten der $\mathtt{sgd}$-Funktion keine Testdaten übergeben worden sein, so entfällt diese Ausgabe.
+\item Zeile 14-16: Anschließend wird für jeden Mini-Batch aus $\mathtt{mini\_batches}$ ein Schritt des SGD angewendet. Dies geschieht mit Hilfe der Funktion $\mathtt{update\_mini\_batches}$, welche anschließend genauer erläutert wird. Zweck der Funktion ist es die Gewichte und Vorbelastungen des Netzwerkes mit Hilfe einer Iteration des SGD-Algorithmus anzupassen. Die Basis für diese Anpassung liefert der übergebene Mini-Batch und die Lernrate.
+\item Zeile 19-25: Dieser Programmcode dient zur Ausgabe auf der Konsole und teilt dem Benutzer die aktuelle Anzahl an korrekt ermittelten Datensätzen der Trainingsdaten nach jeder Epoche mit. Hierfür wird die Hilfsfunktion $\mathtt{evaluate}$ verwendet, welche unter Berücksichtigung des aktuellen Netzwerkzustandes die Outputs ermittelt, welcher bei Eingabe der Testdaten durch das Netzwerk errechnet wurden (genaue Implementierung folgt). Sollten der $\mathtt{sgd}$-Funktion keine Testdaten übergeben worden sein, so entfällt diese Ausgabe.
 \end{enumerate}
 
 \noindent

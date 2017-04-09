@@ -14,8 +14,6 @@ class network (s) {
 	// Return output of network for 'a' as input
 	// a is then list of calculated outputs
 	feedforward := procedure(a) {
-		// Vectorize a for multiplikation
-		
 		for( i in {1..#mBiases} ) { 
 			a := sigmoid( (mWeights[i]*a) + mBiases[i] );
 		}

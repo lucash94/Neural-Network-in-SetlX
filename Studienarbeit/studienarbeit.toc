@@ -15,4 +15,4 @@
 \contentsline {chapter}{\numberline {3}Implementierung}{9}{chapter.3}
 \contentsline {section}{\numberline {3.1}Laden und Aufbereitung der MNIST Daten}{9}{section.3.1}
 \contentsline {section}{\numberline {3.2}Implementierung des neuronalen Netzes}{9}{section.3.2}
-\contentsline {section}{\numberline {3.3}Animation}{12}{section.3.3}
+\contentsline {section}{\numberline {3.3}Animation}{13}{section.3.3}
