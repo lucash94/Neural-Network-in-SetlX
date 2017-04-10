@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.11.3)  10 APR 2017 23:12
+=======
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.3.22)  10 APR 2017 19:51
+>>>>>>> 59ba9cc8ce6a7a376cdcd5fdc3214a14ad27236b
 entering extended mode
 **./studienarbeit.tex
 (studienarbeit.tex
@@ -975,7 +979,7 @@ pdf dhbw-logo.eps>
 (epstopdf)             \includegraphics on input line 6.
 Package epstopdf Info: Output file is already uptodate.
 
-<dhbw-logo-eps-converted-to.pdf, id=75, 173.64874pt x 88.33pt>
+<dhbw-logo-eps-converted-to.pdf, id=83, 173.64874pt x 88.33pt>
 File: dhbw-logo-eps-converted-to.pdf Graphic file (type pdf)
 
 <use dhbw-logo-eps-converted-to.pdf>
@@ -1072,8 +1076,13 @@ l.197 \include{Inhalt/einleitung}
 
  (Inhalt/theorie.tex
 Kapitel 2.
+<<<<<<< HEAD
 <Bilder/neural_network_extended.png, id=146, 555.57562pt x 313.9228pt>
 File: Bilder/neural_network_extended.png Graphic file (type png)
+=======
+<Bilder/perceptron.png, id=164, 211.992pt x 104.18925pt>
+File: Bilder/perceptron.png Graphic file (type png)
+>>>>>>> 59ba9cc8ce6a7a376cdcd5fdc3214a14ad27236b
 
 <use Bilder/neural_network_extended.png>
 Package pdftex.def Info: Bilder/neural_network_extended.png used on input line 
@@ -1084,6 +1093,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 17--28
 
  []
 
+<<<<<<< HEAD
 [2
 
 
@@ -1096,6 +1106,8 @@ File: Bilder/perceptron.png Graphic file (type png)
 Package pdftex.def Info: Bilder/perceptron.png used on input line 38.
 (pdftex.def)             Requested size: 127.19617pt x 62.51402pt.
  [3 <./Bilder/perceptron.png>]
+=======
+>>>>>>> 59ba9cc8ce6a7a376cdcd5fdc3214a14ad27236b
 <Bilder/perceptron_models.png, id=167, 405.31425pt x 162.6075pt>
 File: Bilder/perceptron_models.png Graphic file (type png)
 
@@ -1114,7 +1126,41 @@ File: Bilder/perceptron_plot.png Graphic file (type png)
 Package pdftex.def Info: Bilder/perceptron_plot.png used on input line 77.
 (pdftex.def)             Requested size: 231.26578pt x 156.73676pt.
 
+<<<<<<< HEAD
 <Bilder/sigmoid_learning.png, id=171, 375.20175pt x 207.174pt>
+=======
+<Bilder/perceptron_example.png, id=179, 184.89075pt x 86.12175pt>
+File: Bilder/perceptron_example.png Graphic file (type png)
+
+<use Bilder/perceptron_example.png>
+Package pdftex.def Info: Bilder/perceptron_example.png used on input line 51.
+(pdftex.def)             Requested size: 110.93529pt x 51.67345pt.
+
+<Bilder/nand_gatter.png, id=180, 373.395pt x 122.25674pt>
+File: Bilder/nand_gatter.png Graphic file (type png)
+
+<use Bilder/nand_gatter.png>
+Package pdftex.def Info: Bilder/nand_gatter.png used on input line 70.
+(pdftex.def)             Requested size: 224.03873pt x 73.3546pt.
+
+<Bilder/nand_gatter_perceptron.png, id=181, 349.90726pt x 159.59625pt>
+File: Bilder/nand_gatter_perceptron.png Graphic file (type png)
+
+<use Bilder/nand_gatter_perceptron.png>
+Package pdftex.def Info: Bilder/nand_gatter_perceptron.png used on input line 7
+9.
+(pdftex.def)             Requested size: 209.94595pt x 95.75847pt.
+ [3 <./Bilder/perceptron_models.png> <./Bilder/perceptron_example.png>]
+<Bilder/nand_gatter_perceptron_simplified.png, id=191, 361.95226pt x 157.7895pt
+>
+File: Bilder/nand_gatter_perceptron_simplified.png Graphic file (type png)
+ <use Bilder/nand_gatter_perceptron_simplified.png>
+Package pdftex.def Info: Bilder/nand_gatter_perceptron_simplified.png used on i
+nput line 88.
+(pdftex.def)             Requested size: 217.17302pt x 94.67442pt.
+
+<Bilder/sigmoid_learning.png, id=193, 375.20175pt x 207.174pt>
+>>>>>>> 59ba9cc8ce6a7a376cdcd5fdc3214a14ad27236b
 File: Bilder/sigmoid_learning.png Graphic file (type png)
 
 <use Bilder/sigmoid_learning.png>
@@ -1125,52 +1171,116 @@ Underfull \hbox (badness 10000) in paragraph at lines 92--94
 
  []
 
+<<<<<<< HEAD
 [4 <./Bilder/perceptron_models.png>] [5 <./Bilder/perceptron_plot.png> <./Bilde
 r/sigmoid_learning.png>]
 <Bilder/sigmoid_plot.png, id=191, 382.42876pt x 262.73157pt>
+=======
+<Bilder/sigmoid_plot.png, id=203, 382.42876pt x 262.73157pt>
+>>>>>>> 59ba9cc8ce6a7a376cdcd5fdc3214a14ad27236b
 File: Bilder/sigmoid_plot.png Graphic file (type png)
 
 <use Bilder/sigmoid_plot.png>
 Package pdftex.def Info: Bilder/sigmoid_plot.png used on input line 117.
 (pdftex.def)             Requested size: 229.45901pt x 157.64014pt.
+<<<<<<< HEAD
+=======
+
+<Bilder/perceptron_plot.png, id=205, 385.44pt x 261.22594pt>
+>>>>>>> 59ba9cc8ce6a7a376cdcd5fdc3214a14ad27236b
 File: Bilder/perceptron_plot.png Graphic file (type png)
  <use Bilder/perceptron_plot.png>
 Package pdftex.def Info: Bilder/perceptron_plot.png used on input line 126.
 (pdftex.def)             Requested size: 231.26578pt x 156.73676pt.
+<<<<<<< HEAD
  [6 <./Bilder/sigmoid_plot.png>]) [7]
+=======
+ [5 <./Bilder/sigmoid_learning.png>]
+<Bilder/neural_network.png, id=216, 377.15906pt x 207.02344pt>
+File: Bilder/neural_network.png Graphic file (type png)
+
+<use Bilder/neural_network.png>
+Package pdftex.def Info: Bilder/neural_network.png used on input line 154.
+(pdftex.def)             Requested size: 226.29718pt x 124.21501pt.
+
+<Bilder/neural_network_extended.png, id=218, 555.57562pt x 313.9228pt>
+File: Bilder/neural_network_extended.png Graphic file (type png)
+
+<use Bilder/neural_network_extended.png>
+Package pdftex.def Info: Bilder/neural_network_extended.png used on input line 
+163.
+(pdftex.def)             Requested size: 388.90027pt x 219.74446pt.
+ [6 <./Bilder/sigmoid_plot.png> <./Bilder/perceptron_plot.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 168--179
+
+ []
+
+[7 <./Bilder/neural_network.png> <./Bilder/neural_network_extended.png>])
+[8]
+>>>>>>> 59ba9cc8ce6a7a376cdcd5fdc3214a14ad27236b
 \openout2 = `Inhalt/implementierung.aux'.
 
  (Inhalt/implementierung.tex
 Kapitel 3.
+<<<<<<< HEAD
 LaTeX Font Info:    Try loading font information for OT1+zi4 on input line 27.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\inconsolata\ot1zi4.fd"
 File: ot1zi4.fd 2014/06/22 OT1/zi4 (Inconsolata)
 ) [8
+=======
+
+Underfull \hbox (badness 10000) in paragraph at lines 22--30
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 22--30
+
+ []
+
+[9
+>>>>>>> 59ba9cc8ce6a7a376cdcd5fdc3214a14ad27236b
 
 
 
 ]
-Overfull \hbox (12.70816pt too wide) in paragraph at lines 66--67
+LaTeX Font Info:    Try loading font information for OT1+zi4 on input line 56.
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\inconsolata\ot1zi4.fd"
+File: ot1zi4.fd 2016/12/29 OT1/zi4 (Inconsolata)
+)
+LaTeX Font Info:    Font shape `OT1/zi4/m/n' will be
+(Font)              scaled to size 10.0pt on input line 56.
+ [10]
+Overfull \hbox (12.70816pt too wide) in paragraph at lines 95--96
 []$[]$\OT1/cmss/m/n/10 : in der init-Funktion wer-den die Funk-tio-nen com-pu-t
 eRnd-Bia-ses() und $[]$
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 67--73
+Underfull \hbox (badness 10000) in paragraph at lines 96--102
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 77--83
+Underfull \hbox (badness 10000) in paragraph at lines 106--112
 
  []
 
+<<<<<<< HEAD
 [9] [10]
 Underfull \hbox (badness 10000) in paragraph at lines 174--176
 
  []
 
 ) [11] [12]
+=======
+[11] [12] [13]
+Underfull \hbox (badness 10000) in paragraph at lines 243--245
+
+ []
+
+) [14]
+>>>>>>> 59ba9cc8ce6a7a376cdcd5fdc3214a14ad27236b
 No file studienarbeit.bbl.
 
 AED: lastpage setting LastPage
@@ -1182,7 +1292,11 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 205.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 205.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 205.
 Package rerunfilecheck Info: File `studienarbeit.out' has not changed.
+<<<<<<< HEAD
 (rerunfilecheck)             Checksum: 3B408C36A4E40F83897EA107D3F4274D;1192.
+=======
+(rerunfilecheck)             Checksum: 4CACB7002FEF47A9C8009CFA647813C3;1343.
+>>>>>>> 59ba9cc8ce6a7a376cdcd5fdc3214a14ad27236b
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -1193,6 +1307,7 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 205.
  ) 
 Here is how much of TeX's memory you used:
+<<<<<<< HEAD
  8718 strings out of 493334
  123282 string characters out of 3139252
  231199 words of memory out of 3000000
@@ -1221,4 +1336,35 @@ PDF statistics:
  320 PDF objects out of 1000 (max. 8388607)
  67 named destinations out of 1000 (max. 500000)
  180 words of extra memory for PDF output out of 10000 (max. 10000000)
+=======
+ 9029 strings out of 493333
+ 128604 string characters out of 3139194
+ 236675 words of memory out of 3000000
+ 12230 multiletter control sequences out of 15000+200000
+ 14639 words of font info for 57 fonts, out of 3000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 34i,11n,43p,943b,652s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/inconsolata/i4-ot1-0.enc}<C:/Pro
+gram Files/MiKTeX 2.9/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb><C:/P
+rogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Program 
+Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/Mi
+KTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9
+/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files/MiKTeX 2.9/fonts/ty
+pe1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publi
+c/amsfonts/cm/cmr5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts
+/cm/cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss10
+.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss12.pfb><C:
+/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss8.pfb><C:/Program 
+Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><C:/Program Files/
+MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmssi10.pfb><C:/Program Files/MiKTeX 
+2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/font
+s/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/p
+ublic/amsfonts/cm/cmtt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/am
+sfonts/cm/cmtt8.pfb>
+Output written on studienarbeit.pdf (18 pages, 590914 bytes).
+PDF statistics:
+ 375 PDF objects out of 1000 (max. 8388607)
+ 81 named destinations out of 1000 (max. 500000)
+ 221 words of extra memory for PDF output out of 10000 (max. 10000000)
+>>>>>>> 59ba9cc8ce6a7a376cdcd5fdc3214a14ad27236b
 
