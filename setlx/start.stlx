@@ -24,4 +24,5 @@ writeFile("my_n.stlx", "biases := " + net.mBiases + ";\n\n" + "weights := "+ net
 /*load("network_animation.stlx");
 print("Starting animation");
 
-start_animation(net.mWeights, structure, test_data);*/
+netAnimation := animation(net.mWeights, net.mBiases, structure, test_data);
+netAnimation.start_animation();*/
