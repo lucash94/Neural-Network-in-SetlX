@@ -8,9 +8,9 @@
 \BOOKMARK [0][-]{chapter.2}{Theorie}{}% 8
 \BOOKMARK [1][-]{section.2.1}{SetlX}{chapter.2}% 9
 \BOOKMARK [1][-]{section.2.2}{MNIST}{chapter.2}% 10
-\BOOKMARK [1][-]{section.2.3}{Perceptrons}{chapter.2}% 11
-\BOOKMARK [1][-]{section.2.4}{Sigmoid Neurons}{chapter.2}% 12
-\BOOKMARK [1][-]{section.2.5}{Architektur Neuronaler Netzwerke}{chapter.2}% 13
+\BOOKMARK [1][-]{section.2.3}{Neuronales Netzwerk}{chapter.2}% 11
+\BOOKMARK [1][-]{section.2.4}{Perceptrons}{chapter.2}% 12
+\BOOKMARK [1][-]{section.2.5}{Sigmoid Neurons}{chapter.2}% 13
 \BOOKMARK [1][-]{section.2.6}{Netzwerk zur Klassifizierung von handgeschrieben Zahlen}{chapter.2}% 14
 \BOOKMARK [0][-]{chapter.3}{Implementierung}{}% 15
 \BOOKMARK [1][-]{section.3.1}{Laden und Aufbereitung der MNIST Daten}{chapter.3}% 16
