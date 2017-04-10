@@ -29,7 +29,7 @@ class network (s) {
 		}
 		n := #training_data;
 		
-		for(j in {0..epochs}) {
+		for(j in {1..epochs}) {
 			training_data := shuffle(training_data);
 			// Get mini-batches from the training data to train the network
 			mini_batches := [ training_data[k..k+mini_batch_size-1] : k in [1,mini_batch_size..n] ];
@@ -126,12 +126,12 @@ class network (s) {
 		test_results := [0 : i in [1..#test_data]];
 		
 		i := 1;
-		// x: calculated number; y: real number
+		// x: image-pixels; y: label for image
 		for( [x,y] in test_data ) {
 			// Calculate index of max. output
 			out := feedforward(x);
 			max := out[1];
-			index := 1;
+			index := 1;stop();
 			for(i in {2..#out}) {
 				if( out[i] > max ) {
 					max := out[i];
