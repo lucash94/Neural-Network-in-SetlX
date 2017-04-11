@@ -1,12 +1,8 @@
-<<<<<<< HEAD
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.11.3)  10 APR 2017 23:12
-=======
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.3.22)  10 APR 2017 19:51
->>>>>>> 59ba9cc8ce6a7a376cdcd5fdc3214a14ad27236b
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.3.22)  11 APR 2017 11:25
 entering extended mode
 **./studienarbeit.tex
 (studienarbeit.tex
-LaTeX2e <2016/03/31> patch level 3
+LaTeX2e <2017/01/01> patch level 1
 Babel <3.9r> and hyphenation patterns for 75 language(s) loaded.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\report.cls"
 Document Class: report 2014/09/29 v1.4h Standard LaTeX document class
@@ -362,18 +358,18 @@ Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks16
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphics.sty"
-Package: graphics 2016/07/10 v1.0t Standard LaTeX Graphics (DPC,SPQR)
+Package: graphics 2016/10/09 v1.0u Standard LaTeX Graphics (DPC,SPQR)
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\trig.sty"
 Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\00miktex\graphics.cfg"
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics-cfg\graphics.cfg"
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 99.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\graphics-def\pdftex.def"
-File: pdftex.def 2016/07/10 v0.06j Graphics/color for pdfTeX
+File: pdftex.def 2017/01/12 v0.06k Graphics/color for pdfTeX
 
 ("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\infwarerr.sty"
 Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
@@ -401,7 +397,7 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 ))
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsmath.sty"
-Package: amsmath 2016/06/28 v2.15d AMS math features
+Package: amsmath 2016/11/05 v2.16a AMS math features
 \@mathmargin=\skip43
 
 For additional information on amsmath, use the `?' option.
@@ -421,20 +417,20 @@ Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 Package: amsopn 2016/03/08 v2.02 operator names
 )
 \inf@bad=\count89
-LaTeX Info: Redefining \frac on input line 199.
+LaTeX Info: Redefining \frac on input line 213.
 \uproot@=\count90
 \leftroot@=\count91
-LaTeX Info: Redefining \overline on input line 297.
+LaTeX Info: Redefining \overline on input line 375.
 \classnum@=\count92
 \DOTSCASE@=\count93
-LaTeX Info: Redefining \ldots on input line 394.
-LaTeX Info: Redefining \dots on input line 397.
-LaTeX Info: Redefining \cdots on input line 518.
+LaTeX Info: Redefining \ldots on input line 472.
+LaTeX Info: Redefining \dots on input line 475.
+LaTeX Info: Redefining \cdots on input line 596.
 \Mathstrutbox@=\box26
 \strutbox@=\box27
 \big@size=\dimen110
-LaTeX Font Info:    Redeclaring font encoding OML on input line 634.
-LaTeX Font Info:    Redeclaring font encoding OMS on input line 635.
+LaTeX Font Info:    Redeclaring font encoding OML on input line 712.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
 \macc@depth=\count94
 \c@MaxMatrixCols=\count95
 \dotsspace@=\muskip10
@@ -455,8 +451,8 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 635.
 \multlinegap=\skip44
 \multlinetaggap=\skip45
 \mathdisplay@stack=\toks22
-LaTeX Info: Redefining \[ on input line 2739.
-LaTeX Info: Redefining \] on input line 2740.
+LaTeX Info: Redefining \[ on input line 2817.
+LaTeX Info: Redefining \] on input line 2818.
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\tools\enumerate.sty"
 Package: enumerate 2015/07/23 v3.00 enumerate extensions (DPC)
@@ -481,7 +477,7 @@ Package: alltt 1997/06/16 v2.0g defines alltt environment
 LaTeX Warning: inputting `fleqn.clo' instead of obsolete `fleqn.sty'.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\fleqn.clo"
-File: fleqn.clo 2015/03/31 v1.1i Standard LaTeX option (flush left equations)
+File: fleqn.clo 2016/12/29 v1.2a Standard LaTeX option (flush left equations)
 \mathindent=\dimen117
 Applying: [2015/01/01] Make \[ robust on input line 50.
 LaTeX Info: Redefining \[ on input line 51.
@@ -511,7 +507,7 @@ Enhancements to Picture Environment. Version 1.2 - Released June 1, 1986
 ) ("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\color.sty"
 Package: color 2016/07/10 v1.1e Standard LaTeX Color (DPC)
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\00miktex\color.cfg"
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics-cfg\color.cfg"
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package color Info: Driver file: pdftex.def on input line 147.
@@ -643,11 +639,11 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 \Hy@SectionHShift=\skip48
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\inconsolata\inconsolata.sty"
-Package: inconsolata 2016/02/22 v1.10
+Package: inconsolata 2017/01/04 v1.112
 
-`inconsolata-zi4' v1.10, 2016/02/22 Text macros for Inconsolata (msharpe)
+`inconsolata-zi4' v1.112, 2017/01/04 Text macros for Inconsolata (msharpe)
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\textcomp.sty"
-Package: textcomp 2016/06/19 v1.99m Standard LaTeX package
+Package: textcomp 2017/01/24 v2.0c Standard LaTeX package
 Package textcomp Info: Sub-encoding information:
 (textcomp)               5 = only ISO-Adobe without \textcurrency
 (textcomp)               4 = 5 + \texteuro
@@ -802,7 +798,18 @@ Package textcomp Info: Setting pplj sub-encoding to TS1/3 on input line 407.
 Package textcomp Info: Setting ptmx sub-encoding to TS1/4 on input line 408.
 Package textcomp Info: Setting ptmj sub-encoding to TS1/4 on input line 409.
 )
-\zifour@ocount=\count122
+("C:\Program Files\MiKTeX 2.9\tex\latex\xkeyval\xkeyval.sty"
+Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\xkeyval\xkeyval.tex"
+("C:\Program Files\MiKTeX 2.9\tex\generic\xkeyval\xkvutils.tex"
+\XKV@toks=\toks26
+\XKV@tempa@toks=\toks27
+)
+\XKV@depth=\count122
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+\zifour@ocount=\count123
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\hypcap.sty"
 Package: hypcap 2016/05/16 v1.12 Adjusting the anchors of captions (HO)
@@ -838,30 +845,33 @@ ed}``declared\protect {\grmnU@D 1ex{\setbox \z@ \hbox {\char 127}\dimen@ -.45ex
 \hskip \z@skip ptions of babel
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\babel-german\german.ldf"
-Language: german 2014/10/10 v2.7b German support for babel (traditional orthogr
-aphy)
+Language: german 2016/11/02 v2.9 German support for babel (traditional orthogra
+phy)
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\babel-german\germanb.ldf"
-Language: germanb 2014/10/10 v2.7b German support for babel (traditional orthog
-raphy)
+Language: germanb 2016/11/02 v2.9 German support for babel (traditional orthogr
+aphy)
 
 ("C:\Program Files\MiKTeX 2.9\tex\generic\babel\babel.def"
 File: babel.def 2016/04/23 3.9r Babel common definitions
-\babel@savecnt=\count123
+\babel@savecnt=\count124
 \U@D=\dimen128
 ))))
 ("C:\Program Files\MiKTeX 2.9\tex\latex\babelbib\babelbib.sty"
 Package: babelbib 2012/01/03 v1.31 babelbib: multilingual bibliographies (HH)
-\c@btxromaniannumeral=\count124
+\c@btxromaniannumeral=\count125
 )
-\c@Definition=\count125
-\c@aufgabe=\count126
+\c@Definition=\count126
+\c@aufgabe=\count127
 \mylength=\skip58
 
 (studienarbeit.aux (Inhalt/titelseite.aux) (Inhalt/erklaerung.aux)
 (Inhalt/abstract.aux) (Inhalt/einleitung.aux) (Inhalt/theorie.aux
 
 LaTeX Warning: Label `fig:perceptron_plot' multiply defined.
+
+
+LaTeX Warning: Label `fig:neural_network_extended' multiply defined.
 
 ) (Inhalt/implementierung.aux))
 \openout1 = `studienarbeit.aux'.
@@ -891,17 +901,17 @@ LaTeX Font Info:    ... okay on input line 161.
 
 ("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count127
+\scratchcounter=\count128
 \scratchdimen=\dimen129
 \scratchbox=\box30
-\nofMPsegments=\count128
-\nofMParguments=\count129
-\everyMPshowfont=\toks26
-\MPscratchCnt=\count130
+\nofMPsegments=\count129
+\nofMParguments=\count130
+\everyMPshowfont=\toks28
+\MPscratchCnt=\count131
 \MPscratchDim=\dimen130
-\MPnumerator=\count131
-\makeMPintoPDFobject=\count132
-\everyMPtoPDFconversion=\toks27
+\MPnumerator=\count132
+\makeMPintoPDFobject=\count133
+\everyMPtoPDFconversion=\toks29
 ) ("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\epstopdf-base.sty"
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -924,7 +934,7 @@ Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 ("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty"
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count133
+\c@section@level=\count134
 )
 LaTeX Info: Redefining \ref on input line 161.
 LaTeX Info: Redefining \pageref on input line 161.
@@ -969,17 +979,17 @@ babelbib extension \btxifchangecaseoff added to \extrasfrench
 
  (Inhalt/titelseite.tex
 Package epstopdf Info: Source file: <dhbw-logo.eps>
-(epstopdf)                    date: 2017-03-08 17:42:42
+(epstopdf)                    date: 2017-03-21 13:27:37
 (epstopdf)                    size: 1664862 bytes
 (epstopdf)             Output file: <dhbw-logo-eps-converted-to.pdf>
-(epstopdf)                    date: 2017-03-08 17:42:42
+(epstopdf)                    date: 2017-03-21 13:27:37
 (epstopdf)                    size: 18230 bytes
 (epstopdf)             Command: <epstopdf --outfile=dhbw-logo-eps-converted-to.
 pdf dhbw-logo.eps>
 (epstopdf)             \includegraphics on input line 6.
 Package epstopdf Info: Output file is already uptodate.
 
-<dhbw-logo-eps-converted-to.pdf, id=83, 173.64874pt x 88.33pt>
+<dhbw-logo-eps-converted-to.pdf, id=91, 173.64874pt x 88.33pt>
 File: dhbw-logo-eps-converted-to.pdf Graphic file (type pdf)
 
 <use dhbw-logo-eps-converted-to.pdf>
@@ -1076,13 +1086,8 @@ l.197 \include{Inhalt/einleitung}
 
  (Inhalt/theorie.tex
 Kapitel 2.
-<<<<<<< HEAD
-<Bilder/neural_network_extended.png, id=146, 555.57562pt x 313.9228pt>
+<Bilder/neural_network_extended.png, id=170, 555.57562pt x 313.9228pt>
 File: Bilder/neural_network_extended.png Graphic file (type png)
-=======
-<Bilder/perceptron.png, id=164, 211.992pt x 104.18925pt>
-File: Bilder/perceptron.png Graphic file (type png)
->>>>>>> 59ba9cc8ce6a7a376cdcd5fdc3214a14ad27236b
 
 <use Bilder/neural_network_extended.png>
 Package pdftex.def Info: Bilder/neural_network_extended.png used on input line 
@@ -1093,22 +1098,19 @@ Underfull \hbox (badness 10000) in paragraph at lines 17--28
 
  []
 
-<<<<<<< HEAD
 [2
 
 
 
  <./Bilder/neural_network_extended.png>]
-<Bilder/perceptron.png, id=155, 211.992pt x 104.18925pt>
+<Bilder/perceptron.png, id=179, 211.992pt x 104.18925pt>
 File: Bilder/perceptron.png Graphic file (type png)
 
 <use Bilder/perceptron.png>
 Package pdftex.def Info: Bilder/perceptron.png used on input line 38.
 (pdftex.def)             Requested size: 127.19617pt x 62.51402pt.
  [3 <./Bilder/perceptron.png>]
-=======
->>>>>>> 59ba9cc8ce6a7a376cdcd5fdc3214a14ad27236b
-<Bilder/perceptron_models.png, id=167, 405.31425pt x 162.6075pt>
+<Bilder/perceptron_models.png, id=191, 405.31425pt x 162.6075pt>
 File: Bilder/perceptron_models.png Graphic file (type png)
 
 <use Bilder/perceptron_models.png>
@@ -1119,48 +1121,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 53--62
 
  []
 
-<Bilder/perceptron_plot.png, id=169, 385.44pt x 261.22594pt>
+<Bilder/perceptron_plot.png, id=193, 385.44pt x 261.22594pt>
 File: Bilder/perceptron_plot.png Graphic file (type png)
 
 <use Bilder/perceptron_plot.png>
 Package pdftex.def Info: Bilder/perceptron_plot.png used on input line 77.
 (pdftex.def)             Requested size: 231.26578pt x 156.73676pt.
 
-<<<<<<< HEAD
-<Bilder/sigmoid_learning.png, id=171, 375.20175pt x 207.174pt>
-=======
-<Bilder/perceptron_example.png, id=179, 184.89075pt x 86.12175pt>
-File: Bilder/perceptron_example.png Graphic file (type png)
-
-<use Bilder/perceptron_example.png>
-Package pdftex.def Info: Bilder/perceptron_example.png used on input line 51.
-(pdftex.def)             Requested size: 110.93529pt x 51.67345pt.
-
-<Bilder/nand_gatter.png, id=180, 373.395pt x 122.25674pt>
-File: Bilder/nand_gatter.png Graphic file (type png)
-
-<use Bilder/nand_gatter.png>
-Package pdftex.def Info: Bilder/nand_gatter.png used on input line 70.
-(pdftex.def)             Requested size: 224.03873pt x 73.3546pt.
-
-<Bilder/nand_gatter_perceptron.png, id=181, 349.90726pt x 159.59625pt>
-File: Bilder/nand_gatter_perceptron.png Graphic file (type png)
-
-<use Bilder/nand_gatter_perceptron.png>
-Package pdftex.def Info: Bilder/nand_gatter_perceptron.png used on input line 7
-9.
-(pdftex.def)             Requested size: 209.94595pt x 95.75847pt.
- [3 <./Bilder/perceptron_models.png> <./Bilder/perceptron_example.png>]
-<Bilder/nand_gatter_perceptron_simplified.png, id=191, 361.95226pt x 157.7895pt
->
-File: Bilder/nand_gatter_perceptron_simplified.png Graphic file (type png)
- <use Bilder/nand_gatter_perceptron_simplified.png>
-Package pdftex.def Info: Bilder/nand_gatter_perceptron_simplified.png used on i
-nput line 88.
-(pdftex.def)             Requested size: 217.17302pt x 94.67442pt.
-
-<Bilder/sigmoid_learning.png, id=193, 375.20175pt x 207.174pt>
->>>>>>> 59ba9cc8ce6a7a376cdcd5fdc3214a14ad27236b
+<Bilder/sigmoid_learning.png, id=195, 375.20175pt x 207.174pt>
 File: Bilder/sigmoid_learning.png Graphic file (type png)
 
 <use Bilder/sigmoid_learning.png>
@@ -1171,116 +1139,88 @@ Underfull \hbox (badness 10000) in paragraph at lines 92--94
 
  []
 
-<<<<<<< HEAD
 [4 <./Bilder/perceptron_models.png>] [5 <./Bilder/perceptron_plot.png> <./Bilde
 r/sigmoid_learning.png>]
-<Bilder/sigmoid_plot.png, id=191, 382.42876pt x 262.73157pt>
-=======
-<Bilder/sigmoid_plot.png, id=203, 382.42876pt x 262.73157pt>
->>>>>>> 59ba9cc8ce6a7a376cdcd5fdc3214a14ad27236b
+<Bilder/sigmoid_plot.png, id=215, 382.42876pt x 262.73157pt>
 File: Bilder/sigmoid_plot.png Graphic file (type png)
 
 <use Bilder/sigmoid_plot.png>
 Package pdftex.def Info: Bilder/sigmoid_plot.png used on input line 117.
 (pdftex.def)             Requested size: 229.45901pt x 157.64014pt.
-<<<<<<< HEAD
-=======
-
-<Bilder/perceptron_plot.png, id=205, 385.44pt x 261.22594pt>
->>>>>>> 59ba9cc8ce6a7a376cdcd5fdc3214a14ad27236b
 File: Bilder/perceptron_plot.png Graphic file (type png)
  <use Bilder/perceptron_plot.png>
 Package pdftex.def Info: Bilder/perceptron_plot.png used on input line 126.
 (pdftex.def)             Requested size: 231.26578pt x 156.73676pt.
-<<<<<<< HEAD
- [6 <./Bilder/sigmoid_plot.png>]) [7]
-=======
- [5 <./Bilder/sigmoid_learning.png>]
-<Bilder/neural_network.png, id=216, 377.15906pt x 207.02344pt>
+ [6 <./Bilder/sigmoid_plot.png>] <Bilder/neural_network.png, id=226, 377.15906p
+t x 207.02344pt>
 File: Bilder/neural_network.png Graphic file (type png)
 
 <use Bilder/neural_network.png>
-Package pdftex.def Info: Bilder/neural_network.png used on input line 154.
+Package pdftex.def Info: Bilder/neural_network.png used on input line 143.
 (pdftex.def)             Requested size: 226.29718pt x 124.21501pt.
-
-<Bilder/neural_network_extended.png, id=218, 555.57562pt x 313.9228pt>
 File: Bilder/neural_network_extended.png Graphic file (type png)
-
-<use Bilder/neural_network_extended.png>
+ <use Bilder/neural_network_extended.png>
 Package pdftex.def Info: Bilder/neural_network_extended.png used on input line 
-163.
+152.
 (pdftex.def)             Requested size: 388.90027pt x 219.74446pt.
- [6 <./Bilder/sigmoid_plot.png> <./Bilder/perceptron_plot.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 168--179
+
+Underfull \hbox (badness 10000) in paragraph at lines 157--168
 
  []
 
-[7 <./Bilder/neural_network.png> <./Bilder/neural_network_extended.png>])
-[8]
->>>>>>> 59ba9cc8ce6a7a376cdcd5fdc3214a14ad27236b
+[7 <./Bilder/neural_network.png>]) [8]
 \openout2 = `Inhalt/implementierung.aux'.
 
  (Inhalt/implementierung.tex
 Kapitel 3.
-<<<<<<< HEAD
-LaTeX Font Info:    Try loading font information for OT1+zi4 on input line 27.
-("C:\Program Files\MiKTeX 2.9\tex\latex\inconsolata\ot1zi4.fd"
-File: ot1zi4.fd 2014/06/22 OT1/zi4 (Inconsolata)
-) [8
-=======
 
-Underfull \hbox (badness 10000) in paragraph at lines 22--30
+Underfull \hbox (badness 10000) in paragraph at lines 22--41
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 22--30
+Underfull \hbox (badness 10000) in paragraph at lines 22--41
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 42--45
 
  []
 
 [9
->>>>>>> 59ba9cc8ce6a7a376cdcd5fdc3214a14ad27236b
 
 
 
 ]
-LaTeX Font Info:    Try loading font information for OT1+zi4 on input line 56.
+LaTeX Font Info:    Try loading font information for OT1+zi4 on input line 71.
  ("C:\Program Files\MiKTeX 2.9\tex\latex\inconsolata\ot1zi4.fd"
 File: ot1zi4.fd 2016/12/29 OT1/zi4 (Inconsolata)
 )
 LaTeX Font Info:    Font shape `OT1/zi4/m/n' will be
-(Font)              scaled to size 10.0pt on input line 56.
+(Font)              scaled to size 10.0pt on input line 71.
  [10]
-Overfull \hbox (12.70816pt too wide) in paragraph at lines 95--96
+Overfull \hbox (12.70816pt too wide) in paragraph at lines 110--111
 []$[]$\OT1/cmss/m/n/10 : in der init-Funktion wer-den die Funk-tio-nen com-pu-t
 eRnd-Bia-ses() und $[]$
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 96--102
+Underfull \hbox (badness 10000) in paragraph at lines 111--117
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 106--112
+Underfull \hbox (badness 10000) in paragraph at lines 121--127
 
  []
 
-<<<<<<< HEAD
-[9] [10]
-Underfull \hbox (badness 10000) in paragraph at lines 174--176
-
- []
-
-) [11] [12]
-=======
 [11] [12] [13]
-Underfull \hbox (badness 10000) in paragraph at lines 243--245
+Underfull \hbox (badness 10000) in paragraph at lines 258--260
 
  []
 
 ) [14]
->>>>>>> 59ba9cc8ce6a7a376cdcd5fdc3214a14ad27236b
 No file studienarbeit.bbl.
 
 AED: lastpage setting LastPage
@@ -1292,11 +1232,7 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 205.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 205.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 205.
 Package rerunfilecheck Info: File `studienarbeit.out' has not changed.
-<<<<<<< HEAD
-(rerunfilecheck)             Checksum: 3B408C36A4E40F83897EA107D3F4274D;1192.
-=======
-(rerunfilecheck)             Checksum: 4CACB7002FEF47A9C8009CFA647813C3;1343.
->>>>>>> 59ba9cc8ce6a7a376cdcd5fdc3214a14ad27236b
+(rerunfilecheck)             Checksum: E83BAC4741EB00EE0AFC98F6DF3AD853;1514.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -1307,14 +1243,13 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 205.
  ) 
 Here is how much of TeX's memory you used:
-<<<<<<< HEAD
- 8718 strings out of 493334
- 123282 string characters out of 3139252
- 231199 words of memory out of 3000000
- 11953 multiletter control sequences out of 15000+200000
- 11530 words of font info for 44 fonts, out of 3000000 for 9000
+ 9017 strings out of 493333
+ 127933 string characters out of 3139194
+ 236418 words of memory out of 3000000
+ 12217 multiletter control sequences out of 15000+200000
+ 16187 words of font info for 62 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 34i,11n,44p,1016b,652s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 34i,12n,43p,1016b,652s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/inconsolata/i4-ot1-0.enc}<C:/Pro
 gram Files/MiKTeX 2.9/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb><C:/P
 rogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program F
@@ -1326,45 +1261,16 @@ ic/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfon
 ts/cm/cmr5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7
 .pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss10.pfb><C:
 /Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss12.pfb><C:/Program
- Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><C:/Program Files
-/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmssi10.pfb><C:/Program Files/MiKTeX
- 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fon
-ts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/
-public/amsfonts/cm/cmtt10.pfb>
-Output written on studienarbeit.pdf (16 pages, 451527 bytes).
+ Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss8.pfb><C:/Program Files/Mi
+KTeX 2.9/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><C:/Program Files/MiKTeX 2
+.9/fonts/type1/public/amsfonts/cm/cmssi10.pfb><C:/Program Files/MiKTeX 2.9/font
+s/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/
+public/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/am
+sfonts/cm/cmtt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/c
+m/cmtt8.pfb>
+Output written on studienarbeit.pdf (18 pages, 517997 bytes).
 PDF statistics:
- 320 PDF objects out of 1000 (max. 8388607)
- 67 named destinations out of 1000 (max. 500000)
- 180 words of extra memory for PDF output out of 10000 (max. 10000000)
-=======
- 9029 strings out of 493333
- 128604 string characters out of 3139194
- 236675 words of memory out of 3000000
- 12230 multiletter control sequences out of 15000+200000
- 14639 words of font info for 57 fonts, out of 3000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 34i,11n,43p,943b,652s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/inconsolata/i4-ot1-0.enc}<C:/Pro
-gram Files/MiKTeX 2.9/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb><C:/P
-rogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Program 
-Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/Mi
-KTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9
-/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files/MiKTeX 2.9/fonts/ty
-pe1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publi
-c/amsfonts/cm/cmr5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts
-/cm/cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss10
-.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss12.pfb><C:
-/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss8.pfb><C:/Program 
-Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><C:/Program Files/
-MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmssi10.pfb><C:/Program Files/MiKTeX 
-2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/font
-s/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/p
-ublic/amsfonts/cm/cmtt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/am
-sfonts/cm/cmtt8.pfb>
-Output written on studienarbeit.pdf (18 pages, 590914 bytes).
-PDF statistics:
- 375 PDF objects out of 1000 (max. 8388607)
+ 378 PDF objects out of 1000 (max. 8388607)
  81 named destinations out of 1000 (max. 500000)
- 221 words of extra memory for PDF output out of 10000 (max. 10000000)
->>>>>>> 59ba9cc8ce6a7a376cdcd5fdc3214a14ad27236b
+ 217 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -8,24 +8,15 @@
 \contentsline {chapter}{\numberline {2}Theorie}{2}{chapter.2}
 \contentsline {section}{\numberline {2.1}SetlX}{2}{section.2.1}
 \contentsline {section}{\numberline {2.2}MNIST}{2}{section.2.2}
-<<<<<<< HEAD
 \contentsline {section}{\numberline {2.3}Neuronales Netzwerk}{2}{section.2.3}
 \contentsline {section}{\numberline {2.4}Perceptrons}{3}{section.2.4}
 \contentsline {section}{\numberline {2.5}Sigmoid Neurons}{4}{section.2.5}
 \contentsline {section}{\numberline {2.6}Netzwerk zur Klassifizierung von handgeschrieben Zahlen}{7}{section.2.6}
-\contentsline {chapter}{\numberline {3}Implementierung}{8}{chapter.3}
-\contentsline {section}{\numberline {3.1}Laden und Aufbereitung der MNIST Daten}{8}{section.3.1}
-\contentsline {section}{\numberline {3.2}Implementierung des neuronalen Netzes}{8}{section.3.2}
-\contentsline {section}{\numberline {3.3}Animation}{12}{section.3.3}
-=======
-\contentsline {section}{\numberline {2.3}Perceptrons}{2}{section.2.3}
-\contentsline {section}{\numberline {2.4}Sigmoid Neurons}{4}{section.2.4}
-\contentsline {section}{\numberline {2.5}Architektur Neuronaler Netzwerke}{6}{section.2.5}
-\contentsline {section}{\numberline {2.6}Netzwerk zur Klassifizierung von handgeschrieben Zahlen}{8}{section.2.6}
-\contentsline {section}{\numberline {2.7}Stochastic Gradient Descent}{8}{section.2.7}
-\contentsline {section}{\numberline {2.8}Backpropagation}{8}{section.2.8}
+\contentsline {section}{\numberline {2.7}Architektur Neuronaler Netzwerke}{7}{section.2.7}
+\contentsline {section}{\numberline {2.8}Netzwerk zur Klassifizierung von handgeschrieben Zahlen}{8}{section.2.8}
+\contentsline {section}{\numberline {2.9}Stochastic Gradient Descent}{8}{section.2.9}
+\contentsline {section}{\numberline {2.10}Backpropagation}{8}{section.2.10}
 \contentsline {chapter}{\numberline {3}Implementierung}{9}{chapter.3}
 \contentsline {section}{\numberline {3.1}Laden und Aufbereitung der MNIST Daten}{9}{section.3.1}
 \contentsline {section}{\numberline {3.2}Implementierung des neuronalen Netzes}{10}{section.3.2}
 \contentsline {section}{\numberline {3.3}Animation}{14}{section.3.3}
->>>>>>> 59ba9cc8ce6a7a376cdcd5fdc3214a14ad27236b
