@@ -1,9 +1,5 @@
 \chapter{Theorie}
 
-\section{SetlX}
-
-\section{MNIST}
-
 \section{Neuronales Netzwerk}
 In diesem Abschnitt der Arbeit wird der Aufbau eines neuronalen Netzwerks näher betrachtet und entsprechend auf die Terminologie in diesem Bereich eingegangen. \\
 Neuronale Netzwerke sind den biologischen Neuronen nachempfunden und setzen sich daher aus Vielzahl von Neuronen zusammen. Darüber hinaus ist ein Netzwerk in mehrere Schichten untergliedert (siehe Abb.\ref{fig:neural_network_extended}). So wird die erste Schicht auf der linken Seite auch als \textit{Eingabeschicht} und alle korrespondierenden Eingabeknoten als Eingabeneuron bezeichnet. Die letzte Schicht, die sogenannte \textit{Ausgabeschicht}, beinhaltet dagegen alle \textit{Ausgabeneuronen}. Alle Schichten zwischen der Eingabe und der Ausgabe tragen die Bezeichnung des \textit{Hidden Layer}, wobei ein Netzwerk mehrere dieser Schichten aufweisen kann. In der folgenden Grafik ist ein 4-Layer-Netzwerk abgebildet, das zwei \textit{Hidden Layer} besitzt. Diese mehrschichtigen Netzwerke werden ebenfalls als \textit{Multilayer Perceptrons} oder \textit{MLPs} bezeichnet, obwohl das Netzwerk sich aus Sigmoid-Neuronen zusammensetzt.
@@ -24,12 +20,12 @@ $
 \end{array}
 $
 \\[0.2cm]
-Im Vergleich hierzu ist der Aufbau der Hidden-Layer nicht durch irgendwelche Regeln ableitbar. Zum Einsatz kommen Heuristiken, die das Verhalten eines Netzwerkes bestimmen, welches ausgehend vom Experiment erwartet und gewünscht wird. Zum Beispiel kann Untersucht werden, wie die Lernrate des Netzwerks sich im Verhältnis zu der Anzahl an Hidden-Layer verhält. \\
+Im Vergleich hierzu ist der Aufbau der Hidden-Layer nicht durch irgendwelche Regeln ableitbar. Zum Einsatz kommen Heuristiken, die das Verhalten eines Netzwerkes bestimmen, welches ausgehend vom Experiment erwartet und gewünscht wird. Zum Beispiel kann untersucht werden, wie die Lernrate des Netzwerks sich im Verhältnis zu der Anzahl an Hidden-Layer verhält. \\
 
 \noindent
-Bisher viel die Betrachtung in dieser Arbeit auf neuronale Netze, bei denen die Ausgabe einer Schicht die Eingabe in der nächsten Schicht darstellte. Solche Netzwerke werden auch \textit{Feedforward Neural Networks} bezeichnet. Hierunter ist das das nicht Auftreten von Schleifen zu verstehen - sprich, Informationen werden im Netzwerk immer von Layer $n$ zu Layer $n+1$ übergeben. Somit kann verhindert werden, dass das Netzwerk in gewissen Fällen bei der Eingabe der Sigmoid-Funktion $\sigma$ von dessen Ausgabe abhängig ist. \\
+Bisher fiel die Betrachtung in dieser Arbeit auf neuronale Netze, bei denen die Ausgabe einer Schicht die Eingabe in der nächsten Schicht darstellte. Solche Netzwerke werden auch \textit{Feedforward Neural Networks} bezeichnet. Hierunter ist das nicht Auftreten von Schleifen zu verstehen - sprich, Informationen werden im Netzwerk immer von Layer $n$ zu Layer $n+1$ übergeben. Somit kann verhindert werden, dass das Netzwerk in gewissen Fällen bei der Eingabe der Sigmoid-Funktion $\sigma$ von dessen Ausgabe abhängig ist. \\
 Ebenfalls gibt es Netzwerke bei denen sogenannte \textit{Feedback Loops} möglich sind. In diesem Fall handelt es sich um \textit{Recurrent Neural Networks}. Die Idee hinter diesem Modell ist, dass bestimmte Neuronen über einen definierten Zeitraum aktiv sind bevor sie inaktiv werden. Dies kann andere Neuronen anregen, ebenfalls über einen gewissen Zeitraum aktiv zu sein und eine entsprechende Kettenreaktion auslösen (Kaskade). Schleifen stellen in diesem Modell kein Problem dar, da die Ausgabe eines Neurons erst zu einem späteren Zeitpunkt die Eingabe beeinflusst. \\
-Stellt man diese Arten von neuronalen Netzwerken gegenüber, so lässt sie zum heutigen Zeitpunkt die Aussage treffen, dass Feedback Neural Networks weniger Verbreitung finden. Dies ist begründet in der Leistungsfähigkeit der Lernalgorithmen. Jedoch sollte an dieser Stelle berücksichtigt werden, dass mittels Feedback Neural Networks bestimmte Probleme mit einem geringeren architektonischen Aufwand gelöst werden können. Darüber hinaus bildet der komplexere logische Aufbau eines solchen Netzwerks, das menschliche Verhalten besser ab.
+Stellt man diese Arten von neuronalen Netzwerken gegenüber, so lässt sie zum heutigen Zeitpunkt die Aussage treffen, dass Feedback Neural Networks weniger Verbreitung finden. Dies ist begründet in der Leistungsfähigkeit der Lernalgorithmen. Jedoch sollte an dieser Stelle berücksichtigt werden, dass mittels Feedback Neural Networks bestimmte Probleme mit einem geringeren architektonischen Aufwand gelöst werden können. Darüber hinaus bildet der komplexere logische Aufbau eines solchen Netzwerks das menschliche Verhalten besser ab.
 
 \section{Perceptrons}
 Ein Perceptron ist ein mathematisches Modell zur Abbildung eines künstliches Neurons in einem Netzwerk. Es wird für die Entscheidungsfindung herangezogen, indem verschiedene Aussagen abgewägt werden. Hierbei nimmt das Perceptron eine Menge von Eingaben $x_n$ mit $n \in \{1, \cdots, m\}$ und berechnet einen einzigen binären Ausgabewert (siehe Abb. \ref{fig:perceptron}). 
@@ -58,10 +54,10 @@ Der Aufbau des Netzwerks leitet sich aus den unterschiedlichen Modellen der Ents
 	\caption{Unterschiedliche Möglichkeiten der Entscheidungsfindung.} 
 	\label{fig:perceptron_models} 
 \end{figure}
-Eine Entscheidungsmöglichkeit wird hierbei durch das Perceptron dargestellt. Weiterhin wird eine Spalte von Perceptrons als \textit{Layer} bezeichnet. Der erste Layer fällt Entscheidungen auf Basis der Eingabewerte, indem er diese abwägt. Jedes Perceptron des zweiten Layers hingegen, wägt für die Entscheidungsfindung die Resultate des ersten Layers ab. Ein Perceptron auf dem zweiten Layer kann somit eine Entscheidung auf einer abstrakteren und komplexeren Ebene durchführen. Auf diese Weise kann sich ein vielschichtiges Netzwerk von Perceptrons in ein anspruchsvolles Modell zur Entscheidungsfindung entwickeln. \\
+Eine Entscheidungsmöglichkeit wird hierbei durch das Perceptron dargestellt. Weiterhin wird eine Spalte von Perceptrons als Schicht bezeichnet. Die erste Schicht fällt Entscheidungen auf Gewichtung der Eingabewerte, indem er diese abwägt. Jedes Perceptron der zweiten Schicht hingegen, wägt für die Entscheidungsfindung die Resultate der ersten Schicht ab. Ein Perceptron auf der zweiten Schicht kann somit eine Entscheidung auf einer abstrakteren und komplexeren Ebene durchführen. Auf diese Weise kann sich ein vielschichtiges Netzwerk von Perceptrons in ein anspruchsvolles Modell zur Entscheidungsfindung entwickeln. \\
 
 \noindent
-Im folgenden wird die mathematische Beschreibung von Perceptrons vereinfacht, indem Änderungen an der Notation für $\sum_j w_j x_j > \mathtt{threshold}$ vorgenommen werden. Für die Beschreibung der Summe $\sum_j w_j x_j$ werden die Vektoren $\mathbf{w}$ und $\mathbf{x}$ eingeführt, wodurch sich die Schreibweise $\mathbf{w} \cdot \mathbf{x} \equiv \sum_j w_j x_j$ ergibt. Des Weiteren wird der $\mathtt{threshold}$ auf die andere Seite der Ungleichung gezogen und erhält die Bezeichnung \textit{Bias}, $b \equiv \mathtt{-threshold}$. 
+Im folgenden wird die mathematische Beschreibung von Perceptrons vereinfacht, indem Änderungen an der Notation für $\sum_j w_j x_j > \mathtt{threshold}$ vorgenommen werden. Für die Beschreibung der Summe $\sum_j w_j x_j$ werden die Vektoren $\mathbf{w}$ und $\mathbf{x}$ eingeführt, wodurch sich die Schreibweise $\mathbf{w} \cdot \mathbf{x} \equiv \sum_j w_j x_j$ ergibt. Des Weiteren wird der $\mathtt{threshold}$ auf die andere Seite der Ungleichung gezogen und erhält die Bezeichnung \textit{Vorbelastung}, $b \equiv \mathtt{-threshold}$. 
 \begin{equation}
 	\mathtt{output} := \left\{
 	\begin{array}{ll}
@@ -71,7 +67,7 @@ Im folgenden wird die mathematische Beschreibung von Perceptrons vereinfacht, in
 \end{equation}
 
 \noindent
-Dieses mathematische Verhalten wird durch die folgende Stufenfunktion verdeutlicht (Abb. \ref{fig:perceptron_plot}).
+Dieses mathematische Verhalten wird durch die folgende Stufenfunktion verdeutlicht (siehe Abb. \ref{fig:perceptron_plot}).
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[scale=0.6]{Bilder/perceptron_plot}
@@ -79,9 +75,58 @@ Dieses mathematische Verhalten wird durch die folgende Stufenfunktion verdeutlic
 	\label{fig:perceptron_plot} 
 \end{figure}
 
+\section{Arbeitsweise von Perceptrons}
+Ein einzelnes Perceptron kann für die Darstellung unterschiedlicher boolescher Funktionen genutzt werden. Angenommen die Definition der booleschen Werte 1 ($\mathtt{true}$) und 0 ($\mathtt{false}$) liegt zugrunde, so ist es möglich alle logische Operationen z.B. $\mathtt{AND}$, $\mathtt{OR}$ und $\mathtt{NAND}$ über ein Perceptron abzubilden. \\
+Im weiteren Verlauf soll die Umsetzung eines $\mathtt{NAND}$ Gatters mit Perceptrons betrachtet werden. $\mathtt{NAND}$ Gatter spielen in der Digitaltechnik eine bedeutende Rolle, da sie alle logischen Verknüpfungen und somit auch komplexere Schaltungen (z.B. Addierer, Multiplexer) zusammenstellen lassen. Fällt die Betrachtung auf ein Perceptron mit 2 Eingaben deren Gewichtung jeweils den Wert -2 aufweisen und eine Vorbelastung von 3, so ergibt sich folgende Abbildung (siehe Abb. \ref{fig:perceptron_example}).
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[scale=0.6]{Bilder/perceptron_example}
+	\caption{Percetron mit zwei Eingaben -2 und einem Bias von 3.} 
+	\label{fig:perceptron_example} 
+\end{figure}
+
+\noindent
+Um das Verhalten des Perceptrons weiter zu untersuchen werden zum einen die Eingaben $x_1, x_2$  mit dem Wert 0 und zum anderen mit dem Wert -1 belegt. \\[0.2cm]
+\hspace*{1.3cm}
+$
+\begin{array}[t]{lclll}
+	(-2)*0+(-2)*0+3 & = & 3 & \geq & 0  \quad\rightarrow\quad \mathtt{output} := 1 \\[0.2cm]
+	(-2)*1+(-2)*1+3 & = & -1  & < & 0 \quad\rightarrow\quad \mathtt{output} := 0
+\end{array}
+$
+\\[0.2cm]
+Das vorliegende Perceptron ist in der Lage das Verhalten eines $\mathtt{NAND}$ Gatters nachzubilden. Somit kann auf dessen Basis auch ein Halbaddierer, der die Addition von zwei Bits $x_1$ und $x_2$ durchführt, implementiert werden. Für die Berechnung wird die bitweise Summe $x_1 \oplus x_2$ gebildet, wobei ein $\mathtt{carry bit}$ den Wert 1 annimmt, sobald $x_1$ und $x_2$ den Wert 1 aufweisen.
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[scale=0.6]{Bilder/nand_gatter}
+	\caption{Halbaddierer mit den Eingaben $x_1$ und $x_2$.} 
+	\label{fig:nand_gatter} 
+\end{figure}
+
+\noindent
+Um ein gleichwertiges Netzwerk abzuleiten, werden die $\mathtt{NAND}$ Gatter durch Perceptrons mit jeweils 2 Eingaben ersetzt. Hierbei weisen die Gewichtungen $w_1, w_2$ den Wert -2 und die Vorbelastung $b$ den Wert 3 auf. 
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[scale=0.6]{Bilder/nand_gatter_perceptron}
+	\caption{Halbaddierer-Aufbau mit Perceptrons.} 
+	\label{fig:nand_gatter_perceptron} 
+\end{figure}
+
+\noindent
+In einem weiteren Schritt wird die Abbildung eines $\mathtt{NAND}$ Gatter mit Perceptrons vereinfacht. Dazu werden mehrere Eingänge eines Perceptrons zu einem zusammengefasst, weshalb aus den zwei Eingaben -2 der Wert -4 resultiert. Ebenfalls werden die Eingaben in der Eingabeschicht des neuronalen Netzwerkes zusammengefasst, wobei jedoch durch diese Notation eine Eingabe nicht mit einem Perceptron gleichzustellen ist. Das vorliegende Netzwerk mit Perceptrons entspricht somit dem Aufbau eines Halbaddierers (siehe Abb. \ref{fig:nand_gatter_perceptron_simplified}). \\
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[scale=0.6]{Bilder/nand_gatter_perceptron_simplified}
+	\caption{Vereinfachter $\mathtt{NAND}$ Gatter Aufbau mit Perceptrons.} 
+	\label{fig:nand_gatter_perceptron_simplified} 
+\end{figure}
+
+\noindent
+Wie im obigen Beispiel aufgezeigt, lassen sich mittels Perceptrons unterschiedliche Berechnungen durchführen. Auf diese Weise können implementierte Lernalgorithmen Gewichtungen sowie die Vorbelastung automatisch durch entsprechende Stimuli im Netzwerk anpassen und ermöglichen die Nutzung von künstlichen Neuronen.
+
 \section{Sigmoid Neurons}
-Für die Entwicklung lernender Algorithmen in einem Netzwerk mit Perceptrons, fällt unsere Betrachtung auf das Beispiel der Erkennung von handgeschriebenen Zahlen. Die Eingabe für das Netzwerk könnten die Raw Pixeldaten der eingescannten Bilder darstellen, welche die handgeschriebenen Zahlen abbilden. Das Ziel an dieser Stelle ist, dass das Netzwerk anhand der Veränderungen von \textit{Weights} und \textit{Biases} lernt eine korrekte Klassifizierung der Zahlen vorzunehmen. \\
-Das Modifizieren der \textit{Weights} und \textit{Biases} kann das Verhalten des Netzwerkes und deren Entscheidungsfindung zu Problemen beeinflussen. Angenommen die Erkennung und Klassifizierung einer Zahl wurde durch das Netzwerk falsch vorgenommen, so können durch kleine Veränderungen an den \textit{Weights} und \textit{Biases} eine Korrektur durchgeführt werden. Dieses stetige Modifizieren der Werte über einen definierten Zeitraum ermöglicht ein lernendes Netzwerk (siehe Abb. \ref{fig:sigmoid_learning}). 
+Für die Entwicklung lernender Algorithmen in einem Netzwerk, fällt die Betrachtung in dieser Arbeit auf die Erkennung von handgeschrieben Zahlen. Die Eingabe für das Netzwerk könnten die Raw Pixeldaten der eingescannten Bilder darstellen, welche die handgeschrieben Zahlen abbilden. Das Ziel an dieser Stelle ist, dass das Netzwerk anhand der Veränderungen von \textit{Gewichtungen} und der \textit{Vorbelastung} lernt eine korrekte Klassifizierung der Zahlen vorzunehmen. \\
+Das Modifizieren der \textit{Gewichtungen} und der \textit{Vorbelastung} von Neuronen kann das Verhalten des Netzwerkes und deren Entscheidungsfindung zu Problemen beeinflussen. Angenommen die Erkennung und Klassifizierung einer Zahl wurde durch das Netzwerk falsch vorgenommen, so können durch kleine Veränderungen an den \textit{Gewichtungen} und der \textit{Vorbelastung} eine Korrektur durchgeführt werden. Dieses stetige Modifizieren der Werte über einen definierten Zeitraum ermöglicht ein lernendes Netzwerk (siehe Abb. \ref{fig:sigmoid_learning}). 
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[scale=0.7]{Bilder/sigmoid_learning}
@@ -90,24 +135,47 @@ Das Modifizieren der \textit{Weights} und \textit{Biases} kann das Verhalten des
 \end{figure}
 
 \noindent
-Dieses wünschenswerte Verhalten eines lernenden Netzwerks kann durch Perceptrons nicht gewährleistet werden, da eine Veränderung der Weights und Biases den Ausgabewerte $\mathtt{output}$ eines Neurons umkehren kann. Dadurch kann das komplette Verhalten zur Klassifizierung von Zahlen beeinflusst werden, wobei zuvor falsch erkannte Zahlen nun richtig klassifiziert werden und umgekehrt. Mit Hilfe der Einführung des Sigmoid Neurons soll dieser Fehler behoben werden. Eine Änderung der Weights und Biases bei diesem künstlichen Neuron soll nur marginale Änderungen an dem Ausgabewert $\mathtt{output}$ vornehmen. Diese Erweiterung des Neurons begünstigt ein Netzwerk selbständig die Klassifizierung von Zahlen zu optimieren. \\
+Mit Hilfe der Einführung des Sigmoid Neurons soll der Fehler zur Klassifizierung von Zahlenwerten minimiert werden. Eine Änderung der Gewichtungen und der Vorbelastung bei diesem künstlichen Neuron soll nur marginale Änderungen an dem Ausgabewert $\mathtt{output}$ vornehmen. Diese Erweiterung des Neurons begünstigt ein Netzwerk selbständig die Klassifizierung von Zahlen zu optimieren. \\[0.2cm]
+\hspace*{1.3cm}
+$
+\begin{array}[t]{lclll}
+	\mathbf{w} + \Delta\mathbf{w} \quad\rightarrow\quad \mathtt{output} + \Delta\mathtt{output}
+\end{array}
+$
+\\[0.2cm]
 
 \noindent
-Der Aufbau des Sigmoid Neurons ähnelt dem Perceptron, wobei das Neuron eine Anzahl von Eingabewerten $x_n$ mit $n \in \{1, \cdots ,m\}$ entgegennimmt und ausgehend von diesen Informationen den $\mathtt{output}$ ermittelt. Der wesentliche Unterschied zwischen diesen zwei Typen von Neuronen liegt in dem Wertebereich des $\mathtt{output}$. Bei dem Sigmoid Neuron kann dieser alle Werte zwischen 0 und 1 annehmen, sprich $\mathtt{output} \in [0 .. 1]$. Weiterhin weist auch diese Art von Neuronen für jeden Eingabewert eine Gewichtung $w_n$ mit $n \in \{1 .. n\}$ sowie einen Bias auf. \\
+Der Aufbau des Sigmoid Neurons ähnelt dem Perceptron, wobei das Neuron eine Anzahl von Eingabewerten $x_n$ mit $n \in \{1, \cdots ,m\}$ entgegennimmt und ausgehend von diesen Informationen den $\mathtt{output}$ ermittelt. Der wesentliche Unterschied zwischen diesen zwei Typen von Neuronen liegt in der differenzierbaren Funktion des Sigmoid Neurons zur Bestimmung des Ausgabewertes. Bei dem Sigmoid Neuron kann dieser alle Werte im Intervall $[0,1]$ annehmen. Weiterhin weist auch diese Art von Neuronen für jeden Eingabewert eine Gewichtung $w_n$ mit $n \in \{1, \cdots ,m\}$ sowie eine Vorbelastung auf. \\
 Für die Berechnung des $\mathtt{output}$ wird in diesem Kontext die \textit{Sigmoid Funktion} $\sigma(z)$ angewendet.
 \begin{equation}
-	\sigma(z) \equiv \frac{1}{1+e^{-z}} \quad\mbox{mit}\quad z = w \cdot x + b
+	\sigma(z) \equiv \frac{1}{1+e^{-z}} \quad\mbox{mit}\quad z = \mathbf{w} \cdot \mathbf{x} + b
 \end{equation}
-Unter Berücksichtigung der Eingabewerte $x_n$ mit $n \in \{1 .. n\}$ und der Weights  $w_n$ mit $n \in \{1 .. n\}$ ergibt sich die folgende Formel:
+Unter Berücksichtigung des Gewichtungsvektors \\[0.2cm]
+\hspace*{1.3cm}
+$
+\begin{array}[t]{lclll}
+	\mathbf{w} = \langle w_1, \cdots, w_m \rangle^\top
+\end{array}
+$
+\\[0.2cm]
+und des Eingabevektors \\[0.2cm]
+\hspace*{1.3cm}
+$
+\begin{array}[t]{lclll}
+	\mathbf{x} = \langle x_1, \cdots, x_m \rangle^\top
+\end{array}
+$
+\\[0.2cm]
+ergibt sich mit der Indexnotation 
 \begin{equation}
-	\sigma(z) \equiv \frac{1}{1+\exp(-\sum_j w_j x_j - b)}
+	\sigma(z) \equiv \frac{1}{1+\exp(-\sum_j w_j x_j - b)}.
 \end{equation}
-Dabei weist das Sigmoid Neuron weiterhin das gleiche Verhalten wie ein Perceptron auf, wenn eine Grenzwertbetrachtung durchführt wird. \\[0.2cm]
+Dabei weist das Sigmoid Neuron das gleiche Verhalten wie ein Perceptron auf, wenn eine Grenzwertbetrachtung durchführt wird. \\[0.2cm]
 \hspace*{1.3cm}
 $
 \begin{array}[t]{lcll}
-	\lim\limits_{z \to \infty}{\sigma(z)} \approx 1 \quad\quad bzw. \\[0.2cm]
-	\lim\limits_{z \to -\infty}{ \sigma(z)} \approx 0
+	\lim\limits_{z \to \infty}{\sigma(z)} & \approx & 1 \quad\quad bzw. \\[0.2cm]
+	\lim\limits_{z \to -\infty}{ \sigma(z)} & \approx & 0
 \end{array}
 $
 \\[0.2cm]
@@ -120,60 +188,15 @@ Dieses Verhalten wird weiterhin verdeutlicht, wenn die Betrachtung auf den folge
 \end{figure}
 
 \noindent
-Im Vergleich hierzu die Stufenfunktion, die das Verhalten eines Perceptrons abbildet (siehe Abb. \ref{fig:perceptron_plot}).
-\begin{figure}[hbt]
-	\centering
-	\includegraphics[scale=0.6]{Bilder/perceptron_plot}
-	\caption{Sigmoid Funktion $\sigma(z)$.} 
-	\label{fig:perceptron_plot} 
-\end{figure}
-Die Vorteile der Sigmoid Funktion liegen in den marginalen Änderungen $\delta w_j$ bei den Gewichtungen und $\delta b$ im Bias, welche eine marginale Änderung am $\delta\mathtt{output}$ vornehmen. Damit stellt $\delta\mathtt{output}$ die lineare Funktion bezüglich der Änderungen  $\delta w_j$ und $\delta b$ in den Weights und Bias dar.
+Die Vorteile der Sigmoid Funktion liegen in den marginalen Änderungen $\delta w_j$ bei den Gewichtungen und $\delta b$ bei der Vorbelastung, welche eine marginale Änderung am $\delta\mathtt{output}$ vornehmen. Damit stellt $\delta\mathtt{output}$ die lineare Funktion bezüglich der Änderungen  $\delta w_j$ und $\delta b$ in den Gewichtungen und der Vorbelastung dar.
 \begin{equation}
 	\Delta\mathtt{output} \equiv \sum_{j}{\frac{\partial\mathtt{output}}{\partial w_j}\Delta w_j+\frac{\partial\mathtt{output}}{\partial b}\Delta b_j}
 \end{equation}
-Diese Linearität begünstigt die Wahl von kleinen Änderungen in den Weights und Biases, um das Verhalten für ein lernendes Netzwerk abzuleiten.   
+Diese Linearität begünstigt die Wahl von kleinen Änderungen in den Gewichtungen und der Vorbelastung, um das Verhalten für ein lernendes Netzwerk abzuleiten.   
 
-<<<<<<< HEAD
-\section{Netzwerk zur Klassifizierung von handgeschrieben Zahlen}
-=======
-\section{Architektur Neuronaler Netzwerke}
-In diesem Abschnitt der Arbeit wird der Aufbau eines neuronalen Netzwerks näher betrachtet und entsprechend auf die Terminologie in diesem Bereich eingegangen (siehe Abb. \ref{fig:neural_network}). \\
-\begin{figure}[hbt]
-	\centering
-	\includegraphics[scale=0.6]{Bilder/neural_network}
-	\caption{Architektur eines neuronalen Netzwerks.} 
-	\label{fig:neural_network} 
-\end{figure}
-
-\noindent
-Ein Netzwerk setzt sich aus mehreren Layern zusammen. So ist wird der erste Layer auf der Linken Seite auch als \textit{Input Layer} und alle korrespondierenden Neuronen als \textit{Input Neuronen} bezeichnet. Der letzte Layer oder auch \textit{Output Layer} beinhaltet dagegen alle \textit{Output Neuronen}. Die mittleren Layer tragen die Bezeichnung des \textit{Hidden Layers}, da die Neuronen weder zu dem Layer der Inputs, noch zu denen der Outputs gehören. Hierbei kann ein Netzwerk mehrere so genannte \textit{Hidden Layer} aufweisen (siehe Abb. \ref{fig:neural_network_extended}). In der folgenden Grafik ist ein 4-Layer-Netzwerk abgebildet, das zwei \textit{Hidden Layer} besitzt. Diese mehrschichtigen Netzwerke werden ebenfalls als \textit{Multilayer Perceptrons} oder \textit{MLPs} bezeichnet, obwohl das Netzwerk sich aus Sigmoid-Neuronen zusammensetzt.
-\begin{figure}[hbt]
-	\centering
-	\includegraphics[scale=0.7]{Bilder/neural_network_extended}
-	\caption{Aufbau des neuronalen Netzwerks hinsichtlich der einzelnen Layer.} 
-	\label{fig:neural_network_extended} 
-\end{figure}
-
-\noindent
-Die Zusammensetzung der Input- und Output-Layer in einem Netzwerk sind vergleichsweise einfach. Fällt unsere Betrachtung auf die Erkennung einer handgeschriebenen "9", so können die Intensitäten der Bildpixel als Eingabewerte für den Input-Layer dienen. Liegt ein Graustufenbild der Größe von 64x64 Pixeln vor, leiten sich daraus 4096 Input-Neuronen  mit skalierten Intensitätswerten zwischen 0 und 1 ab. Der Output-Layer hingegen weißt nur ein Neuron auf, um eine neun entsprechend klassifizieren zu können. \\[0.2cm]
-\hspace*{1.3cm}
-$ 
-\begin{array}[t]{lcll}
-	\mathtt{output} < 0.5 \quad\rightarrow\quad \mbox{"Eingabebild ist keine 9"} \\[0.2cm]
-	\mathtt{output} \geq 0.5 \quad\rightarrow\quad \mbox{"Eingabebild ist eine 9"}
-\end{array}
-$
-\\[0.2cm]
-Im Vergleich hierzu ist der Aufbau der Hidden-Layer nicht durch irgendwelche Regeln ableitbar. Zum Einsatz kommen Heuristiken, die das Verhalten eines Netzwerkes bestimmen, welches ausgehend vom Experiment erwartet und gewünscht wird. Zum Beispiel kann Untersucht werden, wie die Lernrate des Netzwerks sich im Verhältnis zu der Anzahl an Hidden-Layer verhält. \\
-
-\noindent
-Bisher viel die Betrachtung in dieser Arbeit auf neuronale Netze, bei denen die Ausgabe einer Schicht die Eingabe in der nächsten Schicht darstellte. Solche Netzwerke werden auch \textit{Feedforward Neural Networks} bezeichnet. Hierunter ist das das nicht Auftreten von Schleifen zu verstehen - sprich, Informationen werden im Netzwerk immer von Layer $n$ zu Layer $n+1$ übergeben. Somit kann verhindert werden, dass das Netzwerk in gewissen Fällen bei der Eingabe der Sigmoid-Funktion $\sigma$ von dessen Ausgabe abhängig ist. \\
-Ebenfalls gibt es Netzwerke bei denen sogenannte \textit{Feedback Loops} möglich sind. In diesem Fall handelt es sich um sogenannte \textit{Recurrent Neural Networks}. Die Idee hinter diesem Modell ist, dass bestimmte Neuronen über einen definierten Zeitraum aktiv sind bevor sie inaktiv werden. Dies kann andere Neuronen anregen, ebenfalls über einen gewissen Zeitraum aktiv zu sein und eine entsprechende Kettenreaktion auslösen (Kaskade). Schleifen stellen in diesem Modell kein Problem dar, da die Ausgabe eines Neurons erst zu einem späteren Zeitpunkt die Eingabe beeinflusst. \\
-Stellt man diese Arten von neuronalen Netzwerken gegenüber, so lässt sie zum heutigen Zeitpunkt die Aussage treffen, dass Feedback Neural Networks weniger Verbreitung finden. Dies ist begründet in der Leistungsfähigkeit der Lernalgorithmen. Jedoch sollte an dieser Stelle berücksichtigt werden, dass mittels Feedback Neural Networks bestimmte Probleme mit einem geringeren architektonischen Aufwand gelöst werden können. Darüber hinaus bildet der komplexere logische Aufbau eines solchen Netzwerks, das menschliche Verhalten besser ab.
 
 \section{Netzwerk zur Klassifizierung von handgeschrieben Zahlen}
 
 \section{Stochastic Gradient Descent}
 
 \section{Backpropagation}
->>>>>>> 59ba9cc8ce6a7a376cdcd5fdc3214a14ad27236b
