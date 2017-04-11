@@ -21,10 +21,25 @@ Die einzelnen Datensätze, also die handgeschriebenen Zeichen, sind in den Datei
 \end{center}
 Hierbei bezeichnet Label den Wert der jeweils gezeichneten Ziffer (wird benötigt um zu überprüfen, ob das Netzwerk die korrekte Ziffer identifiziert hat und um das Netzwerk zu trainieren). \\ \\
 Um die Datensätze nun in SetlX importieren zu können, wird die Datei $\mathtt{csv\_loader.stlx}$ verwendet. Wird die Datei im SetlX-Interpreter ausgeführt, so liest sie die CSV-Dateien der Test- und Trainingsdaten (die Dateien müssen im selben Verzeichnis liegen und den oben erwähnten Namen haben) und speichert die Daten in den Variablen $\mathtt{test\_data}$ sowie $\mathtt{training\_data}$. Die Testdaten sind hierbei als Liste von Paaren in Form folgender Form abgelegt: \\
-$[$ \\ 
-$[\mathtt{pixels1},\ \mathtt{label1}],$ \\ 
-$[\mathtt{pixels2},\ \mathtt{label2}],$ \\
-$...]$ \\
+\hspace*{0.3cm}
+$
+\begin{array}[t]{lcll}
+	[ \\[0.1cm]
+	
+	\hspace*{0.5cm}
+	\begin{array}[t]{lcll}
+    	[\mathtt{pixels1},\ \mathtt{label1}], \\[0.1cm]
+    	[\mathtt{pixels2},\ \mathtt{label2}], \\[0.1cm]
+    	... \\[0.1cm]
+    \end{array}
+    \\[0.1cm]
+    
+    ] \\[0.1cm]
+\end{array}
+$
+\\[0.0cm]
+
+\noindent
 Die Trainingsdaten sind prinzipiell nach dem gleichen Prinzip aufgebaut, allerdings wird hier für spätere Auswertungszwecke der Wert der Ziffer nicht als konkrete Zahl gespeichert, sondern in vektorisierter Form. Der vektorisierte Wert einer Zahl wird hier durch einen Vektor dargestellt, dessen Inhalt immer 0 ist, außer an der $\mathtt{label+1}$-ten Stelle. Dies entspricht dann genau der Form der Ausgabe des Netzwerkes. Beispielhaft würde eine Ziffer mit dem Wert $7$ als folgender Vektor dargestellt werden: \\
 $<<0\ 0\ 0\ 0\ 0\ 0\ 0\ 1\ 0\ 0>>$ \\
 
