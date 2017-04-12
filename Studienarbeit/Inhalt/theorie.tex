@@ -188,15 +188,56 @@ Dieses Verhalten wird weiterhin verdeutlicht, wenn die Betrachtung auf den folge
 \end{figure}
 
 \noindent
-Die Vorteile der Sigmoid Funktion liegen in den marginalen Änderungen $\delta w_j$ bei den Gewichtungen und $\delta b$ bei der Vorbelastung, welche eine marginale Änderung am $\delta\mathtt{output}$ vornehmen. Damit stellt $\delta\mathtt{output}$ die lineare Funktion bezüglich der Änderungen  $\delta w_j$ und $\delta b$ in den Gewichtungen und der Vorbelastung dar.
+Die Vorteile der Sigmoid Funktion liegen in den marginalen Änderungen $\Delta w_j$ bei den Gewichtungen und $\Delta b$ bei der Vorbelastung, welche eine marginale Änderung am $\Delta\mathtt{output}$ vornehmen. Damit stellt $\Delta\mathtt{output}$ die lineare Funktion bezüglich der Änderungen  $\Delta w_j$ und $\Delta b$ in den Gewichtungen und der Vorbelastung dar.
 \begin{equation}
-	\Delta\mathtt{output} \equiv \sum_{j}{\frac{\partial\mathtt{output}}{\partial w_j}\Delta w_j+\frac{\partial\mathtt{output}}{\partial b}\Delta b_j}
+	\Delta\mathtt{output} \equiv \sum_{j}{\frac{\partial\mathtt{output}}{\partial w_j}\Delta w_j+\frac{\partial\mathtt{output}}{\partial b}\Delta b}
 \end{equation}
-Diese Linearität begünstigt die Wahl von kleinen Änderungen in den Gewichtungen und der Vorbelastung, um das Verhalten für ein lernendes Netzwerk abzuleiten.   
+Diese Linearität begünstigt die Wahl von kleinen Änderungen in den Gewichtungen und der Vorbelastung, um das Verhalten für ein lernendes Netzwerk abzuleiten. \\
 
-
-\section{Netzwerk zur Klassifizierung von handgeschrieben Zahlen}
+\noindent
+Ein \textit{Feedforward Neural Network} besteht aus $L$ Schichten, wobei die Topologie des Netzwerkes durch $L \in \mathbb{N}$ und einer Liste $[m(1),\cdots ,m(L)]$ geben ist. $L$ bezeichnet die Anzahl der Schichten, während $m(l)$ mit $l \in \{2,\cdots ,L\}$ die Anzahl der Neuronen in der $l$-ten Schicht angibt. Somit ist erste Schicht des Netzwerks, die Eingabeschicht, über die Eingabedimension $m(1)$ und die Ausgabedimension über $m(L)$ definiert. \\
+Jedes Neuron der $l$-ten Schicht hat über die Gewichtung eine Verbindung zu einem Neuron in der $(l+1)$-ten Schicht. Die Gewichtung $w_{j,k}^{(l)}$ stellt die Verbindung des $k$-ten Neurons in der $l-1$ Schicht zu dem $j$-ten Neuron in der $l$-ten Schicht. Die Gewichtungen in Schicht $L$ werden über die Gewichtungsmatrix $W^{(l)}$ der Schicht $l$ zusammengefasst. Die Matrix ist wie folgt definiert \\[0.2cm]
+\hspace*{1.3cm}
+$
+\begin{array}[t]{lclll}
+	W^{(l)} := \left( w_{j,k}^{(l)}\right)
+\end{array}
+$
+\\[0.2cm]
+und ist eine $m(l)\times m(l-1)$ Matrix, wobei \\[0.2cm]
+\hspace*{1.3cm}
+$
+\begin{array}[t]{lclll}
+	W^{(l)} \in \mathbb{R}^{m(l)\times m(l-1)}.
+\end{array}
+$
+\\[0.2cm]
+Weiterhin hat das $j$-te Neuron in Schicht $l$ eine Vorbelastung $b_j^{(l)}$. Die Vorbelastungen der Neuronen in Schicht $l$ werden über den Vorbelastungsvektor \\[0.2cm]
+\hspace*{1.3cm}
+$
+\begin{array}[t]{lclll}
+	\mathbf{b}^{(l)} := \langle b_1^{(l)},\cdots ,b_{m(l)}^{(l)}\rangle
+\end{array}
+$
+\\[0.2cm]
+zusammengefasst. Hieraus ergibt sich für das $j$-te Neuron der $l$-ten Schicht die Sigmoid Funktion $\sigma_j^{(l)}$, die wie folgt rekursiv definiert wird:
+\begin{enumerate}
+	\item Für die Eingabeschicht ergibt sich 
+			\begin{equation}
+        	\label{eq:feedforward1}
+      			 \sigma_j^{(1)}(z) := x_j.
+     		\end{equation}
+    \item Für alle anderen Schichten ergibt sich
+    		\begin{equation}
+         	\label{eq:feedforward2}
+         		\sigma_j^{(l)}(z) := 
+             	\sum\limits_{k=1}^{m(l-1)} \left(w_{j,k}^{(l)}\cdot a^{(l-1)}(\mathbf{x}) + b_{j}^{(l)}\right) \quad \mbox{for all $l \in \{2, \cdots, L\}$}.
+			\end{equation}
+\end{enumerate}
 
 \section{Stochastic Gradient Descent}
 
+
 \section{Backpropagation}
+
+%\section{Netzwerk zur Klassifizierung von handgeschrieben Zahlen}
