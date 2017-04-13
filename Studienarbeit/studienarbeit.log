@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.11.3)  12 APR 2017 17:07
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.11.3)  13 APR 2017 18:19
 entering extended mode
 **./studienarbeit.tex
 (studienarbeit.tex
@@ -1166,7 +1166,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 195--196
 
  []
 
-[7 <./Bilder/sigmoid_plot.png>]) [8]
+[7 <./Bilder/sigmoid_plot.png>]) [8] [9]
 \openout2 = `Inhalt/implementierung.aux'.
 
  (Inhalt/implementierung.tex
@@ -1186,7 +1186,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 42--45
 
  []
 
-[9
+[10
 
 
 
@@ -1194,7 +1194,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 42--45
 LaTeX Font Info:    Try loading font information for OT1+zi4 on input line 71.
  ("C:\Program Files\MiKTeX 2.9\tex\latex\inconsolata\ot1zi4.fd"
 File: ot1zi4.fd 2014/06/22 OT1/zi4 (Inconsolata)
-) [10]
+) [11]
 Overfull \hbox (12.70816pt too wide) in paragraph at lines 110--111
 []$[]$\OT1/cmss/m/n/10 : in der init-Funktion wer-den die Funk-tio-nen com-pu-t
 eRnd-Bia-ses() und $[]$
@@ -1210,12 +1210,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 121--127
 
  []
 
-[11] [12] [13]
+[12] [13] [14]
 Underfull \hbox (badness 10000) in paragraph at lines 258--260
 
  []
 
-) [14]
+) [15]
 No file studienarbeit.bbl.
 
 AED: lastpage setting LastPage
@@ -1235,9 +1235,9 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 205.
  ) 
 Here is how much of TeX's memory you used:
- 8786 strings out of 493334
- 124526 string characters out of 3139252
- 231541 words of memory out of 3000000
+ 8791 strings out of 493334
+ 124561 string characters out of 3139252
+ 232542 words of memory out of 3000000
  11993 multiletter control sequences out of 15000+200000
  16187 words of font info for 62 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1261,9 +1261,9 @@ public/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/am
 sfonts/cm/cmtt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/c
 m/cmtt8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/ms
 bm10.pfb>
-Output written on studienarbeit.pdf (18 pages, 573346 bytes).
+Output written on studienarbeit.pdf (19 pages, 573636 bytes).
 PDF statistics:
- 373 PDF objects out of 1000 (max. 8388607)
- 82 named destinations out of 1000 (max. 500000)
+ 386 PDF objects out of 1000 (max. 8388607)
+ 87 named destinations out of 1000 (max. 500000)
  200 words of extra memory for PDF output out of 10000 (max. 10000000)
 

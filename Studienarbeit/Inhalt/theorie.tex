@@ -231,12 +231,51 @@ zusammengefasst. Hieraus ergibt sich für das $j$-te Neuron der $l$-ten Schicht 
     		\begin{equation}
          	\label{eq:feedforward2}
          		\sigma_j^{(l)}(z) := 
-             	\sum\limits_{k=1}^{m(l-1)} \left(w_{j,k}^{(l)}\cdot a^{(l-1)}(\mathbf{x}) + b_{j}^{(l)}\right) \quad \mbox{for all $l \in \{2, \cdots, L\}$}.
+             	\sum\limits_{k=1}^{m(l-1)} \left(w_{j,k}^{(l)}\cdot \sigma^{(l-1)}(z) + b_{j}^{(l)}\right) \quad \mbox{for all $l \in \{2, \cdots, L\}$}.
 			\end{equation}
+\end{enumerate}
+Die Ausgabe des neuronalen Netzwerks für eine gegebene Eingabe $\mathbf{x}$ ist durch die Neuronen der Ausgabeschicht festgelegt. Diese werden über den Ausgabevektor $\mathbf{o} \in \mathbb{R}^{m(L)}$ mit \\[0.2cm]
+\hspace*{1.3cm}
+$
+\begin{array}[t]{lclll}
+	\mathbf{o}(x) := \langle \sigma_1^{(L)}(x),\cdots ,\sigma^{(L)}(z)\rangle = \sigma^{(L)}(x)
+\end{array}
+$
+\\[0.2cm]
+definiert. Unter Berücksichtigung der Gleichungen \ref{eq:feedforward1} und \ref{eq:feedforward2} kann nun nachvollzogen werden, wie Informationen das Netzwerk durchlaufen.
+\begin{enumerate}
+	\item  Der gegebene Eingabevektor $\mathbf{x}$ wird in der ersten und sogenannten Eingabeschicht des neuronalen Netzwerks gespeichert: \\[0.2cm]
+\hspace*{1.3cm}
+$
+\begin{array}[t]{lclll}
+	\sigma^{(1)}(z) := \mathbf{x}.
+\end{array}
+$
+	\item Auf der zweiten Schicht liegt die erste Neuronenebene vor bei denen die Sigmoid Funktion zum Einsatz kommt: \\[0.2cm]
+\hspace*{1.3cm}
+$
+\begin{array}[t]{lclll}
+	\sigma^{(2)}(z) := W^{(2)}\cdot \sigma^{(1)}(z)+\mathbf{b}^{(2)} = W^{(2)}\cdot \mathbf{x}+\mathbf{b}^{(2)}.
+\end{array}
+$
+\item Auf der dritten Schicht liegt die zweite Neuronenebene vor bei denen die Sigmoid Funktion zum Einsatz kommt: \\[0.2cm]
+\hspace*{1.3cm}
+$
+\begin{array}[t]{lclll}
+	\sigma^{(3)}(z) := W^{(3)}\cdot \sigma^{(2)}(z)+\mathbf{b}^{(3)} = W^{(3)}\cdot \left(W^{(2)}\cdot \mathbf{x}+\mathbf{b}^{(2)}\right)+\mathbf{b}^{(3)}.
+\end{array}
+$
+\item Dieser Vorgang wird solange durchlaufen bis die Ausgabeschicht erreicht wird und die Ausgabe \\[0.2cm]
+\hspace*{1.3cm}
+$
+\begin{array}[t]{lclll}
+	\mathbf{o}(\mathbf{x}) := \sigma^{(L)}(z)
+\end{array}
+$
 \end{enumerate}
 
 \section{Stochastic Gradient Descent}
-
+Für eine zuverlässige Klassifizierung der Zahlen wird ein Algorithmus benötigt, der die Bestimmung von Gewichtungen und der Vorbelastungen ...
 
 \section{Backpropagation}
 
