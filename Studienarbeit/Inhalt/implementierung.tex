@@ -133,7 +133,7 @@ Bsp.: $s := [1,2]\ \rightarrow\ <<\ <<x>>\ <<y>>\ >>$ und $s := [2,1]\ \rightarr
 \end{enumerate}
 
 \noindent
-Sei nun $W$ die Matrix der Gewichte und $B$ die Matrix aller Vorbelastungen und $\vec{a}$ bezeichnet den Aktivierungsvektor der vorherigen Schicht, also deren Ausgabe (zu Beginn also die Pixel der Eingabe). Nach Gleichung xyz zur Berechnung einer Sigmoid-Ausgabe lässt sich nun folgende Formel aufstellen: 
+Sei nun $W$ die Matrix der Gewichte und $B$ die Matrix aller Vorbelastungen und $\vec{a}$ bezeichnet den Aktivierungsvektor der vorherigen Schicht, also deren Ausgabe (zu Beginn also die Pixel der Eingabe). Nach Gleichung [ToDo: Verlinkung zu Theorieteil] zur Berechnung einer Sigmoid-Ausgabe lässt sich nun folgende Formel aufstellen: 
 \begin{equation}\label{eq:feedforwarding}
 	\vec{a}' = \sigma(W*\vec{a} + B)
 \end{equation}
@@ -165,8 +165,8 @@ Hierbei bezeichnet $\vec{a}'$ den Ausgabe-Vektor der aktuellen Schicht, welcher 
 \end{Verbatim}
 \begin{enumerate}
 \item $\mathtt{feedforward(a)}$: Zunächst werden die als Liste übergebenen Eingabewerte $\mathtt{a}$ (784 Pixel in Listenform) mit Hilfe von $\mathtt{la\_vektor()}$ in einen Vektor umgewandelt und anschließend wird die Gleichung \eqref{eq:feedforwarding} auf alle Schichten des Netzwerkes angewandt. Zurückgegeben wird die resultierende Ausgabe jedes Neurons der letzten Schicht in vektorisierter Form.
-\item $\mathtt{sigmoid(z)}$: Diese Funktionen nimmt einen Vektor $\mathtt{z}$ und berechnet mit Hilfe der Sigmoid-Formel (siehe Formel xyz) die Ausgabe der Neuronen in vektorisierter Form.
-\item $\mathtt{sigmoid\_prime(z)}$: Für einen gegebenen Vektor $\mathtt{z}$ wird die Ableitung der Sigmoid-Funktion (nach Formel xyz) berechnet und in vektorisierter Form zurückgegeben.
+\item $\mathtt{sigmoid(z)}$: Diese Funktionen nimmt einen Vektor $\mathtt{z}$ und berechnet mit Hilfe der Sigmoid-Formel (siehe Formel [ToDo: Verlinkung zu Theorieteil]) die Ausgabe der Neuronen in vektorisierter Form.
+\item $\mathtt{sigmoid\_prime(z)}$: Für einen gegebenen Vektor $\mathtt{z}$ wird die Ableitung der Sigmoid-Funktion (nach Formel [ToDo: Verlinkung zu Theorieteil]) berechnet und in vektorisierter Form zurückgegeben.
 \end{enumerate}
 \noindent
 Die Feedforward-Funktion dient also dazu, die Eingabewerte durch das gesamte Netzwerk durchzureichen und die daraus resultierende Ausgabe zu ermitteln. Als nächstes wird der Algorithmus diskutiert, durch welchem es dem Netzwerk ermöglicht wird zu \glqq lernen\grqq. Hierfür wird der SGD-Algorithmus verwendet. Die Implementierung des SGDs in SetlX ist nachfolgend aufgezeigt und wird nun im Detail erläutert.
@@ -210,9 +210,45 @@ Die Feedforward-Funktion dient also dazu, die Eingabewerte durch das gesamte Net
 \item Zeile 1: Übergabeparameter der Funktion sind die Trainingsdatensätze (Liste von Tupeln $\mathtt{[x,y]}$ mit $\mathtt{x}$ als Eingabewerten und $\mathtt{y}$ als gewünschtem Ergebnis), die Anzahl der Epochen (Integer-Wert), die Größe der Mini-Batches (Integer-Wert), die gewünschte Lernrate (Fließkomma-Wert) und den optionalen Testdatensätzen (äquivalenter Aufbau zu Trainingsdaten).
 \item Zeile 7: Der nachfolgende Programmcode wird entsprechend der übergebenen Epochenanzahl mehrfach ausgeführt.
 \item Zeile 8-12: Zuerst werden alle Trainingsdaten zufällig vermischt und anschließend Mini-Batches (also Ausschnitte aus dem Gesamtdatensatz) der vorher festgelegten Größe aus den Trainingsdaten extrahiert. Somit wird eine zufällige Belegung von Mini-Batches garantiert. Alle Mini-Batches werden in Listenform in der Variablen $\mathtt{mini\_batches}$ gespeichert.
-\item Zeile 14-16: Anschließend wird für jeden Mini-Batch aus $\mathtt{mini\_batches}$ ein Schritt des SGD angewendet. Dies geschieht mit Hilfe der Funktion $\mathtt{update\_mini\_batches}$, welche anschließend genauer erläutert wird. Zweck der Funktion ist es die Gewichte und Vorbelastungen des Netzwerkes mit Hilfe einer Iteration des SGD-Algorithmus anzupassen. Die Basis für diese Anpassung liefert der übergebene Mini-Batch und die Lernrate.
+\item Zeile 14-16: Anschließend wird für jeden Mini-Batch aus $\mathtt{mini\_batches}$ eine Iteration des Gradient Descent Algorithmus angewendet. Dies geschieht mit Hilfe der Funktion $\mathtt{update\_mini\_batches}$, welche im nächsten Schritt ausführlicher erläutert wird. Zweck der Funktion ist es die Gewichte und Vorbelastungen des Netzwerkes mit Hilfe einer Iteration des SGD-Algorithmus anzupassen. Die Basis für diese Anpassung liefert der übergebene Mini-Batch und die Lernrate.
 \item Zeile 19-25: Dieser Programmcode dient zur Ausgabe auf der Konsole und teilt dem Benutzer die aktuelle Anzahl an korrekt ermittelten Datensätzen der Trainingsdaten nach jeder Epoche mit. Hierfür wird die Hilfsfunktion $\mathtt{evaluate}$ verwendet, welche unter Berücksichtigung des aktuellen Netzwerkzustandes die Outputs ermittelt, welcher bei Eingabe der Testdaten durch das Netzwerk errechnet wurden (genaue Implementierung folgt). Sollten der $\mathtt{sgd}$-Funktion keine Testdaten übergeben worden sein, so entfällt diese Ausgabe.
 \end{enumerate}
+
+\noindent
+Die in der SGD-Funktion erwähnte Hilfsfunktion $\mathtt{update\_mini\_batches}$ dient dazu, auf einem gegebenen Testdatensatz (Mini-Batch) eine Iteration des Gradient Descent Algorithmus anzuwenden. Hierfür wird Backpropagation genutzt.
+\begin{Verbatim}[ frame         = lines, 
+                  framesep      = 0.3cm, 
+                  firstnumber   = 1,
+                  labelposition = bottomline,
+                  numbers       = left,
+                  numbersep     = -0.2cm,
+                  xleftmargin   = 0.8cm,
+                  xrightmargin  = 0.8cm,
+                ]
+    update_mini_batch := procedure(mini_batch, eta) {
+        [nabla_b, nabla_w] := getNabla_b_and_w();
+        for([x,y] in mini_batch) {
+            [delta_nabla_b, delta_nabla_w] := backprop(x,y);
+            nabla_b := [ nabla_b[i] + delta_nabla_b[i] : i in {1..#nabla_b} ];
+            nabla_w := [ nabla_w[i] + delta_nabla_w[i] : i in {1..#nabla_w} ];
+        }
+        this.mWeights := [ mWeights[i]-(eta/#mini_batch)*nabla_w[i] : i in {1..#mWeights} ];
+        this.mBiases := [ mBiases[i]-(eta/#mini_batch)*nabla_b[i] : i in {1..#mBiases} ];
+    };
+\end{Verbatim}
+\begin{enumerate}
+\item Zeile 1: Der Funktion wird ein Mini-Batch aus der SDG-Funktion in Listenform mitgegeben. Die jeweiligen Datensätze der Liste bestehen bestehen aus Tupeln der Form $[x,y]$, wobei $x$ die Pixel des jeweiligen Zeichens darstellt und $y$ der erwartete Wert des Zeichens ist.
+\item Zeile 2: Hier werden die Variablen $\mathtt{nabla\_b}$ und $\mathtt{nabla\_w}$ initialisiert. Die Initialisierung der Variablen geschieht durch die Hilfsfunktion $\mathtt{getNabla\_b\_and\_w}$. Die Funktion gibt zwei mit 0-en initialisierte Variablen zurück, deren Form jeweils der Gewichts- und Vorbelastungs-Matrizen entspricht. $\mathtt{nabla\_b}$ und $\mathtt{nabla\_w}$ stehen für die Gradienten der Gewichte und Vorbelastungen des Netzwerkes. Da die Implementierung von $\mathtt{getNabla\_b\_and\_w}$ trivial ist, diese hier nicht weiter erläutert.
+\item Zeile 4: Auf jedes Tupel $[x,y]$ der mitgegebenen Testdaten wird nun der Backpropagation-Algorithmus angewendet. Dieser dient dazu den Gradienten der Kostenfunktion möglichst schnell und effizient zu berechnen. Die Implementierung von Backpropagation folgt im Anschluss.
+\item Zeile 5-6: Die durch die Backpropagation ermittelten Gradienten für die Gewichte und Vorbelastungen werden in den entsprechenden Variablen gespeichert. [ToDo: Warum + ??]
+\item Zeile 8-9: Nachdem die Gradienten durch jeden Datensatz des Mini-Batches angepasst wurden, werden am Ende der Funktion nun die Gewichte und Vorbelastungen des Netzwerkes entsprechend des Ergebnisses angepasst. Hierfür werden folgende Formeln verwendet:
+\begin{equation}\label{eq:feedforwarding}
+	W' = W - \frac{\eta}{m}*\nabla W \\
+	B' = B - \frac{\eta}{m}*\nabla B
+\end{equation}
+Hierbei bezeichnet $W$ die Gewichtsmatrix und $B$ die Vorbelastungsmatrix des Netzwerkes. Die Lernrate wird durch $\eta$ dargestellt und $m$ bezeichnet die Größe der betrachteten Testdaten. Die Lernrate wird durch den Benutzer vorgegeben und der Funktion als Parameter übergeben. $m$ kann durch die Größe des Mini-Batches ermittelt werden. [ToDo: Verweis auf vorherige Formeldefinition, wenn vorhanden]
+\end{enumerate}
+
 
 \noindent
 Nun wird die Funktion $\mathtt{evaluate}$ diskutiert, welche in der $\mathtt{sgd}$-Funktion aufgerufen wurde und dazu dient die Anzahl der vom Netzwerk korrekt ermittelten Datensätze zu berechnen. Die Funktion ist durch folgenden Code gegeben:
@@ -226,8 +262,7 @@ Nun wird die Funktion $\mathtt{evaluate}$ diskutiert, welche in der $\mathtt{sgd
                   xrightmargin  = 0.8cm,
                 ]
     evaluate := procedure(test_data) {
-        test_results := [0 : i in [1..#test_data]];
-		
+        test_results := [0 : i in [1..#test_data]];	
         i := 1;
         for( [x,y] in test_data ) {
             out := feedforward(x);
@@ -241,24 +276,27 @@ Nun wird die Funktion $\mathtt{evaluate}$ diskutiert, welche in der $\mathtt{sgd
             }
             test_results[i] := [index-1,y];
             i += 1;
-        }
-		
+        }	
         return #[1 : [x,y] in test_results | x == y];
     };
 \end{Verbatim}
 \begin{enumerate}
 \item Zeile 1: Der Funktion werden Datensätze in Listenform mitgegeben. Die Datensätze bestehen aus Tupeln der Form $[x,y]$, wobei $x$ die Pixel des jeweiligen Zeichens darstellt und $y$ der Wert des Zeichens ist.
 \item Zeile 2: $\mathtt{test\_results}$ speichert die vom Netzwerk ermittelte Ausgabe, sowie die tatsächliche Ausgabe in Tupelform für jeden Datensatz. Die Variable wird zunächst mit 0-en initialisiert. Es könnte ebenso eine leere Liste erstellt werden, welche im späteren Verlauf um weitere Elemente erweitert wird, allerdings würde das Anhängen an die Liste zu erhöhtem Rechenaufwand führen was die Leistung des Netzwerkes negativ beeinflussen würde.
-\item Zeile 5: Der nachfolgende Programmcode wird nun auf jedes Tupel $[x,y]$ des übergebenen Testdatensatzes angewandt.
-\item Zeile 6-14: Mit Hilfe der bereits besprochenen Feedforward-Funktion wird zunächst die vektorisierte Ausgabe des Netzwerkes für den jeweiligen Datensatz berechnet und in $\mathtt{out}$ gespeichert. anschließend wird über den Ausgabe-Vektor iteriert und das Maximum sowie der dazugehörige Index im Vektor ermittelt \footnote{Anmerkung: Das Maximum könnte auch ohne eine Schleife mit Hilfe der $\mathtt{max}$-Funktion von SetlX ermittelt werden. Allerdings ist es so nicht möglich den zugehörigen Index zu berechnen}. 
-\item Zeile 15: Die ermittelte Ziffer ergibt sich nun aus dem Index subtrahiert mit 1, da die Ziffern mit 0 beginnend im Ausgabevektor gespeichert sind. In die Variable $\mathtt{test\_results}$ wird nun der errechnete Wert sowie der tatsächliche Wert ($y$) gespeichert.
-\item Zeile 19: Die Funktion gibt im Anschluss die Anzahl aller übereinstimmenden Ergebnisse in $\mathtt{test\_results}$ zurück.
+\item Zeile 4: Der nachfolgende Programmcode wird nun auf jedes Tupel $[x,y]$ des übergebenen Testdatensatzes angewandt.
+\item Zeile 5-13: Mit Hilfe der bereits besprochenen Feedforward-Funktion wird zunächst die vektorisierte Ausgabe des Netzwerkes für den jeweiligen Datensatz berechnet und in $\mathtt{out}$ gespeichert. anschließend wird über den Ausgabe-Vektor iteriert und das Maximum sowie der dazugehörige Index im Vektor ermittelt \footnote{Anmerkung: Das Maximum könnte auch ohne eine Schleife mit Hilfe der $\mathtt{max}$-Funktion von SetlX ermittelt werden. Allerdings ist es so nicht möglich den zugehörigen Index zu berechnen}. 
+\item Zeile 14: Die ermittelte Ziffer ergibt sich nun aus dem Index subtrahiert mit 1, da die Ziffern mit 0 beginnend im Ausgabevektor gespeichert sind. In die Variable $\mathtt{test\_results}$ wird nun der errechnete Wert sowie der tatsächliche Wert ($y$) gespeichert.
+\item Zeile 17: Die Funktion gibt im Anschluss die Anzahl aller übereinstimmenden Ergebnisse in $\mathtt{test\_results}$ zurück.
 \end{enumerate}
 
 \noindent
-ToDo: update-mini-batch, backprop \\
+ToDo: backprop \\
 
 \noindent
-Eine vorgefertigte Prozedur zur Initialisierung des benötigten Netzwerkes mit Beispielparametern befindet sich in der Datei $\mathtt{start.stlx}$, welche mit dem Befehl $\mathtt{setlx\ start.stlx}$ über die Konsole gestartet werden kann.
+Eine vorgefertigte Prozedur zur Initialisierung des benötigten Netzwerkes mit Beispielparametern befindet sich in der Datei $\mathtt{start.stlx}$, welche mit dem Befehl 
+\begin{center}
+	$\mathtt{setlx\ start.stlx}$ 
+\end{center}
+über die Konsole gestartet werden kann.
 
 \section{Animation}
