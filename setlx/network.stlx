@@ -87,7 +87,7 @@ class network (s) {
 			zs[i] := z;
 			
 			activation := sigmoid(z);
-			activations[i + len_act] := activation;
+			activations[i + len_act] := la_matrix(activation);
 		}
 
 		// Backwards pass
@@ -98,12 +98,8 @@ class network (s) {
 		// No writing of nabla_b[-1] possible -> use length
 		lb := #nabla_b;
 		lw := #nabla_w;
-	
-		// Transposition is only defined for matrices in SetlX -> am is activation in matrix form
-		// ! = transpose
-		am := la_matrix(activations[-2]);
-		nabla_w[lw] := delta * am!;
-		nabla_b[lb] := delta;				
+		nabla_b[lb] := delta;	
+		nabla_w[lw] := delta * activations[-2]!;			
 		
 		for( l in {2..mNumLayers-1} ) {
 			z := zs[-l];
@@ -131,7 +127,7 @@ class network (s) {
 			// Calculate index of max. output
 			out := feedforward(x);
 			max := out[1];
-			index := 1;stop();
+			index := 1;
 			for(i in {2..#out}) {
 				if( out[i] > max ) {
 					max := out[i];

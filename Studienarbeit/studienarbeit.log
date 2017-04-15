@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.3.22)  14 APR 2017 19:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.3.22)  15 APR 2017 20:39
 entering extended mode
 **./studienarbeit.tex
 (studienarbeit.tex
@@ -867,11 +867,7 @@ Package: babelbib 2012/01/03 v1.31 babelbib: multilingual bibliographies (HH)
 
 (studienarbeit.aux (Inhalt/titelseite.aux) (Inhalt/erklaerung.aux)
 (Inhalt/abstract.aux) (Inhalt/einleitung.aux) (Inhalt/theorie.aux)
-(Inhalt/implementierung.aux
-
-LaTeX Warning: Label `eq:feedforwarding' multiply defined.
-
-))
+(Inhalt/implementierung.aux))
 \openout1 = `studienarbeit.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 161.
@@ -891,7 +887,8 @@ LaTeX Font Info:    ... okay on input line 161.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 161.
 LaTeX Font Info:    Try loading font information for TS1+cmr on input line 161.
 
- ("C:\Program Files\MiKTeX 2.9\tex\latex\base\ts1cmr.fd"
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\ts1cmr.fd"
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    ... okay on input line 161.
@@ -1228,17 +1225,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 121--127
  []
 
 [12] [13]
-Overfull \hbox (9.67554pt too wide) in paragraph at lines 213--214
+Overfull \hbox (9.67554pt too wide) in paragraph at lines 210--211
 \OT1/cmss/m/n/10 ent De-scent Al-go-rith-mus an-ge-wen-det. Dies ge-schieht mit
  Hil-fe der Funk-ti-on $[]$,
  []
 
-[14] [15]
-Underfull \hbox (badness 10000) in paragraph at lines 292--294
-
- []
-
-) [16]
+[14] [15] [16] [17]) [18]
 No file studienarbeit.bbl.
 
 AED: lastpage setting LastPage
@@ -1255,41 +1247,40 @@ Package rerunfilecheck Info: File `studienarbeit.out' has not changed.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-
-LaTeX Warning: There were multiply-defined labels.
-
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 205.
  ) 
 Here is how much of TeX's memory you used:
- 9046 strings out of 493333
- 128652 string characters out of 3139194
- 237734 words of memory out of 3000000
- 12230 multiletter control sequences out of 15000+200000
- 16187 words of font info for 62 fonts, out of 3000000 for 9000
+ 9080 strings out of 493333
+ 129001 string characters out of 3139194
+ 239035 words of memory out of 3000000
+ 12241 multiletter control sequences out of 15000+200000
+ 18017 words of font info for 68 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 34i,12n,43p,1016b,656s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 34i,12n,43p,1040b,654s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/inconsolata/i4-ot1-0.enc}<C:/Pro
 gram Files/MiKTeX 2.9/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb><C:/P
 rogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program F
-iles/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Program Files/Mi
-KTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9
-/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/t
-ype1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publ
-ic/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfon
-ts/cm/cmr5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7
-.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss10.pfb><C:
-/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss12.pfb><C:/Program
- Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss8.pfb><C:/Program Files/Mi
-KTeX 2.9/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><C:/Program Files/MiKTeX 2
-.9/fonts/type1/public/amsfonts/cm/cmssi10.pfb><C:/Program Files/MiKTeX 2.9/font
-s/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/
-public/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/am
-sfonts/cm/cmtt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/c
-m/cmtt8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/ms
-bm10.pfb>
-Output written on studienarbeit.pdf (20 pages, 580519 bytes).
+iles/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx7.pfb><C:/Program Files/MiKT
+eX 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Program Files/MiKTeX 2.9/
+fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9/fonts/ty
+pe1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publ
+ic/amsfonts/cm/cmmi5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfon
+ts/cm/cmmi7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmm
+ib10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb>
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Progra
+m Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files/Mi
+KTeX 2.9/fonts/type1/public/amsfonts/cm/cmss10.pfb><C:/Program Files/MiKTeX 2.9
+/fonts/type1/public/amsfonts/cm/cmss12.pfb><C:/Program Files/MiKTeX 2.9/fonts/t
+ype1/public/amsfonts/cm/cmss8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publ
+ic/amsfonts/cm/cmssbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/ams
+fonts/cm/cmssi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/c
+m/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.
+pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/
+Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt8.pfb><C:/Program F
+iles/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on studienarbeit.pdf (22 pages, 615398 bytes).
 PDF statistics:
- 398 PDF objects out of 1000 (max. 8388607)
- 94 named destinations out of 1000 (max. 500000)
+ 447 PDF objects out of 1000 (max. 8388607)
+ 111 named destinations out of 1000 (max. 500000)
  200 words of extra memory for PDF output out of 10000 (max. 10000000)
 
