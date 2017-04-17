@@ -1,14 +1,34 @@
 \chapter{Einleitung}
 
-\section{Studienarbeit and DHWB}
+\section{Ziel der Arbeit}
+Diese Arbeit wurde im Rahmen einer Studienarbeit an der Dualen Hochschule Baden-Württemberg unter der Leitung von Prof. Dr. Karl Stroetmann angefertigt. Die Arbeit dient zur Unterstützung und Erweiterung der von Herrn Stroetmann gehaltenen Vorlesung \glqq Artificial-Intelligence\grqq .\footnote{Die Vorlesungsunterlagen sind unter https://github.com/karlstroetmann/Artificial-Intelligence zu finden} Ziel der Arbeit ist es die Vorlesung um ein praktisches Beispiel für Neuronale Netze zu erweitern. In den Vorlesungen von Herrn Stroetmann wird zur Veranschaulichung von Algorithmen und Methoden die, an mathematische Formulierungen angelehnte, Programmiersprache SetlX\footnote{https://randoom.org/Software/SetlX} verwendet. In dieser Programmiersprache sollte auch das Neuronale Netzwerk programmiert werden. \\
+Als Basis des in dieser Studienarbeit implementierten Netzwerkes, dient die Python Implementierung einer Zeichenerkennung von Michael Nielsen.\footnote{http://neuralnetworksanddeeplearning.com/}
+
+\section{Aufgabe des Neuronales Netzwerks}
+Ziel des in dieser Arbeit implementierten Neuronalen Netzwerkes ist es, handgeschriebene Zeichen zu erkennen und auszuwerten. Die eingelesenen Zeichen bestehen aus 28x28 Pixeln, welche in verschiedenen Graustufen dargestellt werden. Die Ziffern bestehen aus Werten zwischen 0 und 9. 
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[scale=0.6]{Bilder/handdrawn_digit}
+	\caption{Handgeschriebene Ziffer 5} 
+	\label{fig:handwritten_digit_5} 
+\end{figure}
+Abb. \ref{fig:handwritten_digit_5} zeigt ein Beispiel einer solchen Ziffer. Mit Hilfe des menschlichen Auges und Gehirns ist es für die meisten Menschen ohne Probleme möglich, zu erkennen, dass es sich hierbei um eine Ziffer mit dem Wert \glqq 5\grqq handelt. Eine Erkennung mittels herkömmlichen Computeralgorithmen hingegen stellt sich allerdings als sehr komplex und schwierig heraus. Gründe hierfür sind, dass beispielsweise verschiedene Ziffern durch unterschiedliche Handschriften signifikante Unterschiede aufweisen. Auch können beim Schreibvorgang einzelne Linien durch den Druck des Stiftes schwächer oder gar nicht abgebildet werden, was die gezeichnete Zahl ebenso variieren lässt. Diese und viele Weitere Faktoren führen dazu, dass eine solche Zeichenerkennung mit Hilfe von einfachen Auswertealgorithmen zu hohen Fehlerraten führt. \\ \\
+Mit Hilfe eines Neuronalen Netzwerkes ist es bei solch einem Problem möglich, das Netzwerk automatisch mit Hilfe von Traningsdaten zu trainieren. Das bedeutet, dem Netzwerk wird eine möglichst große Menge an Testdaten übergeben und das Netzwerk lernt automatisch mit Hilfe dieser Daten. Um dies bewerkstelligen zu können, müssen die Trainingsdaten aus folgenden Komponenten bestehen:
+\begin{enumerate}
+\item Eingabedaten (hier: Pixel des auszuwertenden Zeichens)
+\item Erwartetes Ergebnis zu jeder Eingabe (hier: 5)
+\end{enumerate}
 
 \section{GitHub Link}
+Der in dieser Studienarbeit entwickelte Programmcode, sowie sämtliche Dokumentation sind in GitHub unter folgender Adresse zu finden:
+\\[0.2cm]
+\hspace*{1.3cm}
+\href{https://github.com/lucash94/Neural-Network-in-SetlX/}{https://github.com/lucash94/Neural-Network-in-SetlX}
+\\[0.2cm]
+Im Verzeichnis \glqq Studienarbeit\grqq befindet sich diese Arbeit und das Verzeichnis \glqq setlx\grqq beinhaltet die eigentliche Implementierung in SetlX. Das dritte Verzeichnis \glqq res\grqq dient zur Aufbewahrung aller sonstigen Dateien und Aufzeichnungen der Studienarbeit.
 
 \section{Was ist künstliche Intelligenz}
 
 \section{Aktuelle Relevanz/Themen von neuronalen Netzen}
-
-\section{Ziel der Arbeit}
-Die menschliche Wahrnehmung ist 
 
 \section{Aufbau der Arbeit}
