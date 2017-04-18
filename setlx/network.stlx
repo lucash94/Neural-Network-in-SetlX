@@ -68,7 +68,7 @@ class network (s) {
 	};
 
 	// Return lists with zeros in shape of the Weights and Biases
-	getNabla_b_and_w := cachedProcedure() {
+	getNabla_b_and_w := procedure() {
 		nabla_b := [ 0*mBiases[i] : i in {1..#mBiases}];
 		nabla_w := [ 0*mWeights[i] : i in {1..#mWeights}];
 		return [nabla_b, nabla_w];
