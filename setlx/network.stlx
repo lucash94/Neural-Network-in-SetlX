@@ -53,9 +53,7 @@ class network (s) {
 	// mini_batch is list of tuples [x,y] of the training data
 	update_mini_batch := procedure(mini_batch, eta) {
 		// Initialize gradients with 0, according to structure of weights and biases
-		//nabla_b := [ 0*mBiases[i] : i in {1..#mBiases}];
-		//nabla_w := [ 0*mWeights[i] : i in {1..#mWeights}];
-		[nabla_b, nabla_w] := getNablas();
+		[nabla_b, nabla_w] := getNabla_b_and_w();
 		
 		for([x,y] in mini_batch) {
 			[delta_nabla_b, delta_nabla_w] := backprop(x,y);
@@ -69,7 +67,8 @@ class network (s) {
 		this.mBiases := [ mBiases[i]-(eta/#mini_batch)*nabla_b[i] : i in {1..#mBiases} ];
 	};
 
-	getNablas := cachedProcedure() {
+	// Return lists with zeros in shape of the Weights and Biases
+	getNabla_b_and_w := cachedProcedure() {
 		nabla_b := [ 0*mBiases[i] : i in {1..#mBiases}];
 		nabla_w := [ 0*mWeights[i] : i in {1..#mWeights}];
 		return [nabla_b, nabla_w];
@@ -86,7 +85,7 @@ class network (s) {
 		// Feedforward pass
 		activation := x;
 		// List of all activations (layer by layer)
-		activations := [ la_matrix([x]) ];
+		activations := [ la_matrix([x])! ];
 		len_act := #activations;
 		activations += [0 : i in [1..#mBiases]];
 		
@@ -118,7 +117,7 @@ class network (s) {
 			sp := sigmoid_prime(z);	
 			delta := la_hadamard( (mWeights[-l+1]! * delta), sp );
 			nabla_b[lb-l+1] := delta;
-			nabla_w[lw-l+1] := delta * activations[-l-1];
+			nabla_w[lw-l+1] := delta * activations[-l-1]!;
 		}
 		return [nabla_b, nabla_w];
 	};
