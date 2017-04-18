@@ -52,7 +52,10 @@ class network (s) {
 	// Update of weights and biases by using backpropagation on single mini_batches
 	// mini_batch is list of tuples [x,y] of the training data
 	update_mini_batch := procedure(mini_batch, eta) {
-		[nabla_b, nabla_w] := getNabla_b_and_w();
+		// Initialize gradients with 0, according to structure of weights and biases
+		//nabla_b := [ 0*mBiases[i] : i in {1..#mBiases}];
+		//nabla_w := [ 0*mWeights[i] : i in {1..#mWeights}];
+		[nabla_b, nabla_w] := getNablas();
 		
 		for([x,y] in mini_batch) {
 			[delta_nabla_b, delta_nabla_w] := backprop(x,y);
@@ -66,13 +69,21 @@ class network (s) {
 		this.mBiases := [ mBiases[i]-(eta/#mini_batch)*nabla_b[i] : i in {1..#mBiases} ];
 	};
 
+	getNablas := cachedProcedure() {
+		nabla_b := [ 0*mBiases[i] : i in {1..#mBiases}];
+		nabla_w := [ 0*mWeights[i] : i in {1..#mWeights}];
+		return [nabla_b, nabla_w];
+	};
+
 	// Backpropagation to calculate the gradient for the cost function
 	// x: training inputs
 	// y: correct result for inputs x
-	backprop := procedure(x,y) {
-		[nabla_b, nabla_w] := getNabla_b_and_w();
+	backprop := procedure(x,y) {this.s1 := now();
+		// Initialize gradients with 0
+		nabla_b := [ 0 : i in {1..#mBiases}];
+		nabla_w := [ 0 : i in {1..#mWeights}];
 
-		// Feedforward
+		// Feedforward pass
 		activation := x;
 		// List of all activations (layer by layer)
 		activations := [ la_matrix([x]) ];
@@ -90,7 +101,7 @@ class network (s) {
 			activations[i + len_act] := la_matrix(activation);
 		}
 
-		// Backwards pass
+		// Backwards pass, output layer
 		// la_hadamard() needs a matrix -> cdm is cost derivate in matrix form
 		cdm := la_matrix( cost_derivative(activations[-1], y) );
 		delta := la_hadamard( cdm, sigmoid_prime(zs[-1]));
@@ -101,6 +112,7 @@ class network (s) {
 		nabla_b[lb] := delta;	
 		nabla_w[lw] := delta * activations[-2]!;			
 		
+		// Backwards pass, hidden layer
 		for( l in {2..mNumLayers-1} ) {
 			z := zs[-l];
 			sp := sigmoid_prime(z);	
@@ -109,12 +121,6 @@ class network (s) {
 			nabla_w[lw-l+1] := delta * activations[-l-1];
 		}
 		return [nabla_b, nabla_w];
-	};
-	
-	getNabla_b_and_w := procedure() {
-		m_nabla_b := [ la_matrix( [[0]*#b[1]] * #b ) : b in this.mBiases ];
-		m_nabla_w := [ la_matrix( [[0]*#w[1]] * #w ) : w in this.mWeights ];
-		return [m_nabla_b, m_nabla_w];
 	};
 
 	// Returns sum of correct guesses after feedforwarding
