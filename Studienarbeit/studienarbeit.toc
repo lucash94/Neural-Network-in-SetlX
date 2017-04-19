@@ -1,10 +1,9 @@
 \contentsline {chapter}{\numberline {1}Einleitung}{1}{chapter.1}
 \contentsline {section}{\numberline {1.1}Ziel der Arbeit}{1}{section.1.1}
 \contentsline {section}{\numberline {1.2}Aufgabe des Neuronales Netzwerks}{1}{section.1.2}
-\contentsline {section}{\numberline {1.3}GitHub Link}{2}{section.1.3}
-\contentsline {section}{\numberline {1.4}Was ist k\IeC {\"u}nstliche Intelligenz}{2}{section.1.4}
-\contentsline {section}{\numberline {1.5}Aktuelle Relevanz/Themen von neuronalen Netzen}{2}{section.1.5}
-\contentsline {section}{\numberline {1.6}Aufbau der Arbeit}{2}{section.1.6}
+\contentsline {section}{\numberline {1.3}Verf\IeC {\"u}gbarkeit des Programmcodes auf GitHub}{2}{section.1.3}
+\contentsline {section}{\numberline {1.4}Aktuelle Relevanz von neuronalen Netzen}{2}{section.1.4}
+\contentsline {section}{\numberline {1.5}Aufbau der Arbeit}{2}{section.1.5}
 \contentsline {chapter}{\numberline {2}Theorie}{3}{chapter.2}
 \contentsline {section}{\numberline {2.1}Neuronales Netzwerk}{3}{section.2.1}
 \contentsline {section}{\numberline {2.2}Perceptrons}{4}{section.2.2}
