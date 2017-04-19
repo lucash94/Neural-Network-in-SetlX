@@ -1,0 +1,80 @@
+\chapter{Fazit und Ausblick}
+
+\section{Auswertung des Ergebnisses}
+Die Umsetzung der Handschriftenerkennung von Ziffern mittels einem neuronalen Feedforward-Netz wurde erfolgreich in SetlX implementiert. Die Erkennungsrate des Netzwerkes liegt ungefähr zwischen 94 und 96 Prozent. Die nachfolgende Ausgabe entspricht einem Durchlauf der $\mathtt{start.stlx}$-Datei. Hierbei wurden 10.000 Testdaten und 60.000 Trainingsdaten der MNIST-Datensätze verwendet. Die Epochenanzahl beträgt 30.
+
+\begin{Verbatim}[ frame         = lines, 
+                  framesep      = 0.3cm, 
+                  firstnumber   = 1,
+                  labelposition = bottomline,
+                  numbers       = left,
+                  numbersep     = -0.2cm,
+                  xleftmargin   = 0.8cm,
+                  xrightmargin  = 0.8cm,
+                ]
+    D:\DHBW\Neural-Network-in-SetlX\setlx>setlx start.stlx
+    Reading file:   mnist_test.csv
+    Image 10000 of 10000 imported
+    End reading:    mnist_test.csv
+    Reading file:   mnist_train.csv
+    Image 10000 of 60000 imported
+    Image 20000 of 60000 imported
+    Image 30000 of 60000 imported
+    Image 40000 of 60000 imported
+    Image 50000 of 60000 imported
+    Image 60000 of 60000 imported
+    End reading:    mnist_train.csv
+    Create Network
+    Init Network
+    Start SGD
+    Epoch 1: 9427 / 10000
+    Epoch 2: 9446 / 10000
+    Epoch 3: 9534 / 10000
+    Epoch 4: 9489 / 10000
+    Epoch 5: 9581 / 10000
+    Epoch 6: 9548 / 10000
+    Epoch 7: 9559 / 10000
+    Epoch 8: 9602 / 10000
+    Epoch 9: 9543 / 10000
+    Epoch 10: 9605 / 10000
+    Epoch 11: 9571 / 10000
+    Epoch 12: 9566 / 10000
+    Epoch 13: 9603 / 10000
+    Epoch 14: 9603 / 10000
+    Epoch 15: 9598 / 10000
+    Epoch 16: 9609 / 10000
+    Epoch 17: 9587 / 10000
+    Epoch 18: 9604 / 10000
+    Epoch 19: 9609 / 10000
+    Epoch 20: 9616 / 10000
+    Epoch 21: 9591 / 10000
+    Epoch 22: 9597 / 10000
+    Epoch 23: 9605 / 10000
+    Epoch 24: 9612 / 10000
+    Epoch 25: 9588 / 10000
+    Epoch 26: 9600 / 10000
+    Epoch 27: 9598 / 10000
+    Epoch 28: 9605 / 10000
+    Epoch 29: 9582 / 10000
+    Epoch 30: 9629 / 10000
+    Time needed:    1255425ms		
+\end{Verbatim}
+
+\section{Performance der SetlX Implementierung}
+Wie im vorherigen Kapitel zu sehen ist, beträgt die Durchlaufzeit des Programmes mit allen Datensätzen und 30 Epochen (Messzeit beginnt ab Aufruf der SGD-Funktion des Netzwerkes) 1255425 Millisekunden. Im Schnitt wurden ca. 1350000 Millisekunden benötigt, was 22,5 Minuten entspricht. Alle Messungen wurden auf einem Computer mit folgenden Hardwarekomponenten durchgeführt (nur relevante Komponenten sind aufgezählt):
+\begin{itemize}
+	\item \underline{CPU:} Intel Core i7-4720HQ @ 2.60GHz
+	\item \underline{Arbeitsspeicher:} 16GB RAM
+	\item \underline{Grafikkarte:} NVIDIA GeForce GTX 960M
+\end{itemize}
+Auffällig bei der Analyse der Laufzeit ist, dass die Durchlaufzeit der SetlX-Implementierung weit über der der Python-Implementierung liegt. Python benötigte für den Durchlauf der 30 Epochen auf dem selben Computer ungefähr 210000 Millisekunden. Das sind im Durchschnitt 1140000 Millisekunden (19 Minuten) weniger als in der SetlX Implementierung. \\
+Basierend auf einer Reihe Performance-Tests, die auf Grund der langen Durchlaufzeiten durchgeführt wurden, stellte sich heraus, dass die Matrizen-Multiplikation in SetlX wesentlich zeitintensiver ist als in der Numpy-Bibliothek von Python. Der Faktor hierbei beträgt circa 6,5. \\
+Eine Vermutung der, wieso die SetlX Matrizen-Multiplikation wesentlich langsamer ist, ist dass in Python die Berechnung auf die Grafikkarte des Computers ausgelagert wird. Da die SetlX zugrunde liegende Sprache Java plattformunabhängigkeit verspricht, wäre es möglich, dass hier keine AUslagerung auf die Grafikkarte stattfindet. Allerdings sind das nur Vermutungen und müssten auf Ebene der JAMA-Bibliothek (wird von SetlX verwendet zur Matrizen-Multiplikation verwendet) in Java, sowie der Numpy-Bibliothek in Python überprüft werden. \\ \\
+Die gesamte Auswertung sowie alle hierfür verwendeten Programme sind im Verzeichnis
+\\[0.2cm]
+\hspace*{1.3cm}
+/setlx/testing/
+\\[0.2cm]
+im GitHub-Repository zu finden. Die Datei $\mathtt{setlx\_performance\_evaluation.pdf}$ bietet eine Übersicht und Beschreibungen zu den durchgeführten Tests.
+
+\section{Ausblick}
