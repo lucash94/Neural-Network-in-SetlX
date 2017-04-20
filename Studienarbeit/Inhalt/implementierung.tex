@@ -371,3 +371,158 @@ Eine vorgefertigte Prozedur zur Initialisierung des benötigten Netzwerkes mit B
 über die Konsole gestartet werden kann.
 
 \section{Animation}
+In diesem Abschnitt der Arbeit wird die Implementierung der grafischen Ausgabe des neuronalen Netzwerks zur Erkennung handgeschrieben Zahlen in SetlX beschrieben. Ebenfalls wurde wie beim Hauptprogramm die Kommentarzeilen aus der Originaldatei in dieser Arbeit entfernt, um dem Code kompakt zu präsentieren. Die Animation wird als Klasse in SetlX angelegt und enthält die folgenden Membervariablen:
+\begin{enumerate}
+	\item $\mathtt{mScreenSizeX}$: Größe des Ausgabefenster in Richtung der x-Koordinate
+	\item $\mathtt{mScreenSizeY}$: Größe des Ausgabefenster in Richtung der y-Koordinate
+	\item $\mathtt{mAllPixel}$: Anzahl der Pixel einer einzulesenden Zahl
+	\item $\mathtt{mSqrtAllPixel}$: Wurzelergebnis aus der Anzahl der Pixel einer einzulesenden Zahl
+	\item $\mathtt{mBiases}$: Alle Vorbelastungen des Netzwerks
+	\item $\mathtt{mWeights}$: Alle Gewichte des Netzwerks
+	\item $\mathtt{mTestData}$: Testdaten des neuronalen Netzwerks
+	\item $\mathtt{mTestDataSize}$: Größe der Testdaten des neuronalen Netzwerks
+	\item $\mathtt{mNetwork}$: Aufbau der Layer in Listenform ohne Berücksichtigung der Eingabeschicht ($\mathtt{strutcure[2..]}$: $[784,30,10] \rightarrow [30,10]$)
+\end{enumerate}
+Die Initialisierung der Animation erfolgt durch folgende Befehle:
+\begin{Verbatim}[ frame         = lines, 
+                  framesep      = 0.3cm, 
+                  firstnumber   = 1,
+                  labelposition = bottomline,
+                  numbers       = left,
+                  numbersep     = -0.2cm,
+                  xleftmargin   = 0.8cm,
+                  xrightmargin  = 0.8cm,
+                ]
+    netAnimation := animation(weights, biases, structure, test_data);
+    netAnimation.start_animation();
+\end{Verbatim}
+Als Übergabeparameter werden bei der Erstellung des Animation-Objekts die Gewichtungen, Vorbelastungen, die Struktur des Netzwerks in Form einer Liste und die entsprechenden Testdaten übergeben. Die $\mathtt{start\_animation}()$-Funktion der $\mathtt{network\_animation}$-Klasse setzt die Parameter für die Fensterausgabe und steuert die entsprechenden Animationen über die Werte des Eingabefelds an. \\
+\begin{center}
+\begin{tabular}{lp{8cm}}
+\textbf{Eingabebefehl}   & \textbf{Erklärung} \\
+\hline \\
+$\mathbf{0}$      & Animation für den Aufbau des Netzwerks mit den unterschiedlichen Schichten z.B. $[784,30,19]$  \\[0.2cm]
+$\mathbf{1-30}$   & Animation für den Untersuchungsbereich des angesteuerten Neurons $n$ im Hidden-Layer mit $n \in \{1..30\}$ des entsprechenden Netzwerk  \\[0.2cm]
+$\mathbf{101-(\mathtt{mTestDataSize}+100})$  & Animation für den Untersuchungsbereich aller Neuronen für eine gegeben Zahl $x$ aus den Testdaten  \\[0.2cm]
+$\mathbf{1000}$   & Animation für den Untersuchbereichs der einzelnen Neuronen  \\
+\end{tabular}
+\end{center}
+Eine Animation setzt sich aus den Elementen des Netzwerkes zusammen, weshalb die unterschiedlichen Schichten, Neuronen und die Verbindungen zwischen den Neuronen benachbarter Schichten gezeichnet werden müssen. Für jedes Element gibt es eine entsprechende Funktion in der $\mathtt{network\_animation}$-Klasse. Dieser Sachverhalt wird bei Betrachtung der $\mathtt{drawNetwork}()$-Funktion verdeutlicht. Die Funktion ist durch folgenden Code gegeben:
+\begin{Verbatim}[ frame         = lines, 
+                  framesep      = 0.3cm, 
+                  firstnumber   = 1,
+                  labelposition = bottomline,
+                  numbers       = left,
+                  numbersep     = -0.2cm,
+                  xleftmargin   = 0.8cm,
+                  xrightmargin  = 0.8cm,
+                ]
+    drawNetwork := procedure() {	
+        r := mScreenSizeY/(3*max(mNetwork)-1);
+        drawLayer(r, -1);	    	
+        drawConnection(r);	 
+        drawNeuron([], mWeights, 0, 0, 0, 0, false, false, 0,
+                   (mScreenSizeY-(mSqrtAllPixel*12))/2, 0, 0, 1, 0, 12);
+    };
+\end{Verbatim}
+\begin{enumerate}
+	\item Zeile 2: Berechnet den Radius $r$ für alle Neuronen $n$ mit $n \in \{1..\mathtt{max(mNetwork)}\}$. Mit $2r*n$ für die Größe des Kreiskörpers und $r*(n-1)$ für den Abstand zwischen den Neuronen ergibt sich $2r*n+r*(n-1) = \mathtt{mScreenSizeY}$. Die Umstellung der Formel nach $r$ ergibt: \\[0.2cm]
+\hspace*{1.3cm} $r = \mathtt{mScreenSizeY}/(3*\mathtt{max(mNetwork)}-1)$.
+	\item Zeile 3-5: Aufruf der Funktionen $\mathtt{drawLayer()}$, $\mathtt{drawConnection()}$ und $\mathtt{drawNeuron()}$ mit entsprechenden Aufrufparametern. 
+\end{enumerate}
+An dieser Stelle soll angemerkt werden, dass die Funktion $\mathtt{drawLayer()}$ die Darstellung des Netzwerk inklusive der Neuronen in Kreisform abbildet z.B. das Hidden Layer und Output Layer, während die Funktion $\mathtt{drawNeuron()}$ das jeweilige Verhalten innerhalb des Neurons mittels $28 \times 28=784$ Quadraten abbildet z.B. das Input Layer (siehe Abb.\ref{fig:animation_network_default}). \\
+
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[scale=0.7]{Bilder/animation_network_default}
+	\caption{Default Animation, welche über die Eingabe mit dem Wert $0$ aufgerufen wird.} 
+	\label{fig:animation_network_default} 
+\end{figure}
+
+\noindent
+Der Funktion $\mathtt{drawLayer()}$ werden die Parameter für die Größe des Radius $\mathtt{r}$ eines Neurons und des momentan ausgewählten Neurons $\mathtt{acitveNeuron}$ übergeben. Der Code für das Zeichnen der einzelnen Schichten ist dann gegeben durch:
+\begin{Verbatim}[ frame         = lines, 
+                  framesep      = 0.3cm, 
+                  firstnumber   = 1,
+                  labelposition = bottomline,
+                  numbers       = left,
+                  numbersep     = -0.2cm,
+                  xleftmargin   = 0.8cm,
+                  xrightmargin  = 0.8cm,
+                ]
+    drawLayer := procedure(r, activeNeuron) {
+        gfx_setPenColor("BLACK");
+        for(i in {1 .. #mNetwork}) {	
+            for(j in {0 .. mNetwork[i]-1}) {
+                if(activeNeuron == j && i ==1) {
+                    gfx_setPenColorRGB( 1.0, 0.0, 0.0 );				
+                    gfx_filledCircle((mSqrtAllPixel*12+300*i), ((mScreenSizeY-r*(3*mNetwork[i]-1))/2)+3*r*j, r);
+                } else {
+                    gfx_setPenColorRGB( 0.0, 0.0, 0.0 );
+                    gfx_filledCircle((mSqrtAllPixel*12+300*i), ((mScreenSizeY-r*(3*mNetwork[i]-1))/2)+3*r*j, r);
+				
+                    if(i == #mNetwork) {			
+                        gfx_textRight((mSqrtAllPixel*12+300*i)+30, ((mScreenSizeY-r*(3*mNetwork[i]-1))/2)+3*r*j, j);
+                    }
+                }
+            }		
+        }
+    };
+\end{Verbatim}
+\begin{enumerate}
+	\item Zeile 3-4: Für das Zeichnen der einzelnen Schichten werden die Schichten mit der korrespondierten Anzahl von Neuronen.
+	\item Zeile 5-7: Das aktive Neuron auf dessen Betrachtung in der Animation fällt, wird durch die Farbe "rot" hervorgehoben.   
+	\item Zeile 8-13: Alle nicht aktiven Neuronen werden schwarz abgebildet. Für die Ausgabeschicht wird zusätzlich der erwartete Ausgabewert abgebildet, wenn $\mathtt{i == \#mNetwork}$ (siehe Zeile 12-13).
+\end{enumerate}
+Die Berechnung der x-Koordinate für das abzubildende Neuron wird über \\[0.2cm]
+\hspace*{1.3cm}
+$
+\begin{array}[t]{lclll}
+	\mathtt{mSqrtAllPixel*12+300*i}
+\end{array}
+$ 
+\\[0.2cm]
+ermittelt. Dazu wird der der benötigte Bereich für die Eingabeschicht mittels $\mathtt{mSqrtAllPixel}*12$ berechnet, wobei für jede Iteration durch die Layer-Liste des Netzwerks 300px hinzukommen. Für die y-Koordinate ergibt sich die Formel \\[0.2cm]
+\hspace*{1.3cm}
+$
+\begin{array}[t]{lclll}
+	\mathtt{(mScreenSizeY-r*(3*mNetwork[i]-1))/2+3*r*j}.
+\end{array}
+$ 
+\\[0.2cm]
+Dabei wird der mittlere Abstand der grafischen Ausgabe einer Schicht zum Fensterrand in Abhängigkeit des Radius $r$ über $(\mathtt{mScreenSizeY}-r*(3*\mathtt{mNetwork[i]}-1))/2$ berechnet. Für jedes Neuron $j$ in der Schicht $i$ wird der Durchmesser $2*r$ des Neurons und der Abstand $r$ zum nächsten Neuron über $3*r*j$ addiert. \\
+
+\noindent
+Im nächsten Abschnitt wird die Implementierung der $\mathtt{drawConnection()}$-Funktion vorgestellt. Die Funktion verbindet jedes Neuron der Schicht $n$ mit jedem Neuron der Schicht $n+1$. Hierbei sind die Berechnung der Koordinaten $x_1$, $y_1$ sowie $x_2$, $y_2$ äquivalent zu den Berechnung der vorangegangenen $\mathtt{drawLayer()}$-Funktion.
+\begin{Verbatim}[ frame         = lines, 
+                  framesep      = 0.3cm, 
+                  firstnumber   = 1,
+                  labelposition = bottomline,
+                  numbers       = left,
+                  numbersep     = -0.2cm,
+                  xleftmargin   = 0.8cm,
+                  xrightmargin  = 0.8cm,
+                ]
+    drawConnection := procedure(r) {
+        gfx_setPenColor("BLACK");
+        for(i in {1 .. #mNetwork-1}) {	
+            for(j in {0 .. mNetwork[i]-1}) {
+                for(k in {0 .. mNetwork[i+1]-1}) {
+                    if(i<#mNetwork) {
+                        gfx_line((mSqrtAllPixel*12+300*i+r), ((mScreenSizeY-r*(3*mNetwork[i]-1))/2)+3*r*j, (mSqrtAllPixel*12+300*(i+1)-r), ((mScreenSizeY-r*(3*mNetwork[i+1]-1))/2)+3*r*k);
+                    }	
+                }
+            }		
+        }
+    };
+\end{Verbatim}
+Als letztes wird die Funktion $drawNeuron$ diskutiert, welche ausgehend von den Gewichtungen und den Testdaten Bereiche mit höherer Relevanz farbliches hervorhebt. Die farbliche Unterteilung hat dabei die folgende Bedeutung.
+\begin{center}
+\begin{tabular}{lp{6cm}}
+\textbf{Farbe}   & \textbf{Erklärung} \\
+\hline \\
+blau, grün & Bereich mit einer geringen Relevanz \\[0.2cm]
+rot, gelb  & Bereich mit einer hohen Relevanz   \\
+\end{tabular}
+\end{center}
+Für die unterschiedlichen Animationsmöglichkeiten muss an dieser Stelle unterschieden werden, ob die anzuzeigenden Daten nur die Gewichtungen, die Testdaten oder eine Kombination beider abbilden sollen. 

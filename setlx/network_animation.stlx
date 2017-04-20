@@ -7,6 +7,7 @@ class animation(weights, biases, structure, test_data) {
 	mBiases := biases;
 	mWeights := weights;
 	mTestData := test_data;
+	mTestDataSize := #test_data;
 	mNetwork := structure[2..];
 
 	//drawOutputLayer
@@ -26,7 +27,7 @@ class animation(weights, biases, structure, test_data) {
 		hadamardFlag := false;
 		for(i in {1 .. mSqrtAllPixel}) {
 			for(j in {1 .. mSqrtAllPixel}) {
-				if(!dataFlag && !mWeightsFlag) {						// dataFlag == false && weightFlag == false; print init
+				if(!dataFlag && !mWeightsFlag) {							// dataFlag == false && weightFlag == false; print init
 					color := 0.0;
 				} else if(dataFlag && !mWeightsFlag) {					// dataFlag == true && weightFlag == false; print values
 					color := 1.0 - data[a][b][(mAllPixel-(mSqrtAllPixel*i)+j)];
@@ -129,7 +130,7 @@ class animation(weights, biases, structure, test_data) {
 		
 		drawLayer(r, -1);	    	
 		drawConnection(r);	 
-		drawNeuron([], mmWeights, 0, 0, 0, 0, false, false, 0, (mScreenSizeY-(mSqrtAllPixel*12))/2, 0, 0, 1, 0, 12);
+		drawNeuron([], mWeights, 0, 0, 0, 0, false, false, 0, (mScreenSizeY-(mSqrtAllPixel*12))/2, 0, 0, 1, 0, 12);
 	};
 
 	animate := procedure(input) {	
@@ -160,7 +161,7 @@ class animation(weights, biases, structure, test_data) {
 				}
 				return animate( readInput() );
 				
-			case input>=100 && input<1000:
+			case input>100 && input<mTestDataSize+100:
 				gfx_clear();
 			
 				data := [];
