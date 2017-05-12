@@ -18,25 +18,34 @@ parse_csv := procedure(file, len) {
     // create empty lists for images and according labels
     images := [0 : i in [1..len]];
     labels := [0 : i in [1..len]];
+
+    // Try to read File
+    try {
+        // csv[image,pixels/label] --> csv[3][1]: Label of image 3
+        print("Reading file:\t$file$");
+        csv := readFile(file);
     
-    // csv[image,pixels/label] --> csv[3][1]: Label of image 3
-    print("Reading file:\t$file$");
-    csv := readFile(file);
+        // Convert every line into lists    
+        for(i in {1..len}) {
+            labels[i] := int(csv[i][1]);    
+            // starting at 3, because 1 and 2 are label and ","    
+            images[i] := parse_line(csv[i][3..]);    
+            // e.g. images[1] = all pixels of image1; images[1][1] = 1st pixel of image1
 
-    // Convert every line into lists    
-    for(i in {1..len}) {
-        labels[i] := int(csv[i][1]);    
-        // starting at 3, because 1 and 2 are label and ","    
-        images[i] := parse_line(csv[i][3..]);    
-        // e.g. images[1] = all pixels of image1; images[1][1] = 1st pixel of image1
-
-        if(i%10000 == 0) {
-            print("Image $i$ of $len$ imported");
+            if(i%10000 == 0) {
+                print("Image $i$ of $len$ imported");
+            }
         }
-    }
 
-    print("End reading:\t$file$");    
-    return [images, labels];
+        print("End reading:\t$file$");    
+        return [images, labels];
+    }
+    // File not found
+    catch(e) {
+        print(e);
+        print("Make sure you unzip 'mnist_train.csv.gz' before running the program.");
+        return [];
+    }
 };
 
 // Read csv-string-line and parse into list
@@ -59,6 +68,11 @@ vectorized_result := procedure(j) {
 // format data sets according to their later use in the neural network
 load_data_wrapper := procedure() {
 	[tr_d, te_d] := load_data();
+
+    // Error while loading data
+    if(tr_d == [] || te_d == []) {
+        return [tr_d, te_d];
+    }
 	
 	// Convert test data: [ [pixels1, lbl1], [pixels2, lbl2], ...], like key-value-pairs
 	test_data := format_pixels_label_pairs(te_d[1], te_d[2], test_length());

@@ -8,6 +8,11 @@ resetRandom();
 load("csv_loader.stlx");
 load("network.stlx");
 
+// Check wheather all files have been read correctly
+if(training_data == [] || test_data == []) {
+    return;
+}
+
 print("Create Network");
 net := network(structure);
 
