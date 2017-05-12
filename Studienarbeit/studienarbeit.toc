@@ -18,4 +18,3 @@
 \contentsline {chapter}{\numberline {4}Fazit und Ausblick}{23}{chapter.4}
 \contentsline {section}{\numberline {4.1}Auswertung des Ergebnisses}{23}{section.4.1}
 \contentsline {section}{\numberline {4.2}Performance der SetlX Implementierung}{24}{section.4.2}
-\contentsline {section}{\numberline {4.3}Ausblick}{24}{section.4.3}

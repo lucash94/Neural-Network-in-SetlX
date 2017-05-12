@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.3.22)  12 MAY 2017 20:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.3.22)  12 MAY 2017 22:35
 entering extended mode
 **./studienarbeit.tex
 (studienarbeit.tex
@@ -983,7 +983,7 @@ pdf dhbw-logo.eps>
 (epstopdf)             \includegraphics on input line 6.
 Package epstopdf Info: Output file is already uptodate.
 
-<dhbw-logo-eps-converted-to.pdf, id=87, 173.64874pt x 88.33pt>
+<dhbw-logo-eps-converted-to.pdf, id=83, 173.64874pt x 88.33pt>
 File: dhbw-logo-eps-converted-to.pdf Graphic file (type pdf)
 
 <use dhbw-logo-eps-converted-to.pdf>
@@ -1067,7 +1067,7 @@ No file Inhalt/abstract.tex.
 
  (Inhalt/einleitung.tex
 Kapitel 1.
-<Bilder/handdrawn_digit.png, id=168, 74.52844pt x 95.6072pt>
+<Bilder/handdrawn_digit.png, id=165, 74.52844pt x 95.6072pt>
 File: Bilder/handdrawn_digit.png Graphic file (type png)
 
 <use Bilder/handdrawn_digit.png>
@@ -1091,7 +1091,7 @@ l.18 \item
 
  (Inhalt/theorie.tex
 Kapitel 2.
-<Bilder/neural_network_extended.png, id=197, 555.57562pt x 313.9228pt>
+<Bilder/neural_network_extended.png, id=194, 555.57562pt x 313.9228pt>
 File: Bilder/neural_network_extended.png Graphic file (type png)
 
 <use Bilder/neural_network_extended.png>
@@ -1108,14 +1108,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 13--24
 
 
  <./Bilder/neural_network_extended.png>]
-<Bilder/perceptron.png, id=207, 211.992pt x 104.18925pt>
+<Bilder/perceptron.png, id=204, 211.992pt x 104.18925pt>
 File: Bilder/perceptron.png Graphic file (type png)
 
 <use Bilder/perceptron.png>
 Package pdftex.def Info: Bilder/perceptron.png used on input line 34.
 (pdftex.def)             Requested size: 127.19617pt x 62.51402pt.
 
-<Bilder/perceptron_models.png, id=209, 405.31425pt x 162.6075pt>
+<Bilder/perceptron_models.png, id=206, 405.31425pt x 162.6075pt>
 File: Bilder/perceptron_models.png Graphic file (type png)
 
 <use Bilder/perceptron_models.png>
@@ -1127,28 +1127,28 @@ Underfull \hbox (badness 10000) in paragraph at lines 49--58
  []
 
 [4 <./Bilder/perceptron.png>]
-<Bilder/perceptron_plot.png, id=221, 385.44pt x 261.22594pt>
+<Bilder/perceptron_plot.png, id=218, 385.44pt x 261.22594pt>
 File: Bilder/perceptron_plot.png Graphic file (type png)
 
 <use Bilder/perceptron_plot.png>
 Package pdftex.def Info: Bilder/perceptron_plot.png used on input line 73.
 (pdftex.def)             Requested size: 231.26578pt x 156.73676pt.
 
-<Bilder/perceptron_example.png, id=223, 184.89075pt x 86.12175pt>
+<Bilder/perceptron_example.png, id=220, 184.89075pt x 86.12175pt>
 File: Bilder/perceptron_example.png Graphic file (type png)
 
 <use Bilder/perceptron_example.png>
 Package pdftex.def Info: Bilder/perceptron_example.png used on input line 83.
 (pdftex.def)             Requested size: 110.93529pt x 51.67345pt.
  [5 <./Bilder/perceptron_models.png> <./Bilder/perceptron_plot.png>]
-<Bilder/nand_gatter.png, id=233, 373.395pt x 122.25674pt>
+<Bilder/nand_gatter.png, id=230, 373.395pt x 122.25674pt>
 File: Bilder/nand_gatter.png Graphic file (type png)
 
 <use Bilder/nand_gatter.png>
 Package pdftex.def Info: Bilder/nand_gatter.png used on input line 101.
 (pdftex.def)             Requested size: 224.03873pt x 73.3546pt.
 
-<Bilder/nand_gatter_perceptron.png, id=234, 349.90726pt x 159.59625pt>
+<Bilder/nand_gatter_perceptron.png, id=231, 349.90726pt x 159.59625pt>
 File: Bilder/nand_gatter_perceptron.png Graphic file (type png)
 
 <use Bilder/nand_gatter_perceptron.png>
@@ -1156,7 +1156,7 @@ Package pdftex.def Info: Bilder/nand_gatter_perceptron.png used on input line 1
 10.
 (pdftex.def)             Requested size: 209.94595pt x 95.75847pt.
 
-<Bilder/nand_gatter_perceptron_simplified.png, id=236, 361.95226pt x 157.7895pt
+<Bilder/nand_gatter_perceptron_simplified.png, id=233, 361.95226pt x 157.7895pt
 >
 File: Bilder/nand_gatter_perceptron_simplified.png Graphic file (type png)
  <use Bilder/nand_gatter_perceptron_simplified.png>
@@ -1165,7 +1165,7 @@ nput line 119.
 (pdftex.def)             Requested size: 217.17302pt x 94.67442pt.
  [6 <./Bilder/perceptron_example.png> <./Bilder/nand_gatter.png> <./Bilder/nand
 _gatter_perceptron.png>]
-<Bilder/sigmoid_learning.png, id=246, 375.20175pt x 207.174pt>
+<Bilder/sigmoid_learning.png, id=243, 375.20175pt x 207.174pt>
 File: Bilder/sigmoid_learning.png Graphic file (type png)
 
 <use Bilder/sigmoid_learning.png>
@@ -1177,7 +1177,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 137--146
  []
 
 [7 <./Bilder/nand_gatter_perceptron_simplified.png> <./Bilder/sigmoid_learning.
-png>] <Bilder/sigmoid_plot.png, id=255, 382.42876pt x 262.73157pt>
+png>] <Bilder/sigmoid_plot.png, id=252, 382.42876pt x 262.73157pt>
 File: Bilder/sigmoid_plot.png Graphic file (type png)
 
 <use Bilder/sigmoid_plot.png>
@@ -1203,69 +1203,68 @@ Underfull \hbox (badness 10000) in paragraph at lines 22--41
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 42--45
-
- []
-
 [11
 
 
 
 ]
-LaTeX Font Info:    Try loading font information for OT1+zi4 on input line 71.
- ("C:\Program Files\MiKTeX 2.9\tex\latex\inconsolata\ot1zi4.fd"
+Underfull \hbox (badness 10000) in paragraph at lines 42--46
+
+ []
+
+LaTeX Font Info:    Try loading font information for OT1+zi4 on input line 72.
+("C:\Program Files\MiKTeX 2.9\tex\latex\inconsolata\ot1zi4.fd"
 File: ot1zi4.fd 2016/12/29 OT1/zi4 (Inconsolata)
 )
 LaTeX Font Info:    Font shape `OT1/zi4/m/n' will be
-(Font)              scaled to size 10.0pt on input line 71.
+(Font)              scaled to size 10.0pt on input line 72.
  [12]
-Overfull \hbox (12.70816pt too wide) in paragraph at lines 109--110
-[]$[]$\OT1/cmss/m/n/10 : in der init-Funktion wer-den die Funk-tio-nen com-pu-t
-eRnd-Bia-ses() und $[]$
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 110--116
+Underfull \hbox (badness 10000) in paragraph at lines 111--117
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 120--126
+Underfull \hbox (badness 10000) in paragraph at lines 121--122
 
+ []
+
+
+Overfull \hbox (19.39543pt too wide) in paragraph at lines 125--127
+\OT1/cmss/m/n/10 Vor-be-la-stun-gen in den zu-vor vor-ge-stell-ten Funk-tio-nen
+. Auf Grund der Ver-wen-dung der $[]$-
  []
 
 [13] [14]
-Overfull \hbox (9.67554pt too wide) in paragraph at lines 209--210
+Overfull \hbox (9.67554pt too wide) in paragraph at lines 203--204
 \OT1/cmss/m/n/10 ent De-scent Al-go-rith-mus an-ge-wen-det. Dies ge-schieht mit
  Hil-fe der Funk-ti-on $[]$,
  []
 
 [15] [16] [17] [18]
-Overfull \hbox (20.72226pt too wide) in paragraph at lines 372--373
+Overfull \hbox (20.72226pt too wide) in paragraph at lines 367--368
 []$[]$\OT1/cmss/m/n/10 : Auf-bau der Layer in Li-sten-form oh-ne Beruck-sich-t
 i-gung der Ein-ga-be-schicht ($[]$:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 387--388
+Underfull \hbox (badness 10000) in paragraph at lines 382--383
 
  []
 
 [19]
-Underfull \hbox (badness 10000) in paragraph at lines 421--422
+Underfull \hbox (badness 10000) in paragraph at lines 416--417
 
  []
 
-<Bilder/animation_network_default.png, id=402, 554.67226pt x 554.67226pt>
+<Bilder/animation_network_default.png, id=399, 554.67226pt x 554.67226pt>
 File: Bilder/animation_network_default.png Graphic file (type png)
 
 <use Bilder/animation_network_default.png>
 Package pdftex.def Info: Bilder/animation_network_default.png used on input lin
-e 425.
+e 420.
 (pdftex.def)             Requested size: 388.26793pt x 388.26793pt.
  [20] [21 <./Bilder/animation_network_default.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 465--482
+Underfull \hbox (badness 10000) in paragraph at lines 460--477
 
  []
 
@@ -1283,12 +1282,12 @@ LaTeX Font Info:    Try loading font information for TS1+cmss on input line 66.
 
  ("C:\Program Files\MiKTeX 2.9\tex\latex\base\ts1cmss.fd"
 File: ts1cmss.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-Underfull \hbox (badness 10000) in paragraph at lines 70--79
+))
+Underfull \hbox (badness 10000) in paragraph at lines 72--200
 
  []
 
-) [24]
+[24]
 No file studienarbeit.bbl.
 
 AED: lastpage setting LastPage
@@ -1300,7 +1299,7 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 206.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 206.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 206.
 Package rerunfilecheck Info: File `studienarbeit.out' has not changed.
-(rerunfilecheck)             Checksum: DD2C435A2DF115A35947D8C0B28900C9;1423.
+(rerunfilecheck)             Checksum: 9A151E2900D31C1CB6730792B4240741;1367.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -1308,10 +1307,10 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 206.
  ) 
 Here is how much of TeX's memory you used:
- 9151 strings out of 493333
- 130352 string characters out of 3139194
- 239616 words of memory out of 3000000
- 12268 multiletter control sequences out of 15000+200000
+ 9149 strings out of 493333
+ 130328 string characters out of 3139194
+ 239650 words of memory out of 3000000
+ 12267 multiletter control sequences out of 15000+200000
  17737 words of font info for 67 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  34i,12n,45p,1016b,652s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1337,9 +1336,9 @@ amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts
 /cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt1
 0.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.p
 fb>
-Output written on studienarbeit.pdf (28 pages, 885416 bytes).
+Output written on studienarbeit.pdf (28 pages, 890996 bytes).
 PDF statistics:
- 536 PDF objects out of 1000 (max. 8388607)
- 144 named destinations out of 1000 (max. 500000)
- 234 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 533 PDF objects out of 1000 (max. 8388607)
+ 143 named destinations out of 1000 (max. 500000)
+ 226 words of extra memory for PDF output out of 10000 (max. 10000000)
 

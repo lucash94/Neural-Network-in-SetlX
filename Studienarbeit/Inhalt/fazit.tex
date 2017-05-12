@@ -67,8 +67,9 @@ Wie im vorherigen Kapitel zu sehen ist, beträgt die Durchlaufzeit des Programme
 	\item \underline{Arbeitsspeicher:} 16GB RAM
 	\item \underline{Grafikkarte:} NVIDIA GeForce GTX 960M
 \end{itemize}
-Auffällig bei der Analyse der Laufzeit ist, dass die Durchlaufzeit der SetlX-Implementierung weit über der der Python-Implementierung liegt. Python benötigte für den Durchlauf der 30 Epochen auf dem selben Computer ungefähr 210000 Millisekunden. Das sind im Durchschnitt 1140000 Millisekunden (19 Minuten) weniger als in der SetlX Implementierung. \\
-Basierend auf einer Reihe Performance-Tests, die auf Grund der langen Durchlaufzeiten durchgeführt wurden, stellte sich heraus, dass die Matrizen-Multiplikation in SetlX wesentlich zeitintensiver ist als in der Numpy-Bibliothek von Python. Der Faktor hierbei beträgt circa 6,5. \\
+% Alter Text:
+% Python benötigte für den Durchlauf der 30 Epochen auf dem selben Computer ungefähr 210000 Millisekunden. Das sind im Durchschnitt 1140000 Millisekunden (19 Minuten) weniger als in der SetlX Implementierung.
+Auffällig bei der Analyse der Laufzeit ist, dass die Durchlaufzeit der SetlX-Implementierung weit über der der Python-Implementierung liegt. SetlX benötigte für den Durchlauf der 30 Epochen auf dem selben Computer im Schnitt 5,4 mal länger als die Python-Version des Programms. Basierend auf einer Reihe Performance-Tests, die auf Grund der langen Durchlaufzeiten durchgeführt wurden, stellte sich heraus, dass die Matrizen-Multiplikation in SetlX wesentlich zeitintensiver ist als in der Numpy-Bibliothek von Python. Der Faktor hierbei beträgt circa 6,5. \\
 Eine Vermutung, wieso die SetlX Matrizen-Multiplikation wesentlich langsamer ist, ist dass in Python die Berechnung auf die Grafikkarte des Computers ausgelagert wird. Da die Programmiersprache Java (welche die Grundlage von SetlX bildet) plattformunabhängigkeit verspricht, wäre es möglich, dass hier keine Auslagerung auf die Grafikkarte stattfindet. Allerdings sind das nur Vermutungen und müssten auf Ebene der JAMA-Bibliothek (wird von SetlX zur Matrizen-Multiplikation verwendet) in Java, sowie der Numpy-Bibliothek in Python überprüft werden. \\ \\
 Die gesamte Auswertung sowie alle hierfür verwendeten Programme sind im Verzeichnis
 \\[0.2cm]
@@ -76,5 +77,3 @@ Die gesamte Auswertung sowie alle hierfür verwendeten Programme sind im Verzeic
 /setlx/testing/
 \\[0.2cm]
 im GitHub-Repository zu finden. Die Datei $\mathtt{setlx\_performance\_evaluation.pdf}$ bietet eine Übersicht und Beschreibungen zu den durchgeführten Tests.
-
-\section{Ausblick}

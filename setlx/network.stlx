@@ -53,7 +53,8 @@ class network (s) {
 	// mini_batch is list of tuples [x,y] of the training data
 	update_mini_batch := procedure(mini_batch, eta) {
 		// Initialize gradients with 0, according to structure of weights and biases
-		[nabla_b, nabla_w] := getNabla_b_and_w();
+		nabla_b := [ 0*mBiases[i] : i in {1..#mBiases}];
+		nabla_w := [ 0*mWeights[i] : i in {1..#mWeights}];
 		
 		for([x,y] in mini_batch) {
 			[delta_nabla_b, delta_nabla_w] := backprop(x,y);
@@ -65,13 +66,6 @@ class network (s) {
 		// Adjust mWeights and mBiases
 		this.mWeights := [ mWeights[i] - eta/#mini_batch * nabla_w[i] : i in {1..#mWeights} ];
 		this.mBiases := [ mBiases[i] - eta/#mini_batch * nabla_b[i] : i in {1..#mBiases} ];
-	};
-
-	// Return lists with zeros in shape of the Weights and Biases
-	getNabla_b_and_w := procedure() {
-		nabla_b := [ 0*mBiases[i] : i in {1..#mBiases}];
-		nabla_w := [ 0*mWeights[i] : i in {1..#mWeights}];
-		return [nabla_b, nabla_w];
 	};
 
 	// Backpropagation to calculate the gradient for the cost function
@@ -102,20 +96,20 @@ class network (s) {
 		// Backwards pass, output layer
 		// la_hadamard() needs a matrix -> cdm is cost derivate in matrix form
 		cdm := la_matrix( cost_derivative(activations[-1], y) );
-		delta := la_hadamard( cdm, sigmoid_prime(zs[-1]));
+		epsilon := la_hadamard( cdm, sigmoid_prime(zs[-1]));
 
 		// No writing of nabla_b[-1] possible -> use length
 		lb := #nabla_b;
 		lw := #nabla_w;
-		nabla_b[lb] := delta;	
-		nabla_w[lw] := delta * activations[-2]!;			
+		nabla_b[lb] := epsilon;	
+		nabla_w[lw] := epsilon * activations[-2]!;			
 		
 		// Backwards pass, hidden layer
 		for( l in {2..mNumLayers-1} ) {
 			sp := sigmoid_prime(zs[-l]);	
-			delta := la_hadamard( mWeights[-l+1]! * delta, sp );
-			nabla_b[lb-l+1] := delta;
-			nabla_w[lw-l+1] := delta * activations[-l-1]!;
+			epsilon := la_hadamard( mWeights[-l+1]! * epsilon, sp );
+			nabla_b[lb-l+1] := epsilon;
+			nabla_w[lw-l+1] := epsilon * activations[-l-1]!;
 		}
 		return [nabla_b, nabla_w];
 	};

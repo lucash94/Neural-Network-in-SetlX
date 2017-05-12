@@ -1,5 +1,5 @@
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {1.1}{\ignorespaces Handgeschriebene Ziffer 5}}{1}{figure.1.1}
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Handgeschriebene Ziffer 5 \leavevmode {\color {red}[ToDo: Verweis auf Seite]}}}{1}{figure.1.1}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {2.1}{\ignorespaces Aufbau des neuronalen Netzwerks hinsichtlich der einzelnen Layer.}}{3}{figure.2.1}
 \contentsline {figure}{\numberline {2.2}{\ignorespaces Percetron mit den Eingaben $x_1, x_2, x_3$ und der Ausgabe $\mathtt {output}$.}}{4}{figure.2.2}
