@@ -1,6 +1,6 @@
 // "Global variables", to adjust the amount of loaded images
-test_length := procedure() { return 10000; };
-training_length := procedure() { return 60000; };
+test_length := procedure() { return 1000; };
+training_length := procedure() { return 1000; };
 
 // Load test and training data
 load_data := procedure() {
@@ -42,8 +42,8 @@ parse_csv := procedure(file, len) {
 // Read csv-string-line and parse into list
 parse_line := procedure(s) {
     L := split(s, ",");
-    // Convert to values between 0 and 1 by dividing with 256
-    return [double(x)/256 : x in L];
+    // Convert to values between 0 and 1 by dividing with 255
+    return [double(x)/255 : x in L];
 };
 
 

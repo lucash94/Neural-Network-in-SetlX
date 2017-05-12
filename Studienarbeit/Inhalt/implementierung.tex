@@ -90,18 +90,17 @@ Im Folgenden sind die verwendeten Funktionen, welche während der Gewichts- und 
     };
     computeRndBiases := procedure() {
         this.mBiases := [ 
-            computeRndMatrix([1, mSizes[i]]) : i in [2..mNumLayers] 
+            computeRndMatrix(1, mSizes[i]) : i in [2..mNumLayers] 
         ];
     };
     computeRndWeights := procedure() {
         this.mWeights := [ 
-            computeRndMatrix([mSizes[i], mSizes[i+1]]) : i in [1..mNumLayers-1] 
+            computeRndMatrix(mSizes[i], mSizes[i+1]) : i in [1..mNumLayers-1] 
         ];
     };
-    computeRndMatrix := procedure(s) {
-        [i,j] := s;
+    computeRndMatrix := procedure(row, col) {
         return la_matrix([
-            [ ((random()-0.5)*2)/28 : p in [1..i] ] : q in [1..j]
+            [ ((random()-0.5)*2)/28 : p in [1..row] ] : q in [1..col]
         ]);
     };
 \end{Verbatim}
@@ -128,7 +127,7 @@ Dies entspricht folgenden Zugriffsmöglichkeiten: \\
 	$\mathtt{mWeights[layer-1][neuron][weight\ for\ input\ neuron]}$
 \end{center}
 Der Zugriff auf die Schichten mittels $\mathtt{[layer-1]}$ resultiert aus den fehlenden Gewichten der Eingabe-Schicht.
-\item $\mathtt{computeRndMatrix()}$: Diese Hilfsfunktion dient zur Erstellung der Struktur der Gewichte und Vorbelastungen in den zuvor vorgestellten Funktionen. Die Funktion enthält als Parameter eine Matrix-Struktur in Listenform und liefert die zugehörige Matrix mit zufälligen Werten zwischen $-1/28$ und $1/28$ zurück. Der Wert 28 ergibt sich aus der Größe des Eingabevektors (28x28 Pixel).  Die übergebende Struktur hat die Form $\mathtt{[x,y]}$, wobei $\mathtt{x}$ die Anzahl der Spalten und $\mathtt{y}$ die Anzahl der Reihen angibt. \\
+\item $\mathtt{computeRndMatrix()}$: Diese Hilfsfunktion dient zur Erstellung der Struktur der Gewichte und Vorbelastungen in den zuvor vorgestellten Funktionen. Die Funktion enthält als Parameter eine Matrix-Struktur mittels der Anzahl von Reihen und Spalten. Zurückgegeben wird die zugehörige Matrix mit zufälligen Werten zwischen $-1/28$ und $1/28$. Der Wert 28 ergibt sich aus der Größe des Eingabevektors (28x28 Pixel).  Die übergebende Struktur hat die Form $\mathtt{[x,y]}$, wobei $\mathtt{x}$ die Anzahl der Spalten und $\mathtt{y}$ die Anzahl der Reihen angibt. \\
 Bsp.: $s := [1,2]\ \rightarrow\ <<\ <<x>>\ <<y>>\ >>$ und $s := [2,1]\ \rightarrow\ <<\ <<x\ y>>\ >>$
 \end{enumerate}
 
@@ -151,7 +150,7 @@ Hierbei bezeichnet $\mathbf{a}'$ den Ausgabe-Vektor der aktuellen Schicht, welch
     feedforward := procedure(a) {
         a := la_vector(a);	
         for( i in {1..#mBiases} ) { 
-            a := sigmoid( (mWeights[i]*a) + mBiases[i] );
+            a := sigmoid( mWeights[i]*a + mBiases[i] );
         }
         return a;
     };                            
@@ -230,10 +229,10 @@ Die in der SGD-Funktion erwähnte Hilfsfunktion $\mathtt{update\_mini\_batches}$
             nabla_w := [ nabla_w[i] + delta_nabla_w[i] : i in {1..#nabla_w} ];
         }
         this.mWeights := [ 
-            mWeights[i]-(eta/#mini_batch)*nabla_w[i] : i in {1..#mWeights} 
+            mWeights[i] - eta/#mini_batch * nabla_w[i] : i in {1..#mWeights} 
         ];
         this.mBiases := [ 
-            mBiases[i]-(eta/#mini_batch)*nabla_b[i] : i in {1..#mBiases} 
+            mBiases[i] - eta/#mini_batch * nabla_b[i] : i in {1..#mBiases} 
         ];
     };
 \end{Verbatim}
@@ -281,14 +280,13 @@ Nachfolgend ist die eigentlichen Umsetzung in SetlX mit einigen Erläuterungen z
         nabla_b := [ 0 : i in {1..#mBiases}];
         nabla_w := [ 0 : i in {1..#mWeights}];
         activation := x;
-        activations := [ la_matrix([x])! ];
+        activations := [ la_matrix(x) ];
         len_act := #activations;
         activations += [0 : i in [1..#mBiases]];
         zs := [0 : i in [1..#mBiases]];		
         for(i in {1..#mBiases}) {
-            z := mWeights[i] * activation + mBiases[i];
-            zs[i] := z;	
-            activation := sigmoid(z);
+            zs[i] := mWeights[i] * activation + mBiases[i];	
+            activation := sigmoid(z[i]);
             activations[i + len_act] := la_matrix(activation);
         }
         cdm := la_matrix( cost_derivative(activations[-1], y) );
@@ -298,9 +296,8 @@ Nachfolgend ist die eigentlichen Umsetzung in SetlX mit einigen Erläuterungen z
         nabla_b[lb] := delta;	
         nabla_w[lw] := delta * activations[-2]!;				
         for( l in {2..mNumLayers-1} ) {
-            z := zs[-l];
-            sp := sigmoid_prime(z);	
-            delta := la_hadamard( (mWeights[-l+1]! * delta), sp );
+            sp := sigmoid_prime(zs[-l]);	
+            delta := la_hadamard( mWeights[-l+1]! * delta, sp );
             nabla_b[lb-l+1] := delta;
             nabla_w[lw-l+1] := delta * activations[-l-1]!;
         }
@@ -311,7 +308,7 @@ Nachfolgend ist die eigentlichen Umsetzung in SetlX mit einigen Erläuterungen z
 \item Zeile 1: Der Funktion werden Datensätze in Listenform mitgegeben. Die Datensätze bestehen aus Tupeln der Form $[x,y]$, wobei $x$ die Pixel des jeweiligen Zeichens darstellt und $y$ der tatsächliche Wert des Zeichens ist.
 \item Zeile 2-3: Initialisierung der Gradienten-Variablen $\mathtt{nabla\_b}$ und $\mathtt{nabla\_w}$ mit 0-en.
 \item Zeile 4-7: Die Variable $\mathtt{activiation}$ enthält den aktuellen Eingabevektor der vorherigen Schicht und wird für das Feedforwarding benötigt. Zu Beginn der Funktion entspricht $\mathtt{activiation}$ dem Pixel-Vektor der Eingabe, also $x$. $\mathtt{activiations}$ speichert die Aktivierungsvektoren aller Schichten. Der erste Wert der Liste wird mit dem Eingabevektor belegt. Aus Performance-Gründen wird die Variabel wieder mit 0-en initialisiert, um ein späteres Anhängen an die Liste zu vermeiden (einfügen, statt anhängen).
-\item Zeile 8: $\mathtt{zs}$ bezeichnet die Lister aller z-Vektoren und wird mit 0-en initialisiert. Ein z-Vektor $\mathtt{z}$ beinhaltet alle in der jeweiligen Schicht durch die entsprechenden Werte (Gewichte und Vorbelastungen) gewichteten Eingaben. Dies entspricht also der späteren Eingabewert der Sigmoid-Funktion. Zur Veranschaulichung der z-Vektoren und deren Bedeutung dient folgende Formel:
+\item Zeile 8: $\mathtt{zs}$ bezeichnet die Lister aller z-Vektoren und wird mit 0-en initialisiert. Ein z-Vektor beinhaltet alle in der jeweiligen Schicht durch die entsprechenden Werte (Gewichte und Vorbelastungen) gewichteten Eingaben. Dies entspricht also der späteren Eingabewert der Sigmoid-Funktion. Zur Veranschaulichung der z-Vektoren und deren Bedeutung dient folgende Formel:
 \begin{equation} \label{eq:zvector_impl}
 	\mathbf{a}' = \sigma(\mathbf{z})
 \end{equation} 
@@ -320,7 +317,7 @@ Hierbei bezeichnet $\mathbf{a}'$ den Aktivierungsvektor der nächsten Schicht. [
 \item Zeile 15-16: Diese Zeilen stellen die Implementierung der ersten Gleichung des Backpropagation-Algorithmus \eqref{eq:BP1_impl} dar. Hierbei bezeichnet $\mathtt{delta}$ den Ausgabefehler $\boldsymbol{\varepsilon}^{(L)}$ des Netzwerkes. Um diesen berechnen zu können, wird die Hilfsfunktion $\mathtt{cost\_derivate}$ aufgerufen, welche den erwarteten Ausgabevektor $y$ von dem letzten Aktivierungsvektor (also die Ausgabe des Netzwerkes) subtrahiert. Da die Hadamard-Funktion von SetlX lediglich Matrizen als Parameter akzeptiert und $\mathtt{cost\_derivate}$ einen Vektor berechnet, muss dieser noch mittels $\mathtt{la\_matrix}$ in eine Matrix umgewandelt werden.
 \item Zeile 17-18: Die Variablen $\mathtt{lb}$ und $\mathtt{lw}$ bezeichnen jeweils die Länge der Gewichts- und Vorbelastungslisten. Diese Variablen werden im Anschluss benötigt, da es in SetlX zwar möglich ist eine Liste oder eine Matrix von hinten mittels negativem Index (z.B. $a[-1]$) zu lesen, allerdings nicht zu beschreiben.
 \item Zeile 19-20: Berechnung der Gradienten der Gewichte und Vorbelastung der Ausgabeschicht mittels der Formeln \eqref{eq:BP3_impl} und \eqref{eq:BP4_impl}.
-\item Zeile 22-26: Dieser Code beschreibt die Berechnung der Gradienten für alle Schichten zwischen der zweiten und der Vorletzten in rückwärtiger Reihenfolge (also in unserem Netzwerkaufbau gilt für die Schleife: $l \in {2}$). Zunächst wird wieder der Ausgabefehler $\boldsymbol{\varepsilon}^{(L)}$ berechnet. Dies geschieht in Zeile 24 nach Formel \eqref{eq:BP2_impl}. Da wir in der Schleife mit negativen Indizes arbeiten, entspricht $\mathtt{delta}$ in jeder Iteration der nächsthöheren Schicht. Zeile 25 und 26 entsprechen den Formeln \eqref{eq:BP3_impl} und \eqref{eq:BP4_impl} und passen die Gradientenvariablen entsprechend an. Hierbei ist zu beachten, dass der Ausdruck "$\mathtt{lb-l+1}$" dem Ausdruck "$\mathtt{-l}$" entspricht. Da wie erwähnt ein Schreiben von Matrizen und Arrays mit negativen Indizes nicht möglich ist, musste auf die Werte mit einem positiven Index zugegriffen werden.
+\item Zeile 21-24: Dieser Code beschreibt die Berechnung der Gradienten für alle Schichten zwischen der zweiten und der Vorletzten in rückwärtiger Reihenfolge (also in unserem Netzwerkaufbau gilt für die Schleife: $l \in {2}$). Zunächst wird wieder der Ausgabefehler $\boldsymbol{\varepsilon}^{(L)}$ berechnet. Dies geschieht in Zeile 24 nach Formel \eqref{eq:BP2_impl}. Da wir in der Schleife mit negativen Indizes arbeiten, entspricht $\mathtt{delta}$ in jeder Iteration der nächsthöheren Schicht. Zeile 25 und 26 entsprechen den Formeln \eqref{eq:BP3_impl} und \eqref{eq:BP4_impl} und passen die Gradientenvariablen entsprechend an. Hierbei ist zu beachten, dass der Ausdruck "$\mathtt{lb-l+1}$" dem Ausdruck "$\mathtt{-l}$" entspricht. Da wie erwähnt ein Schreiben von Matrizen und Arrays mit negativen Indizes nicht möglich ist, musste auf die Werte mit einem positiven Index zugegriffen werden.
 \item Zeile 28: Die Funktion liefert als Rückgabeparameter die entgültigen Gradienten der Netzwerkgewichte und -vorbelastungen, welche anschließend in der SGD-Funktion für den Gradientenabstieg verwendet werden.
 \end{enumerate}
 
@@ -336,31 +333,22 @@ Als Letztes wird die Funktion $\mathtt{evaluate}$ diskutiert, welche in der $\ma
                   xrightmargin  = 0.8cm,
                 ]
     evaluate := procedure(test_data) {
-        test_results := [0 : i in [1..#test_data]];	
-        i := 1;
-        for( [x,y] in test_data ) {
-            out := feedforward(x);
-            max := out[1];
-            index := 1;
-            for(i in {2..#out}) {
-                if( out[i] > max ) {
-                    max := out[i];
-                    index := i;
-                }
-            }
-            test_results[i] := [index-1,y];
-            i += 1;
-        }	
+        test_results := [[argmax(feedforward(x)) - 1, y]: [x, y] in test_data];	
         return #[1 : [x,y] in test_results | x == y];
+    };
+    argmax := procedure(x) {
+        [maxValue, maxIndex] := [x[1], 1];
+        for (i in [2 .. #x] | x[i] > maxValue) {
+            [maxValue, maxIndex] := [x[i], i];
+        }
+        return maxIndex;
     };
 \end{Verbatim}
 \begin{enumerate}
 \item Zeile 1: Der Funktion werden Datensätze in Listenform mitgegeben. Die Datensätze bestehen aus Tupeln der Form $[x,y]$, wobei $x$ die Pixel des jeweiligen Zeichens darstellt und $y$ der Wert des Zeichens ist.
-\item Zeile 2: $\mathtt{test\_results}$ speichert die vom Netzwerk ermittelte Ausgabe, sowie die tatsächliche Ausgabe in Tupelform für jeden Datensatz. Die Variable wird zunächst mit 0-en initialisiert. Es könnte ebenso eine leere Liste erstellt werden, welche im späteren Verlauf um weitere Elemente erweitert wird, allerdings würde das Anhängen an die Liste zu erhöhtem Rechenaufwand führen was die Leistung des Netzwerkes negativ beeinflussen würde.
-\item Zeile 4: Der nachfolgende Programmcode wird nun auf jedes Tupel $[x,y]$ des übergebenen Testdatensatzes angewandt.
-\item Zeile 5-13: Mit Hilfe der bereits besprochenen Feedforward-Funktion wird zunächst die vektorisierte Ausgabe des Netzwerkes für den jeweiligen Datensatz berechnet und in $\mathtt{out}$ gespeichert. anschließend wird über den Ausgabe-Vektor iteriert und das Maximum sowie der dazugehörige Index im Vektor ermittelt \footnote{Anmerkung: Das Maximum könnte auch ohne eine Schleife mit Hilfe der $\mathtt{max}$-Funktion von SetlX ermittelt werden. Allerdings ist es so nicht möglich den zugehörigen Index zu berechnen}. 
-\item Zeile 14: Die ermittelte Ziffer ergibt sich nun aus dem Index subtrahiert mit 1, da die Ziffern mit 0 beginnend im Ausgabevektor gespeichert sind. In die Variable $\mathtt{test\_results}$ wird nun der errechnete Wert sowie der tatsächliche Wert ($y$) gespeichert.
-\item Zeile 17: Die Funktion gibt im Anschluss die Anzahl aller übereinstimmenden Ergebnisse in $\mathtt{test\_results}$ zurück.
+\item Zeile 2: $\mathtt{test\_results}$ speichert die vom Netzwerk ermittelte Ausgabe, sowie die tatsächliche Ausgabe in Tupelform für jeden Datensatz. Mit Hilfe der bereits besprochenen Feedforward-Funktion wird zunächst die vektorisierte Ausgabe des Netzwerkes für den jeweiligen Datensatz berechnet. Anschließend wird mit Hilfe der $\mathtt{argmax()}$-Funktion der Index des maximalen Wertes im Vektor ermittelt. Die ermittelte Ziffer ergibt sich nun aus dem Index subtrahiert mit 1, da die Ziffern mit 0 beginnend im Ausgabevektor gespeichert sind. In die Variable $\mathtt{test\_results}$ wird letztendlich der errechnete Wert sowie der tatsächliche Wert ($y$) gespeichert.
+\item Zeile 3: Die Funktion gibt im Anschluss die Anzahl aller übereinstimmenden Ergebnisse in $\mathtt{test\_results}$ zurück.
+\item Zeile 5-11: Die Funktion $\mathtt{argmax()}$ ermittelt in einem Vektor oder einer Liste den Index des größten darin enthaltenen Wertes. Hierbei wird mit einer Schleife über die komplette Liste oder den kompletten Vektor iteriert und der aktuell höchste Wert mit entsprechendem Index in den Variablen $\mathtt{maxValue}$ und $\mathtt{maxIndex}$ gespeichert. Zurückgegeben wird der somit gefundene Index.
 \end{enumerate}
 
 \noindent

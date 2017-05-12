@@ -15,7 +15,7 @@ class network (s) {
 	// a is then list of calculated outputs
 	feedforward := procedure(a) {
 		for( i in {1..#mBiases} ) { 
-			a := sigmoid( (mWeights[i]*a) + mBiases[i] );
+			a := sigmoid( mWeights[i]*a + mBiases[i] );
 		}
 		return a;
 	};
@@ -33,9 +33,9 @@ class network (s) {
 			training_data := shuffle(training_data);
 			// Get mini-batches from the training data to train the network
 			mini_batches := [ training_data[k..k+mini_batch_size-1] : k in [1,mini_batch_size..n] ];
-			
-			for(mini_batch in mini_batches) {
-				update_mini_batch(mini_batch, eta);
+		
+			for(mini_batch in mini_batches) {			
+				update_mini_batch(mini_batch, eta);		
 			} 
 			
 			// Visual output
@@ -63,8 +63,8 @@ class network (s) {
 		}
 		
 		// Adjust mWeights and mBiases
-		this.mWeights := [ mWeights[i]-(eta/#mini_batch)*nabla_w[i] : i in {1..#mWeights} ];
-		this.mBiases := [ mBiases[i]-(eta/#mini_batch)*nabla_b[i] : i in {1..#mBiases} ];
+		this.mWeights := [ mWeights[i] - eta/#mini_batch * nabla_w[i] : i in {1..#mWeights} ];
+		this.mBiases := [ mBiases[i] - eta/#mini_batch * nabla_b[i] : i in {1..#mBiases} ];
 	};
 
 	// Return lists with zeros in shape of the Weights and Biases
@@ -85,7 +85,7 @@ class network (s) {
 		// Feedforward pass
 		activation := x;
 		// List of all activations (layer by layer)
-		activations := [ la_matrix([x])! ];
+		activations := [ la_matrix(x) ];
 		len_act := #activations;
 		activations += [0 : i in [1..#mBiases]];
 		
@@ -93,10 +93,9 @@ class network (s) {
 		zs := [0 : i in [1..#mBiases]];
 		
 		for(i in {1..#mBiases}) {
-			z := mWeights[i] * activation + mBiases[i];
-			zs[i] := z;
+			zs[i] := mWeights[i] * activation + mBiases[i];
 			
-			activation := sigmoid(z);
+			activation := sigmoid(zs[i]);
 			activations[i + len_act] := la_matrix(activation);
 		}
 
@@ -113,9 +112,8 @@ class network (s) {
 		
 		// Backwards pass, hidden layer
 		for( l in {2..mNumLayers-1} ) {
-			z := zs[-l];
-			sp := sigmoid_prime(z);	
-			delta := la_hadamard( (mWeights[-l+1]! * delta), sp );
+			sp := sigmoid_prime(zs[-l]);	
+			delta := la_hadamard( mWeights[-l+1]! * delta, sp );
 			nabla_b[lb-l+1] := delta;
 			nabla_w[lw-l+1] := delta * activations[-l-1]!;
 		}
@@ -124,26 +122,7 @@ class network (s) {
 
 	// Returns sum of correct guesses after feedforwarding
 	evaluate := procedure(test_data) {
-		test_results := [0 : i in [1..#test_data]];
-		
-		i := 1;
-		// x: image-pixels; y: label for image
-		for( [x,y] in test_data ) {
-			// Calculate index of max. output
-			out := feedforward(x);
-			max := out[1];
-			index := 1;
-			for(i in {2..#out}) {
-				if( out[i] > max ) {
-					max := out[i];
-					index := i;
-				}
-			}
-			// Index-1 is output number
-			test_results[i] := [index-1,y];
-			i += 1;
-		}
-		
+		test_results := [[argmax(feedforward(x)) - 1, y]: [x, y] in test_data];	
 		// Return sum of correct guesses
 		return #[1 : [x,y] in test_results | x == y];
 	};
@@ -172,21 +151,29 @@ class network (s) {
 	// 				--> mBiases[layer][neuron][bias]	(bias is always one, because there is only one bias per neuron)
 	computeRndBiases := procedure() {
 		// i is each layer of the network (except the input layer)
-		this.mBiases := [ computeRndMatrix([1, mSizes[i]]) : i in [2..mNumLayers] ];
+		this.mBiases := [ computeRndMatrix(1, mSizes[i]) : i in [2..mNumLayers] ];
 	};
 	// mWeights: 	[ << <<w1_layer2_neu1 w1_layer2_neu2 ... >> << w2_layer2_neu1 ... >> ... >>, << <<w1_layer3_neu1 w1_layer3_neu2 ... >> << w2_layer3_neu1 ... >> ... >>, ...]
 	//				--> mWeights[layer-1][neuron][weight for input neuron]
 	computeRndWeights := procedure() {
-		this.mWeights := [ computeRndMatrix([mSizes[i], mSizes[i+1]]) : i in [1..mNumLayers-1] ];
+		this.mWeights := [ computeRndMatrix(mSizes[i], mSizes[i+1]) : i in [1..mNumLayers-1] ];
 	};
 
 	// Computes matrix with random values based on a shape s
-	// e.g. 	s := [1,2] --> << <<x>> <<y>> >>
-	//			s := [2,1] --> << <<x y>> >>
-	computeRndMatrix := procedure(s) {
-		[i,j] := s;
+	// e.g. 	1, 2 --> << <<x>> <<y>> >>
+	//			2, 1 --> << <<x y>> >>
+	computeRndMatrix := procedure(row, col) {
 		return la_matrix([
-			[ ((random()-0.5)*2)/28 : p in [1..i] ] : q in [1..j]
+			[ ((random()-0.5)*2)/28 : p in [1..row] ] : q in [1..col]
 		]);
+	};
+
+	// Returns index of max. value of x
+	argmax := procedure(x) {
+		[maxValue, maxIndex] := [x[1], 1];
+		for (i in [2 .. #x] | x[i] > maxValue) {
+			[maxValue, maxIndex] := [x[i], i];
+		}
+		return maxIndex;
 	};
 }
