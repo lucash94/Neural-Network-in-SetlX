@@ -18,7 +18,7 @@ wobei $a$ als die sogenannte Aktivierungsfunktion bezeichnet wird (siehe Abb. \r
 \end{figure}
 
 \noindent
-In dieser Arbeit wird die Sigmoid Funktion für die Aktivierung eines Neurons verwendet. Die Sigmoid Funktion $S:\mathbb{R} \rightarrow [0,1]$ ist definiert als \\[0.2cm]
+In dieser Arbeit wird die Sigmoid-Funktion für die Aktivierung eines Neurons verwendet. Die Sigmoid-Funktion $S:\mathbb{R} \rightarrow [0,1]$ ist definiert als \\[0.2cm]
 \hspace*{1.3cm}
 $
 \begin{array}[t]{lclll}
@@ -26,7 +26,7 @@ $
 \end{array}
 $
 \\[0.2cm]
-Fällt die Betrachtung auf die Definition der Sigmoid Funktion, lassen sich auf Basis der folgenden Überlegungen \\[0.2cm]
+Fällt die Betrachtung auf die Definition der Sigmoid-Funktion, lassen sich auf Basis der folgenden Überlegungen \\[0.2cm]
 \hspace*{1.3cm}
 $\ds\lim\limits_{x\rightarrow
 -\infty} \exp(-x) = \infty$, \quad 
@@ -38,11 +38,11 @@ die folgenden Eigenschaften ableiten: \\[0.2cm]
 $\ds \lim_{t\rightarrow-\infty} S(t) = 0$ \quad and \quad
 $\ds \lim_{t\rightarrow+\infty} S(t) = 1$.
 \\[0.2cm]
-Eine weitere Eigenschaft der Sigmoid Funktion besteht in deren Symmetrie (siehe Abb. \ref{fig:sigmoid_plot}). 
+Die Sigmoid-Funktion $S$ konvergiert somit bei der Grenzwertbetrachtung gegen 0 bzw. 1. Eine weitere Eigenschaft der Sigmoid-Funktion besteht in deren Symmetrie (siehe Abb. \ref{fig:sigmoid_plot}). 
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[scale=0.7]{Bilder/sigmoid_plot}
-	\caption{Die Sigmoid Funktion.} 
+	\caption{Die Sigmoid-Funktion.} 
 	\label{fig:sigmoid_plot} 
 \end{figure}
 
@@ -69,7 +69,7 @@ $\ds p(\mathbf{x}; \mathbf{w}, b) = S\left(\biggl(\sum\limits_{i=1}^m x_i \cdot 
 \\[0.2cm]
 
 \section{Neuronales Netzwerk}
-Das in dieser Arbeit angewandte Netzwerk nennt sich hierbei \textit{feedforward neural network} und beschreibt ein Netzwerk aus Neuronen, deren Informationsfluss keine Schleifen durchläuft. Die Topologie des neuronalen Netzwerk ist gegeben durch eine Zahl $L \in \mathbb{N}$ und einer Liste $[m(1),\cdots ,m(L)]$ mit $L$ natürlichen Zahlen. Hierbei bezeichnet $L$ die Anzahl der Schichten im neuronalen Netzwerk und für $i \in {2,\cdots ,L}$ gibt der Wert von $m(i)$ die Anzahl der Neuronen der $l$-ten Schicht an. Die erste Schicht wird in diesem Modell als Eingabeschicht bezeichnet. Sie enthält im Vergleich zu anderen Schichten keine Neuronen sondern Eingabeknoten. Die letzte Schicht (mit Index $L$) wird als Ausgabeschicht bezeichnet, wohingegen alle restlichen Schichten als verborgene Schichten bezeichnet werden. Liegen dem Netzwerk mehr wie nur einer verborgenen Schicht vor, so bezeichnet man dieses als \textit{deep neural network} (siehe Abb. \ref{fig:neural_network_extended}).
+Das in dieser Arbeit angewandte Netzwerk nennt sich hierbei \textit{feedforward neural network} und beschreibt ein Netzwerk aus Neuronen, deren Informationsfluss keine Schleifen durchläuft. Die Topologie des neuronalen Netzwerk ist gegeben durch eine Zahl $L \in \mathbb{N}$ und einer Liste $[m(1),\cdots ,m(L)]$ mit $L$ natürlichen Zahlen. Hierbei bezeichnet $L$ die Anzahl der Schichten im neuronalen Netzwerk und für $i \in \{2,\cdots ,L\}$ gibt der Wert von $m(i)$ die Anzahl der Neuronen der $l$-ten Schicht an. Die erste Schicht wird in diesem Modell als Eingabeschicht bezeichnet. Sie enthält im Vergleich zu anderen Schichten keine Neuronen sondern Eingabeknoten. Die letzte Schicht (mit Index $L$) wird als Ausgabeschicht bezeichnet, wohingegen alle restlichen Schichten als verborgene Schichten bezeichnet werden. Liegen dem Netzwerk mehr wie nur einer verborgenen Schicht vor, so bezeichnet man dieses als \textit{deep neural network} (siehe Abb. \ref{fig:neural_network_extended}).
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[scale=0.6]{Bilder/neural_network_extended}
@@ -83,7 +83,7 @@ Für die erste Schicht, die Eingabeschicht, ist die Eingabedimension definiert d
 \hspace*{1.3cm}
 $\ds W^{(l)} := \bigl( w_{j,k}^{(l)} \bigr)$.
 \\[0.2cm]
-Das $j$-te Neuron in Schicht $l$ hat die ebenfalls noch eine Vorbelastung $b_j^{(l)}$. Die Vorbelastungen werden ebenfalls über den Vorbelastungsvektor $\mathbf{b}^{(l)}$ zusammengefasst mit
+Das $j$-te Neuron in Schicht $l$ hat ebenfalls noch eine Vorbelastung $b_j^{(l)}$. Die Vorbelastungen der Schicht $l$ werden ebenfalls über den Vorbelastungsvektor $\mathbf{b}^{(l)}$ zusammengefasst mit
 \\[0.2cm]
 \hspace*{1.3cm}
 $\mathbf{b}^{(l)} := \langle b_1^{(l)}, \cdots, b_{m(l)}^{(l)} \rangle^\top$.
@@ -101,7 +101,7 @@ Für die Aktivierungsfunktion $a_j^{(l)}$ des $j$-ten Neurons in Schicht $l$ erg
          \label{eq:feedforward2}
          a_j^{(l)}(\mathbf{x}) := 
              S\left(\Biggl(\sum\limits_{k=1}^{m(l-1)} w_{j,k}^{(l)}\cdot a_k^{(l-1)}(\mathbf{x})\Biggr) + b_{j}^{(l)}\right) 
-        \quad \mbox{for all $l \in \{2, \cdots, L\}$}.
+        \quad \mbox{$\forall l \in \{2, \cdots, L\}$}.
 \end{equation}
 \end{enumerate}
 Der Aktivierungsvektor der $l$-ten Schicht ist somit definiert durch
@@ -142,17 +142,17 @@ Mit den zuvor definierten Gleichungen \ref{eq:feedforward1} und \ref{eq:feedforw
 Angenommen dem neuronalen Netzwerk liegen n Trainingsdaten mit
 \\[0.2cm]
 \hspace*{1.3cm}
-$\langle \mathbf{x}^{(i)},\mathbf{y}^{(i)} \rangle \quad für i = 1, \cdots ,n$,
+$\langle \mathbf{x}^{(i)}, \mathbf{y}^{(i)} \rangle$ \quad for $i=1,\cdots,n$ 
 \\[0.2cm]
 sodass 
 \\[0.2cm]
 \hspace*{1.3cm}
-$\mathbf{x}^{(i)} \in \mathbb{R}^{(1)} und \mathbf{y}^{(i)} \in \mathbb{R}^{m(L)}$.
+$\mathbf{x}^{(i)} \in \mathbb{R}^{(1)}$ und $\mathbf{y}^{(i)} \in \mathbb{R}^{m(L)}$.
 \\[0.2cm]
 Das Ziel ist eine Belegung der Gewichtungsmatrix $W^{(l)}$ und dem Vorbelastungsvektor $b^{(l)}$ zu finden, damit
 \\[0.2cm]
 \hspace*{1.3cm}
-$\mathbf{o}\left(\mathbf{x}^{(i)}\right) = y^{(i)} \quad für i = 1, \cdots , n$.
+$\mathbf{o}\bigl(\mathbf{x}^{(i)}\bigr) = \mathbf{y}^{(i)}$ \quad for all $i \in \{1,\cdots,n\}$.
 \\[0.2cm]
 In der Regel wird es nicht möglich sein die Gleichungen für alle $i \in \{ 1, \cdots ,n \}$ zu erfüllen, weshalb es gilt den Fehler zu minimieren. An dieser Stelle fällt die Betrachtung auf die quadratische Fehlerkostenfunktion C, die definiert ist als
 \\[0.2cm]
@@ -162,18 +162,48 @@ $\ds C\Bigr(W^{(2)}, \cdots, W^{(L)}, \mathbf{b}^{(2)}, \cdots, \mathbf{b}^{(L)}
  \frac{1}{2 \cdot n} \cdot \sum\limits_{i=1}^n \Bigl(\mathbf{o}\bigl(\mathbf{x}^{(i)}\bigr) - \mathbf{y}^{(i)}\Bigr)^2
 $.
 \\[0.2cm]
-Aufgrund der additiven Kostenfunktion hinsichtlich der Trainingsdaten $\langle \mathbf{x}^{(i)},\mathbf{y}^{(i)} \rangle$, vereinfacht sich die Notation mit
+Zu berücksichtigen ist an dieser Stelle, dass die Kostenfunktion hinsichtlich der Trainingsdaten $\langle \mathbf{x}^{(i)},\mathbf{y}^{(i)} \rangle$ additiv ist. Eine Vereinfachung der Notation kann vorgenommen, wenn die Betrachtung bei der Kostenfunktion auf ein Trainingsbeispiel $\langle \mathbf{x},\mathbf{y} \rangle$ fällt. Dazu wird
+\\[0.2cm]
+\hspace*{1.3cm}
 $\ds C_{\mathbf{x}, \mathbf{y}}\Bigr(W^{(2)}, \cdots, W^{(L)}, \mathbf{b}^{(2)}, \cdots, \mathbf{b}^{(L)}\Bigr) := 
  \frac{1}{2} \cdot \Bigl(\mathbf{a}^{(L)}\bigl(\mathbf{x}\bigr) - \mathbf{y}\Bigr)^2
-$,
+$
 \\[0.2cm]
-zu
+definiert. Weiterhin ergibt sich für die allgemeine Kostenfunktion
+\\[0.2cm]
+$\ds C\Bigr(W^{(2)}, \cdots, W^{(L)}, \mathbf{b}^{(2)}, \cdots, \mathbf{b}^{(L)};
+     \mathbf{x}^{(1)}, \mathbf{y}^{(1)}, \cdots, \mathbf{x}^{(n)},\mathbf{y}^{(n)} \Bigr) := 
+ \frac{1}{n} \cdot \sum\limits_{i=1}^n C_{\mathbf{x^{(i)}}, \mathbf{y}^{(i)}}\Bigr(W^{(2)}, \cdots W^{(L)}, \mathbf{b}^{(2)}, \cdots, \mathbf{b}^{(L)}\Bigr) 
+$.
+\\[0.2cm]
+Weiterhin wird für den weiteren Verlauf dieser Arbeit die Notation $C_{\mathbf{x}, \mathbf{y}}$ für den Ausdruck
+\\[0.2cm]
+\hspace*{1.3cm}
+$\ds C_{\mathbf{x}, \mathbf{y}}\Bigr(W^{(2)}, \cdots, W^{(L)}, \mathbf{b}^{(2)}, \cdots, \mathbf{b}^{(L)}\Bigr)$
+\\[0.2cm]
+eingeführt.
+
 
 \section{Backpropagation}
-Der Backpropagation-Algorithmus ist das meist genutzte neuronale Modell. Grund ist die universelle Einsetzbarkeit für beliebige Approximationsaufgaben im Hinblick auf die effiziente Berechnung der partiellen Ableitung der Kostenfunktion $C$ nach der Gewichtung $w_{j,k}^{(l)}$ und der Vorbelastungen $b_j^{(l)}$. Der Algorithmus wendet für die Aktivierungsfunktion die nichtlineare Sigmoid Funktion auf die gewichtete Summe der Eingaben an. \\
-Im nächsten Schritt wird angenommen, dass dem neuronalen Netzwerk Trainingsdaten vorliegen. Diese T
+Der Backpropagation-Algorithmus ist das meist genutzte neuronale Modell. Grund ist die universelle Einsetzbarkeit für beliebige Approximationsaufgaben im Hinblick auf die effiziente Berechnung der partiellen Ableitung der Kostenfunktion $C$ nach der Gewichtung $w_{j,k}^{(l)}$ und der Vorbelastungen $b_j^{(l)}$. \\
 
 %http://download.springer.com/static/pdf/442/chp%253A10.1007%252F978-3-658-13549-2_9.pdf?originUrl=http%3A%2F%2Flink.springer.com%2Fchapter%2F10.1007%2F978-3-658-13549-2_9&token2=exp=1494935592~acl=%2Fstatic%2Fpdf%2F442%2Fchp%25253A10.1007%25252F978-3-658-13549-2_9.pdf%3ForiginUrl%3Dhttp%253A%252F%252Flink.springer.com%252Fchapter%252F10.1007%252F978-3-658-13549-2_9*~hmac=259dec5f34cd0b3359f1147eaa21cf718b54fe7ffd8f04118d36cf45e9be83ef
+
+\noindent
+Für die weitere Betrachtung Backpropagation-Gleichungen werden in diesem Abschnitt zunächst eine weitere Hilfsgröße definiert. \\
+Die Definition von $z_j^{(l)}$, soll die Eingabe der Aktivierungsfunktion $S$ des $j$-ten Neuron der $l$-ten Schicht darstellen:
+\\[0.2cm]
+\hspace*{1.3cm}
+$\ds z_j^{(l)} := \left(\sum\limits_{k=1}^{m(l-1)}  w_{j,k}^{(l)} \cdot a_k^{(l-1)}\right) + b_j^{(l)}$
+\quad $\forall j \in \{1, \cdots, m(l)\}$ und $l \in \{2,\cdots,L\}$.
+\\[0.2cm]
+Im Wesentlichen ist $z_j^{(l)}$ die Eingabe der Sigmoid-Funktion für die Berechnung der Aktivierung $a_j^{(l)}$ mit
+\\[0.2cm]
+\hspace*{1.3cm}
+$a_j^{(l)} = S(z_j^{(l)}$.
+\\[0.2cm]
+
+
 
 
 \section{Stochastic Gradient Descent}
