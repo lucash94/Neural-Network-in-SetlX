@@ -190,21 +190,95 @@ Der Backpropagation-Algorithmus ist das meist genutzte neuronale Modell. Grund i
 %http://download.springer.com/static/pdf/442/chp%253A10.1007%252F978-3-658-13549-2_9.pdf?originUrl=http%3A%2F%2Flink.springer.com%2Fchapter%2F10.1007%2F978-3-658-13549-2_9&token2=exp=1494935592~acl=%2Fstatic%2Fpdf%2F442%2Fchp%25253A10.1007%25252F978-3-658-13549-2_9.pdf%3ForiginUrl%3Dhttp%253A%252F%252Flink.springer.com%252Fchapter%252F10.1007%252F978-3-658-13549-2_9*~hmac=259dec5f34cd0b3359f1147eaa21cf718b54fe7ffd8f04118d36cf45e9be83ef
 
 \noindent
-Für die weitere Betrachtung Backpropagation-Gleichungen werden in diesem Abschnitt zunächst eine weitere Hilfsgröße definiert. \\
+Für die weiteren Betrachtungen der Backpropagation-Gleichungen wird in diesem Abschnitt zunächst diverse Hilfsgrößen eingeführt. \\
 Die Definition von $z_j^{(l)}$, soll die Eingabe der Aktivierungsfunktion $S$ des $j$-ten Neuron der $l$-ten Schicht darstellen:
 \\[0.2cm]
 \hspace*{1.3cm}
 $\ds z_j^{(l)} := \left(\sum\limits_{k=1}^{m(l-1)}  w_{j,k}^{(l)} \cdot a_k^{(l-1)}\right) + b_j^{(l)}$
-\quad $\forall j \in \{1, \cdots, m(l)\}$ und $l \in \{2,\cdots,L\}$.
+\quad $\forall j \in \{1, \cdots, m(l)\}$ und $\forall l \in \{2,\cdots,L\}$.
 \\[0.2cm]
-Im Wesentlichen ist $z_j^{(l)}$ die Eingabe der Sigmoid-Funktion für die Berechnung der Aktivierung $a_j^{(l)}$ mit
+Im Wesentlichen ist $z_j^{(l)}$ die Eingabe der Sigmoid-Funktion, damit die Aktivierung $a_j^{(l)}$ mit
 \\[0.2cm]
 \hspace*{1.3cm}
-$a_j^{(l)} = S(z_j^{(l)}$.
+$a_j^{(l)} = S(z_j^{(l))}$.
 \\[0.2cm]
+berechnet werden kann. Im Hinblick auf die partielle Ableitung der Kostenfunktion $C_{\mathbf{x},\mathbf{y}}$ nach der Gewichtung $w_{j,k}^{(l)}$ und den Vorbelastungen $b_j^{(l)}$, empfiehlt sich zuerst die Berechnung der partiellen Ableitung von $C_{\mathbf{x},\mathbf{y}}$ nach $z_j^{(l)}$ durchzuführen. Hierzu sei folgende Definition gegeben:
+\\[0.2cm]
+\hspace*{1.3cm}
+$\ds\varepsilon_j^{(l)} := \frac{\partial C_{\mathbf{x}, \mathbf{y}}}{\partial z_j^{(l)}}$ \quad $\forall j \in \{1, \cdots, m(l)\}$ und $\forall l \in \{2,\cdots, L\}$,
+\\[0.2cm]
+An dieser Stelle ist zu berücksichtigen, dass die partielle Ableitung $\ds\varepsilon_j^{(l)}$ abhängig von $\mathbf{x}$ und $\mathbf{y}$ ist. Weiterhin werden die Größen $\ds\varepsilon_j^{(l)}$ in dem Vektor
+\\[0.2cm]
+\hspace*{1.3cm}
+$\boldsymbol{\varepsilon}^{(l)} := \left(
+  \begin{array}[c]{c}
+    \varepsilon_1^{(l)}      \\
+    \vdots             \\
+    \varepsilon_{m(l)}^{(l)}  
+  \end{array}
+  \right)
+$.
+\\[0.2cm]
+zusammengefasst und als \textit{Fehler in Schicht l} bezeichnet. \\
+
+\noindent
+Mit den definierten Hilfsgrößen ist es nun möglich die vier Gleichung für die Backpropagation zu beschreiben. 
 
 
+ 
+\begin{enumerate}
+\item Die erste Gleichungen berechnet $\varepsilon^{(L)}_j$ für $l=L$, wobei $S'(x)$ die Ableitung der Sigmoid-Funktion bezeichnet:
+\begin{equation}
+	\label{eq:BP1}
+	\varepsilon^{(L)}_j = (a_j^{(L)} - y_j) \cdot S'\bigl(z_j^{(L)}\bigr)
+	\quad \mbox{$\forall j \in \{1, \cdots, m(L)\}$}.
+\end{equation}
+Die Gleichung \ref{eq:BP1} kann auch als vektorisierte Schreibweise mittels dem Hardamard-Produkt angegeben werden. Hierfür ergibt sich:
+\begin{equation}
+  \label{eq:BP1s}
+\boldsymbol{\varepsilon}^{(L)} = (\mathbf{a}^{(L)} - \mathbf{y}) \odot S'\bigl(\mathbf{z}^{(L)}\bigr)  
+\end{equation}
+    
+\item Die zweite Gleichung berechnet $\varepsilon^{(L)}_j$ für alle $l<L$. Der Fehler $\boldsymbol{\varepsilon}^{(l+1)}$ von Schicht $l+1$ fließt hierbei in die Berechnung von $\boldsymbol{\varepsilon}^{(l)}$ ein.
+\begin{equation}
+	\label{eq:BP2}
+	\varepsilon^{(l)}_j = \sum\limits_{i=1}^{m(l+1)} w_{i,j}^{(l+1)} \cdot 			\varepsilon^{(l+1)}_i \cdot S'\bigl(z^{(l)}_j\bigr) \quad \mbox{ $\forall j \in \{1, \cdots, m(l)\}$ und $\forall l \in \{2, \cdots, L-1\}$}
+\end{equation}
+Auch diese Gleichung kann in der vektorisierten Schreibweise angegeben.
+\begin{equation}
+  \label{eq:BP2v}
+  \boldsymbol{\varepsilon}^{(l)} = \Bigl(\bigl(W^{(l+1)}\bigr)^\top \cdot \boldsymbol{\varepsilon}^{(l+1)}\Bigr) \odot
+  S'\bigl(z^{(l)}\bigr) \quad \mbox{$\forall l \in \{2, \cdots, L-1\}$}.
+\end{equation}
 
+\item Die nächste Gleichung ist durch die partielle Ableitung von $C_{\mathbf{x},\mathbf{y}}$ nach der Vorbelastung $b_j^{(l)}$ des $j$-ten Neuron in Schicht $l$ gegeben.
+\begin{equation}
+  \label{eq:BP3}
+  \frac{\partial C_{\mathbf{x}, \mathbf{y}}}{b_j^{(l)}} = \varepsilon_j^{(l)}
+  \quad \mbox{$\forall j \in \{1,\cdots,m(l)\}$ und $\forall l \in \{2, \cdots,l\}$}
+\end{equation}
+Die vektorisierte Schreibweise nimmt hierbei die folgende Form an:
+\begin{equation}
+  \label{eq:BP3v}
+  \nabla_{\mathbf{b}^{(l)}} C_{\mathbf{x}, \mathbf{y}} = \boldsymbol{\varepsilon}^{(l)}
+  \quad \mbox{$\forall l \in \{2, \cdots,l\}$}
+\end{equation}
+Mit $\nabla_{\mathbf{b}^{(l)}}$ wird in dieser Arbeit der Gradient von $C_{\mathbf{x},\mathbf{y}}$ im Hinblick auf $b^{(l)}$ bezeichnet.
+
+\item Die letzte Gleichung ist durch die partielle Ableitung von $C_{\mathbf{x},\mathbf{y}}$ nach der Gewichtung $w_{j,k}^{(l)}$ gegeben.
+\begin{equation}
+  \label{eq:BP4}
+  \frac{\partial C_{\mathbf{x}, \mathbf{y}}}{\partial w_{j,k}^{(l)}} = a_k^{(l-1)} \cdot \varepsilon_j^{(l)}
+  \quad \mbox{$\forall j \in \{1,\cdots,m(l)\}$, $\forall k \in \{1,\cdots,m(l-1)\}$, $\forall l \in \{2, \cdots,l\}$}
+\end{equation}
+Die vektorisierte liefert auch in diesem Fall die folgende Form:
+\begin{equation}
+  \label{eq:BP4v}
+  \nabla_{W^{(l)}} C_{\mathbf{x}, \mathbf{y}} = \boldsymbol{\varepsilon}^{(l)} \cdot \bigl(\mathbf{a}^{(l-1)}\bigr)^\top
+  \quad \mbox{$\forall l \in \{2, \cdots,l\}$}
+\end{equation}
+Der Ausdruck $\boldsymbol{\varepsilon}^{(l)} \cdot \bigl(\mathbf{a}^{(l-1)}\bigr)^\top$ bezeichnet hierbei die Matrixmultiplikation zwischen dem Spaltenvektor $\boldsymbol{\varepsilon}^{(l)}$ als $m(l) \times 1$ Matrix und dem Reihenvektor $\bigl(\mathbf{a}^{(l-1)}\bigr)^\top$ als $1 \times m(l-1)$ Matrix.
+\end{enumerate}
 
 \section{Stochastic Gradient Descent}
 Für eine zuverlässige Klassifizierung der Eingaben wird eine Algorithmus benötigt, welcher die Bestimmung von Gewichtungen und Vorbelastungen bestmöglich ermöglicht. Hierzu wird in dieser Arbeit auf die Methode des \textit{Stochastic Gradient Descent} zurückgegriffen. Im Bereich des maschinellen Lernen ist es notwendig das Minimum oder Maximum einer Funktion \\[0.2cm]

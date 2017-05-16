@@ -8,18 +8,11 @@
 \contentsline {section}{\numberline {2.1}Das Neuron}{3}{section.2.1}
 \contentsline {section}{\numberline {2.2}Neuronales Netzwerk}{4}{section.2.2}
 \contentsline {section}{\numberline {2.3}Backpropagation}{7}{section.2.3}
-\contentsline {section}{\numberline {2.4}Stochastic Gradient Descent}{7}{section.2.4}
-\contentsline {chapter}{\numberline {3}Theorie}{8}{chapter.3}
-\contentsline {section}{\numberline {3.1}Neuronales Netzwerk}{8}{section.3.1}
-\contentsline {section}{\numberline {3.2}Perceptrons}{9}{section.3.2}
-\contentsline {section}{\numberline {3.3}Arbeitsweise von Perceptrons}{10}{section.3.3}
-\contentsline {section}{\numberline {3.4}Sigmoid Neurons}{12}{section.3.4}
-\contentsline {section}{\numberline {3.5}Stochastic Gradient Descent}{15}{section.3.5}
-\contentsline {section}{\numberline {3.6}Backpropagation}{15}{section.3.6}
-\contentsline {chapter}{\numberline {4}Implementierung}{16}{chapter.4}
-\contentsline {section}{\numberline {4.1}Laden und Aufbereitung der MNIST Daten}{16}{section.4.1}
-\contentsline {section}{\numberline {4.2}Implementierung des neuronalen Netzes}{17}{section.4.2}
-\contentsline {section}{\numberline {4.3}Animation}{24}{section.4.3}
-\contentsline {chapter}{\numberline {5}Fazit und Ausblick}{28}{chapter.5}
-\contentsline {section}{\numberline {5.1}Auswertung des Ergebnisses}{28}{section.5.1}
-\contentsline {section}{\numberline {5.2}Performance der SetlX Implementierung}{29}{section.5.2}
+\contentsline {section}{\numberline {2.4}Stochastic Gradient Descent}{8}{section.2.4}
+\contentsline {chapter}{\numberline {3}Implementierung}{9}{chapter.3}
+\contentsline {section}{\numberline {3.1}Laden und Aufbereitung der MNIST Daten}{9}{section.3.1}
+\contentsline {section}{\numberline {3.2}Implementierung des neuronalen Netzes}{10}{section.3.2}
+\contentsline {section}{\numberline {3.3}Animation}{17}{section.3.3}
+\contentsline {chapter}{\numberline {4}Fazit und Ausblick}{21}{chapter.4}
+\contentsline {section}{\numberline {4.1}Auswertung des Ergebnisses}{21}{section.4.1}
+\contentsline {section}{\numberline {4.2}Performance der SetlX Implementierung}{22}{section.4.2}
