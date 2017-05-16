@@ -139,8 +139,47 @@ Mit den zuvor definierten Gleichungen \ref{eq:feedforward1} und \ref{eq:feedforw
       \\[0.2cm]
       berechnet wurde. 
 \end{enumerate}
-
-\section{Stochastic Gradient Descent}
-Für eine zuverlässige Klassifizierung der Eingaben wird ein Algorithmus benötigt, der die Bestimmung von Gewichtungen und Vorbelastungen bestmöglich ermöglicht. Hierzu wird in dieser Arbeit auf die Methode des \textit{Gradient Descent} zurückgegriffen. Im Bereich des maschinellen Lernen ist es notwendig das Minimum oder Maximum einer Funktion 
+Angenommen dem neuronalen Netzwerk liegen n Trainingsdaten mit
+\\[0.2cm]
+\hspace*{1.3cm}
+$\langle \mathbf{x}^{(i)},\mathbf{y}^{(i)} \rangle \quad für i = 1, \cdots ,n$,
+\\[0.2cm]
+sodass 
+\\[0.2cm]
+\hspace*{1.3cm}
+$\mathbf{x}^{(i)} \in \mathbb{R}^{(1)} und \mathbf{y}^{(i)} \in \mathbb{R}^{m(L)}$.
+\\[0.2cm]
+Das Ziel ist eine Belegung der Gewichtungsmatrix $W^{(l)}$ und dem Vorbelastungsvektor $b^{(l)}$ zu finden, damit
+\\[0.2cm]
+\hspace*{1.3cm}
+$\mathbf{o}\left(\mathbf{x}^{(i)}\right) = y^{(i)} \quad für i = 1, \cdots , n$.
+\\[0.2cm]
+In der Regel wird es nicht möglich sein die Gleichungen für alle $i \in \{ 1, \cdots ,n \}$ zu erfüllen, weshalb es gilt den Fehler zu minimieren. An dieser Stelle fällt die Betrachtung auf die quadratische Fehlerkostenfunktion C, die definiert ist als
+\\[0.2cm]
+\hspace*{1.3cm}
+$\ds C\Bigr(W^{(2)}, \cdots, W^{(L)}, \mathbf{b}^{(2)}, \cdots, \mathbf{b}^{(L)};
+     \mathbf{x}^{(1)}, \mathbf{y}^{(1)}, \cdots, \mathbf{x}^{(n)},\mathbf{y}^{(n)} \Bigr) := 
+ \frac{1}{2 \cdot n} \cdot \sum\limits_{i=1}^n \Bigl(\mathbf{o}\bigl(\mathbf{x}^{(i)}\bigr) - \mathbf{y}^{(i)}\Bigr)^2
+$.
+\\[0.2cm]
+Aufgrund der additiven Kostenfunktion hinsichtlich der Trainingsdaten $\langle \mathbf{x}^{(i)},\mathbf{y}^{(i)} \rangle$, vereinfacht sich die Notation mit
+$\ds C_{\mathbf{x}, \mathbf{y}}\Bigr(W^{(2)}, \cdots, W^{(L)}, \mathbf{b}^{(2)}, \cdots, \mathbf{b}^{(L)}\Bigr) := 
+ \frac{1}{2} \cdot \Bigl(\mathbf{a}^{(L)}\bigl(\mathbf{x}\bigr) - \mathbf{y}\Bigr)^2
+$,
+\\[0.2cm]
+zu
 
 \section{Backpropagation}
+Der Backpropagation-Algorithmus ist das meist genutzte neuronale Modell. Grund ist die universelle Einsetzbarkeit für beliebige Approximationsaufgaben im Hinblick auf die effiziente Berechnung der partiellen Ableitung der Kostenfunktion $C$ nach der Gewichtung $w_{j,k}^{(l)}$ und der Vorbelastungen $b_j^{(l)}$. Der Algorithmus wendet für die Aktivierungsfunktion die nichtlineare Sigmoid Funktion auf die gewichtete Summe der Eingaben an. \\
+Im nächsten Schritt wird angenommen, dass dem neuronalen Netzwerk Trainingsdaten vorliegen. Diese T
+
+%http://download.springer.com/static/pdf/442/chp%253A10.1007%252F978-3-658-13549-2_9.pdf?originUrl=http%3A%2F%2Flink.springer.com%2Fchapter%2F10.1007%2F978-3-658-13549-2_9&token2=exp=1494935592~acl=%2Fstatic%2Fpdf%2F442%2Fchp%25253A10.1007%25252F978-3-658-13549-2_9.pdf%3ForiginUrl%3Dhttp%253A%252F%252Flink.springer.com%252Fchapter%252F10.1007%252F978-3-658-13549-2_9*~hmac=259dec5f34cd0b3359f1147eaa21cf718b54fe7ffd8f04118d36cf45e9be83ef
+
+
+\section{Stochastic Gradient Descent}
+Für eine zuverlässige Klassifizierung der Eingaben wird eine Algorithmus benötigt, welcher die Bestimmung von Gewichtungen und Vorbelastungen bestmöglich ermöglicht. Hierzu wird in dieser Arbeit auf die Methode des \textit{Stochastic Gradient Descent} zurückgegriffen. Im Bereich des maschinellen Lernen ist es notwendig das Minimum oder Maximum einer Funktion \\[0.2cm]
+\hspace*{1.3cm}
+$f:\mathbb{R}^n \rightarrow \mathbb{R}$.
+\\[0.2cm]
+
+
