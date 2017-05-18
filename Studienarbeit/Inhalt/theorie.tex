@@ -69,7 +69,7 @@ $\ds p(\mathbf{x}; \mathbf{w}, b) = S\left(\biggl(\sum\limits_{i=1}^m x_i \cdot 
 \\[0.2cm]
 
 \section{Neuronales Netzwerk}
-Das in dieser Arbeit angewandte Netzwerk nennt sich hierbei \textit{feedforward neural network} und beschreibt ein Netzwerk aus Neuronen, deren Informationsfluss keine Schleifen durchläuft. Die Topologie des neuronalen Netzwerk ist gegeben durch eine Zahl $L \in \mathbb{N}$ und einer Liste $[m(1),\cdots ,m(L)]$ mit $L$ natürlichen Zahlen. Hierbei bezeichnet $L$ die Anzahl der Schichten im neuronalen Netzwerk und für $i \in \{2,\cdots ,L\}$ gibt der Wert von $m(i)$ die Anzahl der Neuronen der $l$-ten Schicht an. Die erste Schicht wird in diesem Modell als Eingabeschicht bezeichnet. Sie enthält im Vergleich zu anderen Schichten keine Neuronen sondern Eingabeknoten. Die letzte Schicht (mit Index $L$) wird als Ausgabeschicht bezeichnet, wohingegen alle restlichen Schichten als verborgene Schichten bezeichnet werden. Liegen dem Netzwerk mehr wie nur einer verborgenen Schicht vor, so bezeichnet man dieses als \textit{deep neural network} (siehe Abb. \ref{fig:neural_network_extended}).
+Das in dieser Arbeit angewandte Netzwerk nennt sich hierbei \textit{feedforward neural network} und beschreibt ein Netzwerk aus Neuronen, deren Informationsfluss keine Schleifen durchläuft. Die Topologie des neuronalen Netzwerk ist gegeben durch eine Zahl $L \in \mathbb{N}$ und einer Liste $[m(1),\cdots ,m(L)]$ mit $L$ natürlichen Zahlen. Hierbei bezeichnet $L$ die Anzahl der Schichten im neuronalen Netzwerk und für $i \in \{2,\cdots ,L\}$ gibt der Wert von $m(i)$ die Anzahl der Neuronen der $l$-ten Schicht an. Die erste Schicht wird in diesem Modell als Eingabeschicht bezeichnet. Sie enthält im Vergleich zu anderen Schichten keine Neuronen sondern Eingabeknoten. Die letzte Schicht (mit Index $L$) wird als Ausgabeschicht bezeichnet, wohingegen alle restlichen Schichten als verborgene Schichten bezeichnet werden. Liegen dem Netzwerk mehr wie nur eine verborgene Schicht vor, so bezeichnet man dieses als \textit{deep neural network} (siehe Abb. \ref{fig:neural_network_extended}).
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[scale=0.6]{Bilder/neural_network_extended}
@@ -114,7 +114,7 @@ Des Weiteren ist die Ausgabe des neuronalen Netzwerks für eine Eingabe $\mathbf
 \hspace*{1.3cm}
 $\mathbf{o}(\mathbf{x}) := \langle a^{(L)}_1(\mathbf{x}), \cdots, a^{(L)}_{m(L)}(\mathbf{x}) \rangle^\top = \mathbf{a}^{(L)}(\mathbf{x})$.
 \\[0.2cm]
-Mit den zuvor definierten Gleichungen \ref{eq:feedforward1} und \ref{eq:feedforward2} kann nun betrachtet werden, wie Informationen durch Netzwerk verbreitet werden.
+Mit den zuvor definierten Gleichungen \ref{eq:feedforward1} und \ref{eq:feedforward2} kann nun betrachtet werden, wie Informationen durch Netzwerk verbreitet werden (\textbf{feedforwarded}).
 \begin{enumerate}
 \item Zu Beginn ist der Eingabevektor $\mathbf{x}$ gegeben und gespeichert in der Eingabeschicht des neuronalen Netzwerks: 
       \\[0.2cm]
@@ -139,12 +139,12 @@ Mit den zuvor definierten Gleichungen \ref{eq:feedforward1} und \ref{eq:feedforw
       \\[0.2cm]
       berechnet wurde. 
 \end{enumerate}
-Angenommen dem neuronalen Netzwerk liegen n Trainingsdaten mit
+In der folgenden Betrachtung wird angenommen, dass dem neuronalen Netzwerk $n$ Trainingsdaten mit
 \\[0.2cm]
 \hspace*{1.3cm}
 $\langle \mathbf{x}^{(i)}, \mathbf{y}^{(i)} \rangle$ \quad for $i=1,\cdots,n$ 
 \\[0.2cm]
-sodass 
+vorliegen, sodass 
 \\[0.2cm]
 \hspace*{1.3cm}
 $\mathbf{x}^{(i)} \in \mathbb{R}^{(1)}$ und $\mathbf{y}^{(i)} \in \mathbb{R}^{m(L)}$.
@@ -162,7 +162,7 @@ $\ds C\Bigr(W^{(2)}, \cdots, W^{(L)}, \mathbf{b}^{(2)}, \cdots, \mathbf{b}^{(L)}
  \frac{1}{2 \cdot n} \cdot \sum\limits_{i=1}^n \Bigl(\mathbf{o}\bigl(\mathbf{x}^{(i)}\bigr) - \mathbf{y}^{(i)}\Bigr)^2
 $.
 \\[0.2cm]
-Zu berücksichtigen ist an dieser Stelle, dass die Kostenfunktion hinsichtlich der Trainingsdaten $\langle \mathbf{x}^{(i)},\mathbf{y}^{(i)} \rangle$ additiv ist. Eine Vereinfachung der Notation kann vorgenommen, wenn die Betrachtung bei der Kostenfunktion auf ein Trainingsbeispiel $\langle \mathbf{x},\mathbf{y} \rangle$ fällt. Dazu wird
+An dieser Stelle ist zu berücksichtigen, dass die Kostenfunktion hinsichtlich der Trainingsdaten $\langle \mathbf{x}^{(i)},\mathbf{y}^{(i)} \rangle$ additiv ist. Eine Vereinfachung der Notation kann vorgenommen, wenn die Betrachtung bei der Kostenfunktion auf ein Trainingsbeispiel $\langle \mathbf{x},\mathbf{y} \rangle$ fällt. Dazu wird
 \\[0.2cm]
 \hspace*{1.3cm}
 $\ds C_{\mathbf{x}, \mathbf{y}}\Bigr(W^{(2)}, \cdots, W^{(L)}, \mathbf{b}^{(2)}, \cdots, \mathbf{b}^{(L)}\Bigr) := 
@@ -176,7 +176,7 @@ $\ds C\Bigr(W^{(2)}, \cdots, W^{(L)}, \mathbf{b}^{(2)}, \cdots, \mathbf{b}^{(L)}
  \frac{1}{n} \cdot \sum\limits_{i=1}^n C_{\mathbf{x^{(i)}}, \mathbf{y}^{(i)}}\Bigr(W^{(2)}, \cdots W^{(L)}, \mathbf{b}^{(2)}, \cdots, \mathbf{b}^{(L)}\Bigr) 
 $.
 \\[0.2cm]
-Weiterhin wird für den weiteren Verlauf dieser Arbeit die Notation $C_{\mathbf{x}, \mathbf{y}}$ für den Ausdruck
+Für den weiteren Verlauf dieser Arbeit die Notation $C_{\mathbf{x}, \mathbf{y}}$ für den Ausdruck
 \\[0.2cm]
 \hspace*{1.3cm}
 $\ds C_{\mathbf{x}, \mathbf{y}}\Bigr(W^{(2)}, \cdots, W^{(L)}, \mathbf{b}^{(2)}, \cdots, \mathbf{b}^{(L)}\Bigr)$
@@ -185,12 +185,12 @@ eingeführt.
 
 
 \section{Backpropagation}
-Der Backpropagation-Algorithmus ist das meist genutzte neuronale Modell. Grund ist die universelle Einsetzbarkeit für beliebige Approximationsaufgaben im Hinblick auf die effiziente Berechnung der partiellen Ableitung der Kostenfunktion $C$ nach der Gewichtung $w_{j,k}^{(l)}$ und der Vorbelastungen $b_j^{(l)}$. \\
+Der Backpropagation-Algorithmus ist das meist genutzte neuronale Modell. Grund ist die universelle Einsetzbarkeit für beliebige Approximationsaufgaben im Hinblick auf die effiziente Berechnung der partiellen Ableitung der Kostenfunktion $C$ nach der Gewichtung $w_{j,k}^{(l)}$ und der Vorbelastungen $b_j^{(l)}$. Ziel des Algorithmus ist die Minimierung der Abweichung zwischen erwartetem Ausgabewert und dem durch das neuronale Netzwerk ermitteltem Wert. Hierzu wird in dem folgenden Kapitel das Werkzeug für dessen Berechnung gegeben. \\
 
 %http://download.springer.com/static/pdf/442/chp%253A10.1007%252F978-3-658-13549-2_9.pdf?originUrl=http%3A%2F%2Flink.springer.com%2Fchapter%2F10.1007%2F978-3-658-13549-2_9&token2=exp=1494935592~acl=%2Fstatic%2Fpdf%2F442%2Fchp%25253A10.1007%25252F978-3-658-13549-2_9.pdf%3ForiginUrl%3Dhttp%253A%252F%252Flink.springer.com%252Fchapter%252F10.1007%252F978-3-658-13549-2_9*~hmac=259dec5f34cd0b3359f1147eaa21cf718b54fe7ffd8f04118d36cf45e9be83ef
 
 \noindent
-Für die weiteren Betrachtungen der Backpropagation-Gleichungen wird in diesem Abschnitt zunächst diverse Hilfsgrößen eingeführt. \\
+Für die Backpropagation-Gleichungen werden zunächst Hilfsgrößen definiert, damit. \\
 Die Definition von $z_j^{(l)}$, soll die Eingabe der Aktivierungsfunktion $S$ des $j$-ten Neuron der $l$-ten Schicht darstellen:
 \\[0.2cm]
 \hspace*{1.3cm}
@@ -200,9 +200,14 @@ $\ds z_j^{(l)} := \left(\sum\limits_{k=1}^{m(l-1)}  w_{j,k}^{(l)} \cdot a_k^{(l-
 Im Wesentlichen ist $z_j^{(l)}$ die Eingabe der Sigmoid-Funktion, damit die Aktivierung $a_j^{(l)}$ mit
 \\[0.2cm]
 \hspace*{1.3cm}
-$a_j^{(l)} = S(z_j^{(l))}$.
+$a_j^{(l)} = S(z_j^{(l)})$.
 \\[0.2cm]
-berechnet werden kann. Im Hinblick auf die partielle Ableitung der Kostenfunktion $C_{\mathbf{x},\mathbf{y}}$ nach der Gewichtung $w_{j,k}^{(l)}$ und den Vorbelastungen $b_j^{(l)}$, empfiehlt sich zuerst die Berechnung der partiellen Ableitung von $C_{\mathbf{x},\mathbf{y}}$ nach $z_j^{(l)}$ durchzuführen. Hierzu sei folgende Definition gegeben:
+berechnet werden kann. Angenommen im $j$-ten Neuron der $l$-ten Schicht erfahren die Berechnungen eine zusätzliche Änderung $\Delta z_j^{(l)}$.  Dadurch erfährt die Aktivierung des nachgelagerten Neuron den folgenden Zusatz: 
+\\[0.2cm]
+\hspace*{1.3cm}
+$a_j^{(l)}=S(z_j^{(l)}+\Delta z_j^{(l)})$.
+\\[0.2cm]
+Diese Änderungen wird durch das neuronale Netzwerk weitergeleitet und kann entsprechende Auswirkungen auf die korrekte Bestimmung der Eingaben haben. Damit Fehler vermieder werden empfiehlt sich im Hinblick auf die partielle Ableitung der Kostenfunktion $C_{\mathbf{x},\mathbf{y}}$ nach der Gewichtung $w_{j,k}^{(l)}$ und den Vorbelastungen $b_j^{(l)}$ zuerst die Berechnung der partiellen Ableitung von $C_{\mathbf{x},\mathbf{y}}$ nach $z_j^{(l)}$ durchzuführen. Hierzu sei folgende Definition gegeben:
 \\[0.2cm]
 \hspace*{1.3cm}
 $\ds\varepsilon_j^{(l)} := \frac{\partial C_{\mathbf{x}, \mathbf{y}}}{\partial z_j^{(l)}}$ \quad $\forall j \in \{1, \cdots, m(l)\}$ und $\forall l \in \{2,\cdots, L\}$,
@@ -219,15 +224,13 @@ $\boldsymbol{\varepsilon}^{(l)} := \left(
   \right)
 $.
 \\[0.2cm]
-zusammengefasst und als \textit{Fehler in Schicht l} bezeichnet. \\
+zusammengefasst und als \textit{Fehler in Schicht l} bezeichnet.
 
 \noindent
 Mit den definierten Hilfsgrößen ist es nun möglich die vier Gleichung für die Backpropagation zu beschreiben. 
-
-
  
 \begin{enumerate}
-\item Die erste Gleichungen berechnet $\varepsilon^{(L)}_j$ für $l=L$, wobei $S'(x)$ die Ableitung der Sigmoid-Funktion bezeichnet:
+\item Die erste Gleichungen berechnet $\varepsilon^{(L)}_j$ für $l=L$, wobei $S'(x)$ die Ableitung der Sigmoid-Funktion bezeichnet. Mit dieser Gleichung wir der Fehler in der Ausgabeschicht berechnet.
 \begin{equation}
 	\label{eq:BP1}
 	\varepsilon^{(L)}_j = (a_j^{(L)} - y_j) \cdot S'\bigl(z_j^{(L)}\bigr)
@@ -244,14 +247,14 @@ Die Gleichung \ref{eq:BP1} kann auch als vektorisierte Schreibweise mittels dem 
 	\label{eq:BP2}
 	\varepsilon^{(l)}_j = \sum\limits_{i=1}^{m(l+1)} w_{i,j}^{(l+1)} \cdot 			\varepsilon^{(l+1)}_i \cdot S'\bigl(z^{(l)}_j\bigr) \quad \mbox{ $\forall j \in \{1, \cdots, m(l)\}$ und $\forall l \in \{2, \cdots, L-1\}$}
 \end{equation}
-Auch diese Gleichung kann in der vektorisierten Schreibweise angegeben.
+Auch diese Gleichung kann in der vektorisierten Schreibweise angegeben werden:
 \begin{equation}
   \label{eq:BP2v}
   \boldsymbol{\varepsilon}^{(l)} = \Bigl(\bigl(W^{(l+1)}\bigr)^\top \cdot \boldsymbol{\varepsilon}^{(l+1)}\Bigr) \odot
   S'\bigl(z^{(l)}\bigr) \quad \mbox{$\forall l \in \{2, \cdots, L-1\}$}.
 \end{equation}
 
-\item Die nächste Gleichung ist durch die partielle Ableitung von $C_{\mathbf{x},\mathbf{y}}$ nach der Vorbelastung $b_j^{(l)}$ des $j$-ten Neuron in Schicht $l$ gegeben.
+\item Die nächste Gleichung ist durch die partielle Ableitung von $C_{\mathbf{x},\mathbf{y}}$ nach der Vorbelastung $b_j^{(l)}$ des $j$-ten Neuron in Schicht $l$ gegeben. Diese Gleichung gibt somit die Änderungsrate der Kosten hinsichtlich der Vorbelastungen an.
 \begin{equation}
   \label{eq:BP3}
   \frac{\partial C_{\mathbf{x}, \mathbf{y}}}{b_j^{(l)}} = \varepsilon_j^{(l)}
@@ -263,15 +266,15 @@ Die vektorisierte Schreibweise nimmt hierbei die folgende Form an:
   \nabla_{\mathbf{b}^{(l)}} C_{\mathbf{x}, \mathbf{y}} = \boldsymbol{\varepsilon}^{(l)}
   \quad \mbox{$\forall l \in \{2, \cdots,l\}$}
 \end{equation}
-Mit $\nabla_{\mathbf{b}^{(l)}}$ wird in dieser Arbeit der Gradient von $C_{\mathbf{x},\mathbf{y}}$ im Hinblick auf $b^{(l)}$ bezeichnet.
+Mit $\nabla_{\mathbf{b}^{(l)}}$ wird in dieser Arbeit der Gradient von $C_{\mathbf{x},\mathbf{y}}$ im Hinblick auf $b^{(l)}$ bezeichnet. 
 
-\item Die letzte Gleichung ist durch die partielle Ableitung von $C_{\mathbf{x},\mathbf{y}}$ nach der Gewichtung $w_{j,k}^{(l)}$ gegeben.
+\item Die letzte Gleichung ist durch die partielle Ableitung von $C_{\mathbf{x},\mathbf{y}}$ nach der Gewichtung $w_{j,k}^{(l)}$ gegeben. Diese Gleichung gibt somit die Änderungsrate der Kosten hinsichtlich der Gewichtungen an.
 \begin{equation}
   \label{eq:BP4}
   \frac{\partial C_{\mathbf{x}, \mathbf{y}}}{\partial w_{j,k}^{(l)}} = a_k^{(l-1)} \cdot \varepsilon_j^{(l)}
   \quad \mbox{$\forall j \in \{1,\cdots,m(l)\}$, $\forall k \in \{1,\cdots,m(l-1)\}$, $\forall l \in \{2, \cdots,l\}$}
 \end{equation}
-Die vektorisierte liefert auch in diesem Fall die folgende Form:
+Die vektorisierte Schreibweise liefert auch in diesem Fall die folgende Form:
 \begin{equation}
   \label{eq:BP4v}
   \nabla_{W^{(l)}} C_{\mathbf{x}, \mathbf{y}} = \boldsymbol{\varepsilon}^{(l)} \cdot \bigl(\mathbf{a}^{(l-1)}\bigr)^\top
@@ -280,10 +283,47 @@ Die vektorisierte liefert auch in diesem Fall die folgende Form:
 Der Ausdruck $\boldsymbol{\varepsilon}^{(l)} \cdot \bigl(\mathbf{a}^{(l-1)}\bigr)^\top$ bezeichnet hierbei die Matrixmultiplikation zwischen dem Spaltenvektor $\boldsymbol{\varepsilon}^{(l)}$ als $m(l) \times 1$ Matrix und dem Reihenvektor $\bigl(\mathbf{a}^{(l-1)}\bigr)^\top$ als $1 \times m(l-1)$ Matrix.
 \end{enumerate}
 
+\noindent
+Bei Anbetracht der Gleichungen \ref{eq:BP3} und \ref{eq:BP4v} wird nun ersichtlich, weshalb die Einführung des Vektors $\boldsymbol{\varepsilon}^{(l)}$ von Vorteil war. Dieser Vektor ermöglicht die partielle Ableitung nach den Gewichtungen sowie den Vorbelastungen für die Kostenfunktion. Ebenfalls wurde die vektorisierte Schreibweise für die einzelnen Gleichungen in diesem Abschnitt aus Effizienzgründen für die spätere Implementierung eingeführt. Dies liegt in der schnelleren Ausführung von Matrix-Vektor-Multiplikationen bei Interpretersprachen wie z.B. SetlX begründet. \\
+
 \section{Stochastic Gradient Descent}
-Für eine zuverlässige Klassifizierung der Eingaben wird eine Algorithmus benötigt, welcher die Bestimmung von Gewichtungen und Vorbelastungen bestmöglich ermöglicht. Hierzu wird in dieser Arbeit auf die Methode des \textit{Stochastic Gradient Descent} zurückgegriffen. Im Bereich des maschinellen Lernen ist es notwendig das Minimum oder Maximum einer Funktion \\[0.2cm]
+Für eine zuverlässige Klassifizierung der Eingaben wird eine Algorithmus benötigt, welcher die Bestimmung von Gewichtungen und Vorbelastungen bestmöglich gewährleistet. Hierzu wird in dieser Arbeit auf die Methode des \textit{Stochastic Gradient Descent} zurückgegriffen. Im Bereich des maschinellen Lernen ist es notwendig das Minimum oder Maximum einer Funktion \\[0.2cm]
 \hspace*{1.3cm}
 $f:\mathbb{R}^n \rightarrow \mathbb{R}$.
 \\[0.2cm]
-
-
+zu ermitteln. Die im vorangegangenen Kapitel vorgestellten Gleichungen der Backpropagation beschreiben den Gradienten der Kostenfunktion für eine einzelnes Trainingsbeispiel $\langle\mathbf{x}, \mathbf{y}\rangle$. Besteh die Absicht unser neuronales Netzwerk zu trainieren, müssen alle Trainingsdaten berücksichtigt werden. Für $n$ Trainingsdaten 
+\\[0.2cm]
+\hspace*{1.3cm}
+$\langle\mathbf{x}^{(1)}, \mathbf{y}^{(1)}\rangle$,
+$\langle\mathbf{x}^{(2)}, \mathbf{y}^{(2)}\rangle$,
+$\cdots$,
+$\langle\mathbf{x}^{(n)}, \mathbf{y}^{(n)}\rangle$,
+\\[0.2cm]
+wurde die quadratische Fehlerkostenfunktion bereits wie folgt definiert: 
+\\[0.2cm]
+\hspace*{1.3cm}
+$\ds C\Bigr(W^{(2)}, \cdots, W^{(L)}, \mathbf{b}^{(2)}, \cdots, \mathbf{b}^{(L)};
+     \mathbf{x}^{(1)}, \mathbf{y}^{(1)}, \cdots, \mathbf{x}^{(n)},\mathbf{y}^{(n)} \Bigr) := 
+ \frac{1}{2 \cdot n} \cdot \sum\limits_{i=1}^n \Bigl(\mathbf{o}\bigl(\mathbf{x}^{(i)}\bigr) - \mathbf{y}^{(i)}\Bigr)^2
+$.
+\\[0.2cm]
+Wenn die Berechnung der Gradienten für die quadratische Fehlerkostenfunktion hinsichtlich einer Gewichtungsmatrix $W^{(l)}$ oder einer Vorbelastung $b^{(l)}$ vorgenommen werden soll, müssen die Summen
+\\[0.2cm]
+\hspace*{1.3cm}
+$\ds \frac{1}{2\cdot n} \cdot \sum\limits_{i=1}^n \frac{\partial C_{\mathbf{x}^{(i)}, \mathbf{y}^{(i)}}}{\partial w_{j,k}^{(l)}}$
+\quad and \quad
+$\ds \frac{1}{2\cdot n} \cdot \sum\limits_{i=1}^n \frac{\partial C_{\mathbf{x}^{(i)}, \mathbf{y}^{(i)}}}{\partial b_{j}^{(l)}}$
+\\[0.2cm]
+über alle Trainingsdaten für einen Iterationsschritt des \textit{Gradient Descent} berechnet werden. Dies kann mit einer großen Anzahl von Trainingdaten kostenintensive Auswirkungen haben, weshalb beim \textit{Stochastic Gradient Descent} für die Berechnung der Summen eine zufällige Teilmenge aus den Trainingsdaten für die Abschätzung herangezogen wird. Bei einer Teilmenge mit $m$ Trainingsdaten, liegt die folgende Abschätzung zugrunde:
+\\[0.2cm]
+$\ds \frac{1}{2\cdot n} \cdot \sum\limits_{i=1}^n \frac{\partial C_{\mathbf{x}^{(i)}, \mathbf{y}^{(i)}}}{\partial w_{j,k}^{(l)}}
+ \approx
+ \frac{1}{2\cdot m} \cdot \sum\limits_{i=1}^m \frac{\partial C_{\mathbf{x}^{(i)}, \mathbf{y}^{(i)}}}{\partial w_{j,k}^{(l)}}
+$
+\quad und \quad
+$\ds \frac{1}{2\cdot n} \cdot \sum\limits_{i=1}^n \frac{\partial C_{\mathbf{x}^{(i)}, \mathbf{y}^{(i)}}}{\partial b_{j}^{(l)}}
+     \approx
+     \frac{1}{2\cdot m} \cdot \sum\limits_{i=1}^m \frac{\partial C_{\mathbf{x}^{(i)}, \mathbf{y}^{(i)}}}{\partial b_{j}^{(l)}}
+$.
+\\[0.2cm]
+Die Namensgebung für diese Methode, ist durch die zufällige Trainingdatenauswahl zu erklären. Im Vergleich zur \textit{Gradient Descent} Methode, kann sie das Lernen in neuronalen Netzwerken erheblich beschleunigen, da nicht alle Trainingsdaten in den Prozess einfließen.
