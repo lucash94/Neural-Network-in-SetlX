@@ -1,6 +1,8 @@
 \chapter{Theorie}
+Dieses Kapitel beschäftigt sich mit den Grundlagen für das Entwickeln und Implementieren eines neuronalen Netzwerks. Die Notationen für die mathematischen Ausdrücke orientieren sich an dem Skript zur Vorlesung \textit{Artifical Intelligence} bei Prof. Dr. Karl Stroetmann \cite{stroetmann:2017}.
+
 \section{Das Neuron}
-Ein grundlegender Bestandteil des menschlichen Gehirns ist das Neuron. Bereits ein kleiner Ausschnitt in der Größe eines Reiskorns enthält über 10000 Neuronen, wobei jedes Neuron durchschnittlich 6000 Verbindungen mit anderen Neuronen bildet. Dieses biologische Netzwerk ermöglicht dem Menschen, die Welt um ihn herum zu erleben. Das Ziel in diesem Abschnitt ist es, diese natürliche Struktur zu nutzen, um maschinelle Lernmodelle zu entwickeln, die Probleme auf analoge Weise lösen. Hierbei ist es nicht notwendig zu wissen wie das biologische Neuron funktioniert, noch wie ein ein Netzwerk aus biologischen Neuronen arbeitet. Stattdessen wird eine mathematische Abstraktion eines Neurons formuliert, welches die Grundlage für unser neuronales Netzwerk bildet. \\
+Ein grundlegender Bestandteil des menschlichen Gehirns ist das Neuron. Bereits ein kleiner Ausschnitt in der Größe eines Reiskorns enthält über 10000 Neuronen, wobei jedes Neuron durchschnittlich 6000 Verbindungen mit anderen Neuronen bildet \cite{buduma:2017}. Dieses biologische Netzwerk ermöglicht dem Menschen, die Welt um ihn herum zu erleben. Das Ziel in diesem Abschnitt ist es, diese natürliche Struktur zu nutzen, um maschinelle Lernmodelle zu entwickeln, die Probleme auf analoge Weise lösen. Hierbei ist es nicht notwendig zu wissen wie das biologische Neuron funktioniert, noch wie ein ein Netzwerk aus biologischen Neuronen arbeitet. Stattdessen wird eine mathematische Abstraktion eines Neurons formuliert, welches die Grundlage für unser neuronales Netzwerk bildet. \\
 Ein Neuron mit $n$ Eingaben wird als Paar $\langle w,b \rangle$ definiert, wobei der Vektor $\mathbf{w} \in \mathbb{R}^m$ den Gewichtungsvektor und $b \in \mathbb{R}$ die Vorbelastung repräsentieren. Konzeptionell gesehen, ist das Neuron eine Funktion $p$, welche den Eingabevektor $\mathbf{x} \in \mathbb{R}^m$ auf das Intervall $[0,1]$ abbildet. Diese Funktion ist definiert als \\[0.2cm]
 \hspace*{1.3cm}
 $
@@ -13,7 +15,7 @@ wobei $a$ als die sogenannte Aktivierungsfunktion bezeichnet wird (siehe Abb. \r
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[scale=0.25]{Bilder/sigmoid_neuron}
-	\caption{Neuron mit Eingabevektor $\mathbf{x}$, Gewichtungsvektor $\mathbf{w}$ und Ausgabe $y$.} 
+	\caption{Neuron mit Eingabevektor $\mathbf{x}$, Gewichtungsvektor $\mathbf{w}$ und Ausgabe $y$. \cite{buduma:2017}} 
 	\label{fig:perceptron} 
 \end{figure}
 
@@ -42,7 +44,7 @@ Die Sigmoid-Funktion $S$ konvergiert somit bei der Grenzwertbetrachtung gegen 0 
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[scale=0.7]{Bilder/sigmoid_plot}
-	\caption{Die Sigmoid-Funktion.} 
+	\caption{Die Sigmoid-Funktion. \cite{nielson:2017}} 
 	\label{fig:sigmoid_plot} 
 \end{figure}
 
@@ -73,7 +75,7 @@ Das in dieser Arbeit angewandte Netzwerk nennt sich hierbei \textit{feedforward 
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[scale=0.6]{Bilder/neural_network_extended}
-	\caption{Aufbau des neuronalen Netzwerks hinsichtlich der einzelnen Schichten.} 
+	\caption{Aufbau des neuronalen Netzwerks hinsichtlich der einzelnen Schichten. \cite{nielson:2017}} 
 	\label{fig:neural_network_extended} 
 \end{figure}
 
@@ -114,7 +116,7 @@ Des Weiteren ist die Ausgabe des neuronalen Netzwerks für eine Eingabe $\mathbf
 \hspace*{1.3cm}
 $\mathbf{o}(\mathbf{x}) := \langle a^{(L)}_1(\mathbf{x}), \cdots, a^{(L)}_{m(L)}(\mathbf{x}) \rangle^\top = \mathbf{a}^{(L)}(\mathbf{x})$.
 \\[0.2cm]
-Mit den zuvor definierten Gleichungen \ref{eq:feedforward1} und \ref{eq:feedforward2} kann nun betrachtet werden, wie Informationen durch Netzwerk verbreitet werden (\textbf{feedforwarded}).
+Mit den zuvor definierten Gleichungen \ref{eq:feedforward1} und \ref{eq:feedforward2} kann nun betrachtet werden, wie Informationen durch Netzwerk verbreitet werden (\textbf{feedforward}).
 \begin{enumerate}
 \item Zu Beginn ist der Eingabevektor $\mathbf{x}$ gegeben und gespeichert in der Eingabeschicht des neuronalen Netzwerks: 
       \\[0.2cm]
@@ -286,12 +288,52 @@ Der Ausdruck $\boldsymbol{\varepsilon}^{(l)} \cdot \bigl(\mathbf{a}^{(l-1)}\bigr
 \noindent
 Bei Anbetracht der Gleichungen \ref{eq:BP3} und \ref{eq:BP4v} wird nun ersichtlich, weshalb die Einführung des Vektors $\boldsymbol{\varepsilon}^{(l)}$ von Vorteil war. Dieser Vektor ermöglicht die partielle Ableitung nach den Gewichtungen sowie den Vorbelastungen für die Kostenfunktion. Ebenfalls wurde die vektorisierte Schreibweise für die einzelnen Gleichungen in diesem Abschnitt aus Effizienzgründen für die spätere Implementierung eingeführt. Dies liegt in der schnelleren Ausführung von Matrix-Vektor-Multiplikationen bei Interpretersprachen wie z.B. SetlX begründet. \\
 
+\noindent
+Der Backpropagation Algorithmus durchläuft die folgenden Schritte:
+\begin{enumerate}
+\item \textbf{Feedforward-Berechnung:}
+\begin{enumerate}
+\item Zuweisung des Eingabevektors $\textbf{x}$ der Eingabeschicht mit über die Aktivierung $a^{(1)}$
+\item Für jede weitere Schicht $l \in \{2,\cdots , L\}$ wird die Aktivierung 
+\\[0.2cm]
+\hspace*{1.3cm}
+$a^{(l)}(\mathbf{x}) := S(W^{(l)} \cdot a^{(l-1)}(x) + \mathbf{b}^{(l)}$
+\\[0.2cm] 
+berechnet.
+\end{enumerate}
+\item \textbf{Backpropagation-Berechnung:}
+\begin{enumerate}
+\item Berechnung des Fehler in Schicht L (Ausgabeschicht) mit 
+\\[0.2cm]
+\hspace*{1.3cm}
+$\boldsymbol{\varepsilon}^{(L)} = (\mathbf{a}^{(L)} - \mathbf{y}) \odot S'\bigl(\mathbf{z}^{(L)}\bigr)  $
+\\[0.2cm] 
+
+\item Berechnung der Fehler mittels \textit{backpropagate} für die Schichten $l = L-1, L-2, \cdots , 2$
+\\[0.2cm]
+\hspace*{1.3cm}
+$\boldsymbol{\varepsilon}^{(l)} = \Bigl(\bigl(W^{(l+1)}\bigr)^\top \cdot \boldsymbol{\varepsilon}^{(l+1)}\Bigr) \odot
+  S'\bigl(z^{(l)}\bigr)$
+\\[0.2cm] 
+
+\item Ausgabe der Gradienten der Kostenfunktion 
+\\[0.2cm]
+\hspace*{1.3cm}
+$\nabla_{\mathbf{b}^{(l)}} C_{\mathbf{x}, \mathbf{y}} = \boldsymbol{\varepsilon}^{(l)}$ \quad und \quad
+$\nabla_{W^{(l)}} C_{\mathbf{x}, \mathbf{y}} = \boldsymbol{\varepsilon}^{(l)} \cdot \bigl(\mathbf{a}^{(l-1)}\bigr)^\top$
+\\[0.2cm] 
+\end{enumerate}
+\end{enumerate}
+
+\noindent
+Wie bereits beschrieben berechnet der Backpropagation Algorithmus den Gradienten der Kostenfunktion für die einzelnen Trainingsbeispiele. In der Praxis ist es üblich den Backpropagation mit einem Lernalgorithmus zu kombinieren. Hierzu wird im folgenden Abschnitt auf den \textit{Stochastic Gradient Descent} eingegangen.
+
 \section{Stochastic Gradient Descent}
 Für eine zuverlässige Klassifizierung der Eingaben wird eine Algorithmus benötigt, welcher die Bestimmung von Gewichtungen und Vorbelastungen bestmöglich gewährleistet. Hierzu wird in dieser Arbeit auf die Methode des \textit{Stochastic Gradient Descent} zurückgegriffen. Im Bereich des maschinellen Lernen ist es notwendig das Minimum oder Maximum einer Funktion \\[0.2cm]
 \hspace*{1.3cm}
 $f:\mathbb{R}^n \rightarrow \mathbb{R}$.
 \\[0.2cm]
-zu ermitteln. Die im vorangegangenen Kapitel vorgestellten Gleichungen der Backpropagation beschreiben den Gradienten der Kostenfunktion für eine einzelnes Trainingsbeispiel $\langle\mathbf{x}, \mathbf{y}\rangle$. Besteh die Absicht unser neuronales Netzwerk zu trainieren, müssen alle Trainingsdaten berücksichtigt werden. Für $n$ Trainingsdaten 
+zu ermitteln. Die im vorangegangenen Kapitel vorgestellten Gleichungen der Backpropagation beschreiben den Gradienten der Kostenfunktion für ein einzelnes Trainingsbeispiel $\langle\mathbf{x}, \mathbf{y}\rangle$. Besteh die Absicht unser neuronales Netzwerk zu trainieren, müssen alle Trainingsdaten berücksichtigt werden. Für $n$ Trainingsdaten 
 \\[0.2cm]
 \hspace*{1.3cm}
 $\langle\mathbf{x}^{(1)}, \mathbf{y}^{(1)}\rangle$,

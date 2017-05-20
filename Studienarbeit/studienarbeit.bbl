@@ -1,0 +1,37 @@
+\begin{thebibliography}{1}
+  \providebibliographyfont{name}{}%
+  \providebibliographyfont{lastname}{}%
+  \providebibliographyfont{title}{\emph}%
+  \providebibliographyfont{jtitle}{\btxtitlefont}%
+  \providebibliographyfont{etal}{\emph}%
+  \providebibliographyfont{journal}{}%
+  \providebibliographyfont{volume}{}%
+  \providebibliographyfont{ISBN}{\MakeUppercase}%
+  \providebibliographyfont{ISSN}{\MakeUppercase}%
+  \providebibliographyfont{url}{\url}%
+  \providebibliographyfont{numeral}{}%
+  \expandafter\btxselectlanguage\expandafter {\btxfallbacklanguage}
+
+\btxselectlanguage {english}
+\bibitem {buduma:2017}
+\btxnamefont {\btxlastnamefont {Buduma}, Nikhil}\btxauthorcolon\ \btxtitlefont
+  {Fundamentals of deep learning}.
+\newblock \btxpublisherfont {The McGraw-Hill Companies}, 2017\ifbtxprintISBN {,
+  \mbox{\btxISBN~\btxISBNfont {978-1491925614}}}.
+
+\expandafter\btxselectlanguage\expandafter {\btxfallbacklanguage}
+\bibitem {nielson:2017}
+\btxnamefont {\btxlastnamefont {Nielsen}, Michael}\btxauthorcolon\
+  \btxtitlefont {\btxifchangecase {Neural networks and deep learning}{Neural
+  Networks and Deep Learning}}.
+\newblock {\latintext
+  \btxurlfont{http://neuralnetworksanddeeplearning.com/index.html}}.
+
+\bibitem {stroetmann:2017}
+\btxnamefont {\btxlastnamefont {Stroetmann}, Karl}\btxauthorcolon\
+  \btxtitlefont {\btxifchangecase {Artifical intelligence}{Artifical
+  Intelligence}}.
+\newblock {\latintext
+  \btxurlfont{https://github.com/karlstroetmann/Artificial-Intelligence}}.
+
+\end{thebibliography}
