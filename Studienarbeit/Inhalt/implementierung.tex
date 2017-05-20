@@ -354,7 +354,7 @@ Eine vorgefertigte Prozedur zur Initialisierung des benötigten Netzwerkes mit B
 über die Konsole gestartet werden kann.
 
 \section{Animation}
-In diesem Abschnitt der Arbeit wird auf die Implementierung der grafischen Ausgabe des neuronalen Netzwerks zur Erkennung von handgeschriebenen Zahlen in SetlX eingegangen. Das Ziel ist die grafische Aufbereitung der Daten aus dem Hauptprogramm. Es bildet die folgenden Informationen ab: 
+In diesem Abschnitt der Arbeit wird auf die Implementierung der grafischen Ausgabe des neuronalen Netzwerks zur Erkennung von handgeschriebenen Zahlen in SetlX eingegangen. Das Ziel ist die grafische Aufbereitung der Daten aus dem Hauptprogramm. Es bildet hierbei die folgenden Informationen ab: 
 \begin{itemize}
 \item Aufbau des neuronalen Netzwerks.
 \item Betrachtung des Untersuchungsbereich eines Neurons in der verborgenen Schicht.
@@ -363,7 +363,7 @@ In diesem Abschnitt der Arbeit wird auf die Implementierung der grafischen Ausga
 \end{itemize}
 \vspace{0.5cm}
 \noindent
-Die folgenden Befehle sind zum ansteuern der einzelnen Funktionalitäten in der Anwendung.
+Die folgenden Befehle ermöglichen die einzelnen Funktionalitäten in der Anwendung anzusteuern:
 \begin{center}
 \begin{tabular}{lp{8cm}}
 \textbf{Eingabebefehl}   & \textbf{Erklärung} \\
@@ -378,11 +378,11 @@ $\mathbf{1000}$   & Animation für den Untersuchbereichs der einzelnen Neuronen 
 
 \noindent 
 Mit dem \textbf{Eingabebefehl 0} wird dynamisch der Aufbau des angewendeten neuronalen Netzwerks dem Anwender repräsentiert (siehe Abb. \ref{fig:animation_network_default}). Wie bereits im Theorieteil dieser Arbeit beschrieben, besteht das neuronale Netzwerk aus einer Eingabeschicht, einer oder mehrerer verborgener Schichten und einer Ausgabeschicht. \\
-Die Eingabe für das Netzwerk ist eine handgeschriebene Zahl mit der Bildgröße von $28 \times 28$ Pixeln. Jeder Bildpixel ist eine Eingabe, wobei sich bei dieser Bildgröße 784 ergeben (siehe Abb. \ref{fig:MNIST-Matrix}). Diese werden für die Animation ebenfalls in der Form eines Quadrats abgebildet. Weiterhin ist der Aufbau und die Verbindungen zwischen den Neuronen der verborgenen Schicht und der Ausgabeschicht dargestellt. \\
+Die Eingabe für das Netzwerk ist eine handgeschriebene Zahl mit der Bildgröße von $28 \times 28$ Pixeln. Jedes Pixel stellt eine Eingabe des neuronalen Netzwerks dar, wobei 784 Eingaben aus der Bildgröße resultieren (siehe Abb. \ref{fig:MNIST-Matrix}). Diese werden für die Animation ebenfalls wie das Ursprungsbild in der Form eines Quadrats abgebildet. Weiterhin ist der Aufbau und die Verbindungen zwischen den Neuronen der verborgenen Schicht und der Ausgabeschicht dargestellt. \\
 
 \begin{figure}[hbt]
 	\centering
-	\includegraphics[scale=0.3]{Bilder/MNIST-Matrix}
+	\includegraphics[scale=0.32]{Bilder/MNIST-Matrix}
 	\caption{Eingabe in das neuronale Netzwerk.} 
 	\label{fig:MNIST-Matrix} 
 \end{figure}
@@ -395,7 +395,7 @@ Die Eingabe für das Netzwerk ist eine handgeschriebene Zahl mit der Bildgröße
 \end{figure}
  
 \noindent
-Die \textbf{Eingabebefehle 1 - 30} betrachten den Untersuchungsbereich eines einzelnen Neurons der verborgenen Schicht, welches hierbei bei der Auswahl farblich hervorgehoben wird. Der Untersuchungsbereich ist farblich in rote und blaue Bereiche aufgeteilt. Pixel die eine rote Färbung, haben eine hohe Gewichtung. Dahingegen weisen Pixel mit einer blauen Färbung eine geringen Gewichtungsfaktor auf. Blasser Farben haben hierbei eine geringere Merkmalsausprägung. Die Animation weist hierbei den folgenden Aufbau auf (siehe Abb. \ref{fig:untersuchungsbereich_neuron}).
+Die \textbf{Eingabebefehle 1 - 30} betrachten den Untersuchungsbereich eines einzelnen Neurons der verborgenen Schicht, welches hierbei bei der Auswahl farblich hervorgehoben wird. Der Untersuchungsbereich ist farblich in rote und blaue Bereiche aufgeteilt. Pixel mit einer roten Färbung, haben eine hohe Gewichtung. Dahingegen weisen Pixel mit einer blauen Färbung einen geringen Gewichtungsfaktor auf. Blassere Farben haben hierbei eine geringere Merkmalsausprägung. Die Animation weist hierbei den folgenden Aufbau auf (siehe Abb. \ref{fig:untersuchungsbereich_neuron}).
 
 \begin{figure}[!hbt]
 	\centering
@@ -405,7 +405,7 @@ Die \textbf{Eingabebefehle 1 - 30} betrachten den Untersuchungsbereich eines ein
 \end{figure}
 
 \noindent
-Über den \textbf{Eingabebefehl 1000} der Untersuchungsbereich aller Neuronen in einer Übersicht aufbereitet. Dies bedeutet, dass dieser Befehl alle Untersuchungsbereiche aus den Eingabebefehlen 1-30 in sich zusammenfasst (siehe Abb. \ref{fig:untersuchungsbereich_neuronen}). Somit ist wird dem Nutzer ermöglicht Rückschlüsse zu führen, welche Bereiche jedes einzelne Neuron mehr betrachtet und welche nicht. \\
+Über den \textbf{Eingabebefehl 1000} wird der Untersuchungsbereich von allen Neuronen in einer Übersicht abgebildet. Dies bedeutet, dass dieser Befehl die Ausgaben von den Eingabebefehlen 1-30 in sich zusammenfasst (siehe Abb. \ref{fig:untersuchungsbereich_neuronen}). Die grafische Ausgabe ermöglicht dem Anwender die Untersuchungsbereiche verschiedener Neuronen zu vergleichen und gegenüberzustellen. Konzentriert sich ein Neuron im Vergleich zu allen anderen nur auf einen bestimmten Bereich? Nimmt ein Neuron für die Erkennung einer handgeschrieben Zahl (z.B. $6$) einen größeren Einfluss wie andere Neuronen? \\
 
 \begin{figure}[hbt]
 	\centering
@@ -427,7 +427,7 @@ rot, gelb  & Bereich mit einer hohen Relevanz   \\
 Weiterhin ist wird das Untersuchungsobjekt, die Eingabe, sowie die Ausgabe mit dem berechneten Ergebnissen in der Animation abgebildet (siehe Abb. \ref{fig:untersuchungsbereich_zahl}). Die berechneten Ergebnisse ermöglichen dem Nutzer zu überprüfen, ob die Klassifizierung durch das neuronale Netzwerk richtig vorgenommen wurde und welche Neuronen in bei der Ergebnisfindung höheren Einfluss nehmen. Die Berechnung unter jedem Untersuchungsbereich ist durch die Sigmoid-Funktion bestimmt. \\
 
 \noindent
-An dieser Stelle soll angemerkt sein, dass aufgrund der Verwendung von nur einer verborgenen Schicht in diesem Versuchsaufbau und der Anzahl von nur 30 Iterationen keine Erkenntnisse anhand der grafischen Ausgaben getroffen werden können. Hierzu müsste eine müsste ein \textit{Multilayer-Network} mit einer wesentlichen höheren Anzahl von Iterationen verwendet werden.
+An dieser Stelle soll angemerkt sein, dass aufgrund der Verwendung von nur einer verborgenen Schicht in diesem Versuchsaufbau und der Anzahl von nur 30 Iterationen keine Erkenntnisse anhand der grafischen Ausgaben getroffen werden können. Hierzu müsste ein \textit{Multilayer-Network} mit einer wesentlichen höheren Anzahl von Iterationen implementiert werden.
 
 \begin{figure}[hbt]
 	\centering
