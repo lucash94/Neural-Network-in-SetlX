@@ -1,5 +1,5 @@
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {1.1}{\ignorespaces Handgeschriebene Ziffer 5 \leavevmode {\color {red}[ToDo: Verweis auf Seite]}}}{1}{figure.1.1}
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Handgeschriebene Ziffer 5 \cite {nielson:2017}}}{1}{figure.1.1}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {2.1}{\ignorespaces Neuron mit Eingabevektor $\mathbf {x}$, Gewichtungsvektor $\mathbf {w}$ und Ausgabe $y$. \cite {buduma:2017}}}{3}{figure.2.1}
 \contentsline {figure}{\numberline {2.2}{\ignorespaces Die Sigmoid-Funktion. \cite {nielson:2017}}}{4}{figure.2.2}

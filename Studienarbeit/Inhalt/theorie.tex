@@ -2,6 +2,7 @@
 Dieses Kapitel beschäftigt sich mit den Grundlagen für das Entwickeln und Implementieren eines neuronalen Netzwerks. Die Notationen für die mathematischen Ausdrücke orientieren sich an dem Skript zur Vorlesung \textit{Artifical Intelligence} bei Prof. Dr. Karl Stroetmann \cite{stroetmann:2017}.
 
 \section{Das Neuron}
+\label{chap:sigmoid}
 Ein grundlegender Bestandteil des menschlichen Gehirns ist das Neuron. Bereits ein kleiner Ausschnitt in der Größe eines Reiskorns enthält über 10000 Neuronen, wobei jedes Neuron durchschnittlich 6000 Verbindungen mit anderen Neuronen bildet \cite{buduma:2017}. Dieses biologische Netzwerk ermöglicht dem Menschen, die Welt um ihn herum zu erleben. Das Ziel in diesem Abschnitt ist es, diese natürliche Struktur zu nutzen, um maschinelle Lernmodelle zu entwickeln, die Probleme auf analoge Weise lösen. Hierbei ist es nicht notwendig zu wissen wie das biologische Neuron funktioniert, noch wie ein ein Netzwerk aus biologischen Neuronen arbeitet. Stattdessen wird eine mathematische Abstraktion eines Neurons formuliert, welches die Grundlage für unser neuronales Netzwerk bildet. \\
 Ein Neuron mit $n$ Eingaben wird als Paar $\langle w,b \rangle$ definiert, wobei der Vektor $\mathbf{w} \in \mathbb{R}^m$ den Gewichtungsvektor und $b \in \mathbb{R}$ die Vorbelastung repräsentieren. Konzeptionell gesehen, ist das Neuron eine Funktion $p$, welche den Eingabevektor $\mathbf{x} \in \mathbb{R}^m$ auf das Intervall $[0,1]$ abbildet. Diese Funktion ist definiert als \\[0.2cm]
 \hspace*{1.3cm}
@@ -187,6 +188,7 @@ eingeführt.
 
 
 \section{Backpropagation}
+\label{chap:backprop}
 Der Backpropagation-Algorithmus ist das meist genutzte neuronale Modell. Grund ist die universelle Einsetzbarkeit für beliebige Approximationsaufgaben im Hinblick auf die effiziente Berechnung der partiellen Ableitung der Kostenfunktion $C$ nach der Gewichtung $w_{j,k}^{(l)}$ und der Vorbelastungen $b_j^{(l)}$. Ziel des Algorithmus ist die Minimierung der Abweichung zwischen erwartetem Ausgabewert und dem durch das neuronale Netzwerk ermitteltem Wert. Hierzu wird in dem folgenden Kapitel das Werkzeug für dessen Berechnung gegeben. \\
 
 %http://download.springer.com/static/pdf/442/chp%253A10.1007%252F978-3-658-13549-2_9.pdf?originUrl=http%3A%2F%2Flink.springer.com%2Fchapter%2F10.1007%2F978-3-658-13549-2_9&token2=exp=1494935592~acl=%2Fstatic%2Fpdf%2F442%2Fchp%25253A10.1007%25252F978-3-658-13549-2_9.pdf%3ForiginUrl%3Dhttp%253A%252F%252Flink.springer.com%252Fchapter%252F10.1007%252F978-3-658-13549-2_9*~hmac=259dec5f34cd0b3359f1147eaa21cf718b54fe7ffd8f04118d36cf45e9be83ef

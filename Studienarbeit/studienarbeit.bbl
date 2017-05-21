@@ -33,5 +33,29 @@
   Intelligence}}.
 \newblock {\latintext
   \btxurlfont{https://github.com/karlstroetmann/Artificial-Intelligence}}.
+  
+\bibitem {setlx:2017}
+\btxnamefont {\btxlastnamefont {Stroetmann}, Karl / \btxlastnamefont {Herrmann}, Tom}\btxauthorcolon\
+  \btxtitlefont {\btxifchangecase {SetlX — A Tutorial}{SetlX — A Tutorial}}.
+\newblock {\latintext
+  \btxurlfont{http://download.randoom.org/setlX/tutorial.pdf}}.
+  
+\bibitem {gnmt:2017}
+\btxnamefont {\btxlastnamefont {Le}, Quoc V. / \btxlastnamefont {Schuster}, Mike}\btxauthorcolon\
+  \btxtitlefont {\btxifchangecase {A Neural Network for Machine Translation, at Production Scale}{A Neural Network for Machine Translation, at Production Scale}}.
+\newblock {\latintext
+  \btxurlfont{https://research.googleblog.com/2016/09/a-neural-network-for-machine.html}}.
+  
+\bibitem {alphago:2017}
+\btxnamefont {\btxlastnamefont {DeepMind Technologies Limited}}\btxauthorcolon\
+  \btxtitlefont {\btxifchangecase {The story of AlphaGo so far}{The story of AlphaGo so far}}.
+\newblock {\latintext
+  \btxurlfont{https://deepmind.com/research/alphago/}}.
+  
+\bibitem {prismaai:2017}
+\btxnamefont {\btxlastnamefont {Prisma Labs, Inc.}}\btxauthorcolon\
+  \btxtitlefont {\btxifchangecase {AI Powered Art Styles}{AI Powered Art Styles}}.
+\newblock {\latintext
+  \btxurlfont{https://prisma-ai.com/}}.
 
 \end{thebibliography}

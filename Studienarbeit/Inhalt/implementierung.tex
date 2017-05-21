@@ -127,9 +127,9 @@ Bsp.: $s := [1,2]\ \rightarrow\ <<\ <<x>>\ <<y>>\ >>$ und $s := [2,1]\ \rightarr
 \end{enumerate}
 
 \noindent
-Sei nun $W$ die Matrix der Gewichte und $B$ die Matrix aller Vorbelastungen und $\mathbf{a}$ bezeichnet den Aktivierungsvektor der vorherigen Schicht, also deren Ausgabe (zu Beginn also die Pixel der Eingabe). Nach Gleichung \textcolor{red}{[ToDo: Verlinkung zu Theorieteil]} zur Berechnung einer Sigmoid-Ausgabe lässt sich nun folgende Formel aufstellen: 
+Sei nun $W$ die Matrix der Gewichte und $B$ die Matrix aller Vorbelastungen und $\mathbf{a}$ bezeichnet den Aktivierungsvektor der vorherigen Schicht, also deren Ausgabe (zu Beginn also die Pixel der Eingabe). Nach Gleichung \ref{eq:feedforward2} zur Berechnung einer Sigmoid-Ausgabe lässt sich nun folgende Formel aufstellen: 
 \begin{equation}\label{eq:feedforward_impl}
-	\mathbf{a}^{(l)} = \sigma(W^{(l)}\cdot \mathbf{a}^{(l-1)} + B^{(l)})
+	\mathbf{a}^{(l)} = S(W^{(l)}\cdot \mathbf{a}^{(l-1)} + B^{(l)})
 \end{equation}
 \noindent
 Hierbei bezeichnet $\mathbf{a}^{(l)}$ den Ausgabe-Vektor der aktuellen Schicht, welcher dann der nächsten Schicht weitergeleitet wird (feedforwarding). Nachfolgend sind die Implementierungen der Sigmoid-Funktionen sowie dem Feedforwarding zu sehen.
@@ -158,7 +158,7 @@ Hierbei bezeichnet $\mathbf{a}^{(l)}$ den Ausgabe-Vektor der aktuellen Schicht, 
 \end{Verbatim}
 \begin{enumerate}
 \item $\mathtt{feedforward(a)}$: Anwendung der Gleichung \eqref{eq:feedforward_impl} auf alle Schichten des Netzwerkes angewandt. Zurückgegeben wird die resultierende Ausgabe jedes Neurons der letzten Schicht in vektorisierter Form.
-\item $\mathtt{sigmoid(z)}$: Diese Funktionen nimmt einen Vektor $\mathtt{z}$ und berechnet mit Hilfe der Sigmoid-Formel (siehe Formel \textcolor{red}{[ToDo: Verlinkung zu Theorieteil]}) die Ausgabe der Neuronen in vektorisierter Form.
+\item $\mathtt{sigmoid(z)}$: Diese Funktionen nimmt einen Vektor $\mathtt{z}$ und berechnet mit Hilfe der Sigmoid-Formel (siehe Kapitel \ref{chap:sigmoid}) die Ausgabe der Neuronen in vektorisierter Form.
 \item $\mathtt{sigmoid\_prime(z)}$: Für einen gegebenen Vektor $\mathtt{z}$ wird die Ableitung der Sigmoid-Funktion (nach Formel \textcolor{red}{[ToDo: Verlinkung zu Theorieteil]}) berechnet und in Form einer Matrix (Matrix-Form auf Grund späterer Berechnung mit $\mathtt{la\_hadamard()}$) zurückgegeben.
 \end{enumerate}
 \noindent
@@ -236,16 +236,16 @@ Die in der SGD-Funktion erwähnte Hilfsfunktion $\mathtt{update\_mini\_batches}$
 \item Zeile 2-3: Hier werden die Variablen $\mathtt{nabla\_b}$ und $\mathtt{nabla\_w}$ als Listen mit 0-en initialisiert. Die Länge der Listen entspricht jeweils der Zeilenanzahl der Gewichts- und Vorbelastungs-Matrizen. $\mathtt{nabla\_b}$ und $\mathtt{nabla\_w}$ stehen für die Gradienten der Gewichte und Vorbelastungen des Netzwerkes.
 \item Zeile 5: Auf jedes Tupel $[x,y]$ der mitgegebenen Testdaten wird nun der Backpropagation-Algorithmus angewendet. Dieser dient dazu den Gradienten der Kostenfunktion möglichst schnell und effizient zu berechnen. Die Implementierung von Backpropagation folgt im Anschluss.
 \item Zeile 6-7: Die durch die Backpropagation ermittelten Gradienten für die Gewichte und Vorbelastungen werden in den entsprechenden Variablen gespeichert.
-\item Zeile 9-14: Nachdem die Gradienten durch jeden Datensatz des Mini-Batches angepasst wurden, werden am Ende der Funktion nun die Gewichte und Vorbelastungen des Netzwerkes entsprechend des Ergebnisses angepasst. Hierfür werden folgende Formeln verwendet:
+\item Zeile 9-14: Nachdem die Gradienten durch jeden Datensatz des Mini-Batches angepasst wurden, werden am Ende der Funktion nun die Gewichte und Vorbelastungen des Netzwerkes entsprechend des Ergebnisses angepasst. Hierfür werden folgende Formeln des SGD-Algorithmus verwendet:
 \begin{equation}
 	W' = W - \frac{\eta}{m}\cdot \nabla W \\
 	B' = B - \frac{\eta}{m}\cdot \nabla B
 \end{equation}
-Hierbei bezeichnet $W$ die Gewichtsmatrix und $B$ die Vorbelastungsmatrix des Netzwerkes. Die Lernrate wird durch $\eta$ dargestellt und $m$ bezeichnet die Größe der betrachteten Testdaten. Die Lernrate wird durch den Benutzer vorgegeben und der Funktion als Parameter übergeben. $m$ kann durch die Größe des Mini-Batches ermittelt werden. \textcolor{red}{[ToDo: Verweis auf vorherige Formeldefinition, wenn vorhanden]}
+Hierbei bezeichnet $W$ die Gewichtsmatrix und $B$ die Vorbelastungsmatrix des Netzwerkes. Die Lernrate wird durch $\eta$ dargestellt und $m$ bezeichnet die Größe der betrachteten Testdaten. Die Lernrate wird durch den Benutzer vorgegeben und der Funktion als Parameter übergeben. $m$ kann durch die Größe des Mini-Batches ermittelt werden.
 \end{enumerate}
 
 \noindent
-Im nächsten Abschnitt wird die Implementierung des Backpropagation Algorithmus vorgestellt. Dieser dient dazu den Gradienten der Gewichte und Vorbelastungen zu berechnen, damit das Netzwerk anhand der Testdatensätze lernen kann. Zur Erinnerung sind hier noch einmal die vier grundlegenden Formeln des Algorithmus erwähnt:
+Im nächsten Abschnitt wird die Implementierung des Backpropagation Algorithmus vorgestellt. Dieser dient dazu den Gradienten der Gewichte und Vorbelastungen zu berechnen, damit das Netzwerk anhand der Testdatensätze lernen kann. Zur Erinnerung sind hier noch einmal die vier grundlegenden Formeln des Algorithmus erwähnt (siehe auch Kapitel \ref{chap:backprop}):
 \begin{equation} \label{eq:BP1_impl}
 	\boldsymbol{\varepsilon}^{(L)} = (\mathbf{a}^{(L)} - \mathbf{y}) \odot S'\bigl(\mathbf{z}^{(L)}\bigr)  
 \end{equation}
