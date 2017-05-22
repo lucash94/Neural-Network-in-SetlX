@@ -240,11 +240,34 @@ Mit den definierten Hilfsgrößen ist es nun möglich die vier Gleichung für di
 	\varepsilon^{(L)}_j = (a_j^{(L)} - y_j) \cdot S'\bigl(z_j^{(L)}\bigr)
 	\quad \mbox{$\forall j \in \{1, \cdots, m(L)\}$}.
 \end{equation}
+mit
+\begin{equation}
+	\label{eq:BP1}
+	S'(x) = (1-S(t)) \cdot S(t).
+\end{equation}
 Die Gleichung \ref{eq:BP1} kann auch als vektorisierte Schreibweise mittels dem Hardamard-Produkt angegeben werden. Hierfür ergibt sich:
 \begin{equation}
   \label{eq:BP1s}
-\boldsymbol{\varepsilon}^{(L)} = (\mathbf{a}^{(L)} - \mathbf{y}) \odot S'\bigl(\mathbf{z}^{(L)}\bigr)  
+\boldsymbol{\varepsilon}^{(L)} = (\mathbf{a}^{(L)} - \mathbf{y}) \odot S'\bigl(\mathbf{z}^{(L)}\bigr),  
 \end{equation}
+wobei $S'(\mathbf{z^{(L)}})$ wie folgt definiert ist:
+\\[0.2cm]
+\hspace*{1.3cm}
+$ S'\left(
+  \begin{array}[c]{c}
+   z_1^{(L)}      \\
+   \vdots       \\
+   z_{m(L)}^{(L)} 
+  \end{array}
+  \right) := \left(
+  \begin{array}[c]{c}
+   S'\bigl(z_1^{(L)}\bigr)      \\
+   \vdots       \\
+   S'\bigl(z_{m(L)}^{(L)}\bigr)
+  \end{array}
+  \right)
+$.
+\\[0.2cm]
     
 \item Die zweite Gleichung berechnet $\varepsilon^{(L)}_j$ für alle $l<L$. Der Fehler $\boldsymbol{\varepsilon}^{(l+1)}$ von Schicht $l+1$ fließt hierbei in die Berechnung von $\boldsymbol{\varepsilon}^{(l)}$ ein.
 \begin{equation}
