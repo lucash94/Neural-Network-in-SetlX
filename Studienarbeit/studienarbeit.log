@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.11.3)  22 MAY 2017 21:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.11.3)  22 MAY 2017 21:47
 entering extended mode
 **./studienarbeit.tex
 (studienarbeit.tex
@@ -396,6 +396,20 @@ Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 ))
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\fleqn.sty"
+
+LaTeX Warning: inputting `fleqn.clo' instead of obsolete `fleqn.sty'.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\fleqn.clo"
+File: fleqn.clo 2015/03/31 v1.1i Standard LaTeX option (flush left equations)
+\mathindent=\dimen108
+Applying: [2015/01/01] Make \[ robust on input line 50.
+LaTeX Info: Redefining \[ on input line 51.
+Already applied: [0000/00/00] Make \[ robust on input line 62.
+Applying: [2015/01/01] Make \] robust on input line 74.
+LaTeX Info: Redefining \] on input line 75.
+Already applied: [0000/00/00] Make \] robust on input line 83.
+))
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsmath.sty"
 Package: amsmath 2016/06/28 v2.15d AMS math features
 \@mathmargin=\skip43
@@ -407,11 +421,11 @@ Package: amstext 2000/06/29 v2.01 AMS text
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsgen.sty"
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks18
-\ex@=\dimen108
+\ex@=\dimen109
 ))
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsbsy.sty"
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen109
+\pmbraise@=\dimen110
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsopn.sty"
 Package: amsopn 2016/03/08 v2.02 operator names
@@ -428,7 +442,7 @@ LaTeX Info: Redefining \dots on input line 397.
 LaTeX Info: Redefining \cdots on input line 518.
 \Mathstrutbox@=\box26
 \strutbox@=\box27
-\big@size=\dimen110
+\big@size=\dimen111
 LaTeX Font Info:    Redeclaring font encoding OML on input line 634.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 635.
 \macc@depth=\count94
@@ -441,12 +455,12 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 635.
 \column@=\count99
 \maxfields@=\count100
 \andhelp@=\toks20
-\eqnshift@=\dimen111
-\alignsep@=\dimen112
-\tagshift@=\dimen113
-\tagwidth@=\dimen114
-\totwidth@=\dimen115
-\lineht@=\dimen116
+\eqnshift@=\dimen112
+\alignsep@=\dimen113
+\tagshift@=\dimen114
+\tagwidth@=\dimen115
+\totwidth@=\dimen116
+\lineht@=\dimen117
 \@envbody=\toks21
 \multlinegap=\skip44
 \multlinetaggap=\skip45
@@ -472,20 +486,6 @@ Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix
 ) ("C:\Program Files\MiKTeX 2.9\tex\latex\base\alltt.sty"
 Package: alltt 1997/06/16 v2.0g defines alltt environment
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\base\fleqn.sty"
-
-LaTeX Warning: inputting `fleqn.clo' instead of obsolete `fleqn.sty'.
-
-("C:\Program Files\MiKTeX 2.9\tex\latex\base\fleqn.clo"
-File: fleqn.clo 2015/03/31 v1.1i Standard LaTeX option (flush left equations)
-\mathindent=\dimen117
-Applying: [2015/01/01] Make \[ robust on input line 50.
-LaTeX Info: Redefining \[ on input line 51.
-Already applied: [0000/00/00] Make \[ robust on input line 62.
-Applying: [2015/01/01] Make \] robust on input line 74.
-LaTeX Info: Redefining \] on input line 75.
-Already applied: [0000/00/00] Make \] robust on input line 83.
-))
 ("C:\Program Files\MiKTeX 2.9\tex\latex\eepic\epic.sty"
 Enhancements to Picture Environment. Version 1.2 - Released June 1, 1986
 \@@multicnt=\count104
@@ -958,7 +958,7 @@ Package: inconsolata 2016/02/22 v1.10
 ("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\hypcap.sty"
 Package: hypcap 2016/05/16 v1.12 Adjusting the anchors of captions (HO)
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 26.
+Package hyperref Info: Option `colorlinks' set `true' on input line 27.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\fancyhdr\fancyhdr.sty"
 Package: fancyhdr 2016/09/06 3.8 Extensive control of page headers and footers
@@ -1017,28 +1017,28 @@ LaTeX Warning: Label `eq:BP1' multiply defined.
 ) (Inhalt/implementierung.aux) (Inhalt/fazit.aux))
 \openout1 = `studienarbeit.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 162.
-LaTeX Font Info:    ... okay on input line 162.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 162.
-LaTeX Font Info:    ... okay on input line 162.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 162.
-LaTeX Font Info:    ... okay on input line 162.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 162.
-LaTeX Font Info:    ... okay on input line 162.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 162.
-LaTeX Font Info:    ... okay on input line 162.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 162.
-LaTeX Font Info:    ... okay on input line 162.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 162.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 162.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 163.
+LaTeX Font Info:    ... okay on input line 163.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 163.
+LaTeX Font Info:    ... okay on input line 163.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 163.
+LaTeX Font Info:    ... okay on input line 163.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 163.
+LaTeX Font Info:    ... okay on input line 163.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 163.
+LaTeX Font Info:    ... okay on input line 163.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 163.
+LaTeX Font Info:    ... okay on input line 163.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 163.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 163.
 
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\ts1cmr.fd"
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 162.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 162.
-LaTeX Font Info:    ... okay on input line 162.
+LaTeX Font Info:    ... okay on input line 163.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 163.
+LaTeX Font Info:    ... okay on input line 163.
 
 ("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -1067,7 +1067,7 @@ G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
 )
 \AtBeginShipoutBox=\box49
-Package hyperref Info: Link coloring ON on input line 162.
+Package hyperref Info: Link coloring ON on input line 163.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -1077,9 +1077,9 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count161
 )
-LaTeX Info: Redefining \ref on input line 162.
-LaTeX Info: Redefining \pageref on input line 162.
-LaTeX Info: Redefining \nameref on input line 162.
+LaTeX Info: Redefining \ref on input line 163.
+LaTeX Info: Redefining \pageref on input line 163.
+LaTeX Info: Redefining \nameref on input line 163.
 
 (studienarbeit.out) (studienarbeit.out)
 \@outlinefile=\write4
@@ -1092,7 +1092,7 @@ tim
 )
 Package lastpage Info: Please have a look at the pageslts package at
 (lastpage)             https://www.ctan.org/pkg/pageslts
-(lastpage)             ! on input line 162.
+(lastpage)             ! on input line 163.
 
 babelbib: Use citation-dependent languages in bibliography
 babelbib: Set bibliography fall-back language to german
@@ -1300,22 +1300,15 @@ Underfull \hbox (badness 10000) in paragraph at lines 192--193
 
  []
 
-[6] [7]
-Underfull \hbox (badness 10000) in paragraph at lines 253--271
+[6] [7pdfTeX warning (ext4): destination with the same identifier (name{equatio
+n.2.3.3}) has been already used, duplicate ignored
 
- []
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.252 \end{equation}
+                    ]
+Underfull \hbox (badness 10000) in paragraph at lines 252--271
 
-
-Overfull \hbox (3.07782pt too wide) detected at line 276
-$ []\OML/cmm/m/it/10 "[] \OT1/cmr/m/n/10 = [] \OML/cmm/m/it/10 w[] \OMS/cmsy/m/
-n/10  \OML/cmm/m/it/10 "[] \OMS/cmsy/m/n/10  \OML/cmm/m/it/10 S[][]z[][] []$ 
-[]
- []
-
-
-Overfull \hbox (11.35583pt too wide) detected at line 303
-$ [][] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 a[] \OMS/cmsy/m/n/10  \OML/cmm/m/it/
-10 "[] []$ []
  []
 
 
@@ -1323,7 +1316,49 @@ Underfull \hbox (badness 10000) in paragraph at lines 313--315
 
  []
 
-[8]
+[8pdfTeX warning (ext4): destination with the same identifier (name{equation.2.
+3.4}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.321 \item Z
+             uweisung des Eingabevektors $\textbf{x}$ der Eingabeschicht mit...
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.3.
+4}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.321 \item Z
+             uweisung des Eingabevektors $\textbf{x}$ der Eingabeschicht mit...
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.3.
+4}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.321 \item Z
+             uweisung des Eingabevektors $\textbf{x}$ der Eingabeschicht mit...
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.3.
+4}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.321 \item Z
+             uweisung des Eingabevektors $\textbf{x}$ der Eingabeschicht mit...
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.3.
+4}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.321 \item Z
+             uweisung des Eingabevektors $\textbf{x}$ der Eingabeschicht mit...
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.3.
+4}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.321 \item Z
+             uweisung des Eingabevektors $\textbf{x}$ der Eingabeschicht mit...
+]
 Underfull \hbox (badness 10000) in paragraph at lines 331--336
 
  []
@@ -1339,7 +1374,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 344--350
  []
 
 )
-Overfull \hbox (1.0383pt too wide) in paragraph at lines 357--199
+Overfull \hbox (1.0383pt too wide) in paragraph at lines 357--200
 |  $\OML/cmm/m/it/10 C[]W[]; []  ; W[]; \OT1/cmr/bx/n/10 b[]\OML/cmm/m/it/10 ; 
 []  ; \OT1/cmr/bx/n/10 b[]\OT1/cmr/m/n/10 ; \OT1/cmr/bx/n/10 x[]\OML/cmm/m/it/1
 0 ; \OT1/cmr/bx/n/10 y[]\OML/cmm/m/it/10 ; []  ; \OT1/cmr/bx/n/10 x[]\OML/cmm/m
@@ -1407,23 +1442,22 @@ Underfull \hbox (badness 10000) in paragraph at lines 379--382
 
  []
 
-<Bilder/MNIST-Matrix.png, id=379, 985.6825pt x 388.45125pt>
+[19] <Bilder/MNIST-Matrix.png, id=390, 985.6825pt x 388.45125pt>
 File: Bilder/MNIST-Matrix.png Graphic file (type png)
 
 <use Bilder/MNIST-Matrix.png>
 Package pdftex.def Info: Bilder/MNIST-Matrix.png used on input line 385.
 (pdftex.def)             Requested size: 315.42484pt x 124.30693pt.
 
-<Bilder/animation_network_default.png, id=380, 554.67226pt x 554.67226pt>
+<Bilder/animation_network_default.png, id=391, 554.67226pt x 554.67226pt>
 File: Bilder/animation_network_default.png Graphic file (type png)
 
 <use Bilder/animation_network_default.png>
 Package pdftex.def Info: Bilder/animation_network_default.png used on input lin
 e 392.
 (pdftex.def)             Requested size: 388.26793pt x 388.26793pt.
- [19] [20 <./Bilder/MNIST-Matrix.png (PNG copy)> <./Bilder/animation_network_de
-fault.png>]
-<Bilder/untersuchungsbereich_neuron.png, id=396, 666.23906pt x 657.95813pt>
+
+<Bilder/untersuchungsbereich_neuron.png, id=393, 666.23906pt x 657.95813pt>
 File: Bilder/untersuchungsbereich_neuron.png Graphic file (type png)
 
 <use Bilder/untersuchungsbereich_neuron.png>
@@ -1435,7 +1469,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 407--409
 
  []
 
-<Bilder/untersuchungsbereich_neuronen.png, id=398, 731.73375pt x 611.28375pt>
+<Bilder/untersuchungsbereich_neuronen.png, id=395, 731.73375pt x 611.28375pt>
 File: Bilder/untersuchungsbereich_neuronen.png Graphic file (type png)
 
 <use Bilder/untersuchungsbereich_neuronen.png>
@@ -1447,30 +1481,31 @@ Underfull \hbox (badness 10000) in paragraph at lines 427--428
 
  []
 
-[21 <./Bilder/untersuchungsbereich_neuron.png>]
-<Bilder/untersuchungsbereich_zahl.png, id=407, 737.75626pt x 934.24031pt>
+<Bilder/untersuchungsbereich_zahl.png, id=397, 737.75626pt x 934.24031pt>
 File: Bilder/untersuchungsbereich_zahl.png Graphic file (type png)
 
 <use Bilder/untersuchungsbereich_zahl.png>
 Package pdftex.def Info: Bilder/untersuchungsbereich_zahl.png used on input lin
 e 434.
 (pdftex.def)             Requested size: 413.14069pt x 523.171pt.
-) [22 <./Bilder/untersuchungsbereich_neuronen.png>] [23 <./Bilder/untersuchungs
-bereich_zahl.png>]
+) [20 <./Bilder/MNIST-Matrix.png (PNG copy)>] [21 <./Bilder/animation_network_d
+efault.png>] [22 <./Bilder/untersuchungsbereich_neuron.png>] [23 <./Bilder/unte
+rsuchungsbereich_neuronen.png>]
+[24 <./Bilder/untersuchungsbereich_zahl.png>]
 \openout2 = `Inhalt/fazit.aux'.
 
  (Inhalt/fazit.tex
 Kapitel 4.
-[24
+[25
 
 
 
 ])
-Underfull \hbox (badness 10000) in paragraph at lines 72--202
+Underfull \hbox (badness 10000) in paragraph at lines 72--203
 
  []
 
-[25] (studienarbeit.bbl
+[26] (studienarbeit.bbl
 babelbib: Using the BibTeX style's default font for `name'.
 babelbib: Using the BibTeX style's default font for `lastname'.
 babelbib: Using the BibTeX style's default font for `title'.
@@ -1503,17 +1538,17 @@ oetmann /
 
 ) 
 AED: lastpage setting LastPage
-[26
+[27
 
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 208.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 208.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 209.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 209.
  (studienarbeit.aux (Inhalt/titelseite.aux) (Inhalt/erklaerung.aux)
 (Inhalt/abstract.aux) (Inhalt/einleitung.aux) (Inhalt/theorie.aux)
 (Inhalt/implementierung.aux) (Inhalt/fazit.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 208.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 208.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 209.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 209.
 Package rerunfilecheck Info: File `studienarbeit.out' has not changed.
 (rerunfilecheck)             Checksum: 84CC6D2979BFDCE5E3F937B0A23E7A41;1227.
 
@@ -1523,41 +1558,47 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 208.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 209.
  ) 
 Here is how much of TeX's memory you used:
- 16247 strings out of 493334
- 280557 string characters out of 3139252
- 363381 words of memory out of 3000000
+ 16251 strings out of 493334
+ 280536 string characters out of 3139252
+ 363288 words of memory out of 3000000
  19355 multiletter control sequences out of 15000+200000
  14289 words of font info for 53 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  34i,12n,45p,10384b,652s stack positions out of 5000i,500n,10000p,200000b,50000s
- <C:\Users\johan\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\
-tcss1000.pk>{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/inconsolata/i4-ot1-0.e
-nc}<C:/Program Files/MiKTeX 2.9/fonts/type1/public/inconsolata/Inconsolata-zi4r
-.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:
-/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx5.pfb><C:/Program 
-Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx7.pfb><C:/Program Files/MiK
-TeX 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Program Files/MiKTeX 2.9
-/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9/fonts/t
-ype1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pub
-lic/amsfonts/cm/cmmi5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfo
-nts/cm/cmmi7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cm
-mib10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb
-><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Progr
-am Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files/M
-iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss10.pfb><C:/Program Files/MiKTeX 2.
-9/fonts/type1/public/amsfonts/cm/cmss12.pfb><C:/Program Files/MiKTeX 2.9/fonts/
-type1/public/amsfonts/cm/cmssbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/
-public/amsfonts/cm/cmssi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/
-amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts
-/cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt1
-0.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.p
-fb>
-Output written on studienarbeit.pdf (30 pages, 1669588 bytes).
+pdfTeX warning (dest): name{equation.2.3.10} has been referenced but does not
+ exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{equation.2.3.7} has been referenced but does not ex
+ist, replaced by a fixed one
+
+ <C:\Users\johan\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\tc
+ss1000.pk>{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/inconsolata/i4-ot1-0.enc
+}<C:/Program Files/MiKTeX 2.9/fonts/type1/public/inconsolata/Inconsolata-zi4r.p
+fb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/P
+rogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx5.pfb><C:/Program Fi
+les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx7.pfb><C:/Program Files/MiKTe
+X 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Program Files/MiKTeX 2.9/f
+onts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9/fonts/typ
+e1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publi
+c/amsfonts/cm/cmmi5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfont
+s/cm/cmmi7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi
+b10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><
+C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Program
+ Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files/MiK
+TeX 2.9/fonts/type1/public/amsfonts/cm/cmss10.pfb><C:/Program Files/MiKTeX 2.9/
+fonts/type1/public/amsfonts/cm/cmss12.pfb><C:/Program Files/MiKTeX 2.9/fonts/ty
+pe1/public/amsfonts/cm/cmssbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pu
+blic/amsfonts/cm/cmssi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/am
+sfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/c
+m/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.
+pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb
+>
+Output written on studienarbeit.pdf (31 pages, 1670458 bytes).
 PDF statistics:
- 546 PDF objects out of 1000 (max. 8388607)
- 143 named destinations out of 1000 (max. 500000)
+ 557 PDF objects out of 1000 (max. 8388607)
+ 147 named destinations out of 1000 (max. 500000)
  195 words of extra memory for PDF output out of 10000 (max. 10000000)
 

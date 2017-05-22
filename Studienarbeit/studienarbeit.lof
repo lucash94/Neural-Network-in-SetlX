@@ -6,8 +6,8 @@
 \contentsline {figure}{\numberline {2.3}{\ignorespaces Aufbau des neuronalen Netzwerks hinsichtlich der einzelnen Schichten. \cite {nielson:2017}}}{5}{figure.2.3}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {3.1}{\ignorespaces Eingabe in das neuronale Netzwerk.}}{20}{figure.3.1}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Default Animation, welche \IeC {\"u}ber die Eingabe mit dem Wert $0$ aufgerufen wird.}}{20}{figure.3.2}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Untersuchungsbereich eines einzelnen Neurons der verborgenen Schicht.}}{21}{figure.3.3}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Untersuchungsbereich aller Neuronen der verborgenen Schicht.}}{22}{figure.3.4}
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Untersuchungsbereich aller Neuronen der verborgenen Schicht hinsichtlich einer Eingabe.}}{23}{figure.3.5}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Default Animation, welche \IeC {\"u}ber die Eingabe mit dem Wert $0$ aufgerufen wird.}}{21}{figure.3.2}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Untersuchungsbereich eines einzelnen Neurons der verborgenen Schicht.}}{22}{figure.3.3}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Untersuchungsbereich aller Neuronen der verborgenen Schicht.}}{23}{figure.3.4}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Untersuchungsbereich aller Neuronen der verborgenen Schicht hinsichtlich einer Eingabe.}}{24}{figure.3.5}
 \addvspace {10\p@ }

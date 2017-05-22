@@ -238,7 +238,7 @@ Mit den definierten Hilfsgrößen ist es nun möglich die vier Gleichung für di
 \begin{equation}
 	\label{eq:BP1}
 	\varepsilon^{(L)}_j = (a_j^{(L)} - y_j) \cdot S'\bigl(z_j^{(L)}\bigr)
-	\quad \mbox{$\forall j \in \{1, \cdots, m(L)\}$}.
+	\quad \mbox{$\forall j \in \{1, \cdots, m(L)\}$}. \tag{BP1}
 \end{equation}
 mit
 \begin{equation}
@@ -248,7 +248,7 @@ mit
 Die Gleichung \ref{eq:BP1} kann auch als vektorisierte Schreibweise mittels dem Hardamard-Produkt angegeben werden. Hierfür ergibt sich:
 \begin{equation}
   \label{eq:BP1s}
-\boldsymbol{\varepsilon}^{(L)} = (\mathbf{a}^{(L)} - \mathbf{y}) \odot S'\bigl(\mathbf{z}^{(L)}\bigr),  
+\boldsymbol{\varepsilon}^{(L)} = (\mathbf{a}^{(L)} - \mathbf{y}) \odot S'\bigl(\mathbf{z}^{(L)}\bigr),  \tag{BP1v}
 \end{equation}
 wobei $S'(\mathbf{z^{(L)}})$ wie folgt definiert ist:
 \\[0.2cm]
@@ -272,26 +272,26 @@ $.
 \item Die zweite Gleichung berechnet $\varepsilon^{(L)}_j$ für alle $l<L$. Der Fehler $\boldsymbol{\varepsilon}^{(l+1)}$ von Schicht $l+1$ fließt hierbei in die Berechnung von $\boldsymbol{\varepsilon}^{(l)}$ ein.
 \begin{equation}
 	\label{eq:BP2}
-	\varepsilon^{(l)}_j = \sum\limits_{i=1}^{m(l+1)} w_{i,j}^{(l+1)} \cdot 			\varepsilon^{(l+1)}_i \cdot S'\bigl(z^{(l)}_j\bigr) \quad \mbox{ $\forall j \in \{1, \cdots, m(l)\}$ und $\forall l \in \{2, \cdots, L-1\}$}
+	\varepsilon^{(l)}_j = \sum\limits_{i=1}^{m(l+1)} w_{i,j}^{(l+1)} \cdot 			\varepsilon^{(l+1)}_i \cdot S'\bigl(z^{(l)}_j\bigr) \quad \mbox{ $\forall j \in \{1, \cdots, m(l)\}$ und $\forall l \in \{2, \cdots, L-1\}$} \tag{BP2}
 \end{equation}
 Auch diese Gleichung kann in der vektorisierten Schreibweise angegeben werden:
 \begin{equation}
   \label{eq:BP2v}
   \boldsymbol{\varepsilon}^{(l)} = \Bigl(\bigl(W^{(l+1)}\bigr)^\top \cdot \boldsymbol{\varepsilon}^{(l+1)}\Bigr) \odot
-  S'\bigl(z^{(l)}\bigr) \quad \mbox{$\forall l \in \{2, \cdots, L-1\}$}.
+  S'\bigl(z^{(l)}\bigr) \quad \mbox{$\forall l \in \{2, \cdots, L-1\}$}. \tag{BP2v}
 \end{equation}
 
 \item Die nächste Gleichung ist durch die partielle Ableitung von $C_{\mathbf{x},\mathbf{y}}$ nach der Vorbelastung $b_j^{(l)}$ des $j$-ten Neuron in Schicht $l$ gegeben. Diese Gleichung gibt somit die Änderungsrate der Kosten hinsichtlich der Vorbelastungen an.
 \begin{equation}
   \label{eq:BP3}
   \frac{\partial C_{\mathbf{x}, \mathbf{y}}}{b_j^{(l)}} = \varepsilon_j^{(l)}
-  \quad \mbox{$\forall j \in \{1,\cdots,m(l)\}$ und $\forall l \in \{2, \cdots,l\}$}
+  \quad \mbox{$\forall j \in \{1,\cdots,m(l)\}$ und $\forall l \in \{2, \cdots,l\}$} \tag{BP3}
 \end{equation}
 Die vektorisierte Schreibweise nimmt hierbei die folgende Form an:
 \begin{equation}
   \label{eq:BP3v}
   \nabla_{\mathbf{b}^{(l)}} C_{\mathbf{x}, \mathbf{y}} = \boldsymbol{\varepsilon}^{(l)}
-  \quad \mbox{$\forall l \in \{2, \cdots,l\}$}
+  \quad \mbox{$\forall l \in \{2, \cdots,l\}$} \tag{BP3v}
 \end{equation}
 Mit $\nabla_{\mathbf{b}^{(l)}}$ wird in dieser Arbeit der Gradient von $C_{\mathbf{x},\mathbf{y}}$ im Hinblick auf $b^{(l)}$ bezeichnet. 
 
@@ -299,13 +299,13 @@ Mit $\nabla_{\mathbf{b}^{(l)}}$ wird in dieser Arbeit der Gradient von $C_{\math
 \begin{equation}
   \label{eq:BP4}
   \frac{\partial C_{\mathbf{x}, \mathbf{y}}}{\partial w_{j,k}^{(l)}} = a_k^{(l-1)} \cdot \varepsilon_j^{(l)}
-  \quad \mbox{$\forall j \in \{1,\cdots,m(l)\}$, $\forall k \in \{1,\cdots,m(l-1)\}$, $\forall l \in \{2, \cdots,l\}$}
+  \quad \mbox{$\forall j \in \{1,\cdots,m(l)\}$, $\forall k \in \{1,\cdots,m(l-1)\}$, $\forall l \in \{2, \cdots,l\}$} \tag{BP4}
 \end{equation}
 Die vektorisierte Schreibweise liefert auch in diesem Fall die folgende Form:
 \begin{equation}
   \label{eq:BP4v}
   \nabla_{W^{(l)}} C_{\mathbf{x}, \mathbf{y}} = \boldsymbol{\varepsilon}^{(l)} \cdot \bigl(\mathbf{a}^{(l-1)}\bigr)^\top
-  \quad \mbox{$\forall l \in \{2, \cdots,l\}$}
+  \quad \mbox{$\forall l \in \{2, \cdots,l\}$} \tag{BP4v}
 \end{equation}
 Der Ausdruck $\boldsymbol{\varepsilon}^{(l)} \cdot \bigl(\mathbf{a}^{(l-1)}\bigr)^\top$ bezeichnet hierbei die Matrixmultiplikation zwischen dem Spaltenvektor $\boldsymbol{\varepsilon}^{(l)}$ als $m(l) \times 1$ Matrix und dem Reihenvektor $\bigl(\mathbf{a}^{(l-1)}\bigr)^\top$ als $1 \times m(l-1)$ Matrix.
 \end{enumerate}
