@@ -159,7 +159,7 @@ Hierbei bezeichnet $\mathbf{a}^{(l)}$ den Ausgabe-Vektor der aktuellen Schicht, 
 \begin{enumerate}
 \item $\mathtt{feedforward(a)}$: Anwendung der Gleichung \eqref{eq:feedforward_impl} auf alle Schichten des Netzwerkes angewandt. Zurückgegeben wird die resultierende Ausgabe jedes Neurons der letzten Schicht in vektorisierter Form.
 \item $\mathtt{sigmoid(z)}$: Diese Funktionen nimmt einen Vektor $\mathtt{z}$ und berechnet mit Hilfe der Sigmoid-Formel (siehe Kapitel \ref{chap:sigmoid}) die Ausgabe der Neuronen in vektorisierter Form.
-\item $\mathtt{sigmoid\_prime(z)}$: Für einen gegebenen Vektor $\mathtt{z}$ wird die Ableitung der Sigmoid-Funktion (nach Formel \textcolor{red}{[ToDo: Verlinkung zu Theorieteil]}) berechnet und in Form einer Matrix (Matrix-Form auf Grund späterer Berechnung mit $\mathtt{la\_hadamard()}$) zurückgegeben.
+\item $\mathtt{sigmoid\_prime(z)}$: Für einen gegebenen Vektor $\mathtt{z}$ wird die Ableitung der Sigmoid-Funktion (nach Formel \eqref{eq:sigmoidPrime}) berechnet und in Form einer Matrix (Matrix-Form auf Grund späterer Berechnung mit $\mathtt{la\_hadamard()}$) zurückgegeben.
 \end{enumerate}
 \noindent
 Die Feedforward-Funktion dient also dazu, die Eingabewerte durch das gesamte Netzwerk durchzureichen und die daraus resultierende Ausgabe zu ermitteln. Als nächstes wird der Algorithmus diskutiert, durch welchem es dem Netzwerk ermöglicht wird zu \glqq lernen\grqq. Hierfür wird der SGD-Algorithmus verwendet. Die Implementierung des SGDs in SetlX ist nachfolgend aufgezeigt und wird nun im Detail erläutert.
