@@ -12,13 +12,6 @@
   \providebibliographyfont{numeral}{}%
   \expandafter\btxselectlanguage\expandafter {\btxfallbacklanguage}
 
-\btxselectlanguage {english}
-\bibitem {buduma:2017}
-\btxnamefont {\btxlastnamefont {Buduma}, Nikhil}\btxauthorcolon\ \btxtitlefont
-  {Fundamentals of deep learning}.
-\newblock \btxpublisherfont {The McGraw-Hill Companies}, 2017\ifbtxprintISBN {,
-  \mbox{\btxISBN~\btxISBNfont {978-1491925614}}}.
-
 \expandafter\btxselectlanguage\expandafter {\btxfallbacklanguage}
 \bibitem {nielson:2017}
 \btxnamefont {\btxlastnamefont {Nielsen}, Michael}\btxauthorcolon\
@@ -27,35 +20,46 @@
 \newblock {\latintext
   \btxurlfont{http://neuralnetworksanddeeplearning.com/index.html}}.
 
+\btxselectlanguage {english}
+\bibitem {buduma:2017}
+\btxnamefont {\btxlastnamefont {Buduma}, Nikhil}\btxauthorcolon\ \btxtitlefont
+  {Fundamentals of deep learning}.
+\newblock \btxpublisherfont {The McGraw-Hill Companies}, 2017\ifbtxprintISBN {,
+  \mbox{\btxISBN~\btxISBNfont {978-1491925614}}}.
+
+\expandafter\btxselectlanguage\expandafter {\btxfallbacklanguage}
 \bibitem {stroetmann:2017}
 \btxnamefont {\btxlastnamefont {Stroetmann}, Karl}\btxauthorcolon\
   \btxtitlefont {\btxifchangecase {Artifical intelligence}{Artifical
   Intelligence}}.
 \newblock {\latintext
   \btxurlfont{https://github.com/karlstroetmann/Artificial-Intelligence}}.
-  
+
 \bibitem {setlx:2017}
-\btxnamefont {\btxlastnamefont {Stroetmann}, Karl / \btxlastnamefont {Herrmann}, Tom}\btxauthorcolon\
-  \btxtitlefont {\btxifchangecase {SetlX — A Tutorial}{SetlX — A Tutorial}}.
+\btxnamefont {\btxlastnamefont {{Stroetmann, Karl / Herrmann,
+  Tom}}}\btxauthorcolon\ \btxtitlefont {\btxifchangecase {Setlx — a
+  tutorial}{SetlX — A Tutorial}}.
 \newblock {\latintext
   \btxurlfont{http://download.randoom.org/setlX/tutorial.pdf}}.
-  
+
 \bibitem {gnmt:2017}
-\btxnamefont {\btxlastnamefont {Le}, Quoc V. / \btxlastnamefont {Schuster}, Mike}\btxauthorcolon\
-  \btxtitlefont {\btxifchangecase {A Neural Network for Machine Translation, at Production Scale}{A Neural Network for Machine Translation, at Production Scale}}.
+\btxnamefont {\btxlastnamefont {{Le, Quoc V. / Schuster,
+  Mike}}}\btxauthorcolon\ \btxtitlefont {\btxifchangecase {A neural network for
+  machine translation, at production scalel}{A Neural Network for Machine
+  Translation, at Production Scalel}}.
 \newblock {\latintext
   \btxurlfont{https://research.googleblog.com/2016/09/a-neural-network-for-machine.html}}.
-  
+
 \bibitem {alphago:2017}
-\btxnamefont {\btxlastnamefont {DeepMind Technologies Limited}}\btxauthorcolon\
-  \btxtitlefont {\btxifchangecase {The story of AlphaGo so far}{The story of AlphaGo so far}}.
-\newblock {\latintext
-  \btxurlfont{https://deepmind.com/research/alphago/}}.
-  
+\btxnamefont {\btxlastnamefont {{DeepMind Technologies
+  Limited}}}\btxauthorcolon\ \btxtitlefont {\btxifchangecase {The story of
+  alphago so far}{The story of AlphaGo so far}}.
+\newblock {\latintext \btxurlfont{https://deepmind.com/research/alphago/}}.
+
 \bibitem {prismaai:2017}
-\btxnamefont {\btxlastnamefont {Prisma Labs, Inc.}}\btxauthorcolon\
-  \btxtitlefont {\btxifchangecase {AI Powered Art Styles}{AI Powered Art Styles}}.
-\newblock {\latintext
-  \btxurlfont{https://prisma-ai.com/}}.
+\btxnamefont {\btxlastnamefont {{Prisma Labs, Inc.}}}\btxauthorcolon\
+  \btxtitlefont {\btxifchangecase {Ai powered art styles}{AI Powered Art
+  Styles}}.
+\newblock {\latintext \btxurlfont{https://prisma-ai.com/}}.
 
 \end{thebibliography}

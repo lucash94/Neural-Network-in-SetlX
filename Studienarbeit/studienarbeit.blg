@@ -12,5 +12,14 @@ Warning--entry type for "nielson:2017" isn't style-file defined
 --line 10 of file cs.bib
 Warning--entry type for "stroetmann:2017" isn't style-file defined
 --line 17 of file cs.bib
+Warning--entry type for "setlx:2017" isn't style-file defined
+--line 24 of file cs.bib
+Warning--entry type for "gnmt:2017" isn't style-file defined
+--line 31 of file cs.bib
+Warning--entry type for "alphago:2017" isn't style-file defined
+--line 38 of file cs.bib
+Warning--entry type for "prismaai:2017" isn't style-file defined
+--line 45 of file cs.bib
 Warning--empty language in nielson:2017
-(There were 3 warnings)
+Warning--empty language in stroetmann:2017
+(There were 8 warnings)

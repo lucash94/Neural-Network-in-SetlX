@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.3.22)  22 MAY 2017 21:51
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.3.22)  23 MAY 2017 21:20
 entering extended mode
 **./studienarbeit.tex
 (studienarbeit.tex
@@ -1518,19 +1518,19 @@ babelbib: Using the BibTeX style's default font for `ISSN'.
 babelbib: Using the BibTeX style's default font for `url'.
 babelbib: Using the BibTeX style's default font for `numeral'.
 
-Underfull \hbox (badness 1237) in paragraph at lines 17--21
-[]\OT1/cmss/m/n/10 Buduma, Nikhil: \OT1/cmss/m/sl/10 Fun-da-men-tals of deep le
-arn-ing\OT1/cmss/m/n/10 .  The McGraw-Hill Com-pa-nies, 2017,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 24--29
+Underfull \hbox (badness 10000) in paragraph at lines 17--22
 []\OT1/cmss/m/n/10 Nielsen, Mi-cha-el: \OT1/cmss/m/sl/10 Neural Net-works and D
 e-ep Lear-ning\OT1/cmss/m/n/10 .  [][]$\OT1/zi4/m/n/10 http : / /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 31--36
+Underfull \hbox (badness 1237) in paragraph at lines 25--29
+[]\OT1/cmss/m/n/10 Buduma, Nikhil: \OT1/cmss/m/sl/10 Fun-da-men-tals of deep le
+arn-ing\OT1/cmss/m/n/10 .  The McGraw-Hill Com-pa-nies, 2017,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 32--37
 []\OT1/cmss/m/n/10 Stroetmann, Karl: \OT1/cmss/m/sl/10 Ar-ti-fi-cal In-tel-li-g
 ence\OT1/cmss/m/n/10 .  [][]$\OT1/zi4/m/n/10 https : / / github . com / karlstr
 oetmann /
@@ -1587,7 +1587,7 @@ amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts
 /cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt1
 0.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.p
 fb>
-Output written on studienarbeit.pdf (31 pages, 1678563 bytes).
+Output written on studienarbeit.pdf (31 pages, 1678591 bytes).
 PDF statistics:
  556 PDF objects out of 1000 (max. 8388607)
  145 named destinations out of 1000 (max. 500000)
