@@ -1,8 +1,9 @@
 \chapter{Fazit und Ausblick}
 
 \section{Auswertung des Ergebnisses}
-Die Umsetzung der Handschriftenerkennung von Ziffern mittels einem neuronalen Feedforward-Netz wurde erfolgreich in SetlX implementiert. Die Erkennungsrate des Netzwerkes liegt ungefähr zwischen 94 und 96 Prozent. Die nachfolgende Ausgabe entspricht einem Durchlauf der $\mathtt{start.stlx}$-Datei. Hierbei wurden 10.000 Testdaten und 60.000 Trainingsdaten der MNIST-Datensätze verwendet. Die Epochenanzahl beträgt 30.
+Die Umsetzung der Handschriftenerkennung von Ziffern mittels einem neuronalen Feedforward-Netz wurde erfolgreich in SetlX implementiert. Die Erkennungsrate des Netzwerkes liegt ungefähr zwischen 94 und 96 Prozent. Die nachfolgende Ausgabe in Abbildung \ref{fig:ausgabe_netzwerk} entspricht einem Durchlauf der $\mathtt{start.stlx}$-Datei. Hierbei wurden 10.000 Testdaten und 60.000 Trainingsdaten der MNIST-Datensätze verwendet. Die Epochenanzahl beträgt 30.
 
+\begin{figure}
 \begin{Verbatim}[ frame         = lines, 
                   framesep      = 0.3cm, 
                   firstnumber   = 1,
@@ -59,6 +60,10 @@ Die Umsetzung der Handschriftenerkennung von Ziffern mittels einem neuronalen Fe
     Epoch 30: 9629 / 10000
     Time needed:    1255425ms		
 \end{Verbatim}
+\vspace*{-0.3cm}
+\caption{Ausgabe des Netzwerkes}
+\label{fig:ausgabe_netzwerk}
+\end{figure}
 
 \section{Performance der SetlX Implementierung}
 Wie im vorherigen Kapitel zu sehen ist, beträgt die Durchlaufzeit des Programmes mit allen Datensätzen und 30 Epochen (Messzeit beginnt ab Aufruf der SGD-Funktion des Netzwerkes) 1255425 Millisekunden. Im Schnitt wurden ca. 1350000 Millisekunden benötigt, was 22,5 Minuten entspricht. Alle Messungen wurden auf einem Computer mit folgenden Hardwarekomponenten durchgeführt (nur relevante Komponenten sind aufgezählt):

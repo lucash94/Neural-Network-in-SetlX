@@ -15,4 +15,4 @@
 \contentsline {section}{\numberline {3.3}Animation}{19}{section.3.3}
 \contentsline {chapter}{\numberline {4}Fazit und Ausblick}{25}{chapter.4}
 \contentsline {section}{\numberline {4.1}Auswertung des Ergebnisses}{25}{section.4.1}
-\contentsline {section}{\numberline {4.2}Performance der SetlX Implementierung}{26}{section.4.2}
+\contentsline {section}{\numberline {4.2}Performance der SetlX Implementierung}{25}{section.4.2}

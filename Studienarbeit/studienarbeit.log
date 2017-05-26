@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.3.22)  23 MAY 2017 21:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.3.22)  26 MAY 2017 13:36
 entering extended mode
 **./studienarbeit.tex
 (studienarbeit.tex
@@ -1211,7 +1211,7 @@ No file Inhalt/abstract.tex.
 
  (Inhalt/einleitung.tex
 Kapitel 1.
-<Bilder/handdrawn_digit.png, id=152, 74.52844pt x 95.6072pt>
+<Bilder/handdrawn_digit.png, id=166, 74.52844pt x 95.6072pt>
 File: Bilder/handdrawn_digit.png Graphic file (type png)
 
 <use Bilder/handdrawn_digit.png>
@@ -1235,14 +1235,14 @@ l.18 \item E
 
  (Inhalt/theorie.tex
 Kapitel 2.
-<Bilder/sigmoid_neuron.png, id=182, 1081.79156pt x 383.18156pt>
+<Bilder/sigmoid_neuron.png, id=196, 1081.79156pt x 383.18156pt>
 File: Bilder/sigmoid_neuron.png Graphic file (type png)
 
 <use Bilder/sigmoid_neuron.png>
 Package pdftex.def Info: Bilder/sigmoid_neuron.png used on input line 18.
 (pdftex.def)             Requested size: 270.44724pt x 95.79515pt.
 
-<Bilder/sigmoid_plot.png, id=186, 382.42876pt x 262.73157pt>
+<Bilder/sigmoid_plot.png, id=200, 382.42876pt x 262.73157pt>
 File: Bilder/sigmoid_plot.png Graphic file (type png)
 
 <use Bilder/sigmoid_plot.png>
@@ -1257,7 +1257,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 52--73
 
  []
 
-<Bilder/neural_network_extended.png, id=201, 555.57562pt x 313.9228pt>
+<Bilder/neural_network_extended.png, id=215, 555.57562pt x 313.9228pt>
 File: Bilder/neural_network_extended.png Graphic file (type png)
 
 <use Bilder/neural_network_extended.png>
@@ -1410,83 +1410,88 @@ File: ot1zi4.fd 2016/12/29 OT1/zi4 (Inconsolata)
 )
 LaTeX Font Info:    Font shape `OT1/zi4/m/n' will be
 (Font)              scaled to size 10.0pt on input line 72.
- [12]
-Underfull \hbox (badness 10000) in paragraph at lines 111--117
+
+Underfull \hbox (badness 10000) in paragraph at lines 116--122
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 121--122
+[12]
+Underfull \hbox (badness 10000) in paragraph at lines 126--127
 
  []
 
-
-Overfull \hbox (19.39543pt too wide) in paragraph at lines 125--127
-\OT1/cmss/m/n/10 Vor-be-la-stun-gen in den zu-vor vor-ge-stell-ten Funk-tio-nen
-. Auf Grund der Ver-wen-dung der $[]$-
+[13]
+Overfull \hbox (8.58762pt too wide) in paragraph at lines 138--170
+\OT1/cmss/m/n/10 wei-ter-ge-lei-tet wird (feed-for-war-ding). In Ab-bil-dung []
+[]3.2[][] sind die Im-ple-men-tie-run-gen der Sigmoid-Funktionen
  []
 
-[13] [14]
-Overfull \hbox (9.67554pt too wide) in paragraph at lines 203--204
+[14]
+Overfull \hbox (9.67554pt too wide) in paragraph at lines 218--219
 \OT1/cmss/m/n/10 ent De-scent Al-go-rith-mus an-ge-wen-det. Dies ge-schieht mit
  Hil-fe der Funk-ti-on $[]$,
  []
 
-[15] [16] [17] [18]
-LaTeX Font Info:    Try loading font information for TS1+cmss on input line 359
+[15] [16]
+
+LaTeX Warning: Reference `eq:zvector_impl' on page 17 undefined on input line 3
+32.
+
+[17] [18]
+LaTeX Font Info:    Try loading font information for TS1+cmss on input line 385
 .
  ("C:\Program Files\MiKTeX 2.9\tex\latex\base\ts1cmss.fd"
 File: ts1cmss.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-Underfull \hbox (badness 10000) in paragraph at lines 379--382
+Underfull \hbox (badness 10000) in paragraph at lines 405--408
 
  []
 
-[19] <Bilder/MNIST-Matrix.png, id=389, 985.6825pt x 388.45125pt>
+[19] <Bilder/MNIST-Matrix.png, id=408, 985.6825pt x 388.45125pt>
 File: Bilder/MNIST-Matrix.png Graphic file (type png)
 
 <use Bilder/MNIST-Matrix.png>
-Package pdftex.def Info: Bilder/MNIST-Matrix.png used on input line 385.
+Package pdftex.def Info: Bilder/MNIST-Matrix.png used on input line 411.
 (pdftex.def)             Requested size: 315.42484pt x 124.30693pt.
 
-<Bilder/animation_network_default.png, id=390, 554.67226pt x 554.67226pt>
+<Bilder/animation_network_default.png, id=409, 554.67226pt x 554.67226pt>
 File: Bilder/animation_network_default.png Graphic file (type png)
 
 <use Bilder/animation_network_default.png>
 Package pdftex.def Info: Bilder/animation_network_default.png used on input lin
-e 392.
+e 418.
 (pdftex.def)             Requested size: 388.26793pt x 388.26793pt.
 
-<Bilder/untersuchungsbereich_neuron.png, id=392, 666.23906pt x 657.95813pt>
+<Bilder/untersuchungsbereich_neuron.png, id=411, 666.23906pt x 657.95813pt>
 File: Bilder/untersuchungsbereich_neuron.png Graphic file (type png)
 
 <use Bilder/untersuchungsbereich_neuron.png>
 Package pdftex.def Info: Bilder/untersuchungsbereich_neuron.png used on input l
-ine 402.
+ine 428.
 (pdftex.def)             Requested size: 399.74652pt x 394.77792pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 407--409
+Underfull \hbox (badness 10000) in paragraph at lines 433--435
 
  []
 
-<Bilder/untersuchungsbereich_neuronen.png, id=394, 731.73375pt x 611.28375pt>
+<Bilder/untersuchungsbereich_neuronen.png, id=413, 731.73375pt x 611.28375pt>
 File: Bilder/untersuchungsbereich_neuronen.png Graphic file (type png)
 
 <use Bilder/untersuchungsbereich_neuronen.png>
 Package pdftex.def Info: Bilder/untersuchungsbereich_neuronen.png used on input
- line 412.
+ line 438.
 (pdftex.def)             Requested size: 409.76811pt x 342.31656pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 427--428
+Underfull \hbox (badness 10000) in paragraph at lines 453--454
 
  []
 
-<Bilder/untersuchungsbereich_zahl.png, id=396, 737.75626pt x 934.24031pt>
+<Bilder/untersuchungsbereich_zahl.png, id=415, 737.75626pt x 934.24031pt>
 File: Bilder/untersuchungsbereich_zahl.png Graphic file (type png)
 
 <use Bilder/untersuchungsbereich_zahl.png>
 Package pdftex.def Info: Bilder/untersuchungsbereich_zahl.png used on input lin
-e 434.
+e 460.
 (pdftex.def)             Requested size: 413.14069pt x 523.171pt.
 ) [20 <./Bilder/MNIST-Matrix.png (PNG copy)>] [21 <./Bilder/animation_network_d
 efault.png>] [22 <./Bilder/untersuchungsbereich_neuron.png>] [23 <./Bilder/unte
@@ -1496,16 +1501,16 @@ rsuchungsbereich_neuronen.png>]
 
  (Inhalt/fazit.tex
 Kapitel 4.
+)
+Underfull \hbox (badness 10000) in paragraph at lines 77--203
+
+ []
+
 [25
 
 
 
-])
-Underfull \hbox (badness 10000) in paragraph at lines 72--203
-
- []
-
-[26] (studienarbeit.bbl
+] [26] (studienarbeit.bbl
 babelbib: Using the BibTeX style's default font for `name'.
 babelbib: Using the BibTeX style's default font for `lastname'.
 babelbib: Using the BibTeX style's default font for `title'.
@@ -1555,13 +1560,16 @@ Package rerunfilecheck Info: File `studienarbeit.out' has not changed.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
+
+LaTeX Warning: There were undefined references.
+
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 209.
  ) 
 Here is how much of TeX's memory you used:
- 16763 strings out of 493333
- 290355 string characters out of 3139194
- 380552 words of memory out of 3000000
- 19858 multiletter control sequences out of 15000+200000
+ 16776 strings out of 493333
+ 290541 string characters out of 3139194
+ 380859 words of memory out of 3000000
+ 19865 multiletter control sequences out of 15000+200000
  14289 words of font info for 53 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  34i,12n,45p,10384b,652s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1587,9 +1595,9 @@ amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts
 /cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt1
 0.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.p
 fb>
-Output written on studienarbeit.pdf (31 pages, 1678591 bytes).
+Output written on studienarbeit.pdf (31 pages, 1674173 bytes).
 PDF statistics:
- 556 PDF objects out of 1000 (max. 8388607)
- 145 named destinations out of 1000 (max. 500000)
+ 577 PDF objects out of 1000 (max. 8388607)
+ 151 named destinations out of 1000 (max. 500000)
  195 words of extra memory for PDF output out of 10000 (max. 10000000)
 

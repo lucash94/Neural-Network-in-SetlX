@@ -14,7 +14,7 @@ class network (s) {
 	// Return output of network for 'a' as input
 	// a is then list of calculated outputs
 	feedforward := procedure(a) {
-		for( i in {1..#mBiases} ) { 
+		for( i in {2..#mBiases} ) { 
 			a := sigmoid( mWeights[i]*a + mBiases[i] );
 		}
 		return a;
@@ -80,17 +80,16 @@ class network (s) {
 		activation := x;
 		// List of all activations (layer by layer)
 		activations := [ la_matrix(x) ];
-		len_act := #activations;
 		activations += [0 : i in [1..#mBiases]];
 		
 		// List of z-vectors (layer by layer)
 		zs := [0 : i in [1..#mBiases]];
-		
-		for(i in {1..#mBiases}) {
+	
+		for(i in {2..#mBiases}) {
 			zs[i] := mWeights[i] * activation + mBiases[i];
 			
 			activation := sigmoid(zs[i]);
-			activations[i + len_act] := la_matrix(activation);
+			activations[i + 1] := la_matrix(activation);
 		}
 
 		// Backwards pass, output layer
@@ -103,13 +102,12 @@ class network (s) {
 		lw := #nabla_w;
 		nabla_b[lb] := epsilon;	
 		nabla_w[lw] := epsilon * activations[-2]!;			
-		
-		// Backwards pass, hidden layer
-		for( l in {2..mNumLayers-1} ) {
-			sp := sigmoid_prime(zs[-l]);	
-			epsilon := la_hadamard( mWeights[-l+1]! * epsilon, sp );
-			nabla_b[lb-l+1] := epsilon;
-			nabla_w[lw-l+1] := epsilon * activations[-l-1]!;
+		// Backwards pass, hidden layer(s)
+		for( l in [mNumLayers-1, mNumLayers-2 .. 2] ) {
+			sp := sigmoid_prime(zs[l]);
+			epsilon := la_hadamard( mWeights[l+1]! * epsilon, sp );
+			nabla_b[l] := epsilon;
+			nabla_w[l] := epsilon * activations[l-1]!;
 		}
 		return [nabla_b, nabla_w];
 	};
@@ -145,12 +143,12 @@ class network (s) {
 	// 				--> mBiases[layer][neuron][bias]	(bias is always one, because there is only one bias per neuron)
 	computeRndBiases := procedure() {
 		// i is each layer of the network (except the input layer)
-		this.mBiases := [ computeRndMatrix(1, mSizes[i]) : i in [2..mNumLayers] ];
+		this.mBiases := [0] + [ computeRndMatrix(1, mSizes[i]) : i in [2..mNumLayers] ];
 	};
 	// mWeights: 	[ << <<w1_layer2_neu1 w1_layer2_neu2 ... >> << w2_layer2_neu1 ... >> ... >>, << <<w1_layer3_neu1 w1_layer3_neu2 ... >> << w2_layer3_neu1 ... >> ... >>, ...]
 	//				--> mWeights[layer-1][neuron][weight for input neuron]
 	computeRndWeights := procedure() {
-		this.mWeights := [ computeRndMatrix(mSizes[i], mSizes[i+1]) : i in [1..mNumLayers-1] ];
+		this.mWeights := [0] + [ computeRndMatrix(mSizes[i], mSizes[i+1]) : i in [1..mNumLayers-1] ];
 	};
 
 	// Computes matrix with random values based on a shape s
