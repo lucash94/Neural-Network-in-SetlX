@@ -31,5 +31,5 @@ print("Time needed:\t" + s2);
 load("network_animation.stlx");
 print("Starting animation");
 
-netAnimation := animation(net.mWeights, net.mBiases, structure, test_data);
+netAnimation := animation(net.mWeights[2..], net.mBiases[2..], structure, test_data);
 netAnimation.start_animation();

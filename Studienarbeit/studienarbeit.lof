@@ -5,9 +5,16 @@
 \contentsline {figure}{\numberline {2.2}{\ignorespaces Die Sigmoid-Funktion. \cite {nielson:2017}}}{4}{figure.2.2}
 \contentsline {figure}{\numberline {2.3}{\ignorespaces Aufbau des neuronalen Netzwerks hinsichtlich der einzelnen Schichten. \cite {nielson:2017}}}{5}{figure.2.3}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Eingabe in das neuronale Netzwerk.}}{20}{figure.3.1}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Default Animation, welche \IeC {\"u}ber die Eingabe mit dem Wert $0$ aufgerufen wird.}}{21}{figure.3.2}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Untersuchungsbereich eines einzelnen Neurons der verborgenen Schicht.}}{22}{figure.3.3}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Untersuchungsbereich aller Neuronen der verborgenen Schicht.}}{23}{figure.3.4}
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Untersuchungsbereich aller Neuronen der verborgenen Schicht hinsichtlich einer Eingabe.}}{24}{figure.3.5}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Initialisierungsfunktionen des Netzwerkes}}{13}{figure.3.1}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Feedforward und Sigmoid-Funktionen}}{14}{figure.3.2}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces SGD-Funktion}}{15}{figure.3.3}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Update-Mini-Batch-Funktion}}{16}{figure.3.4}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Backpropagation-Funktion}}{17}{figure.3.5}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Auswertungs-Funktionen}}{18}{figure.3.6}
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Eingabe in das neuronale Netzwerk.}}{20}{figure.3.7}
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Default Animation, welche \IeC {\"u}ber die Eingabe mit dem Wert $0$ aufgerufen wird.}}{21}{figure.3.8}
+\contentsline {figure}{\numberline {3.9}{\ignorespaces Untersuchungsbereich eines einzelnen Neurons der verborgenen Schicht.}}{22}{figure.3.9}
+\contentsline {figure}{\numberline {3.10}{\ignorespaces Untersuchungsbereich aller Neuronen der verborgenen Schicht.}}{23}{figure.3.10}
+\contentsline {figure}{\numberline {3.11}{\ignorespaces Untersuchungsbereich aller Neuronen der verborgenen Schicht hinsichtlich einer Eingabe.}}{24}{figure.3.11}
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Ausgabe des Netzwerkes}}{26}{figure.4.1}

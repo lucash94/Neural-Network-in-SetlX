@@ -49,7 +49,7 @@ Auf eine genaue Beschreibung der Implementierung des Ladevorgangs wird in dieser
 
 \section{Implementierung des neuronalen Netzes}
 Dieser Abschnitt beschreibt die eigentliche Implementierung des neuronalen Netzwerkes zur Erkennung von handgeschriebenen Ziffern in SetlX. Um den Code möglichst kompakt zu halten, wurden die in den Originaldateien enthaltenen Kommentarzeilen in dieser Seminararbeit zum größten Teil entfernt.
-Bei der Umsetzung des Netzwerkes in SetlX wird der SGD-Algorithmus als Lernmethode des Netzwerkes benutzt. Die im vorherigen Kapitel importierten Daten des MNIST-Datensatzes dienen als Grundlage der Ziffernerkennung. 
+Bei der Umsetzung des Netzwerkes in SetlX wird der Stochastic Gradient Descent (SGD) Algorithmus als Lernmethode des Netzwerkes benutzt. Die im vorherigen Kapitel importierten Daten des MNIST-Datensatzes dienen als Grundlage der Ziffernerkennung. 
 Das Netzwerk wird als Klasse in SetlX angelegt und enthält die folgenden Membervariablen:
 
 \begin{enumerate}
@@ -75,7 +75,8 @@ Die Initialisierung des Netzwerkes zur Ziffernerkennung erfolgt durch folgende B
 \end{Verbatim}
 Als Übergabeparameter bei der Erstellung eines Netzwerk-Objektes wird die Struktur des Netzwerkes in Form einer Liste übergeben. Diese wird dann lediglich $\mathtt{mSizes}$ zugeordnet und basierend hierrauf wird $\mathtt{mNumLayers}$ ermittelt.
 Die $\mathtt{init()}$-Funktion der $\mathtt{network}$-Klasse wird verwendet um die Gewichte und Vorbelastungen des Netzwerkes initial zufällig zu belegen. Hiermit werden Ausgangswerte gesetzt, welche später durch das Lernen des Netzwerkes angepasst werden.
-Im Folgenden sind die verwendeten Funktionen, welche während der Gewichts- und Vorbelastungs-Initialisierung verwendet werden, zu sehen.
+Im Folgenden sind die verwendeten Funktionen, welche während der Gewichts- und Vorbelastungs-Initialisierung verwendet werden, zu sehen. Nachfolgend werden die Funktionen zur Initialisierung aus Abbildung \ref{fig:init} erläutert.
+\begin{figure}
 \begin{Verbatim}[ frame         = lines, 
                   framesep      = 0.3cm, 
                   firstnumber   = 1,
@@ -90,12 +91,12 @@ Im Folgenden sind die verwendeten Funktionen, welche während der Gewichts- und 
         computeRndWeights();
     };
     computeRndBiases := procedure() {
-        this.mBiases := [ 
+        this.mBiases := [0] + [ 
             computeRndMatrix(1, mSizes[i]) : i in [2..mNumLayers] 
         ];
     };
     computeRndWeights := procedure() {
-        this.mWeights := [ 
+        this.mWeights := [0] + [ 
             computeRndMatrix(mSizes[i], mSizes[i+1]) : i in [1..mNumLayers-1] 
         ];
     };
@@ -105,11 +106,15 @@ Im Folgenden sind die verwendeten Funktionen, welche während der Gewichts- und 
         ]);
     };
 \end{Verbatim}
+\vspace*{-0.3cm}
+\caption{Initialisierungsfunktionen des Netzwerkes}
+\label{fig:init}
+\end{figure}
 
 \begin{enumerate}
 \item $\mathtt{init()}$: In der Funktion werden die Vorbelastungen und Gewichtungen des Netzwerkes zu Beginn initialisiert
 \item $\mathtt{computeRndBiases()}$: Die Funktion befüllt die Variable mBiases mit zufälligen Werten. Der für das Netzwerk benötigte Aufbau der Vorbelastungen entspricht folgender Form: \\
-$[ \\ 
+$[\ 0,\\ 
 <<\ <<\mathtt{Bias\_Schicht2\_Neuron1}>>\ <<\mathtt{Bias\_Schicht2\_Neuron2}>>\ ...\ >>, \\
 <<\ <<\mathtt{Bias\_Schicht3\_Neuron1}>>\ ...\ >>, \\
  ...\ ]$ \\
@@ -117,22 +122,23 @@ Das heißt es kann auf die Vorbelastungen mit folgendem Schema in SetlX zugegrif
 \begin{center}
 	$\mathtt{mBiases[Schicht][Neuron][1]}$
 \end{center}
-Hierbei ist zu beachten, dass der letzte Index immer 1 ist, da jedes Neuron nur eine einzige Vorbelastung besitzt und die Vorbelastungen als Matrix abgelegt werden. Die Verwendung des Matrix-Datentyps wurde bewusst, auf Grund späterer Berechnungen mit Hilfe der $\mathtt{la\_hadamard()}$-Funktion, gewählt. Da es sich bei der Eingabe-Schicht des Netzwerkes nicht um Sigmoid-Neuronen handelt, sondern lediglich um Eingabewerte, werden hierfür keine Vorbelastungen benötigt. Deshalb wird bei der Erstellung der zufälligen Vorbelastungen nur $[2..\mathtt{mNumLayers}]$ (also alle Schichten außer der Ersten) betrachtet.
+Hierbei ist zu beachten, dass der letzte Index immer 1 ist, da jedes Neuron nur eine einzige Vorbelastung besitzt und die Vorbelastungen als Matrix abgelegt werden. Die Verwendung des Matrix-Datentyps wurde bewusst, auf Grund späterer Berechnungen mit Hilfe der $\mathtt{la\_hadamard()}$-Funktion, gewählt. Da es sich bei der Eingabe-Schicht des Netzwerkes nicht um Sigmoid-Neuronen handelt, sondern lediglich um Eingabewerte, werden hierfür keine Vorbelastungen benötigt. Deshalb wird bei der Erstellung der zufälligen Vorbelastungen nur $[2..\mathtt{mNumLayers}]$ (also alle Schichten außer der Ersten) betrachtet und die erste Schicht wird in Form einer 0 am Anfang der Liste platziert.
 \item $\mathtt{computeRndWeights()}$: Diese Funktion ist equivalent zu der Vorbelastungs-Funktion, lediglich wird die Struktur der Gewichte mit folgenden Zugriffmsmöglichkeiten angelegt: \\
 \begin{center}
 	$\mathtt{mWeights[Schicht][Neuron][Gewicht]}$
 \end{center}
-\item $\mathtt{computeRndMatrix()}$: Diese Hilfsfunktion dient zur Erstellung der Struktur der Gewichte und Vorbelastungen in den zuvor vorgestellten Funktionen. Auf Grund der Verwendung der $\mathtt{la\_hadamard()}$-Funktion, welche im weiteren Programm benötigt wird, wurde sich für die Verwendung des Matrix-Datentyps statt eines Vektors entschieden. Die Funktion enthält als Parameter eine Matrix-Struktur mittels der Anzahl von Reihen und Spalten. Zurückgegeben wird die zugehörige Matrix mit zufälligen Werten zwischen $-1/28$ und $1/28$. Der Wert 28 ergibt sich aus der Größe des Eingabevektors (28x28 Pixel).  Die übergebende Struktur hat die Form $\mathtt{[x,y]}$, wobei $\mathtt{x}$ die Anzahl der Spalten und $\mathtt{y}$ die Anzahl der Zeilen angibt. \\
-Bsp.: $s := [1,2]\ \rightarrow\ <<\ <<x>>\ <<y>>\ >>$ und $s := [2,1]\ \rightarrow\ <<\ <<x\ y>>\ >>$
+\item $\mathtt{computeRndMatrix()}$: Diese Hilfsfunktion dient zur Erstellung der Struktur der Gewichte und Vorbelastungen in den zuvor vorgestellten Funktionen. Die Funktion enthält als Parameter die Anzahl von Reihen und Spalten. Zurückgegeben wird die zugehörige Matrix mit zufälligen Werten zwischen $-1/28$ und $1/28$. Der Wert 28 ergibt sich aus der Größe des Eingabevektors (28x28 Pixel). \\
+Bsp.: $s := 1, 2\ \rightarrow\ <<\ <<x>>\ <<y>>\ >>$ und $s := [2,1]\ \rightarrow\ <<\ <<x\ y>>\ >>$
 \end{enumerate}
 
 \noindent
-Sei nun $W$ die Matrix der Gewichte und $B$ die Matrix aller Vorbelastungen und $\mathbf{a}$ bezeichnet den Aktivierungsvektor der vorherigen Schicht, also deren Ausgabe (zu Beginn also die Pixel der Eingabe). Nach Gleichung \ref{eq:feedforward2} zur Berechnung einer Sigmoid-Ausgabe lässt sich nun folgende Formel aufstellen: 
+Sei nun $W$ die Liste aller Gewichtsmatrizen des Netzwerkes und $B$ die Liste aller Vorbelastungsmatrizen. Die Elemente der Vorbelastungsliste könnten auch als Vektor abgespeichert werden, werden aber wie oben erwähnt auf Grund später benötigter Berechnungen als Matrix abgelegt. $\mathbf{a}$ bezeichnet den Aktivierungsvektor der vorherigen Schicht, also deren Ausgabe (zu Beginn also die Pixel der Eingabe). Nach Gleichung \ref{eq:feedforward2} zur Berechnung einer Sigmoid-Ausgabe lässt sich nun folgende Formel aufstellen: 
 \begin{equation}\label{eq:feedforward_impl}
 	\mathbf{a}^{(l)} = S(W^{(l)}\cdot \mathbf{a}^{(l-1)} + B^{(l)})
 \end{equation}
 \noindent
-Hierbei bezeichnet $\mathbf{a}^{(l)}$ den Ausgabe-Vektor der aktuellen Schicht, welcher dann der nächsten Schicht weitergeleitet wird (feedforwarding). Nachfolgend sind die Implementierungen der Sigmoid-Funktionen sowie dem Feedforwarding zu sehen.
+Hierbei bezeichnet $\mathbf{a}^{(l)}$ den Ausgabe-Vektor der aktuellen Schicht, welcher dann der nächsten Schicht weitergeleitet wird (feedforwarding). In Abbildung \ref{fig:feedforward_sigmoid} sind die Implementierungen der Sigmoid-Funktionen sowie dem Feedforwarding zu sehen.
+\begin{figure}
 \begin{Verbatim}[ frame         = lines, 
                   framesep      = 0.3cm, 
                   firstnumber   = 1,
@@ -143,7 +149,7 @@ Hierbei bezeichnet $\mathbf{a}^{(l)}$ den Ausgabe-Vektor der aktuellen Schicht, 
                   xrightmargin  = 0.8cm,
                 ]
     feedforward := procedure(a) {
-        for( i in {1..#mBiases} ) { 
+        for( i in {2..#mBiases} ) { 
             a := sigmoid( mWeights[i]*a + mBiases[i] );
         }
         return a;
@@ -156,14 +162,19 @@ Hierbei bezeichnet $\mathbf{a}^{(l)}$ den Ausgabe-Vektor der aktuellen Schicht, 
         return la_matrix([ [ s[i] * (1 - s[i]) ] : i in [1..#s] ]);
     };
 \end{Verbatim}
+\vspace*{-0.3cm}
+\caption{Feedforward und Sigmoid-Funktionen}
+\label{fig:feedforward_sigmoid}
+\end{figure}
 \begin{enumerate}
-\item $\mathtt{feedforward(a)}$: Anwendung der Gleichung \eqref{eq:feedforward_impl} auf alle Schichten des Netzwerkes angewandt. Zurückgegeben wird die resultierende Ausgabe jedes Neurons der letzten Schicht in vektorisierter Form.
+\item $\mathtt{feedforward(a)}$: Anwendung der Gleichung \eqref{eq:feedforward_impl} auf alle Schichten des Netzwerkes mit Ausnahme der Eingabeschicht (da hier keine Gewichte und Vorbelastungen vorhanden sind) angewandt. Zurückgegeben wird die resultierende Ausgabe jedes Neurons der letzten Schicht in vektorisierter Form.
 \item $\mathtt{sigmoid(z)}$: Diese Funktionen nimmt einen Vektor $\mathtt{z}$ und berechnet mit Hilfe der Sigmoid-Formel (siehe Kapitel \ref{chap:sigmoid}) die Ausgabe der Neuronen in vektorisierter Form.
 \item $\mathtt{sigmoid\_prime(z)}$: Für einen gegebenen Vektor $\mathtt{z}$ wird die Ableitung der Sigmoid-Funktion (nach Formel \eqref{eq:sigmoidPrime}) berechnet und in Form einer Matrix (Matrix-Form auf Grund späterer Berechnung mit $\mathtt{la\_hadamard()}$) zurückgegeben.
 \end{enumerate}
 \noindent
-Die Feedforward-Funktion dient also dazu, die Eingabewerte durch das gesamte Netzwerk durchzureichen und die daraus resultierende Ausgabe zu ermitteln. Als nächstes wird der Algorithmus diskutiert, durch welchem es dem Netzwerk ermöglicht wird zu \glqq lernen\grqq. Hierfür wird der SGD-Algorithmus verwendet. Die Implementierung des SGDs in SetlX ist nachfolgend aufgezeigt und wird nun im Detail erläutert.
+Die Feedforward-Funktion dient also dazu, die Eingabewerte durch das gesamte Netzwerk durchzureichen und die daraus resultierende Ausgabe zu ermitteln. Als nächstes wird der Algorithmus diskutiert, durch welchem es dem Netzwerk ermöglicht wird zu \glqq lernen\grqq. Hierfür wird der SGD-Algorithmus verwendet. Die Implementierung des SGDs in SetlX ist in Abbildung \ref{fig:sgd_func} aufgezeigt und wird nun im Detail erläutert.
 
+\begin{figure}
 \begin{Verbatim}[ frame         = lines, 
                   framesep      = 0.3cm, 
                   firstnumber   = 1,
@@ -196,6 +207,10 @@ Die Feedforward-Funktion dient also dazu, die Eingabewerte durch das gesamte Net
         }
     };
 \end{Verbatim}
+\vspace*{-0.3cm}
+\caption{SGD-Funktion}
+\label{fig:sgd_func}
+\end{figure}
 \begin{enumerate}
 \item Zeile 1: Übergabeparameter der Funktion sind die Trainingsdatensätze (Liste von Tupeln $\mathtt{[x,y]}$ mit $\mathtt{x}$ als Eingabewerten und $\mathtt{y}$ als gewünschtem Ergebnis), die Anzahl der Epochen (Integer-Wert), die Größe der Mini-Batches (Integer-Wert), die gewünschte Lernrate (Fließkomma-Wert) und den optionalen Testdatensätzen (äquivalenter Aufbau zu Trainingsdaten).
 \item Zeile 6: Der nachfolgende Programmcode wird entsprechend der übergebenen Epochenanzahl mehrfach ausgeführt.
@@ -205,7 +220,8 @@ Die Feedforward-Funktion dient also dazu, die Eingabewerte durch das gesamte Net
 \end{enumerate}
 
 \noindent
-Die in der SGD-Funktion erwähnte Hilfsfunktion $\mathtt{update\_mini\_batches}$ dient dazu, auf einem gegebenen Testdatensatz (Mini-Batch) eine Iteration des Gradient Descent Algorithmus anzuwenden. Zur Berechnung des Gradienten wird Backpropagation genutzt.
+Die in der SGD-Funktion erwähnte Hilfsfunktion $\mathtt{update\_mini\_batches}$ dient dazu, auf einem gegebenen Testdatensatz (Mini-Batch) eine Iteration des Gradient Descent Algorithmus anzuwenden. Zur Berechnung des Gradienten wird Backpropagation genutzt. Der Programmcode aus Abbildung \ref{fig:update_mini_batch} wird nun erläutert.
+\begin{figure}
 \begin{Verbatim}[ frame         = lines, 
                   framesep      = 0.3cm, 
                   firstnumber   = 1,
@@ -231,9 +247,13 @@ Die in der SGD-Funktion erwähnte Hilfsfunktion $\mathtt{update\_mini\_batches}$
         ];
     };
 \end{Verbatim}
+\vspace*{-0.3cm}
+\caption{Update-Mini-Batch-Funktion}
+\label{fig:update_mini_batch}
+\end{figure}
 \begin{enumerate}
 \item Zeile 1: Der Funktion wird ein Mini-Batch aus der SDG-Funktion in Listenform mitgegeben. Die jeweiligen Datensätze der Liste bestehen bestehen aus Tupeln der Form $[x,y]$, wobei $x$ die Pixel des jeweiligen Zeichens darstellt und $y$ der erwartete Wert des Zeichens ist.
-\item Zeile 2-3: Hier werden die Variablen $\mathtt{nabla\_b}$ und $\mathtt{nabla\_w}$ als Listen mit 0-en initialisiert. Die Länge der Listen entspricht jeweils der Zeilenanzahl der Gewichts- und Vorbelastungs-Matrizen. $\mathtt{nabla\_b}$ und $\mathtt{nabla\_w}$ stehen für die Gradienten der Gewichte und Vorbelastungen des Netzwerkes.
+\item Zeile 2-3: Hier werden die Variablen $\mathtt{nabla\_b}$ und $\mathtt{nabla\_w}$ für jede Schicht des Netzwerkes an Hand der jeweiligen Neuronenanzahl als Matrizen mit 0-en initialisiert. $\mathtt{nabla\_b}$ und $\mathtt{nabla\_w}$ stehen für die Gradienten der Gewichte und Vorbelastungen des Netzwerkes.
 \item Zeile 5: Auf jedes Tupel $[x,y]$ der mitgegebenen Testdaten wird nun der Backpropagation-Algorithmus angewendet. Dieser dient dazu den Gradienten der Kostenfunktion möglichst schnell und effizient zu berechnen. Die Implementierung von Backpropagation folgt im Anschluss.
 \item Zeile 6-7: Die durch die Backpropagation ermittelten Gradienten für die Gewichte und Vorbelastungen werden in den entsprechenden Variablen gespeichert.
 \item Zeile 9-14: Nachdem die Gradienten durch jeden Datensatz des Mini-Batches angepasst wurden, werden am Ende der Funktion nun die Gewichte und Vorbelastungen des Netzwerkes entsprechend des Ergebnisses angepasst. Hierfür werden folgende Formeln des SGD-Algorithmus verwendet:
@@ -261,7 +281,8 @@ Im nächsten Abschnitt wird die Implementierung des Backpropagation Algorithmus 
 	\nabla_{W^{(l)}} C_{\mathbf{x}, \mathbf{y}} = \boldsymbol{\varepsilon}^{(l)} \cdot \bigl(\mathbf{a}^{(l-1)}\bigr)^\top
   \quad \mbox{für alle $l \in \{2, \cdots,l\}$}
 \end{equation}
-Nachfolgend ist die eigentlichen Umsetzung in SetlX mit einigen Erläuterungen zu sehen.
+In Abbildung \ref{fig:backprop_func} ist die eigentlichen Umsetzung in SetlX zu sehen, welche nun weiter erläutert wird.
+\begin{figure}
 \begin{Verbatim}[ frame         = lines, 
                   framesep      = 0.3cm, 
                   firstnumber   = 1,
@@ -276,13 +297,12 @@ Nachfolgend ist die eigentlichen Umsetzung in SetlX mit einigen Erläuterungen z
         nabla_w := [ 0 : i in {1..#mWeights}];
         activation := x;
         activations := [ la_matrix(x) ];
-        len_act := #activations;
         activations += [0 : i in [1..#mBiases]];
         zs := [0 : i in [1..#mBiases]];		
-        for(i in {1..#mBiases}) {
+        for(i in {2..#mBiases}) {
             zs[i] := mWeights[i] * activation + mBiases[i];	
             activation := sigmoid(z[i]);
-            activations[i + len_act] := la_matrix(activation);
+            activations[i + 1] := la_matrix(activation);
         }
         cdm := la_matrix( cost_derivative(activations[-1], y) );
         epsilon := la_hadamard( cdm, sigmoid_prime(zs[-1]));
@@ -290,34 +310,35 @@ Nachfolgend ist die eigentlichen Umsetzung in SetlX mit einigen Erläuterungen z
         lw := #nabla_w;
         nabla_b[lb] := epsilon;	
         nabla_w[lw] := epsilon * activations[-2]!;				
-        for( l in {2..mNumLayers-1} ) {
-            sp := sigmoid_prime(zs[-l]);	
-            epsilon := la_hadamard( mWeights[-l+1]! * epsilon, sp );
-            nabla_b[lb-l+1] := epsilon;
-            nabla_w[lw-l+1] := epsilon * activations[-l-1]!;
+        for( l in [mNumLayers-1, mNumLayers-2 .. 2] ) {
+            sp := sigmoid_prime(zs[l]);
+            epsilon := la_hadamard( mWeights[l+1]! * epsilon, sp );
+            nabla_b[l] := epsilon;
+            nabla_w[l] := epsilon * activations[l-1]!;
         }
         return [nabla_b, nabla_w];
     };
 \end{Verbatim}
+\vspace*{-0.3cm}
+\caption{Backpropagation-Funktion}
+\label{fig:backprop_func}
+\end{figure}
 \begin{enumerate}
 \item Zeile 1: Der Funktion werden Datensätze in Listenform mitgegeben. Die Datensätze bestehen aus Tupeln der Form $[x,y]$, wobei $x$ die Pixel des jeweiligen Zeichens darstellt und $y$ der tatsächliche Wert des Zeichens ist.
 \item Zeile 2-3: Initialisierung der Gradienten-Variablen $\mathtt{nabla\_b}$ und $\mathtt{nabla\_w}$ mit 0-en.
-\item Zeile 4-7: Die Variable $\mathtt{activiation}$ enthält den aktuellen Eingabevektor der vorherigen Schicht und wird für das Feedforwarding benötigt. Zu Beginn der Funktion entspricht $\mathtt{activiation}$ dem Pixel-Vektor der Eingabe, also $x$. $\mathtt{activiations}$ speichert die Aktivierungsvektoren aller Schichten. Der erste Wert der Liste wird mit dem Eingabevektor belegt. Aus Performance-Gründen wird die Variabel wieder mit 0-en initialisiert, um ein späteres Anhängen an die Liste zu vermeiden (einfügen, statt anhängen).
-\item Zeile 8: $\mathtt{zs}$ bezeichnet die Lister aller z-Vektoren und wird mit 0-en initialisiert. Ein z-Vektor beinhaltet alle in der jeweiligen Schicht durch die entsprechenden Werte (Gewichte und Vorbelastungen) gewichteten Eingaben. Dies entspricht also der späteren Eingabewert der Sigmoid-Funktion. Zur Veranschaulichung der z-Vektoren und deren Bedeutung dient folgende Formel:
-\begin{equation} \label{eq:zvector_impl}
-	\mathbf{a}^{(l+1)} = \sigma(\mathbf{z})
-\end{equation} 
-Hierbei bezeichnet $\mathbf{a}^{(l+1)}$ den Aktivierungsvektor der nächsten Schicht.
-\item Zeile 10-13: Für jede Schicht des Netzwerkes wird der entsprechende z-Vektor entsprechend der Gleichungen \eqref{eq:feedforward_impl} und \eqref{eq:zvector_impl} berechnet und der Liste $\mathtt{zs}$ hinzugefügt. Mit Hilfe des aktuellen z-Vektors kann der Aktivierungsvektor jeder Schicht berechnet werden. Alle Aktivierungsvektoren des Netzwerkes werden pro Schicht in $\mathtt{activiations}$ abgelegt. Um später mit den Aktivierungsvektoren besser rechnen zu können, werden die vektorisierten Aktivierungen in Matrixform in $\mathtt{activiations}$ abgelegt.
-\item Zeile 15-16: Diese Zeilen stellen die Implementierung der ersten Gleichung des Backpropagation-Algorithmus \eqref{eq:BP1_impl} dar. Hierbei bezeichnet $\mathtt{epsilon}$ den Ausgabefehler $\boldsymbol{\varepsilon}^{(L)}$ des Netzwerkes. Um diesen berechnen zu können, wird die Hilfsfunktion $\mathtt{cost\_derivate}$ aufgerufen, welche den erwarteten Ausgabevektor $y$ von dem letzten Aktivierungsvektor (also die Ausgabe des Netzwerkes) subtrahiert. Da die Hadamard-Funktion von SetlX lediglich Matrizen als Parameter akzeptiert und $\mathtt{cost\_derivate}$ einen Vektor berechnet, muss dieser noch mittels $\mathtt{la\_matrix}$ in eine Matrix umgewandelt werden.
-\item Zeile 17-18: Die Variablen $\mathtt{lb}$ und $\mathtt{lw}$ bezeichnen jeweils die Länge der Gewichts- und Vorbelastungslisten. Diese Variablen werden im Anschluss benötigt, da es in SetlX zwar möglich ist eine Liste oder eine Matrix von hinten mittels negativem Index (z.B. $a[-1]$) zu lesen, allerdings nicht zu beschreiben.
-\item Zeile 19-20: Berechnung der Gradienten der Gewichte und Vorbelastung der Ausgabeschicht mittels der Formeln \eqref{eq:BP3_impl} und \eqref{eq:BP4_impl}.
-\item Zeile 21-24: Dieser Code beschreibt die Berechnung der Gradienten für alle Schichten zwischen der zweiten und der Vorletzten in rückwärtiger Reihenfolge (also in unserem Netzwerkaufbau gilt für die Schleife: $l \in {2}$). Zunächst wird wieder der Ausgabefehler $\boldsymbol{\varepsilon}^{(L)}$ berechnet. Dies geschieht in Zeile 24 nach Formel \eqref{eq:BP2_impl}. Da wir in der Schleife mit negativen Indizes arbeiten, entspricht $\mathtt{epsilon}$ in jeder Iteration der nächsthöheren Schicht. Zeile 25 und 26 entsprechen den Formeln \eqref{eq:BP3_impl} und \eqref{eq:BP4_impl} und passen die Gradientenvariablen entsprechend an. Hierbei ist zu beachten, dass der Ausdruck "$\mathtt{lb-l+1}$" dem Ausdruck "$\mathtt{-l}$" entspricht. Da wie erwähnt ein Schreiben von Matrizen und Arrays mit negativen Indizes nicht möglich ist, musste auf die Werte mit einem positiven Index zugegriffen werden.
-\item Zeile 28: Die Funktion liefert als Rückgabeparameter die entgültigen Gradienten der Netzwerkgewichte und -vorbelastungen, welche anschließend in der SGD-Funktion für den Gradientenabstieg verwendet werden.
+\item Zeile 4-6: Die Variable $\mathtt{activiation}$ enthält den aktuellen Eingabevektor der vorherigen Schicht und wird für das Feedforwarding benötigt. Zu Beginn der Funktion entspricht $\mathtt{activiation}$ dem Pixel-Vektor der Eingabe, also $x$. $\mathtt{activiations}$ speichert die Aktivierungsvektoren aller Schichten. Der erste Wert der Liste wird mit dem Eingabevektor belegt. Aus Performance-Gründen wird die Variabel wieder mit 0-en initialisiert, um ein späteres Anhängen an die Liste zu vermeiden (einfügen, statt anhängen).
+\item Zeile 7: $\mathtt{zs}$ bezeichnet die Lister aller z-Vektoren und wird mit 0-en initialisiert. Ein z-Vektor beinhaltet alle in der jeweiligen Schicht durch die entsprechenden Werte (Gewichte und Vorbelastungen) gewichteten Eingaben. Die Definition der Hilfsgröße $\mathtt{Z}$ ist im Kapitel \ref{chap:backprop} zu finden.
+\item Zeile 8-12: Für jede Schicht des Netzwerkes (ausgenommen der ersten Schicht, da hier keine Gewichte und Vorbelastungen vorhanden sind und die Aktivierung schon gesetzt wurde) wird der entsprechende z-Vektor entsprechend der Gleichungen \eqref{eq:feedforward_impl} und \eqref{eq:zvector_impl} berechnet und der Liste $\mathtt{zs}$ hinzugefügt. Mit Hilfe des aktuellen z-Vektors kann der Aktivierungsvektor jeder Schicht berechnet werden. Alle Aktivierungsvektoren des Netzwerkes werden pro Schicht in $\mathtt{activiations}$ abgelegt. Um später mit den Aktivierungsvektoren besser rechnen zu können, werden die vektorisierten Aktivierungen in Matrixform in $\mathtt{activiations}$ abgelegt.
+\item Zeile 13-14: Diese Zeilen stellen die Implementierung der ersten Gleichung des Backpropagation-Algorithmus \eqref{eq:BP1_impl} dar. Hierbei bezeichnet $\mathtt{epsilon}$ den Ausgabefehler $\boldsymbol{\varepsilon}^{(L)}$ des Netzwerkes. Um diesen berechnen zu können, wird die Hilfsfunktion $\mathtt{cost\_derivate}$ aufgerufen, welche den erwarteten Ausgabevektor $y$ von dem letzten Aktivierungsvektor (also die Ausgabe des Netzwerkes) subtrahiert. Da die Hadamard-Funktion von SetlX lediglich Matrizen als Parameter akzeptiert und $\mathtt{cost\_derivate}$ einen Vektor berechnet, muss dieser noch mittels $\mathtt{la\_matrix}$ in eine Matrix umgewandelt werden.
+\item Zeile 15-16: Die Variablen $\mathtt{lb}$ und $\mathtt{lw}$ bezeichnen jeweils die Länge der Gewichts- und Vorbelastungslisten. Diese Variablen werden im Anschluss benötigt, da es in SetlX zwar möglich ist eine Liste oder eine Matrix von hinten mittels negativem Index (z.B. $a[-1]$) zu lesen, allerdings nicht zu beschreiben.
+\item Zeile 17-18: Berechnung der Gradienten der Gewichte und Vorbelastung der Ausgabeschicht mittels der Formeln \eqref{eq:BP3_impl} und \eqref{eq:BP4_impl}.
+\item Zeile 19-24: Dieser Code beschreibt die Berechnung der Gradienten für alle Schichten zwischen der zweiten und der Vorletzten in rückwärtiger Reihenfolge (also in unserem Netzwerkaufbau gilt für die Schleife: $l \in {2}$). Zunächst wird wieder der Ausgabefehler $\boldsymbol{\varepsilon}^{(L)}$ berechnet. Dies geschieht in Zeile 24 nach Formel \eqref{eq:BP2_impl}. Zeile 25 und 26 entsprechen den Formeln \eqref{eq:BP3_impl} und \eqref{eq:BP4_impl} und passen die Gradientenvariablen entsprechend an.
+\item Zeile 25: Die Funktion liefert als Rückgabeparameter die entgültigen Gradienten der Netzwerkgewichte und -vorbelastungen, welche anschließend in der SGD-Funktion für den Gradientenabstieg verwendet werden.
 \end{enumerate}
 
 \noindent
-Als Letztes wird die Funktion $\mathtt{evaluate}$ diskutiert, welche in der $\mathtt{sgd}$-Funktion aufgerufen wurde und dazu dient die Anzahl der vom Netzwerk korrekt ermittelten Datensätze zu berechnen. Die Funktion ist durch folgenden Code gegeben:
+Als Letztes wird die Funktion $\mathtt{evaluate}$ diskutiert, welche in der $\mathtt{sgd}$-Funktion aufgerufen wurde und dazu dient die Anzahl der vom Netzwerk korrekt ermittelten Datensätze zu berechnen. Die Funktion ist durch den Code in Abbildung \ref{fig:eval_func} gegeben.
+\begin{figure}
 \begin{Verbatim}[ frame         = lines, 
                   framesep      = 0.3cm, 
                   firstnumber   = 1,
@@ -339,6 +360,10 @@ Als Letztes wird die Funktion $\mathtt{evaluate}$ diskutiert, welche in der $\ma
         return maxIndex;
     };
 \end{Verbatim}
+\vspace*{-0.3cm}
+\caption{Auswertungs-Funktionen}
+\label{fig:eval_func}
+\end{figure}
 \begin{enumerate}
 \item Zeile 1: Der Funktion werden Datensätze in Listenform mitgegeben. Die Datensätze bestehen aus Tupeln der Form $[x,y]$, wobei $x$ die Pixel des jeweiligen Zeichens darstellt und $y$ der Wert des Zeichens ist.
 \item Zeile 2: $\mathtt{test\_results}$ speichert die vom Netzwerk ermittelte Ausgabe, sowie die tatsächliche Ausgabe in Tupelform für jeden Datensatz. Mit Hilfe der bereits besprochenen Feedforward-Funktion wird zunächst die vektorisierte Ausgabe des Netzwerkes für den jeweiligen Datensatz berechnet. Anschließend wird mit Hilfe der $\mathtt{argmax()}$-Funktion der Index des maximalen Wertes im Vektor ermittelt. Die ermittelte Ziffer ergibt sich nun aus dem Index subtrahiert mit 1, da die Ziffern mit 0 beginnend im Ausgabevektor gespeichert sind. In die Variable $\mathtt{test\_results}$ wird letztendlich der errechnete Wert sowie der tatsächliche Wert ($y$) gespeichert.
