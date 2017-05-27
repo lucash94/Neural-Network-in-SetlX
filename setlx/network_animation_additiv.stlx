@@ -27,73 +27,58 @@ class animation(weights, biases, structure, test_data) {
 		hadamardFlag := false;
 		for(i in {1 .. mSqrtAllPixel}) {
 			for(j in {1 .. mSqrtAllPixel}) {
-				if(!dataFlag && !mWeightsFlag) {							// dataFlag == false && weightFlag == false; print init
+				if(!dataFlag && !mWeightsFlag) {						// dataFlag == false && weightFlag == false; print init
 					color := 0.0;
 				} else if(dataFlag && !mWeightsFlag) {					// dataFlag == true && weightFlag == false; print values
 					color := 1.0 - data[a][b][(mAllPixel-(mSqrtAllPixel*i)+j)];
-					nColor := color;
 				} else if(!dataFlag && mWeightsFlag) {					// dataFlag == false && weightFlag == true; print mWeights
-					color := weights[1][b][(mAllPixel-(mSqrtAllPixel*i)+j)];
-					
-					//calculating color values between 0 and 1
-					nColor := 1-exp(-abs(color));
+					if(weights[1][b][(mAllPixel-(mSqrtAllPixel*i)+j)]>0) {
+						//standardize positive values
+						color := weights[1][b][(mAllPixel-(mSqrtAllPixel*i)+j)]/abs(maxmWeights);
+					} else {
+						//standardize negative values
+						color := weights[1][b][(mAllPixel-(mSqrtAllPixel*i)+j)]/abs(minmWeights);
+					}
+					//color := (weights[1][b][(mAllPixel-(mSqrtAllPixel*i)+j)]+abs(minmWeights))/(maxmWeights+abs(minmWeights));
 				} else if(dataFlag && mWeightsFlag) {					// dataFlag == true && weightFlag == true; print hadamard
 					if(data[1][b][(mAllPixel-(mSqrtAllPixel*i)+j)] == 0.0 || data[1][b][(mAllPixel-(mSqrtAllPixel*i)+j)] == -0.0) {
-						color := weights[1][b][(mAllPixel-(mSqrtAllPixel*i)+j)];
-					
-						//calculating color values between 0 and 1
-						nColor := 1-exp(-abs(color));
+						if(weights[1][b][(mAllPixel-(mSqrtAllPixel*i)+j)]>0) {
+							//standardize positive values
+							color := weights[1][b][(mAllPixel-(mSqrtAllPixel*i)+j)]/abs(maxmWeights);
+						} else {
+							//standardize negative values
+							color := weights[1][b][(mAllPixel-(mSqrtAllPixel*i)+j)]/abs(minmWeights);
+						}
 						hadamardFlag := false;
 					} else {
 						color := data[1][b][(mAllPixel-(mSqrtAllPixel*i)+j)];
-						nColor := 1-exp(-abs(color));
 						hadamardFlag := true;
 					}
 				}
 				
 				if(!dataFlag && !mWeightsFlag) {
 					gfx_setPenColorRGB( color, color, color );
+				} else if( color == 0.0 || color == -0.0 ) {
+					gfx_setPenColorRGB( 1.0, 1.0, 1.0 );
 				} else if(dataFlag && mWeightsFlag && !hadamardFlag) {
-					if(color < 0) { // negative values | green
-						//farbverlauf
-						gfx_setPenColorRGB( 1-nColor, 1, 0 );
-						
-						//additiv weiß
-						//gfx_setPenColorRGB( 1-nColor, 1, 1-nColor );
-						
-						//additiv schwarz
-						//gfx_setPenColorRGB( 0, nColor, 0 );
-					} else { // positiv values | yellow
-						//farbverlauf
-						gfx_setPenColorRGB( nColor, 1, 0 );
-						
-						//additiv weiß
-						//gfx_setPenColorRGB( 1, 1, 1-nColor );
-						
-						//additiv schwarz
-						//gfx_setPenColorRGB( nColor, nColor, 0 );
+					if( color < 0.0 ) {
+						// negative values | green
+						// color * RGB(0,255,0) + RGB(255,255,255)
+						gfx_setPenColorRGB( abs(color), 1, abs(color) );
+					} else {	
+						// positiv values | yellow
+						// color * RGB(255,255,0) + RGB(255,255,255)
+						gfx_setPenColorRGB( 1, 1, abs(color) );
 					}
-				} else if(dataFlag && !mWeightsFlag) {
-					gfx_setPenColorRGB( 1, abs(nColor), abs(nColor) );
 				} else {
-					if(color < 0) { // negative values | blue
-						//farbverlauf
-						gfx_setPenColorRGB( 1-nColor, 0, nColor );
-						
-						//additiv weiß
-						//gfx_setPenColorRGB( 1-nColor, 1-nColor, 1 );
-						
-						//additiv schwarz
-						//gfx_setPenColorRGB( 0, 0, nColor );
-					} else { // positiv values | red
-						//farbverlauf
-						gfx_setPenColorRGB( nColor, 0, 1-nColor );
-						
-						//additiv weiß
-						//gfx_setPenColorRGB( 1, 1-nColor, 1-nColor );
-						
-						//additiv schwarz
-						//gfx_setPenColorRGB( nColor, 0, 0 );
+					if( color < 0.0 ) {
+						// negative values | blue
+						// color * RGB(0,0,255) + RGB(255,255,255)
+						gfx_setPenColorRGB( abs(color), abs(color), 1 );
+					} else {	
+						// positiv values | red
+						// color * RGB(255,0,0) + RGB(255,255,255)
+						gfx_setPenColorRGB( 1, abs(color), abs(color) );
 					}
 				}
 				
