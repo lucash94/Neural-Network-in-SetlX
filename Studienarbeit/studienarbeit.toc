@@ -1,6 +1,6 @@
 \contentsline {chapter}{\numberline {1}Einleitung}{1}{chapter.1}
 \contentsline {section}{\numberline {1.1}Ziel der Arbeit}{1}{section.1.1}
-\contentsline {section}{\numberline {1.2}Aufgabe des Neuronales Netzwerks}{1}{section.1.2}
+\contentsline {section}{\numberline {1.2}Aufgabe des neuronalen Netzwerks}{1}{section.1.2}
 \contentsline {section}{\numberline {1.3}Verf\IeC {\"u}gbarkeit des Programmcodes auf GitHub}{2}{section.1.3}
 \contentsline {section}{\numberline {1.4}Aktuelle Relevanz von neuronalen Netzen}{2}{section.1.4}
 \contentsline {section}{\numberline {1.5}Aufbau der Arbeit}{2}{section.1.5}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.3.22)  26 MAY 2017 13:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.3.22)  28 MAY 2017 19:03
 entering extended mode
 **./studienarbeit.tex
 (studienarbeit.tex
@@ -1435,15 +1435,15 @@ Overfull \hbox (9.67554pt too wide) in paragraph at lines 218--219
 [15] [16]
 
 LaTeX Warning: Reference `eq:zvector_impl' on page 17 undefined on input line 3
-32.
+31.
 
 [17] [18]
-LaTeX Font Info:    Try loading font information for TS1+cmss on input line 385
+LaTeX Font Info:    Try loading font information for TS1+cmss on input line 384
 .
  ("C:\Program Files\MiKTeX 2.9\tex\latex\base\ts1cmss.fd"
 File: ts1cmss.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-Underfull \hbox (badness 10000) in paragraph at lines 405--408
+Underfull \hbox (badness 10000) in paragraph at lines 404--407
 
  []
 
@@ -1451,7 +1451,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 405--408
 File: Bilder/MNIST-Matrix.png Graphic file (type png)
 
 <use Bilder/MNIST-Matrix.png>
-Package pdftex.def Info: Bilder/MNIST-Matrix.png used on input line 411.
+Package pdftex.def Info: Bilder/MNIST-Matrix.png used on input line 410.
 (pdftex.def)             Requested size: 315.42484pt x 124.30693pt.
 
 <Bilder/animation_network_default.png, id=409, 554.67226pt x 554.67226pt>
@@ -1459,7 +1459,7 @@ File: Bilder/animation_network_default.png Graphic file (type png)
 
 <use Bilder/animation_network_default.png>
 Package pdftex.def Info: Bilder/animation_network_default.png used on input lin
-e 418.
+e 417.
 (pdftex.def)             Requested size: 388.26793pt x 388.26793pt.
 
 <Bilder/untersuchungsbereich_neuron.png, id=411, 666.23906pt x 657.95813pt>
@@ -1467,39 +1467,44 @@ File: Bilder/untersuchungsbereich_neuron.png Graphic file (type png)
 
 <use Bilder/untersuchungsbereich_neuron.png>
 Package pdftex.def Info: Bilder/untersuchungsbereich_neuron.png used on input l
-ine 428.
+ine 427.
 (pdftex.def)             Requested size: 399.74652pt x 394.77792pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 433--435
+Underfull \hbox (badness 10000) in paragraph at lines 432--434
 
  []
 
-<Bilder/untersuchungsbereich_neuronen.png, id=413, 731.73375pt x 611.28375pt>
+<Bilder/untersuchungsbereich_neuronen.png, id=413, 584.78474pt x 491.436pt>
 File: Bilder/untersuchungsbereich_neuronen.png Graphic file (type png)
 
 <use Bilder/untersuchungsbereich_neuronen.png>
 Package pdftex.def Info: Bilder/untersuchungsbereich_neuronen.png used on input
- line 438.
-(pdftex.def)             Requested size: 409.76811pt x 342.31656pt.
+ line 437.
+(pdftex.def)             Requested size: 327.47722pt x 275.20229pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 453--454
+Underfull \hbox (badness 10000) in paragraph at lines 452--453
 
  []
 
-<Bilder/untersuchungsbereich_zahl.png, id=415, 737.75626pt x 934.24031pt>
+<Bilder/untersuchungsbereich_zahl.png, id=415, 844.95676pt x 543.83176pt>
 File: Bilder/untersuchungsbereich_zahl.png Graphic file (type png)
 
 <use Bilder/untersuchungsbereich_zahl.png>
 Package pdftex.def Info: Bilder/untersuchungsbereich_zahl.png used on input lin
-e 460.
-(pdftex.def)             Requested size: 413.14069pt x 523.171pt.
+e 459.
+(pdftex.def)             Requested size: 473.17256pt x 304.5437pt.
+
+Overfull \hbox (48.58632pt too wide) in paragraph at lines 459--460
+ [][] 
+ []
+
 ) [20 <./Bilder/MNIST-Matrix.png (PNG copy)>] [21 <./Bilder/animation_network_d
 efault.png>] [22 <./Bilder/untersuchungsbereich_neuron.png>] [23 <./Bilder/unte
-rsuchungsbereich_neuronen.png>]
-[24 <./Bilder/untersuchungsbereich_zahl.png>]
+rsuchungsbereich_neuronen.png>] [24 <./Bilder/untersuchungsbereich_zahl.png>]
 \openout2 = `Inhalt/fazit.aux'.
 
- (Inhalt/fazit.tex
+
+(Inhalt/fazit.tex
 Kapitel 4.
 )
 Underfull \hbox (badness 10000) in paragraph at lines 77--203
@@ -1554,9 +1559,15 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 209.
 (Inhalt/implementierung.aux) (Inhalt/fazit.aux))
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 209.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 209.
-Package rerunfilecheck Info: File `studienarbeit.out' has not changed.
-(rerunfilecheck)             Checksum: 84CC6D2979BFDCE5E3F937B0A23E7A41;1227.
 
+
+Package rerunfilecheck Warning: File `studienarbeit.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `studienarbeit.out':
+(rerunfilecheck)             Before: 84CC6D2979BFDCE5E3F937B0A23E7A41;1227
+(rerunfilecheck)             After:  690BB38621EFA83D001F1CF160D7C048;1227.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -1595,7 +1606,7 @@ amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts
 /cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt1
 0.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.p
 fb>
-Output written on studienarbeit.pdf (31 pages, 1674173 bytes).
+Output written on studienarbeit.pdf (31 pages, 1941661 bytes).
 PDF statistics:
  577 PDF objects out of 1000 (max. 8388607)
  151 named destinations out of 1000 (max. 500000)
