@@ -4,12 +4,12 @@
 Für das neuronale Netzwerk zur Erkennung von hangeschriebenen Zeichen werden Test- und Trainingsdaten der MNIST Datenbank genutzt. Die Datensätze können unter folgender Adresse gefunden werden: 
 \\[0.2cm]
 \hspace*{1.3cm}
-\href{http://yann.lecun.com/exdb/mnist/}{http://yann.lecun.com/exdb/mnist/}
+\href{http://yann.lecun.com/exdb/mnist/}{http://yann.lecun.com/exdb/mnist/}.
 \\[0.2cm]
 Da der MNIST Datensatz lediglich in Form von Binärdateien vorliegt und es in der aktuellen Version von SetlX nicht möglich ist Binärdateien zu lesen, wurde statt dem original Datensatz der umgewandelte Datensatz in Form einer CSV-Datei verwendet. Die Dateien können hier heruntergeladen werden:
 \\[0.2cm]
 \hspace*{1.3cm}
-\href{https://pjreddie.com/projects/mnist-in-csv/}{https://pjreddie.com/projects/mnist-in-csv/}
+\href{https://pjreddie.com/projects/mnist-in-csv/}{https://pjreddie.com/projects/mnist-in-csv/}.
 \\[0.2cm]
 Die Verwendung des CSV-Formats führt dazu, dass die Größe der Datensätze auf Grund fehlender Komprimierungen ansteigt. Ebenso wird das Einlesen der Datensätze langsamer, was an der eigentlichen Funktion des neuronalen Netzes allerdings nichts ändert und somit für dieses Projekt vertretbar ist. Eine Option das erste Problem zu umgehen wäre die Komprimierung in das Zip-Format und die Dekomprimierung zu Beginn des Startens des Programms. Da SetlX keine Unzip-Funktion für Dateien bietet, müsste hierbei allerdings Kenntnis über das jeweils vom Benutzer verwendete Betriebssystem gegeben sein und ebenso ob und wenn ja welches Programm hierfür zur Verfügung steht. Bei der Festlegung auf ein ein Kommandozeilen-Befehl (z.B. "gunzip" oder "unzip" für Linux-basierte PCs) würde somit die Betriebssystemunabhängigkeit verloren gehen.\\
 Verwendet werden die CSV-Dateien $\mathtt{mnist\_test.csv}$ und $\mathtt{mnist\_train.csv}$. Die Traingsdaten umfassen insgesamt 60.000 Datensätze und die Testdaten 10.000 Datensätze. 
@@ -20,7 +20,7 @@ Die einzelnen Datensätze, also die handgeschriebenen Zeichen, sind in den Datei
 	...
 \end{center}
 Das heißt, in jeder Zeile befinden sich alle Daten zu einer Ziffer. Der erste Wert gibt den jeweiligen Wert an (z.B. 5) und darauf folgend befinden sich alle Pixel der Ziffer mit deren jeweiligen Graustufenwerten. Die Pixel werden der Reihe nach abgespeichert, wobei die "Leserichtung" einer Ziffer von links nach rechts und dann von oben nach unten ist.\\ \\
-Um die Datensätze nun in SetlX importieren zu können, wird die Datei $\mathtt{csv\_loader.stlx}$ verwendet. Wird die Datei im SetlX-Interpreter ausgeführt, so liest sie die CSV-Dateien der Test- und Trainingsdaten (die Dateien müssen im selben Verzeichnis liegen und den oben erwähnten Namen haben) und speichert die Daten in den Variablen $\mathtt{test\_data}$ sowie $\mathtt{training\_data}$. Die Testdaten sind hierbei als Liste von Paaren in Form folgender Form abgelegt: \\
+Um die Datensätze nun in SetlX importieren zu können, wird die Datei $\mathtt{csv\_loader.stlx}$ verwendet. Wird die Datei im SetlX-Interpreter ausgeführt, so liest sie die CSV-Dateien der Test- und Trainingsdaten (die Dateien müssen im selben Verzeichnis liegen und den oben erwähnten Namen haben) und speichert die Daten in den Variablen $\mathtt{test\_data}$ sowie $\mathtt{training\_data}$. Die Testdaten sind hierbei als Liste von Paaren in folgender Form abgelegt: \\
 \hspace*{0.3cm}
 $
 \begin{array}[t]{lcll}
@@ -54,7 +54,7 @@ Das Netzwerk wird als Klasse in SetlX angelegt und enthält die folgenden Member
 
 \begin{enumerate}
 \item $\mathtt{mNumLayers}$: Anzahl der Schichten des aufzubauenden Netzwerkes 
-\item $\mathtt{mSizes}$: Aufbau des Netzwerkes in Listenform. Bsp.: $[784, 30, 10]$ beschreibt ein Netzwerk mit 784 Eingabe-Feldern, 30 Neuronen in der zweiten Schicht und 10 Ausgabe-Neuronen
+\item $\mathtt{mSizes}$: Aufbau des Netzwerkes in Listenform. Bsp.: $[784, 30, 10]$ beschreibt ein Netzwerk mit 784 Eingabefeldern, 30 Neuronen in der zweiten Schicht und 10 Ausgabe-Neuronen
 \item $\mathtt{mBiases}$: Alle Vorbelastungen des Netzwerkes (genauer Aufbau wird im Folgenden erläutert)
 \item $\mathtt{mWeights}$: Alle Gewichte des Netzwerkes (genauer Aufbau wird im Folgenden erläutert)
 \end{enumerate}
@@ -271,7 +271,7 @@ Im nächsten Abschnitt wird die Implementierung des Backpropagation Algorithmus 
 \end{equation}
 \begin{equation} \label{eq:BP2_impl}
 	\boldsymbol{\varepsilon}^{(l)} = \Bigl(\bigl(W^{(l+1)}\bigr)^\top \cdot \boldsymbol{\varepsilon}^{(l+1)}\Bigr) \odot
-  S'\bigl(z^{(l)}\bigr) \quad \mbox{für alle $l \in \{2, \cdots, L-1\}$}.
+  S'\bigl(z^{(l)}\bigr) \quad \mbox{für alle $l \in \{2, \cdots, L-1\}$}
 \end{equation}
 \begin{equation} \label{eq:BP3_impl}
 	\nabla_{\mathbf{b}^{(l)}} C_{\mathbf{x}, \mathbf{y}} = \boldsymbol{\varepsilon}^{(l)}
@@ -388,7 +388,7 @@ In diesem Abschnitt der Arbeit wird auf die Implementierung der grafischen Ausga
 \end{itemize}
 \vspace{0.5cm}
 \noindent
-Die folgenden Befehle ermöglichen die einzelnen Funktionalitäten in der Anwendung anzusteuern. Diese sind über das Eingabefeld im oberen Bereich der Anwendung einzutragen und können mit der Schaltfläche \textit{Play} ausgeführt werden.
+Die folgenden Befehle ermöglichen die einzelnen Funktionalitäten in der Anwendung anzusteuern. Diese sind über das Eingabefeld im oberen Bereich der Anwendung einzutragen und können über die Schaltfläche \textit{Play} ausgeführt werden.
 \begin{center}
 \begin{tabular}{lp{8cm}}
 \textbf{Eingabebefehl}   & \textbf{Erklärung} \\
@@ -421,7 +421,7 @@ Die Eingabe für das Netzwerk ist eine handgeschriebene Zahl mit der Bildgröße
 \end{figure}
  
 \noindent
-Für die weitere Betrachtung der Eingabebefehle in diesem Abschnitt soll zunächst das verwendete Farbmodell erläutert werden. Hierzu findet das additive Farbmodell im RGB-Farbraum seine Anwendung, wobei die Farbtiefe durch den jeweiligen Wert bestimmt wird. Kleine Werte weißen dabei einen höheren Weiß-Anteil auf wie größere Werte. Die Einfärbungen im Untersuchungsbereich sind wie folgt definiert:
+Für die weitere Betrachtung der anderen Eingabebefehle soll zunächst das verwendete Farbmodell erläutert werden. Hierbei findet das additive Farbmodell im RGB-Farbraum seine Anwendung, wobei die Farbtiefe durch den jeweiligen Wert aus den Testdaten oder den Gewichtungen vorgegeben wird. Kleine Werte weisen im Vergleich zu größeren Werten einen höheren Weiß-Anteil auf. Die Einfärbungen im Untersuchungsbereich sind wie folgt definiert:
 \begin{center}
 \begin{tabular}{lp{6cm}}
 \textbf{Farbe}   & \textbf{Erklärung} \\
