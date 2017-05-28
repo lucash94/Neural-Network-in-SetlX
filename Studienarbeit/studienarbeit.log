@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.3.22)  28 MAY 2017 21:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.3.22)  28 MAY 2017 21:28
 entering extended mode
 **./studienarbeit.tex
 (studienarbeit.tex
@@ -1009,7 +1009,9 @@ Package: babelbib 2012/01/03 v1.31 babelbib: multilingual bibliographies (HH)
 \c@aufgabe=\count169
 \mylength=\skip65
 
-(studienarbeit.aux)
+(studienarbeit.aux (Inhalt/titelseite.aux) (Inhalt/erklaerung.aux)
+(Inhalt/abstract.aux) (Inhalt/einleitung.aux) (Inhalt/theorie.aux)
+(Inhalt/implementierung.aux) (Inhalt/fazit.aux))
 \openout1 = `studienarbeit.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 163.
@@ -1027,7 +1029,8 @@ LaTeX Font Info:    ... okay on input line 163.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 163.
 LaTeX Font Info:    Try loading font information for TS1+cmr on input line 163.
 
- ("C:\Program Files\MiKTeX 2.9\tex\latex\base\ts1cmr.fd"
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\ts1cmr.fd"
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    ... okay on input line 163.
@@ -1188,61 +1191,36 @@ Underfull \hbox (badness 10000) in paragraph at lines 16--17
 
 
 No file Inhalt/abstract.tex.
-
-Package hyperref Warning: old toc file detected, not used; run LaTeX again.
-
+(studienarbeit.toc)
 \tf@toc=\write5
 \openout5 = `studienarbeit.toc'.
 
-[2
+ [2
 
 
 
 
-]
-
-Package hyperref Warning: old lof file detected, not used; run LaTeX again.
-
+] (studienarbeit.lof)
 \tf@lof=\write6
 \openout6 = `studienarbeit.lof'.
 
-[3
+ [3
 
 ]
 \openout2 = `Inhalt/einleitung.aux'.
 
  (Inhalt/einleitung.tex
 Kapitel 1.
-
-LaTeX Warning: Citation `stroetmann:2017' on page 1 undefined on input line 4.
-
-
-LaTeX Warning: Citation `setlx:2017' on page 1 undefined on input line 4.
-
-
-LaTeX Warning: Citation `nielson:2017' on page 1 undefined on input line 5.
-
-<Bilder/handdrawn_digit.png, id=108, 74.52844pt x 95.6072pt>
+<Bilder/handdrawn_digit.png, id=188, 74.52844pt x 95.6072pt>
 File: Bilder/handdrawn_digit.png Graphic file (type png)
 
 <use Bilder/handdrawn_digit.png>
 Package pdftex.def Info: Bilder/handdrawn_digit.png used on input line 11.
 (pdftex.def)             Requested size: 44.71739pt x 57.36475pt.
 
-
-LaTeX Warning: Citation `nielson:2017' on page 1 undefined on input line 12.
-
-
-LaTeX Warning: Reference `fig:handwritten_digit_5' on page 1 undefined on input
- line 15.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 8--18
 
  []
-
-
-LaTeX Warning: Reference `LastPage' on page 1 undefined on input line 18.
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
@@ -1252,63 +1230,25 @@ l.18 \item
            Eingabedaten (hier: Pixel des auszuwertenden Zeichens) [1
 
 
- <./Bilder/handdrawn_digit.png>]
-
-LaTeX Warning: Citation `gnmt:2017' on page 2 undefined on input line 33.
-
-
-LaTeX Warning: Citation `alphago:2017' on page 2 undefined on input line 34.
-
-
-LaTeX Warning: Citation `prismaai:2017' on page 2 undefined on input line 35.
-
-)
-
-LaTeX Warning: Reference `LastPage' on page 2 undefined on input line 199.
-
-[2]
+ <./Bilder/handdrawn_digit.png>]) [2]
 \openout2 = `Inhalt/theorie.aux'.
 
  (Inhalt/theorie.tex
 Kapitel 2.
-
-LaTeX Warning: Citation `stroetmann:2017' on page 3 undefined on input line 2.
-
-
-LaTeX Warning: Citation `buduma:2017' on page 3 undefined on input line 6.
-
-
-LaTeX Warning: Reference `fig:perceptron' on page 3 undefined on input line 15.
-
-
-<Bilder/sigmoid_neuron.png, id=123, 1081.79156pt x 383.18156pt>
+<Bilder/sigmoid_neuron.png, id=218, 1081.79156pt x 383.18156pt>
 File: Bilder/sigmoid_neuron.png Graphic file (type png)
 
 <use Bilder/sigmoid_neuron.png>
 Package pdftex.def Info: Bilder/sigmoid_neuron.png used on input line 18.
 (pdftex.def)             Requested size: 270.44724pt x 95.79515pt.
 
-
-LaTeX Warning: Citation `buduma:2017' on page 3 undefined on input line 19.
-
-
-LaTeX Warning: Reference `fig:sigmoid_plot' on page 3 undefined on input line 4
-4.
-
-<Bilder/sigmoid_plot.png, id=125, 382.42876pt x 262.73157pt>
+<Bilder/sigmoid_plot.png, id=222, 382.42876pt x 262.73157pt>
 File: Bilder/sigmoid_plot.png Graphic file (type png)
 
 <use Bilder/sigmoid_plot.png>
 Package pdftex.def Info: Bilder/sigmoid_plot.png used on input line 47.
 (pdftex.def)             Requested size: 267.69829pt x 183.91083pt.
-
-
-LaTeX Warning: Citation `nielson:2017' on page 3 undefined on input line 48.
-
-
-LaTeX Warning: Reference `LastPage' on page 3 undefined on input line 51.
-
-[3
+ [3
 
 
 
@@ -1317,36 +1257,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 52--73
 
  []
 
-
-LaTeX Warning: Reference `fig:neural_network_extended' on page 4 undefined on i
-nput line 75.
-
-<Bilder/neural_network_extended.png, id=141, 555.57562pt x 313.9228pt>
+<Bilder/neural_network_extended.png, id=237, 555.57562pt x 313.9228pt>
 File: Bilder/neural_network_extended.png Graphic file (type png)
 
 <use Bilder/neural_network_extended.png>
 Package pdftex.def Info: Bilder/neural_network_extended.png used on input line 
 78.
 (pdftex.def)             Requested size: 333.34793pt x 188.35512pt.
-
-
-LaTeX Warning: Citation `nielson:2017' on page 4 undefined on input line 79.
-
-
-LaTeX Warning: Reference `LastPage' on page 4 undefined on input line 82.
-
-[4 <./Bilder/sigmoid_plot.png>]
-
-LaTeX Warning: Reference `eq:feedforward1' on page 5 undefined on input line 12
-0.
-
-
-LaTeX Warning: Reference `eq:feedforward2' on page 5 undefined on input line 12
-0.
-
-
-LaTeX Warning: Reference `LastPage' on page 5 undefined on input line 122.
-
+ [4 <./Bilder/sigmoid_plot.png>]
 [5 <./Bilder/neural_network_extended.png>]
 Overfull \hbox (1.0383pt too wide) in paragraph at lines 145--188
 |  $\OML/cmm/m/it/10 C[]W[]; []  ; W[]; \OT1/cmr/bx/n/10 b[]\OML/cmm/m/it/10 ; 
@@ -1375,45 +1293,19 @@ mr/bx/n/10 b[][]$\OT1/cmss/m/n/10 .
  []
 
 
-LaTeX Warning: Citation `zander:2013' on page 6 undefined on input line 192.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 192--194
 
  []
 
-
-LaTeX Warning: Reference `LastPage' on page 6 undefined on input line 194.
-
-[6]
-
-LaTeX Warning: Reference `LastPage' on page 7 undefined on input line 246.
-
-[7]
-
-LaTeX Warning: Reference `eq:BP1' on page 8 undefined on input line 247.
-
-
-LaTeX Warning: Citation `walz:2016' on page 8 undefined on input line 247.
-
-
+[6] [7]
 Underfull \hbox (badness 10000) in paragraph at lines 251--270
 
  []
 
 
-LaTeX Warning: Reference `eq:BP3' on page 8 undefined on input line 313.
-
-
-LaTeX Warning: Reference `eq:BP4v' on page 8 undefined on input line 313.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 312--314
 
  []
-
-
-LaTeX Warning: Reference `LastPage' on page 8 undefined on input line 314.
 
 [8pdfTeX warning (ext4): destination with the same identifier (name{equation.2.
 3.3}) has been already used, duplicate ignored
@@ -1483,97 +1375,45 @@ Underfull \hbox (badness 10000) in paragraph at lines 360--361
  []
 
 
-LaTeX Warning: Reference `fig:gradient_descent1' on page 9 undefined on input l
-ine 368.
-
-
-LaTeX Warning: Citation `aurelien:2017' on page 9 undefined on input line 368.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 362--400
 
  []
 
-
-LaTeX Warning: Reference `LastPage' on page 9 undefined on input line 400.
-
-[9] <Bilder/gradient_descent1.png, id=205, 1433.355pt x 897.3525pt>
+[9] <Bilder/gradient_descent1.png, id=317, 1433.355pt x 897.3525pt>
 File: Bilder/gradient_descent1.png Graphic file (type png)
 
 <use Bilder/gradient_descent1.png>
 Package pdftex.def Info: Bilder/gradient_descent1.png used on input line 403.
 (pdftex.def)             Requested size: 286.66592pt x 179.46732pt.
 
-
-LaTeX Warning: Citation `aurelien:2017' on page 10 undefined on input line 404.
-
-
-
-LaTeX Warning: Reference `fig:gradient_descent2' on page 10 undefined on input 
-line 411.
-
-<Bilder/gradient_descent2.png, id=206, 1440.38126pt x 772.8875pt>
+<Bilder/gradient_descent2.png, id=320, 1440.38126pt x 772.8875pt>
 File: Bilder/gradient_descent2.png Graphic file (type png)
 
 <use Bilder/gradient_descent2.png>
 Package pdftex.def Info: Bilder/gradient_descent2.png used on input line 414.
 (pdftex.def)             Requested size: 288.07115pt x 154.57475pt.
 
-
-LaTeX Warning: Citation `aurelien:2017' on page 10 undefined on input line 415.
-
-
-
-LaTeX Warning: Reference `fig:gradient_descent3' on page 10 undefined on input 
-line 420.
-
-<Bilder/gradient_descent3.png, id=207, 1422.31375pt x 782.925pt>
+<Bilder/gradient_descent3.png, id=323, 1422.31375pt x 782.925pt>
 File: Bilder/gradient_descent3.png Graphic file (type png)
 
 <use Bilder/gradient_descent3.png>
 Package pdftex.def Info: Bilder/gradient_descent3.png used on input line 423.
 (pdftex.def)             Requested size: 284.45772pt x 156.58223pt.
 
-
-LaTeX Warning: Citation `aurelien:2017' on page 10 undefined on input line 424.
-
-
-
-LaTeX Warning: Reference `fig:gradient_descent4' on page 10 undefined on input 
-line 429.
-
-<Bilder/gradient_descent4.png, id=208, 1423.3175pt x 814.04124pt>
+<Bilder/gradient_descent4.png, id=326, 1423.3175pt x 814.04124pt>
 File: Bilder/gradient_descent4.png Graphic file (type png)
 
 <use Bilder/gradient_descent4.png>
 Package pdftex.def Info: Bilder/gradient_descent4.png used on input line 432.
 (pdftex.def)             Requested size: 284.65846pt x 162.80536pt.
 
-
-LaTeX Warning: Citation `aurelien:2017' on page 10 undefined on input line 433.
-
-
-
-LaTeX Warning: Reference `fig:gradient_descent5' on page 10 undefined on input 
-line 438.
-
-<Bilder/gradient_descent5.png, id=209, 855.195pt x 801.99625pt>
+<Bilder/gradient_descent5.png, id=329, 855.195pt x 801.99625pt>
 File: Bilder/gradient_descent5.png Graphic file (type png)
 
 <use Bilder/gradient_descent5.png>
 Package pdftex.def Info: Bilder/gradient_descent5.png used on input line 441.
 (pdftex.def)             Requested size: 213.79823pt x 200.49857pt.
-
-
-LaTeX Warning: Citation `buduma:2017' on page 10 undefined on input line 442.
-
-
-LaTeX Warning: Citation `buduma:2017' on page 10 undefined on input line 442.
-
-
-LaTeX Warning: Reference `LastPage' on page 10 undefined on input line 445.
-
-[10 <./Bilder/gradient_descent1.png>]
+ [10 <./Bilder/gradient_descent1.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 447--448
 
  []
@@ -1588,21 +1428,12 @@ T1/cmr/bx/n/10 o[]x[][] \OMS/cmsy/m/n/10   \OT1/cmr/bx/n/10 y[][][]$\OT1/cmss/m
 /n/10 . 
  []
 
-
-LaTeX Warning: Reference `LastPage' on page 11 undefined on input line 200.
-
-[11 <./Bilder/gradient_descent2.png> <./Bilder/gradient_descent3.png>]
-
-LaTeX Warning: Reference `LastPage' on page 12 undefined on input line 200.
-
-[12 <./Bilder/gradient_descent4.png> <./Bilder/gradient_descent5.png>]
-
-LaTeX Warning: Reference `LastPage' on page 13 undefined on input line 200.
-
-[13]
+[11 <./Bilder/gradient_descent2.png> <./Bilder/gradient_descent3.png>] [12 <./B
+ilder/gradient_descent4.png> <./Bilder/gradient_descent5.png>] [13]
 \openout2 = `Inhalt/implementierung.aux'.
 
- (Inhalt/implementierung.tex
+
+(Inhalt/implementierung.tex
 Kapitel 3.
 
 Underfull \hbox (badness 10000) in paragraph at lines 22--41
@@ -1613,9 +1444,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 22--41
 Underfull \hbox (badness 10000) in paragraph at lines 22--41
 
  []
-
-
-LaTeX Warning: Reference `LastPage' on page 14 undefined on input line 41.
 
 [14
 
@@ -1633,58 +1461,20 @@ File: ot1zi4.fd 2016/12/29 OT1/zi4 (Inconsolata)
 LaTeX Font Info:    Font shape `OT1/zi4/m/n' will be
 (Font)              scaled to size 10.0pt on input line 72.
 
-
-LaTeX Warning: Reference `fig:init' on page 15 undefined on input line 78.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 116--122
 
  []
-
-
-LaTeX Warning: Reference `LastPage' on page 15 undefined on input line 122.
 
 [15]
 Underfull \hbox (badness 10000) in paragraph at lines 126--127
 
  []
 
-
-LaTeX Warning: Reference `eq:feedforward2' on page 16 undefined on input line 1
-35.
-
-
-LaTeX Warning: Reference `LastPage' on page 16 undefined on input line 136.
-
 [16]
-
-LaTeX Warning: Reference `fig:feedforward_sigmoid' on page 17 undefined on inpu
-t line 140.
-
-
-Overfull \hbox (6.19875pt too wide) in paragraph at lines 138--170
+Overfull \hbox (8.58762pt too wide) in paragraph at lines 138--170
 \OT1/cmss/m/n/10 wei-ter-ge-lei-tet wird (feed-for-war-ding). In Ab-bil-dung []
- sind die Im-ple-men-tie-run-gen der Sigmoid-Funktionen
+[]3.2[][] sind die Im-ple-men-tie-run-gen der Sigmoid-Funktionen
  []
-
-
-LaTeX Warning: Reference `eq:feedforward_impl' on page 17 undefined on input li
-ne 170.
-
-
-LaTeX Warning: Reference `chap:sigmoid' on page 17 undefined on input line 171.
-
-
-
-LaTeX Warning: Reference `eq:sigmoidPrime' on page 17 undefined on input line 1
-72.
-
-
-LaTeX Warning: Reference `fig:sgd_func' on page 17 undefined on input line 175.
-
-
-
-LaTeX Warning: Reference `LastPage' on page 17 undefined on input line 218.
 
 [17]
 Overfull \hbox (9.67554pt too wide) in paragraph at lines 218--219
@@ -1692,97 +1482,24 @@ Overfull \hbox (9.67554pt too wide) in paragraph at lines 218--219
  Hil-fe der Funk-ti-on $[]$,
  []
 
-
-LaTeX Warning: Reference `fig:update_mini_batch' on page 18 undefined on input 
-line 223.
-
-
-LaTeX Warning: Reference `LastPage' on page 18 undefined on input line 257.
-
-[18]
-
-LaTeX Warning: Reference `chap:backprop' on page 19 undefined on input line 268
-.
-
-
-LaTeX Warning: Reference `fig:backprop_func' on page 19 undefined on input line
- 284.
-
-
-LaTeX Warning: Reference `LastPage' on page 19 undefined on input line 327.
-
-[19]
-
-LaTeX Warning: Reference `chap:backprop' on page 20 undefined on input line 330
-.
-
-
-LaTeX Warning: Reference `eq:feedforward_impl' on page 20 undefined on input li
-ne 331.
-
-
-LaTeX Warning: Reference `eq:zvector_impl' on page 20 undefined on input line 3
-31.
-
-
-LaTeX Warning: Reference `LastPage' on page 20 undefined on input line 332.
-
-[20]
-
-LaTeX Warning: Reference `eq:BP1_impl' on page 21 undefined on input line 332.
-
-
-LaTeX Warning: Reference `eq:BP3_impl' on page 21 undefined on input line 334.
-
-
-LaTeX Warning: Reference `eq:BP4_impl' on page 21 undefined on input line 334.
-
-
-LaTeX Warning: Reference `eq:BP2_impl' on page 21 undefined on input line 335.
-
-
-LaTeX Warning: Reference `eq:BP3_impl' on page 21 undefined on input line 335.
-
-
-LaTeX Warning: Reference `eq:BP4_impl' on page 21 undefined on input line 335.
-
-
-LaTeX Warning: Reference `fig:eval_func' on page 21 undefined on input line 340
-.
-
-
-LaTeX Warning: Reference `LastPage' on page 21 undefined on input line 370.
-
-[21]
+[18] [19] [20] [21]
 LaTeX Font Info:    Try loading font information for TS1+cmss on input line 384
 .
  ("C:\Program Files\MiKTeX 2.9\tex\latex\base\ts1cmss.fd"
 File: ts1cmss.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-
-LaTeX Warning: Reference `fig:animation_network_default' on page 22 undefined o
-n input line 405.
-
-
-LaTeX Warning: Reference `fig:MNIST-Matrix' on page 22 undefined on input line 
-407.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 404--408
 
  []
 
-
-LaTeX Warning: Reference `LastPage' on page 22 undefined on input line 408.
-
-[22] <Bilder/MNIST-Matrix.png, id=322, 985.6825pt x 388.45125pt>
+[22] <Bilder/MNIST-Matrix.png, id=467, 985.6825pt x 388.45125pt>
 File: Bilder/MNIST-Matrix.png Graphic file (type png)
 
 <use Bilder/MNIST-Matrix.png>
 Package pdftex.def Info: Bilder/MNIST-Matrix.png used on input line 411.
 (pdftex.def)             Requested size: 423.8352pt x 167.03078pt.
 
-<Bilder/animation_network_default.png, id=323, 456.5055pt x 554.67226pt>
+<Bilder/animation_network_default.png, id=468, 456.5055pt x 554.67226pt>
 File: Bilder/animation_network_default.png Graphic file (type png)
 
 <use Bilder/animation_network_default.png>
@@ -1790,16 +1507,11 @@ Package pdftex.def Info: Bilder/animation_network_default.png used on input lin
 e 418.
 (pdftex.def)             Requested size: 342.37828pt x 416.00317pt.
 
-
-LaTeX Warning: Reference `fig:untersuchungsbereich_neuron' on page 23 undefined
- on input line 436.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 435--437
 
  []
 
-<Bilder/untersuchungsbereich_neuron.png, id=324, 528.7755pt x 517.935pt>
+<Bilder/untersuchungsbereich_neuron.png, id=470, 528.7755pt x 517.935pt>
 File: Bilder/untersuchungsbereich_neuron.png Graphic file (type png)
 
 <use Bilder/untersuchungsbereich_neuron.png>
@@ -1807,16 +1519,11 @@ Package pdftex.def Info: Bilder/untersuchungsbereich_neuron.png used on input l
 ine 440.
 (pdftex.def)             Requested size: 423.02098pt x 414.34854pt.
 
-
-LaTeX Warning: Reference `fig:untersuchungsbereich_neuronen' on page 23 undefin
-ed on input line 446.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 445--447
 
  []
 
-<Bilder/untersuchungsbereich_neuronen.png, id=325, 582.978pt x 486.01575pt>
+<Bilder/untersuchungsbereich_neuronen.png, id=472, 582.978pt x 486.01575pt>
 File: Bilder/untersuchungsbereich_neuronen.png Graphic file (type png)
 
 <use Bilder/untersuchungsbereich_neuronen.png>
@@ -1824,68 +1531,36 @@ Package pdftex.def Info: Bilder/untersuchungsbereich_neuronen.png used on input
  line 450.
 (pdftex.def)             Requested size: 408.08182pt x 340.2087pt.
 
-
-LaTeX Warning: Reference `fig:untersuchungsbereich_zahl' on page 23 undefined o
-n input line 456.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 455--457
 
  []
 
-
-LaTeX Warning: Reference `LastPage' on page 23 undefined on input line 457.
-
 [23 <./Bilder/MNIST-Matrix.png (PNG copy)>]
-<Bilder/untersuchungsbereich_zahl.png, id=331, 737.75626pt x 934.24031pt>
+<Bilder/untersuchungsbereich_zahl.png, id=479, 737.75626pt x 934.24031pt>
 File: Bilder/untersuchungsbereich_zahl.png Graphic file (type png)
 
 <use Bilder/untersuchungsbereich_zahl.png>
 Package pdftex.def Info: Bilder/untersuchungsbereich_zahl.png used on input lin
 e 463.
 (pdftex.def)             Requested size: 413.14069pt x 523.171pt.
-)
-
-LaTeX Warning: Reference `LastPage' on page 24 undefined on input line 202.
-
-[24 <./Bilder/animation_network_default.png>]
-
-LaTeX Warning: Reference `LastPage' on page 25 undefined on input line 202.
-
-[25 <./Bilder/untersuchungsbereich_neuron.png>]
-
-LaTeX Warning: Reference `LastPage' on page 26 undefined on input line 202.
-
-[26 <./Bilder/untersuchungsbereich_neuronen.png>]
-
-LaTeX Warning: Reference `LastPage' on page 27 undefined on input line 202.
-
-[27 <./Bilder/untersuchungsbereich_zahl.png>]
+) [24 <./Bilder/animation_network_default.png>] [25 <./Bilder/untersuchungsbere
+ich_neuron.png>] [26 <./Bilder/untersuchungsbereich_neuronen.png>] [27 <./Bilde
+r/untersuchungsbereich_zahl.png>]
 \openout2 = `Inhalt/fazit.aux'.
 
- (Inhalt/fazit.tex
+
+(Inhalt/fazit.tex
 Kapitel 4.
-
-LaTeX Warning: Reference `fig:ausgabe_netzwerk' on page 28 undefined on input l
-ine 4.
-
 )
 Underfull \hbox (badness 10000) in paragraph at lines 77--203
 
  []
 
-
-LaTeX Warning: Reference `LastPage' on page 28 undefined on input line 203.
-
 [28
 
 
 
-]
-
-LaTeX Warning: Reference `LastPage' on page 29 undefined on input line 203.
-
-[29] (studienarbeit.bbl
+] [29] (studienarbeit.bbl
 babelbib: Using the BibTeX style's default font for `name'.
 babelbib: Using the BibTeX style's default font for `lastname'.
 babelbib: Using the BibTeX style's default font for `title'.
@@ -1910,15 +1585,8 @@ ence\OT1/cmss/m/n/10 .  [][]$\OT1/zi4/m/n/10 https : / / github . com / karlstr
 oetmann /
  []
 
-)
-
-Package lastpage Warning: Rerun to get the references right on input line 209.
-
-
+) 
 AED: lastpage setting LastPage
-
-LaTeX Warning: Reference `LastPage' on page 30 undefined on input line 209.
-
 [30
 
 
@@ -1936,19 +1604,13 @@ Package rerunfilecheck Info: File `studienarbeit.out' has not changed.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 209.
  ) 
 Here is how much of TeX's memory you used:
- 16798 strings out of 493333
- 291119 string characters out of 3139194
- 375568 words of memory out of 3000000
- 19888 multiletter control sequences out of 15000+200000
+ 16822 strings out of 493333
+ 291589 string characters out of 3139194
+ 381438 words of memory out of 3000000
+ 19894 multiletter control sequences out of 15000+200000
  14289 words of font info for 53 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  34i,12n,45p,10384b,603s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1974,9 +1636,9 @@ ts/type1/public/amsfonts/cm/cmssi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type
 /cm/cmtt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols
 /msbm10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/ms
 bm7.pfb>
-Output written on studienarbeit.pdf (34 pages, 2667564 bytes).
+Output written on studienarbeit.pdf (34 pages, 2694641 bytes).
 PDF statistics:
- 499 PDF objects out of 1000 (max. 8388607)
+ 639 PDF objects out of 1000 (max. 8388607)
  163 named destinations out of 1000 (max. 500000)
  228 words of extra memory for PDF output out of 10000 (max. 10000000)
 
