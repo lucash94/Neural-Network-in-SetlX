@@ -8,11 +8,12 @@
 \contentsline {section}{\numberline {2.1}Das Neuron}{3}{section.2.1}
 \contentsline {section}{\numberline {2.2}Neuronales Netzwerk}{4}{section.2.2}
 \contentsline {section}{\numberline {2.3}Backpropagation}{7}{section.2.3}
-\contentsline {section}{\numberline {2.4}Stochastic Gradient Descent}{9}{section.2.4}
-\contentsline {chapter}{\numberline {3}Implementierung}{11}{chapter.3}
-\contentsline {section}{\numberline {3.1}Laden und Aufbereitung der MNIST Daten}{11}{section.3.1}
-\contentsline {section}{\numberline {3.2}Implementierung des neuronalen Netzes}{12}{section.3.2}
-\contentsline {section}{\numberline {3.3}Animation}{19}{section.3.3}
-\contentsline {chapter}{\numberline {4}Fazit und Ausblick}{25}{chapter.4}
-\contentsline {section}{\numberline {4.1}Auswertung des Ergebnisses}{25}{section.4.1}
-\contentsline {section}{\numberline {4.2}Performance der SetlX Implementierung}{25}{section.4.2}
+\contentsline {section}{\numberline {2.4}Gradient Descent}{9}{section.2.4}
+\contentsline {section}{\numberline {2.5}Stochastic Gradient Descent}{11}{section.2.5}
+\contentsline {chapter}{\numberline {3}Implementierung}{14}{chapter.3}
+\contentsline {section}{\numberline {3.1}Laden und Aufbereitung der MNIST Daten}{14}{section.3.1}
+\contentsline {section}{\numberline {3.2}Implementierung des neuronalen Netzes}{15}{section.3.2}
+\contentsline {section}{\numberline {3.3}Animation}{22}{section.3.3}
+\contentsline {chapter}{\numberline {4}Fazit und Ausblick}{28}{chapter.4}
+\contentsline {section}{\numberline {4.1}Auswertung des Ergebnisses}{28}{section.4.1}
+\contentsline {section}{\numberline {4.2}Performance der SetlX Implementierung}{28}{section.4.2}

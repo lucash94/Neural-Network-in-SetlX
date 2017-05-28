@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
   \providebibliographyfont{name}{}%
   \providebibliographyfont{lastname}{}%
   \providebibliographyfont{title}{\emph}%
@@ -61,5 +61,31 @@
   \btxtitlefont {\btxifchangecase {Ai powered art styles}{AI Powered Art
   Styles}}.
 \newblock {\latintext \btxurlfont{https://prisma-ai.com/}}.
+
+\bibitem {zander:2013}
+\btxnamefont {\btxlastnamefont {Zander}, A.}\btxauthorcolon\ \btxtitlefont
+  {Neuronale Netze zur Analyse von nichtlinearen Strukturmodellen mit latenten
+  Variablen}.
+\newblock Gabler Edition Wissenschaft. \btxpublisherfont {Deutscher
+  Universit{\"a}tsverlag}, 2013\ifbtxprintISBN {, \mbox{\btxISBN~\btxISBNfont
+  {9783322992970}}}.
+\newblock {\latintext
+  \btxurlfont{https://books.google.de/books?id=Hp8nBgAAQBAJ}}.
+
+\bibitem {walz:2016}
+\btxnamefont {\btxlastnamefont {Walz}, G.}\btxauthorcolon\ \btxtitlefont
+  {Lexikon der Mathematik: Band 2: Eig bis Inn}.
+\newblock \btxpublisherfont {Springer Berlin Heidelberg}, 2016\ifbtxprintISBN
+  {, \mbox{\btxISBN~\btxISBNfont {9783662535042}}}.
+\newblock {\latintext
+  \btxurlfont{https://books.google.de/books?id=rSagDQAAQBAJ}}.
+
+\btxselectlanguage {english}
+\bibitem {aurelien:2017}
+\btxnamefont {\btxlastnamefont {Géron}, Aurélien}\btxauthorcolon\
+  \btxtitlefont {Hands-On Machine Learning with Scikit-Learn and TensorFlow,
+  1st Edition}.
+\newblock \btxpublisherfont {O'Reilly Media, Inc.}, 2017\ifbtxprintISBN {,
+  \mbox{\btxISBN~\btxISBNfont {978-1-4919-6229-9}}}.
 
 \end{thebibliography}

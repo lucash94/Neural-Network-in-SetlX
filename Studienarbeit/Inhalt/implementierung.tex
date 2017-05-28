@@ -388,7 +388,7 @@ In diesem Abschnitt der Arbeit wird auf die Implementierung der grafischen Ausga
 \end{itemize}
 \vspace{0.5cm}
 \noindent
-Die folgenden Befehle ermöglichen die einzelnen Funktionalitäten in der Anwendung anzusteuern:
+Die folgenden Befehle ermöglichen die einzelnen Funktionalitäten in der Anwendung anzusteuern. Diese sind über das Eingabefeld im oberen Bereich der Anwendung einzutragen und können mit der Schaltfläche \textit{Play} ausgeführt werden.
 \begin{center}
 \begin{tabular}{lp{8cm}}
 \textbf{Eingabebefehl}   & \textbf{Erklärung} \\
@@ -403,28 +403,41 @@ $\mathbf{1000}$   & Animation für den Untersuchbereichs der einzelnen Neuronen 
 
 \noindent 
 Mit dem \textbf{Eingabebefehl 0} wird dynamisch der Aufbau des angewendeten neuronalen Netzwerks dem Anwender repräsentiert (siehe Abb. \ref{fig:animation_network_default}). Wie bereits im Theorieteil dieser Arbeit beschrieben, besteht das neuronale Netzwerk aus einer Eingabeschicht, einer oder mehrerer verborgener Schichten und einer Ausgabeschicht. \\
+\noindent
 Die Eingabe für das Netzwerk ist eine handgeschriebene Zahl mit der Bildgröße von $28 \times 28$ Pixeln. Jedes Pixel stellt eine Eingabe des neuronalen Netzwerks dar, wobei 784 Eingaben aus der Bildgröße resultieren (siehe Abb. \ref{fig:MNIST-Matrix}). Diese werden für die Animation ebenfalls wie das Ursprungsbild in der Form eines Quadrats abgebildet. Weiterhin ist der Aufbau und die Verbindungen zwischen den Neuronen der verborgenen Schicht und der Ausgabeschicht dargestellt. \\
 
 \begin{figure}[hbt]
 	\centering
-	\includegraphics[scale=0.32]{Bilder/MNIST-Matrix}
+	\includegraphics[scale=0.43]{Bilder/MNIST-Matrix}
 	\caption{Eingabe in das neuronale Netzwerk.} 
 	\label{fig:MNIST-Matrix} 
 \end{figure}
 
 \begin{figure}[!hbt]
 	\centering
-	\includegraphics[scale=0.7]{Bilder/animation_network_default}
+	\includegraphics[scale=0.75]{Bilder/animation_network_default}
 	\caption{Default Animation, welche über die Eingabe mit dem Wert $0$ aufgerufen wird.} 
 	\label{fig:animation_network_default} 
 \end{figure}
  
 \noindent
-Die \textbf{Eingabebefehle 1 - 30} betrachten den Untersuchungsbereich eines einzelnen Neurons der verborgenen Schicht, welches hierbei bei der Auswahl farblich hervorgehoben wird. Der Untersuchungsbereich ist farblich in rote und blaue Bereiche aufgeteilt. Pixel mit einer roten Färbung, haben eine hohe Gewichtung. Dahingegen weisen Pixel mit einer blauen Färbung einen geringen Gewichtungsfaktor auf. Blassere Farben haben hierbei eine geringere Merkmalsausprägung. Die Animation weist hierbei den folgenden Aufbau auf (siehe Abb. \ref{fig:untersuchungsbereich_neuron}).
+Für die weitere Betrachtung der Eingabebefehle in diesem Abschnitt soll zunächst das verwendete Farbmodell erläutert werden. Hierzu findet das additive Farbmodell im RGB-Farbraum seine Anwendung, wobei die Farbtiefe durch den jeweiligen Wert bestimmt wird. Kleine Werte weißen dabei einen höheren Weiß-Anteil auf wie größere Werte. Die Einfärbungen im Untersuchungsbereich sind wie folgt definiert:
+\begin{center}
+\begin{tabular}{lp{6cm}}
+\textbf{Farbe}   & \textbf{Erklärung} \\
+\hline \\
+blau, grün & Bereich mit einer geringen Relevanz \\[0.2cm]
+rot, gelb  & Bereich mit einer hohen Relevanz   \\
+\end{tabular}
+\end{center} 
+\vspace{1cm}
+
+\noindent
+Die \textbf{Eingabebefehle 1 - 30} betrachten den Untersuchungsbereich eines einzelnen Neurons der verborgenen Schicht, welches hierbei bei der Auswahl farblich hervorgehoben wird. Der Untersuchungsbereich ist farblich in rote und blaue Bereiche aufgeteilt. Pixel mit einer roten Färbung, haben eine hohe Gewichtung. Dahingegen weisen Pixel mit einer blauen Färbung einen geringen Gewichtungsfaktor auf. Blassere Farben haben hierbei eine geringere Merkmalsausprägung. Die Animation weist hierbei den folgenden Aufbau auf (siehe Abb. \ref{fig:untersuchungsbereich_neuron}). \\
 
 \begin{figure}[!hbt]
 	\centering
-	\includegraphics[scale=0.6]{Bilder/untersuchungsbereich_neuron}
+	\includegraphics[scale=0.8]{Bilder/untersuchungsbereich_neuron}
 	\caption{Untersuchungsbereich eines einzelnen Neurons der verborgenen Schicht.} 
 	\label{fig:untersuchungsbereich_neuron} 
 \end{figure}
@@ -434,22 +447,13 @@ Die \textbf{Eingabebefehle 1 - 30} betrachten den Untersuchungsbereich eines ein
 
 \begin{figure}[hbt]
 	\centering
-	\includegraphics[scale=0.56]{Bilder/untersuchungsbereich_neuronen}
+	\includegraphics[scale=0.7]{Bilder/untersuchungsbereich_neuronen}
 	\caption{Untersuchungsbereich aller Neuronen der verborgenen Schicht.} 
 	\label{fig:untersuchungsbereich_neuronen} 
 \end{figure}
 
 \noindent
-Der letzte \textbf{Eingabebereich 101-Datensatzgröße} ermöglicht den Untersuchungsbereich der Neuronen hinsichtlich einer Eingabe aus den Trainingsdaten zu betrachten. Die farbliche Bedeutung für den Untersuchungsbereich ist wie folgt definiert:
-\begin{center}
-\begin{tabular}{lp{6cm}}
-\textbf{Farbe}   & \textbf{Erklärung} \\
-\hline \\
-blau, grün & Bereich mit einer geringen Relevanz \\[0.2cm]
-rot, gelb  & Bereich mit einer hohen Relevanz   \\
-\end{tabular}
-\end{center}
-Weiterhin ist wird das Untersuchungsobjekt, die Eingabe, sowie die Ausgabe mit dem berechneten Ergebnissen in der Animation abgebildet (siehe Abb. \ref{fig:untersuchungsbereich_zahl}). Die berechneten Ergebnisse ermöglichen dem Nutzer zu überprüfen, ob die Klassifizierung durch das neuronale Netzwerk richtig vorgenommen wurde und welche Neuronen in bei der Ergebnisfindung höheren Einfluss nehmen. Die Berechnung unter jedem Untersuchungsbereich ist durch die Sigmoid-Funktion bestimmt. \\
+Der letzte \textbf{Eingabebereich 101-Datensatzgröße} ermöglicht den Untersuchungsbereich der Neuronen hinsichtlich einer Eingabe aus den Trainingsdaten zu betrachten. Des Weiteren wird das Untersuchungsobjekt, die Eingabe, sowie die Ausgabe mit dem berechneten Ergebnissen in der Animation abgebildet (siehe Abb. \ref{fig:untersuchungsbereich_zahl}). Die berechneten Ergebnisse ermöglichen dem Nutzer zu überprüfen, ob die Klassifizierung durch das neuronale Netzwerk richtig vorgenommen wurde und welche Neuronen in bei der Ergebnisfindung höheren Einfluss nehmen. Die Berechnung unter jedem Untersuchungsbereich ist durch die Sigmoid-Funktion bestimmt. \\
 
 \noindent
 An dieser Stelle soll angemerkt sein, dass aufgrund der Verwendung von nur einer verborgenen Schicht in diesem Versuchsaufbau und der Anzahl von nur 30 Iterationen keine Erkenntnisse anhand der grafischen Ausgaben getroffen werden können. Hierzu müsste ein \textit{Multilayer-Network} mit einer wesentlichen höheren Anzahl von Iterationen implementiert werden.

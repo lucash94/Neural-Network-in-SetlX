@@ -1,5 +1,5 @@
 \chapter{Theorie}
-Dieses Kapitel beschäftigt sich mit den Grundlagen für das Entwickeln und Implementieren eines neuronalen Netzwerks. Die Notationen für die mathematischen Ausdrücke orientieren sich an dem Skript zur Vorlesung \textit{Artifical Intelligence} bei Prof. Dr. Karl Stroetmann \cite{stroetmann:2017}.
+Dieses Kapitel beschäftigt sich mit den Grundlagen für das Entwickeln und Implementieren eines neuronalen Netzwerks. Die Notationen für die mathematischen Ausdrücke orientieren sich an dem Skript zur Vorlesung \textit{Artifical Intelligence} von Prof. Dr. Karl Stroetmann \cite{stroetmann:2017}.
 
 \section{Das Neuron}
 \label{chap:sigmoid}
@@ -81,7 +81,7 @@ Das in dieser Arbeit angewandte Netzwerk nennt sich hierbei \textit{feedforward 
 \end{figure}
 
 \noindent
-Für die erste Schicht, die Eingabeschicht, ist die Eingabedimension definiert durch $m(1)$. Analog ist die Ausgabedimension durch $m(L)$ definiert. Jeder Knoten der $l$-ten Schicht ist zu jedem Knoten der $(l+1)$-ten Schicht über eine Gewichtung verbunden. Weiterhin ist die Gewichtung des $k$-ten Neuron der $l$-ten Schicht zu dem $j$-ten Neuron in der $(l+1)$-ten Schicht gegeben durch $w_{j,k}^{(l)}$. Alle Gewichtungen in Schicht $l$ sind über die Gewichtungsmatrix $W^{(l)}$ zusammengefasst. Die Matrix ist eine $m(l) \times m(l-1)$ Matrix mit $\ds W^{(l)} \in \mathbb{R}^{m(l) \times m(l-1)}$ und ist definiert als
+Für die erste Schicht, die Eingabeschicht, ist die Eingabedimension definiert durch $m(1)$. Analog ist die Ausgabedimension durch $m(L)$ definiert. Jeder Knoten der $l$-ten Schicht ist zu jedem Knoten der $(l+1)$-ten Schicht über eine Gewichtung verbunden. Weiterhin ist die Gewichtung des $k$-ten Neuron der $(l-1)$-ten Schicht zu dem $j$-ten Neuron in der $l$-ten Schicht gegeben durch $w_{j,k}^{(l)}$. Alle Gewichtungen in Schicht $l$ sind über die Gewichtungsmatrix $W^{(l)}$ zusammengefasst. Die Matrix ist eine $m(l) \times m(l-1)$ Matrix mit $\ds W^{(l)} \in \mathbb{R}^{m(l) \times m(l-1)}$ und ist definiert als
 \\[0.2cm]
 \hspace*{1.3cm}
 $\ds W^{(l)} := \bigl( w_{j,k}^{(l)} \bigr)$.
@@ -150,7 +150,7 @@ $\langle \mathbf{x}^{(i)}, \mathbf{y}^{(i)} \rangle$ \quad for $i=1,\cdots,n$
 vorliegen, sodass 
 \\[0.2cm]
 \hspace*{1.3cm}
-$\mathbf{x}^{(i)} \in \mathbb{R}^{(1)}$ und $\mathbf{y}^{(i)} \in \mathbb{R}^{m(L)}$.
+$\mathbf{x}^{(i)} \in \mathbb{R}^{m(1)}$ und $\mathbf{y}^{(i)} \in \mathbb{R}^{m(L)}$.
 \\[0.2cm]
 Das Ziel ist eine Belegung der Gewichtungsmatrix $W^{(l)}$ und dem Vorbelastungsvektor $b^{(l)}$ zu finden, damit
 \\[0.2cm]
@@ -165,21 +165,21 @@ $\ds C\Bigr(W^{(2)}, \cdots, W^{(L)}, \mathbf{b}^{(2)}, \cdots, \mathbf{b}^{(L)}
  \frac{1}{2 \cdot n} \cdot \sum\limits_{i=1}^n \Bigl(\mathbf{o}\bigl(\mathbf{x}^{(i)}\bigr) - \mathbf{y}^{(i)}\Bigr)^2
 $.
 \\[0.2cm]
-An dieser Stelle ist zu berücksichtigen, dass die Kostenfunktion hinsichtlich der Trainingsdaten $\langle \mathbf{x}^{(i)},\mathbf{y}^{(i)} \rangle$ additiv ist. Eine Vereinfachung der Notation kann vorgenommen, wenn die Betrachtung bei der Kostenfunktion auf ein Trainingsbeispiel $\langle \mathbf{x},\mathbf{y} \rangle$ fällt. Dazu wird
+An dieser Stelle ist zu berücksichtigen, dass die Kostenfunktion hinsichtlich der Trainingsdaten $\langle \mathbf{x}^{(i)},\mathbf{y}^{(i)} \rangle$ additiv ist. Eine Vereinfachung der Notation kann vorgenommen werden, wenn die Betrachtung bei der Kostenfunktion auf ein Trainingsbeispiel $\langle \mathbf{x},\mathbf{y} \rangle$ fällt. Dazu wird
 \\[0.2cm]
 \hspace*{1.3cm}
 $\ds C_{\mathbf{x}, \mathbf{y}}\Bigr(W^{(2)}, \cdots, W^{(L)}, \mathbf{b}^{(2)}, \cdots, \mathbf{b}^{(L)}\Bigr) := 
  \frac{1}{2} \cdot \Bigl(\mathbf{a}^{(L)}\bigl(\mathbf{x}\bigr) - \mathbf{y}\Bigr)^2
 $
 \\[0.2cm]
-definiert. Weiterhin ergibt sich für die allgemeine Kostenfunktion
+definiert. Die Definition der Kostenfunktion lautet:
 \\[0.2cm]
 $\ds C\Bigr(W^{(2)}, \cdots, W^{(L)}, \mathbf{b}^{(2)}, \cdots, \mathbf{b}^{(L)};
      \mathbf{x}^{(1)}, \mathbf{y}^{(1)}, \cdots, \mathbf{x}^{(n)},\mathbf{y}^{(n)} \Bigr) := 
- \frac{1}{n} \cdot \sum\limits_{i=1}^n C_{\mathbf{x^{(i)}}, \mathbf{y}^{(i)}}\Bigr(W^{(2)}, \cdots W^{(L)}, \mathbf{b}^{(2)}, \cdots, \mathbf{b}^{(L)}\Bigr) 
+ \frac{1}{n} \cdot \sum\limits_{i=1}^n C_{\mathbf{x}^{(i)}, \mathbf{y}^{(i)}}\Bigr(W^{(2)}, \cdots W^{(L)}, \mathbf{b}^{(2)}, \cdots, \mathbf{b}^{(L)}\Bigr) 
 $.
 \\[0.2cm]
-Für den weiteren Verlauf dieser Arbeit die Notation $C_{\mathbf{x}, \mathbf{y}}$ für den Ausdruck
+Für den weiteren Verlauf dieser Arbeit wird die Notation $C_{\mathbf{x}, \mathbf{y}}$ für den Ausdruck
 \\[0.2cm]
 \hspace*{1.3cm}
 $\ds C_{\mathbf{x}, \mathbf{y}}\Bigr(W^{(2)}, \cdots, W^{(L)}, \mathbf{b}^{(2)}, \cdots, \mathbf{b}^{(L)}\Bigr)$
@@ -189,12 +189,11 @@ eingeführt.
 
 \section{Backpropagation}
 \label{chap:backprop}
-Der Backpropagation-Algorithmus ist das meist genutzte neuronale Modell. Grund ist die universelle Einsetzbarkeit für beliebige Approximationsaufgaben im Hinblick auf die effiziente Berechnung der partiellen Ableitung der Kostenfunktion $C$ nach der Gewichtung $w_{j,k}^{(l)}$ und der Vorbelastungen $b_j^{(l)}$. Ziel des Algorithmus ist die Minimierung der Abweichung zwischen erwartetem Ausgabewert und dem durch das neuronale Netzwerk ermitteltem Wert. Hierzu wird in dem folgenden Kapitel das Werkzeug für dessen Berechnung gegeben. \\
-
-%http://download.springer.com/static/pdf/442/chp%253A10.1007%252F978-3-658-13549-2_9.pdf?originUrl=http%3A%2F%2Flink.springer.com%2Fchapter%2F10.1007%2F978-3-658-13549-2_9&token2=exp=1494935592~acl=%2Fstatic%2Fpdf%2F442%2Fchp%25253A10.1007%25252F978-3-658-13549-2_9.pdf%3ForiginUrl%3Dhttp%253A%252F%252Flink.springer.com%252Fchapter%252F10.1007%252F978-3-658-13549-2_9*~hmac=259dec5f34cd0b3359f1147eaa21cf718b54fe7ffd8f04118d36cf45e9be83ef
+Der Backpropagation-Algorithmus ist ein überwachtes Lernverfahren zur Bestimmung der Gewichtungen in einem mehrschichtigen feedforward Netzwerk. Ziel des Algorithmus ist die iterative Bestimmung der Gewichtungen derart, dass der ermittelte Ausgabewert des neuronalen Netzwerks mit dem tatsächlichen übereinstimmt. Der Backpropagation-Algorithmus lässt sich auch als numerisches Verfahren charakterisieren, welcher das Minimum der Fehlerfunktion eines bestimmten Lernproblems durch Abstieg in der Gradientenrichtung (Gradient Descent) sucht \cite[S. 71]{zander:2013}.
+In dieser Arbeit wird der Algorithmus für die effiziente Berechnung der partiellen Ableitungen der Kostenfunktion $C$ nach der Gewichtung $w_{j,k}^{(l)}$ und der Vorbelastungen $b_j^{(l)}$ verwendet. Hierzu wird in dem folgenden Kapitel das Werkzeug für dessen Berechnung gegeben. \\
 
 \noindent
-Für die Backpropagation-Gleichungen werden zunächst Hilfsgrößen definiert, damit. \\
+Für die Backpropagation-Gleichungen werden zunächst diverse Hilfsgrößen definiert, welche die spätere Notation vereinfachen sollen. \\
 Die Definition von $z_j^{(l)}$, soll die Eingabe der Aktivierungsfunktion $S$ des $j$-ten Neuron der $l$-ten Schicht darstellen:
 \\[0.2cm]
 \hspace*{1.3cm}
@@ -245,7 +244,7 @@ mit
 	\label{eq:sigmoidPrime}
 	S'(x) = (1-S(t)) \cdot S(t).
 \end{equation}
-Die Gleichung \ref{eq:BP1} kann auch als vektorisierte Schreibweise mittels dem Hardamard-Produkt angegeben werden. Hierfür ergibt sich:
+Die Gleichung \ref{eq:BP1} kann auch als vektorisierte Schreibweise mittels dem Hardamard-Produkt \cite[S. 353]{walz:2016}, welche in dieser Arbeit mit dem Zeichen $\odot$ dargestellt ist, angegeben werden. Hierfür ergibt sich:
 \begin{equation}
   \label{eq:BP1s}
 \boldsymbol{\varepsilon}^{(L)} = (\mathbf{a}^{(L)} - \mathbf{y}) \odot S'\bigl(\mathbf{z}^{(L)}\bigr),  \tag{BP1v}
@@ -318,7 +317,11 @@ Der Backpropagation Algorithmus durchläuft die folgenden Schritte:
 \begin{enumerate}
 \item \textbf{Feedforward-Berechnung:}
 \begin{enumerate}
-\item Zuweisung des Eingabevektors $\textbf{x}$ der Eingabeschicht mit über die Aktivierung $a^{(1)}$
+\item Der Eingabevektor $\textbf{x}$ ist gegeben und gespeichert in der Eingabeschicht des neuronalen Netzwerks:
+\\[0.2cm]
+\hspace*{1.3cm}
+$a^{(1)}(\mathbf{x}) := \mathbf{x}$.
+\\[0.2cm]
 \item Für jede weitere Schicht $l \in \{2,\cdots , L\}$ wird die Aktivierung 
 \\[0.2cm]
 \hspace*{1.3cm}
@@ -351,14 +354,100 @@ $\nabla_{W^{(l)}} C_{\mathbf{x}, \mathbf{y}} = \boldsymbol{\varepsilon}^{(l)} \c
 \end{enumerate}
 
 \noindent
-Wie bereits beschrieben berechnet der Backpropagation Algorithmus den Gradienten der Kostenfunktion für die einzelnen Trainingsbeispiele. In der Praxis ist es üblich den Backpropagation mit einem Lernalgorithmus zu kombinieren. Hierzu wird im folgenden Abschnitt auf den \textit{Stochastic Gradient Descent} eingegangen.
+Wie bereits beschrieben berechnet der Backpropagation-Algorithmus den Gradienten der Kostenfunktion für die einzelnen Trainingsbeispiele. In der Praxis ist es üblich den Backpropagation mit einem Lernalgorithmus zu kombinieren. Hierzu wird im folgenden Abschnitt auf das \textit{Gradient Descent Verfahren} eingegangen.
+
+\section{Gradient Descent}
+Gradient Descent, auch Verfahren des steilsten Abstiegs genannt, ist ein Verfahren mit dem allgemeine Optimierungsprobleme gelöst werden können. Die Kernidee des Algorithmus ist die iterative Optimierung von Parametern, um eine gegebene Kostenfunktion zu minimieren. \\
+
+\noindent
+Das Gradientenverfahren nähert sich einen Minimum einer Funktion 
+\\[0.2cm]
+\hspace*{1.3cm}
+$f:\mathbb{R}^n \rightarrow \mathbb{R}$
+\\[0.2cm] 
+über eine Folge stetig kleiner werdende Funktionswerte. Dabei berechnet der Algorithmus den lokalen Gradienten der Fehlerfunktion und geht in Richtung des absteigenden Gradienten bis der Algorithmus gegen ein Minimum konvergiert (siehe Abb. \ref{fig:gradient_descent1}) \cite{aurelien:2017}. Hierbei ist
+\\[0.2cm]
+\hspace*{1.3cm}
+$\mathbf{\widehat{x}} = \arg\min\limits_{\mathbf{x}\in \mathbb{R}^n} f(\mathbf{x})$
+\\[0.2cm] 
+der Wert von $\mathbf{x} \in \mathbb{R}^n$, der $f(x)$ minimiert. Formal ist folgendes gegeben:
+\\[0.2cm]
+\hspace*{1.3cm}
+$\forall \mathbf{x} \in \mathbb{R}^n : f(\mathbf{x}) \geq f\Bigl(\arg\min\limits_{\mathbf{x}\in \mathbb{R}^n} f(\mathbf{x})\Bigr)$.
+\\[0.2cm]
+Die Funktion arg min ist nur dann definiert, wenn ein Minimum eindeutig ist. Ist die Funktion $f$ differenzierbar, ist die notwendige Bedingung für den Vektor $\mathbf{\widehat{x}} \in \mathbb{R}^n$ mit 
+\\[0.2cm]
+\hspace*{1.3cm}
+$\mathbf{\widehat{x}} = \arg\min\limits_{\mathbf{x}\in \mathbb{R}^n} f(\mathbf{x}) \quad$ durch $\quad \nabla f(\mathbf{x}) = 0 \quad$ zu gewährleisten.
+\\[0.2cm]
+Der Gradient der Funktion $f$ ist dabei definiert als
+\\[0.2cm]
+\hspace*{1.3cm}
+$\nabla f := \left(
+ \begin{array}{c}
+ \ds\frac{\partial f}{\partial\, x_1} \\
+    \vdots                            \\[0.1cm]
+ \ds\frac{\partial f}{\partial\, x_n} \\ 
+ \end{array}
+ \right).
+$
+\\[0.2cm]
+Weiterhin ist für einen Startwert, gegeben durch den Vektor $\mathbf{x}_0 \in \mathbb{R}^n$,  eine Folge $(x_n)_{n \in \mathbb{N}}$ definiert, sodass 
+\\[0.2cm]
+\hspace*{1.3cm}
+$f(x_{n+1}) \leq f(x_n) \quad \forall n \in \mathbb{N}$.
+\\[0.2cm] 
+
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[scale=0.2]{Bilder/gradient_descent1}
+	\caption{Verfahren des Gradient Descent. \cite{aurelien:2017}} 
+	\label{fig:gradient_descent1} 
+\end{figure}
+\noindent
+ 
+
+\noindent
+Eine wichtige Größe im Gradient Descent Verfahren ist die Lernrate des Algorithmus. Ist die Lernrate zu klein gewählt, benötigt der Algorithmus viele Iterationen bis dieser gegen ein Minimum konvergiert. Dadurch erhöht sich auch dessen Laufzeit (siehe Abb. \ref{fig:gradient_descent2}).
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[scale=0.2]{Bilder/gradient_descent2}
+	\caption{Kleine Lernrate beim Gradient Descent Verfahren. \cite{aurelien:2017}} 
+	\label{fig:gradient_descent2} 
+\end{figure}
+
+\noindent
+Ist auf der anderen Seite die Lernrate zu groß gewählt, kann das Minimum verpasst werden und der Abstand zum Minimum kann sich möglicherweise sogar vergrößern (siehe Abb. \ref{fig:gradient_descent3})
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[scale=0.2]{Bilder/gradient_descent3}
+	\caption{Große Lernrate beim Gradient Descent Verfahren. \cite{aurelien:2017}} 
+	\label{fig:gradient_descent3} 
+\end{figure}
+
+\noindent
+Der Verlauf einer Kostenfunktion muss dabei nicht immer die Form einer Parabel annehmen, weshalb das Konvergieren gegen ein Minimum erschwert werden kann (siehe Abb. \ref{fig:gradient_descent4}). Zum einen könnte aufgrund der zufälligen Initialisierung der Algorithmus nur ein lokales Minimum finden, welches nicht so gut ist wie das globale Minimum (siehe linke Seite der Abbildung). Zum anderen kann es ein Weile Dauern bis das Minimum erreicht wird, wobei dieses nicht erreicht wird, falls der Algorithmus vorher abbrechen sollte (siehe rechte Seite der Abbildung).
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[scale=0.2]{Bilder/gradient_descent4}
+	\caption{Schwierigkeiten beim Gradient Descent Verfahren. \cite{aurelien:2017}} 
+	\label{fig:gradient_descent4} 
+\end{figure}
+
+\noindent
+Die quadratische Fehlerkostenfunktion $C$ für das lineare Regressionsmodell weißt hingegen eine konvexe Form auf. Dies bedeutet, dass keine lokalen Minima sondern nur ein globales Minimum vorhanden ist. Des Weiteren liegt eine kontinuierliche Funktion vor, die keine plötzlichen Änderungen in ihrer Form erfährt. Somit kann mit dem Gradient Descent Verfahren garantiert werden, dass der Algorithmus gegen das globale Minimum konvergiert (siehe Abb. \ref{fig:gradient_descent5}).
+\begin{figure}[hbt]
+	\centering
+	\includegraphics[scale=0.25]{Bilder/gradient_descent5}
+	\caption{Anwendung des Gradient Descent Verfahren auf die quadratische Fehlerkostenfunktion. \cite{buduma:2017}} 
+	\label{fig:gradient_descent5} 
+\end{figure}
 
 \section{Stochastic Gradient Descent}
-Für eine zuverlässige Klassifizierung der Eingaben wird eine Algorithmus benötigt, welcher die Bestimmung von Gewichtungen und Vorbelastungen bestmöglich gewährleistet. Hierzu wird in dieser Arbeit auf die Methode des \textit{Stochastic Gradient Descent} zurückgegriffen. Im Bereich des maschinellen Lernen ist es notwendig das Minimum oder Maximum einer Funktion \\[0.2cm]
-\hspace*{1.3cm}
-$f:\mathbb{R}^n \rightarrow \mathbb{R}$.
-\\[0.2cm]
-zu ermitteln. Die im vorangegangenen Kapitel vorgestellten Gleichungen der Backpropagation beschreiben den Gradienten der Kostenfunktion für ein einzelnes Trainingsbeispiel $\langle\mathbf{x}, \mathbf{y}\rangle$. Besteh die Absicht unser neuronales Netzwerk zu trainieren, müssen alle Trainingsdaten berücksichtigt werden. Für $n$ Trainingsdaten 
+In diesem Abschnitt fällt die Betrachtung auf das \textit{Stochastic Gradient Descent Verfahren}, welches auf dem \textit{Gradient Descent Verfahren} aufbaut und Anwendung in dieser Arbeit findet. Der Vorteil des Verfahrens liegt in der Approximation der quadratischen Fehlerkostenfunktion durch eine Teilmenge der zugrundeliegenden Daten. Fließen in die Berechnung der quadratischen Fehlerkostenfunktion eine große Menge von $n$ Datensätzen ein, kann dessen Berechnung kostenintensive Auswirkungen haben. \\
+
+\noindent
+Die im vorangegangenen Kapitel vorgestellten Gleichungen der Backpropagation beschreiben den Gradienten der Kostenfunktion für ein einzelnes Trainingsbeispiel $\langle\mathbf{x}, \mathbf{y}\rangle$. Besteht die Absicht das neuronales Netzwerk dieser Arbeit zu trainieren, müssen alle Trainingsdaten berücksichtigt werden. Für $n$ Trainingsdaten 
 \\[0.2cm]
 \hspace*{1.3cm}
 $\langle\mathbf{x}^{(1)}, \mathbf{y}^{(1)}\rangle$,
