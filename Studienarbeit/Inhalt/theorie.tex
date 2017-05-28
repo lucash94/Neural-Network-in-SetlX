@@ -1,5 +1,5 @@
 \chapter{Theorie}
-Dieses Kapitel beschäftigt sich mit den Grundlagen für das Entwickeln und Implementieren eines neuronalen Netzwerks. Die Notationen für die mathematischen Ausdrücke orientieren sich an dem Skript zur Vorlesung \textit{Artifical Intelligence} von Prof. Dr. Karl Stroetmann \cite{stroetmann:2017}.
+Dieses Kapitel beschäftigt sich mit den Grundlagen für die Entwicklung und Implementierung eines neuronalen Netzwerks. Die Notationen für die mathematischen Ausdrücke orientieren sich an dem Skript zur Vorlesung \textit{Artifical Intelligence} von Prof. Dr. Karl Stroetmann \cite{stroetmann:2017}.
 
 \section{Das Neuron}
 \label{chap:sigmoid}
@@ -72,7 +72,7 @@ $\ds p(\mathbf{x}; \mathbf{w}, b) = S\left(\biggl(\sum\limits_{i=1}^m x_i \cdot 
 \\[0.2cm]
 
 \section{Neuronales Netzwerk}
-Das in dieser Arbeit angewandte Netzwerk nennt sich hierbei \textit{feedforward neural network} und beschreibt ein Netzwerk aus Neuronen, deren Informationsfluss keine Schleifen durchläuft. Die Topologie des neuronalen Netzwerk ist gegeben durch eine Zahl $L \in \mathbb{N}$ und einer Liste $[m(1),\cdots ,m(L)]$ mit $L$ natürlichen Zahlen. Hierbei bezeichnet $L$ die Anzahl der Schichten im neuronalen Netzwerk und für $i \in \{2,\cdots ,L\}$ gibt der Wert von $m(i)$ die Anzahl der Neuronen der $l$-ten Schicht an. Die erste Schicht wird in diesem Modell als Eingabeschicht bezeichnet. Sie enthält im Vergleich zu anderen Schichten keine Neuronen sondern Eingabeknoten. Die letzte Schicht (mit Index $L$) wird als Ausgabeschicht bezeichnet, wohingegen alle restlichen Schichten als verborgene Schichten bezeichnet werden. Liegen dem Netzwerk mehr wie nur eine verborgene Schicht vor, so bezeichnet man dieses als \textit{deep neural network} (siehe Abb. \ref{fig:neural_network_extended}).
+Das in dieser Arbeit angewandte Netzwerk nennt sich \textit{feedforward neural network} und beschreibt ein Netzwerk aus Neuronen, deren Informationsfluss keine Schleifen durchläuft. Die Topologie des neuronalen Netzwerk ist gegeben durch eine Zahl $L \in \mathbb{N}$ und einer Liste $[m(1),\cdots ,m(L)]$ mit $L$ natürlichen Zahlen. Hierbei bezeichnet $L$ die Anzahl der Schichten im neuronalen Netzwerk und für $i \in \{2,\cdots ,L\}$ gibt der Wert von $m(i)$ die Anzahl der Neuronen der $l$-ten Schicht an. Die erste Schicht wird in diesem Modell als Eingabeschicht bezeichnet. Sie enthält im Vergleich zu anderen Schichten keine Neuronen sondern Eingabeknoten. Die letzte Schicht (mit Index $L$) wird als Ausgabeschicht bezeichnet, wohingegen alle restlichen Schichten als verborgene Schichten bezeichnet werden. Liegen dem Netzwerk mehr wie nur eine verborgene Schicht vor, so bezeichnet man dieses als \textit{deep neural network} (siehe Abb. \ref{fig:neural_network_extended}).
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[scale=0.6]{Bilder/neural_network_extended}

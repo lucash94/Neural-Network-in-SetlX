@@ -26,7 +26,7 @@ s2 := now() - s1;
 print("Time needed:\t" + s2);
 
 // Save weights and biases in SetlX file
-// writeFile("my_n.stlx", "biases := " + net.mBiases + ";\n\n" + "weights := "+ net.mWeights + ";");
+// writeFile("my_network.stlx", "biases := " + net.mBiases[2..] + ";\n\n" + "weights := "+ net.mWeights[2..] + ";");
 
 load("network_animation.stlx");
 print("Starting animation");
