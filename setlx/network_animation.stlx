@@ -9,7 +9,8 @@ class animation(weights, biases, structure, test_data) {
 	mTestData := test_data;
 	mTestDataSize := #test_data;
 	mNetwork := structure[2..];
-
+	lambda := 1.0;
+	
 	//drawOutputLayer
 	drawOutputLayer := procedure(x, y, r, text) {	
 		for(i in {0 .. mNetwork[#mNetwork]-1}) {
@@ -36,17 +37,17 @@ class animation(weights, biases, structure, test_data) {
 					color := weights[1][b][(mAllPixel-(mSqrtAllPixel*i)+j)];
 					
 					//calculating color values between 0 and 1
-					nColor := 1-exp(-abs(color));
+					nColor := 1-exp(-lambda * abs(color));
 				} else if(dataFlag && mWeightsFlag) {					// dataFlag == true && weightFlag == true; print hadamard
 					if(data[1][b][(mAllPixel-(mSqrtAllPixel*i)+j)] == 0.0 || data[1][b][(mAllPixel-(mSqrtAllPixel*i)+j)] == -0.0) {
 						color := weights[1][b][(mAllPixel-(mSqrtAllPixel*i)+j)];
 					
 						//calculating color values between 0 and 1
-						nColor := 1-exp(-abs(color));
+						nColor := 1-exp(-lambda * abs(color));
 						hadamardFlag := false;
 					} else {
 						color := data[1][b][(mAllPixel-(mSqrtAllPixel*i)+j)];
-						nColor := 1-exp(-abs(color));
+						nColor := 1-exp(-lambda * abs(color));
 						hadamardFlag := true;
 					}
 				}
@@ -56,19 +57,19 @@ class animation(weights, biases, structure, test_data) {
 				} else if(dataFlag && mWeightsFlag && !hadamardFlag) {
 					if(color < 0) { // negative values | green
 						//farbverlauf
-						gfx_setPenColorRGB( 1-nColor, 1, 0 );
+						//gfx_setPenColorRGB( 1-nColor, 1, 0 );
 						
 						//additiv weiß
-						//gfx_setPenColorRGB( 1-nColor, 1, 1-nColor );
+						gfx_setPenColorRGB( 1-nColor, 1, 1-nColor );
 						
 						//additiv schwarz
 						//gfx_setPenColorRGB( 0, nColor, 0 );
 					} else { // positiv values | yellow
 						//farbverlauf
-						gfx_setPenColorRGB( nColor, 1, 0 );
+						//gfx_setPenColorRGB( nColor, 1, 0 );
 						
 						//additiv weiß
-						//gfx_setPenColorRGB( 1, 1, 1-nColor );
+						gfx_setPenColorRGB( 1, 1, 1-nColor );
 						
 						//additiv schwarz
 						//gfx_setPenColorRGB( nColor, nColor, 0 );
@@ -78,19 +79,19 @@ class animation(weights, biases, structure, test_data) {
 				} else {
 					if(color < 0) { // negative values | blue
 						//farbverlauf
-						gfx_setPenColorRGB( 1-nColor, 0, nColor );
+						//gfx_setPenColorRGB( 1-nColor, 0, nColor );
 						
 						//additiv weiß
-						//gfx_setPenColorRGB( 1-nColor, 1-nColor, 1 );
+						gfx_setPenColorRGB( 1-nColor, 1-nColor, 1 );
 						
 						//additiv schwarz
 						//gfx_setPenColorRGB( 0, 0, nColor );
 					} else { // positiv values | red
 						//farbverlauf
-						gfx_setPenColorRGB( nColor, 0, 1-nColor );
+						//gfx_setPenColorRGB( nColor, 0, 1-nColor );
 						
 						//additiv weiß
-						//gfx_setPenColorRGB( 1, 1-nColor, 1-nColor );
+						gfx_setPenColorRGB( 1, 1-nColor, 1-nColor );
 						
 						//additiv schwarz
 						//gfx_setPenColorRGB( nColor, 0, 0 );
