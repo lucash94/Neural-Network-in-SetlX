@@ -128,7 +128,8 @@ Hierbei ist zu beachten, dass der letzte Index immer 1 ist, da jedes Neuron nur 
 	$\mathtt{mWeights[Schicht][Neuron][Gewicht]}$
 \end{center}
 \item $\mathtt{computeRndMatrix()}$: Diese Hilfsfunktion dient zur Erstellung der Struktur der Gewichte und Vorbelastungen in den zuvor vorgestellten Funktionen. Die Funktion enthält als Parameter die Anzahl von Reihen und Spalten. Zurückgegeben wird die zugehörige Matrix mit zufälligen Werten zwischen $-1/28$ und $1/28$. Der Wert 28 ergibt sich aus der Größe des Eingabevektors (28x28 Pixel). \\
-Bsp.: $s := 1, 2\ \rightarrow\ <<\ <<x>>\ <<y>>\ >>$ und $s := [2,1]\ \rightarrow\ <<\ <<x\ y>>\ >>$
+Bsp.: $\mathtt{row\ :=\ 1;\ col\ :=\ 2\ \rightarrow\ <<\ <<x>>\ <<y>>\ >>}$ \\ 
+und $\ \ \mathtt{row\ :=\ 2;\ col\ :=\ 1\ \rightarrow\ <<\ <<x\ y>>\ >>}$
 \end{enumerate}
 
 \noindent
