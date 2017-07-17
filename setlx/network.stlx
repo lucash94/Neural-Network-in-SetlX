@@ -32,7 +32,7 @@ class network (s) {
 		for(j in {1..epochs}) {
 			training_data := shuffle(training_data);
 			// Get mini-batches from the training data to train the network
-			mini_batches := [ training_data[k..k+mini_batch_size-1] : k in [1,mini_batch_size..n] ];
+			mini_batches := [ training_data[k..k+mini_batch_size-1] : k in [1,mini_batch_size+1..n] ];
 		
 			for(mini_batch in mini_batches) {			
 				update_mini_batch(mini_batch, eta);		
