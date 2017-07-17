@@ -80,7 +80,7 @@ class network (s) {
 		activation := x;
 		// List of all activations (layer by layer)
 		activations := [ la_matrix(x) ];
-		activations += [0 : i in [1..#mBiases]];
+		activations += [0 : i in [1..#mBiases-1]];
 		
 		// List of z-vectors (layer by layer)
 		zs := [0 : i in [1..#mBiases]];
@@ -89,9 +89,9 @@ class network (s) {
 			zs[i] := mWeights[i] * activation + mBiases[i];
 			
 			activation := sigmoid(zs[i]);
-			activations[i + 1] := la_matrix(activation);
+			activations[i] := la_matrix(activation);
 		}
-
+		
 		// Backwards pass, output layer
 		// la_hadamard() needs a matrix -> cdm is cost derivate in matrix form
 		cdm := la_matrix( cost_derivative(activations[-1], y) );
